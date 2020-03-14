@@ -7,21 +7,15 @@
  */
 
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import HomeScreen from './src/features/home/HomeScreen';
+import {Provider} from 'react-redux';
+import store from './src/store/store';
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text> رعاية تك</Text>
-    </View>
+    <Provider store={store}>
+      <HomeScreen />
+    </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 export default App;
