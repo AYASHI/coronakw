@@ -20,6 +20,11 @@
 		2DCD954D1E0B4F2C00145EB5 /* healthcareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* healthcareTests.m */; };
 		68521E99D064B442F316F4CD /* libPods-healthcareTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A15BF9D7AE350E4F44E881 /* libPods-healthcareTests.a */; };
 		F067CB119D88CE5AAA2A3601 /* libPods-healthcare-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 336C755A0239F48F536B9341 /* libPods-healthcare-tvOS.a */; };
+		F5D1451880574726BAFA41B1 /* SFUIDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 195E5109360E4B1DA7A1F24C /* SFUIDisplay-Bold.otf */; };
+		FADB87F863104F9EAE441C88 /* SFUIDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = B593E08BDECE4E33BF84A1F3 /* SFUIDisplay-Light.otf */; };
+		B9D80D91D2464F78B33DA9D5 /* SFUIDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DEA31CCF07FA463C9B14F4DE /* SFUIDisplay-Medium.otf */; };
+		0B262F1058B544DCBBB02014 /* SFUIDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D6018D0BDAFF429D861F7775 /* SFUIDisplay-Regular.otf */; };
+		5B5A735543E840459D618A6F /* SFUIDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5EC1BA605D9A4C3FAEBC8433 /* SFUIDisplay-Semibold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +72,11 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FD19894BE253CE51076BB2DC /* Pods-healthcareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-healthcareTests.release.xcconfig"; path = "Target Support Files/Pods-healthcareTests/Pods-healthcareTests.release.xcconfig"; sourceTree = "<group>"; };
+		195E5109360E4B1DA7A1F24C /* SFUIDisplay-Bold.otf */ = {isa = PBXFileReference; name = "SFUIDisplay-Bold.otf"; path = "../src/assets/fonts/SFUIDisplay-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B593E08BDECE4E33BF84A1F3 /* SFUIDisplay-Light.otf */ = {isa = PBXFileReference; name = "SFUIDisplay-Light.otf"; path = "../src/assets/fonts/SFUIDisplay-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DEA31CCF07FA463C9B14F4DE /* SFUIDisplay-Medium.otf */ = {isa = PBXFileReference; name = "SFUIDisplay-Medium.otf"; path = "../src/assets/fonts/SFUIDisplay-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D6018D0BDAFF429D861F7775 /* SFUIDisplay-Regular.otf */ = {isa = PBXFileReference; name = "SFUIDisplay-Regular.otf"; path = "../src/assets/fonts/SFUIDisplay-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5EC1BA605D9A4C3FAEBC8433 /* SFUIDisplay-Semibold.otf */ = {isa = PBXFileReference; name = "SFUIDisplay-Semibold.otf"; path = "../src/assets/fonts/SFUIDisplay-Semibold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +175,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				C3F2D9AFBCE76F5D89803C96 /* Pods */,
+				54E2CE5B4C5D4A9180F924C4 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -197,6 +208,19 @@
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		54E2CE5B4C5D4A9180F924C4 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				195E5109360E4B1DA7A1F24C /* SFUIDisplay-Bold.otf */,
+				B593E08BDECE4E33BF84A1F3 /* SFUIDisplay-Light.otf */,
+				DEA31CCF07FA463C9B14F4DE /* SFUIDisplay-Medium.otf */,
+				D6018D0BDAFF429D861F7775 /* SFUIDisplay-Regular.otf */,
+				5EC1BA605D9A4C3FAEBC8433 /* SFUIDisplay-Semibold.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -285,7 +309,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -338,6 +362,11 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				F5D1451880574726BAFA41B1 /* SFUIDisplay-Bold.otf in Resources */,
+				FADB87F863104F9EAE441C88 /* SFUIDisplay-Light.otf in Resources */,
+				B9D80D91D2464F78B33DA9D5 /* SFUIDisplay-Medium.otf in Resources */,
+				0B262F1058B544DCBBB02014 /* SFUIDisplay-Regular.otf in Resources */,
+				5B5A735543E840459D618A6F /* SFUIDisplay-Semibold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

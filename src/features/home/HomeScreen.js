@@ -1,10 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import fonts from '../../utils/fonts';
 
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <Text style={{fontFamily: fonts.Bold}}>رعاية تك</Text>
     </View>
   );
 };
