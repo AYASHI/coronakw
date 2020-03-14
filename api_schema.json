@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "version": "0.1",
+        "version": "0.2",
         "title": "Riaya Tech API"
     },
     "paths": {
