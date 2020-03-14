@@ -1,0 +1,342 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "0.1",
+        "title": "Riaya Tech API"
+    },
+    "paths": {
+        "/survey": {
+            "get": {
+                "summary": "Gets survey questions.  TODO: question_id is currently the object key.  Should it be an array of questions with a question_id property?",
+                "operationId": "getSurvey",
+                "responses": {
+                    "200": {
+                        "description": "Survey questions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Survey"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Sends survey answers. TODO: do we send an answer at a time or in bulk?",
+                "security": [
+                    {
+                        "OAuth2": [
+                            "normal_user_scope",
+                            "quarantine_scope"
+                        ]
+                    }
+                ],
+                "operationId": "postSurvey",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Answer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Null response"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/changePassword": {
+            "post": {
+                "summary": "Change password",
+                "security": [
+                    {
+                        "OAuth2": [
+                            "normal_user_scope",
+                            "quarantine_scope"
+                        ]
+                    }
+                ],
+                "operationId": "changePassword",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "newPassword": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Null response"
+                    },
+                    "401": {
+                        "description": "Not authorized"
+                    },
+                    "403": {
+                        "description": "Access token does not have the required scope"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forgotPassword": {
+            "post": {
+                "summary": "Forgot password",
+                "operationId": "forgotPassword",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "civil_id": {
+                                        "type": "number"
+                                    },
+                                    "phone_number": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Null response"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/location": {
+            "post": {
+                "summary": "send GPS coordinates",
+                "security": [
+                    {
+                        "OAuth2": [
+                            "quarantine_scope"
+                        ]
+                    }
+                ],
+                "operationId": "sendGPS",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Coordinate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Null response"
+                    },
+                    "401": {
+                        "description": "Not authorized"
+                    },
+                    "403": {
+                        "description": "Access token does not have the required scope"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Survey": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "object",
+                    "required": [
+                        "questionText",
+                        "answerType"
+                    ],
+                    "properties": {
+                        "questionText": {
+                            "$ref": "#/components/schemas/LocalizedText"
+                        },
+                        "answerType": {
+                            "$ref": "#/components/schemas/AnswerType"
+                        },
+                        "choices": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Choice"
+                            }
+                        }
+                    }
+                }
+            },
+            "LocalizedText": {
+                "type": "object",
+                "required": [
+                    "en",
+                    "ar"
+                ],
+                "properties": {
+                    "en": {
+                        "type": "string"
+                    },
+                    "ar": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AnswerType": {
+                "type": "string",
+                "enum": [
+                    "choices",
+                    "thermometer"
+                ]
+            },
+            "Choice": {
+                "type": "object",
+                "required": [
+                    "text",
+                    "choice_id"
+                ],
+                "properties": {
+                    "text": {
+                        "$ref": "#/components/schemas/LocalizedText"
+                    },
+                    "choice_id": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Answer": {
+                "type": "object",
+                "required": [
+                    "question_id",
+                    "answer"
+                ],
+                "properties": {
+                    "question_id": {
+                        "type": "string"
+                    },
+                    "answer": {
+                        "oneOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    }
+                }
+            },
+            "Coordinate": {
+                "type": "object",
+                "required": [
+                    "lat",
+                    "lon"
+                ],
+                "properties": {
+                    "lat": {
+                        "type": "number"
+                    },
+                    "lon": {
+                        "type": "number"
+                    }
+                }
+            },
+            "Error": {
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "$ref": "#/components/schemas/LocalizedText"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "OAuth2": {
+                "type": "oauth2",
+                "flows": {
+                    "authorizationCode": {
+                        "authorizationUrl": "https://notsure.com/authorize",
+                        "tokenUrl": "https://notsure.com/token",
+                        "scopes": {
+                            "normal_user_scope": "The regular users, might probably be identified with device ID",
+                            "quarantine_scope": "People who are under quarantine and registered by MOH"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
