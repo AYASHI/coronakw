@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import layout from '../utils/layout';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -6,14 +6,15 @@ import colors from '../utils/colors';
 import fonts from '../utils/fonts';
 import { connect } from 'react-redux';
 import * as actionTypes from '../store/actionTypes';
+import * as constants from "../utils/constants";
+
+
 
 
 const StatusSelectionView = props => {
 
 
   const StatusButton = statusProps => {
-    console.log("props", props);
-
     const dividerStyle = statusProps.hasDivider
       ? {
           borderEndWidth: 1,
@@ -22,6 +23,12 @@ const StatusSelectionView = props => {
       : {};
     const handleTouch = () => {
       props.sendHealthState(statusProps.healthValue);
+
+      //show survey if clicked on not healthy
+      if (statusProps.healthValue == constants.NOT_HEALTHY) {
+        //TODO: probably don't show this on every unhealthy click
+        props.healthSurveyShown(true);
+      }
     }
     return (
       <View style={[styles.statusContainer, dividerStyle]}>
@@ -44,8 +51,8 @@ const StatusSelectionView = props => {
   };
 
   const array = [
-    {title: 'بصحة جيدة', emoji: '😊', hasDivider: true, healthValue: 1},
-    {title: 'بصحة غير جيدة', emoji: '😔', hasDivider: false, healthValue: 2},
+    {title: 'بصحة جيدة', emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
+    {title: 'بصحة غير جيدة', emoji: '😔', hasDivider: false, healthValue: constants.NOT_HEALTHY},
   ];
 
   const Statuses = () => {
@@ -118,8 +125,13 @@ const mapDispatchToProps = (dispatch) => {
     sendHealthState: (healthStateValue) => dispatch({
       type: actionTypes.SEND_HEALTH_STATE,
       value: healthStateValue,
+    }),
+    healthSurveyShown: (show) => dispatch({
+      type: actionTypes.HEALTH_SURVEY_SHOWN,
+      value: show,
     })
   };
 };
+
 // Exports
 export default connect(mapStateToProps, mapDispatchToProps)(StatusSelectionView);
