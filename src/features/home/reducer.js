@@ -9,11 +9,19 @@ const initialState = {
 
 // Just dummy reducer
 export default function homeReducer(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
-    case actionTypes.SET_HEALTH_STATE: {
+    case actionTypes.SEND_HEALTH_STATE: {
       return {
         ...state,
         healthState: action.value,
+      };
+    }
+
+    case actionTypes.HEALTH_STATE_SENT: {
+      return {
+        ...state,
+        // healthState: action.value,
       };
     }
 

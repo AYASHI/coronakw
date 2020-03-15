@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import layout from '../utils/layout';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import colors from '../utils/colors';
 import fonts from '../utils/fonts';
 import { connect } from 'react-redux';
+import * as actionTypes from '../store/actionTypes';
 
 
 const StatusSelectionView = props => {
+
+
   const StatusButton = statusProps => {
+    console.log("props", props);
+
     const dividerStyle = statusProps.hasDivider
       ? {
           borderEndWidth: 1,
@@ -27,6 +32,7 @@ const StatusSelectionView = props => {
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
+            opacity: props.healthState === statusProps.healthValue ? 1 : 0.3
           }}>
           <View style={styles.circle}>
             <Text style={styles.emoji}>{statusProps.emoji}</Text>
@@ -98,11 +104,9 @@ const styles = StyleSheet.create({
 
 // Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = (state) => {
-  console.log('State:');
-  console.log(state);
   // Redux Store --> Component
   return {
-    healthState: state.healthState,
+    healthState: state.home.healthState,
   };
 };
 
@@ -112,13 +116,10 @@ const mapDispatchToProps = (dispatch) => {
   // Action
   return {
     sendHealthState: (healthStateValue) => dispatch({
-      type: 'SET_HEALTH_STATE',
+      type: actionTypes.SEND_HEALTH_STATE,
       value: healthStateValue,
     })
   };
 };
 // Exports
 export default connect(mapStateToProps, mapDispatchToProps)(StatusSelectionView);
-
-
-// export default StatusSelectionView;

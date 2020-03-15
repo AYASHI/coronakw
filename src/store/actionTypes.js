@@ -10,3 +10,4 @@ export const TRY_REGISTER_FAILED = 'TRY_REGISTER_FAILED';
 
 //health state
 export const SEND_HEALTH_STATE = "SEND_HEALTH_STATE";
+export const HEALTH_STATE_SENT = "HEALTH_STATE_SENT";
