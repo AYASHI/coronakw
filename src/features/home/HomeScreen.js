@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import fonts from '../../utils/fonts';
+import {View, StyleSheet} from 'react-native';
 import HomeScreenHeader from '../../components/HomeScreenHeader';
 
 const HomeScreen = () => {
@@ -11,6 +10,9 @@ const HomeScreen = () => {
   );
 };
 const styles = StyleSheet.create({
+  saveArea: {
+    flex: 1,
+  },
   container: {
     flex: 1,
   },
