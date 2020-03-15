@@ -4,6 +4,8 @@ import layout from '../utils/layout';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import colors from '../utils/colors';
 import fonts from '../utils/fonts';
+import { connect } from 'react-redux';
+
 
 const StatusSelectionView = props => {
   const StatusButton = statusProps => {
@@ -13,9 +15,13 @@ const StatusSelectionView = props => {
           borderColor: colors.separatorColor,
         }
       : {};
+    const handleTouch = () => {
+      props.sendHealthState(statusProps.healthValue);
+    }
     return (
       <View style={[styles.statusContainer, dividerStyle]}>
         <TouchableOpacity
+          onPress={handleTouch}
           style={{
             flex: 1,
             width: '100%',
@@ -32,8 +38,8 @@ const StatusSelectionView = props => {
   };
 
   const array = [
-    {title: 'بصحة جيدة', emoji: '😊', hasDivider: true},
-    {title: 'بصحة غير جيدة', emoji: '😔', hasDivider: false},
+    {title: 'بصحة جيدة', emoji: '😊', hasDivider: true, healthValue: 1},
+    {title: 'بصحة غير جيدة', emoji: '😔', hasDivider: false, healthValue: 2},
   ];
 
   const Statuses = () => {
@@ -44,6 +50,7 @@ const StatusSelectionView = props => {
             title={item.title}
             emoji={item.emoji}
             hasDivider={item.hasDivider}
+            healthValue={item.healthValue}
           />
         ))}
       </>
@@ -88,4 +95,30 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StatusSelectionView;
+
+// Map State To Props (Redux Store Passes State To Component)
+const mapStateToProps = (state) => {
+  console.log('State:');
+  console.log(state);
+  // Redux Store --> Component
+  return {
+    healthState: state.healthState,
+  };
+};
+
+
+// Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
+const mapDispatchToProps = (dispatch) => {
+  // Action
+  return {
+    sendHealthState: (healthStateValue) => dispatch({
+      type: 'SET_HEALTH_STATE',
+      value: healthStateValue,
+    })
+  };
+};
+// Exports
+export default connect(mapStateToProps, mapDispatchToProps)(StatusSelectionView);
+
+
+// export default StatusSelectionView;
