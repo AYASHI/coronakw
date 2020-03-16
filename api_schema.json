@@ -349,10 +349,16 @@
                     "lon"
                 ],
                 "properties": {
-                    "lat": {
+                    "latitude": {
                         "type": "number"
                     },
-                    "lon": {
+                    "longitude": {
+                        "type": "number"
+                    },
+                    "accuracy": {
+                        "type": "number"
+                    },
+                    "timestamp": {
                         "type": "number"
                     }
                 }
