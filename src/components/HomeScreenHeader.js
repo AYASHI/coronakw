@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect} from 'react';
-import {View, Text, StyleSheet, Animated} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import colors from '../utils/colors';
 import fonts from '../utils/fonts';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -20,15 +20,6 @@ const HomeScreenHeader = props => {
   else if (props.healthState == constants.SERIOUSLY_UNHEALTHY) {
     containerColor.backgroundColor = colors.status.red;
   }
-  
-  const color = new Animated.Value(0);
-
-  useEffect(() => {
-    Animated.timing(color, {
-      toValue: containerColor.backgroundColor,
-      duration: 500
-    }).start();
-  }, []);
 
   return (
     <Fragment>
