@@ -1,14 +1,70 @@
 import React, { Fragment, useEffect } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Platform } from 'react-native';
 import layout from '../utils/layout';
 import { connect } from 'react-redux';
+import * as actionTypes from '../store/actionTypes';
 
-const CurrentPositionFragment = props => {
+import Geolocation from 'react-native-geolocation-service';
 
-    const gpsButtonPressed = () => {
+
+const CurrentPositionFragment = (props) => {
+
+    hasLocationPermission = async () => {
+        if (Platform.OS === 'ios' ||
+            (Platform.OS === 'android' && Platform.Version < 23)) {
+            return true;
+        }
+
+        const hasPermission = await PermissionsAndroid.check(
+            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+        );
+
+        if (hasPermission) return true;
+
+        const status = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+        );
+
+        if (status === PermissionsAndroid.RESULTS.GRANTED) return true;
+
+        //TODO: What do we want to do here?
+        if (status === PermissionsAndroid.RESULTS.DENIED) {
+            console.log("Location permission denied by user.")
+        } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
+            console.log("Location permission revoked by user.")
+        }
+
+        return false;
+    }
+
+    const gpsButtonPressed = async () => {
+        const canLocate = await hasLocationPermission();
+
+        if (!canLocate) return;
+
+        Geolocation.getCurrentPosition(
+            (position) => {
+                console.log(position);
+
+                let location = {
+                    longitude: position.coords.longitude,
+                    latitude: position.coords.latitude,
+                    accuracy: position.coords.accuracy,
+                    timestamp: position.timestamp,
+                }
+
+
+                props.sendLocation(location)
+            },
+            (error) => {
+                //TODO: notify user?
+                console.log(error);
+            },
+            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000, distanceFilter: 50, forceRequestLocation: true }
+        );
 
     }
-    
+
     return (
         <Fragment>
             <View style={styles.container}>
@@ -52,15 +108,19 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     // Redux Store --> Component
     return {
-        healthState: state.home.healthState,
-        isSick: state.home.isSick
+
     };
 };
 
 // Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
 const mapDispatchToProps = (dispatch) => {
     // Action
-    return {};
+    return {
+        sendLocation: (location) => dispatch({
+            type: actionTypes.SEND_LOCATION,
+            value: location,
+        })
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentPositionFragment);

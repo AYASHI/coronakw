@@ -73,6 +73,19 @@ export default function homeReducer(state = initialState, action) {
       };
     }
 
+    //TODO: spinner?
+    case actionTypes.SEND_LOCATION: {
+      return {
+        ...state,
+      };
+    }
+
+    //TODO: spinner?
+    case actionTypes.LOCATION_SENT: {
+      return {
+        ...state,
+      };
+    }
 
     default:
       return state;

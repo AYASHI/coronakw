@@ -18,5 +18,10 @@ export const CHANGED_ANSWER = "CHANGED_ANSWER";
 export const SEND_SURVEY = "SEND_SURVEY";
 export const SURVEY_SENT = "SURVEY_SENT";
 
+//location
+export const SEND_LOCATION = "SEND_LOCATION";
+export const LOCATION_SENT = "LOCATION_SENT";
+
+
 //request
 export const REQUEST_FAILED = "REQUEST_FAILED";
