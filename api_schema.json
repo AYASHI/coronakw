@@ -16,7 +16,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Survey"
-                                    
                                 }
                             }
                         }
@@ -203,7 +202,7 @@
                 }
             }
         },
-        "/healthState":  {
+        "/healthState": {
             "post": {
                 "summary": "Send current health state",
                 "security": [
@@ -252,7 +251,57 @@
                     }
                 }
             }
+        },
+        "/temperature": {
+            "post": {
+                "summary": "Send current temperature",
+                "security": [
+                    {
+                        "OAuth2": [
+                            "quarantine_scope",
+                            "normal_user_scope"
+                        ]
+                    }
+                ],
+                "operationId": "sendTemperature",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "temperature": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Null response"
+                    },
+                    "401": {
+                        "description": "Not authorized"
+                    },
+                    "403": {
+                        "description": "Access token does not have the required scope"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
+
     },
     "components": {
         "schemas": {
