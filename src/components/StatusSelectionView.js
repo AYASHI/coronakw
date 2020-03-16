@@ -25,7 +25,7 @@ const StatusSelectionView = props => {
       props.sendHealthState(statusProps.healthValue);
 
       //show survey if clicked on not healthy
-      if (statusProps.healthValue == constants.NOT_HEALTHY) {
+      if (statusProps.healthValue == constants.UNHEALTHY && !props.isSick) {
         //TODO: probably don't show this on every unhealthy click
         props.healthSurveyShown(true);
       }
@@ -50,11 +50,18 @@ const StatusSelectionView = props => {
     );
   };
 
-  const array = [
+  let array = [
     {title: 'بصحة جيدة', emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
-    {title: 'بصحة غير جيدة', emoji: '😔', hasDivider: false, healthValue: constants.NOT_HEALTHY},
+    {title: 'بصحة غير جيدة', emoji: '😔', hasDivider: false, healthValue: constants.UNHEALTHY},
   ];
 
+  if (props.isSick) {
+    array = [
+      {title: 'تحسنت', emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
+      {title: 'متعب', emoji: '🤒', hasDivider: false, healthValue: constants.UNHEALTHY},
+      {title: 'متعب جداً', emoji: '🤧', hasDivider: false, healthValue: constants.SERIOUSLY_UNHEALTHY},
+    ];
+  }
   const Statuses = () => {
     return (
       <>
@@ -114,6 +121,7 @@ const mapStateToProps = (state) => {
   // Redux Store --> Component
   return {
     healthState: state.home.healthState,
+    isSick: state.home.isSick
   };
 };
 

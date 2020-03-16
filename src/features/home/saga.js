@@ -1,19 +1,19 @@
 import axios from 'axios';
 import * as actionTypes from '../../store/actionTypes';
+import * as constants from "../../utils/constants";
 import { takeLatest, takeEvery, put } from 'redux-saga/effects';
 
-var baseUrl = "https://29e02c26-6207-48f7-9f9e-5f98254acd64.mock.pstmn.io";
 
 function* sendHealthStateSaga(action) {
   const data = { healthState: action.value }
   try {
-    const json = yield axios.post(baseUrl + '/healthState', data).then(response => response.json());
+    const json = yield axios.post(constants.BASE_URL + '/healthState', data).then(response => response);
     yield put({ type: actionTypes.HEALTH_STATE_SENT });
 
   }
   catch (error) {
     console.log(error);
-    // Construct an error message
+    // Construct an error message.  Should we use specific errors in actionTypes or general failure msg?  Depends how we're supposed to handle it.
     yield put({ type: actionTypes.REQUEST_FAILED, payload: { status: error.response.status, message: error.response.statusText } });
   }
 }
@@ -30,7 +30,7 @@ function* sendSurvey(action) {
   }
   try {
 
-    const json = yield axios.post(baseUrl + '/survey', data).then(response => response);
+    const json = yield axios.post(constants.BASE_URL + '/survey', data).then(response => response);
     yield put({ type: actionTypes.SURVEY_SENT });
   }
   catch (error) {

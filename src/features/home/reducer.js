@@ -1,10 +1,12 @@
 import * as actionTypes from '../../store/actionTypes';
+import * as constants from "../../utils/constants";
 
 
 // initial dummy state
 const initialState = {
   loading: false,
   healthState: 1,
+  isSick: false,
   showSurvey: false,
   answers: {}
 };
@@ -60,6 +62,7 @@ export default function homeReducer(state = initialState, action) {
     case actionTypes.SURVEY_SENT: {
       return {
         ...state,
+        isSick: state.healthState != constants.HEALTHY  //TODO: this should be determined by the backend based on survey answers?
       };
     }
 
