@@ -3,6 +3,8 @@ const images = {
   check: require('../assets/images/check.png'),
   uncheck: require('../assets/images/uncheck.png'),
   scanner: require('../assets/images/scanner.png'),
+  location: require('../assets/images/location.png'),
+  temperature: require('../assets/images/temperature.png'),
 };
 
 export default images;
