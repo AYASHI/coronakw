@@ -8,6 +8,7 @@ const initialState = {
   healthState: 1,
   isSick: false,
   showSurvey: false,
+  showTemperature: false,
   answers: {}
 };
 
@@ -82,6 +83,26 @@ export default function homeReducer(state = initialState, action) {
 
     //TODO: spinner?
     case actionTypes.LOCATION_SENT: {
+      return {
+        ...state,
+      };
+    }
+
+    case actionTypes.TEMPERATURE_MODAL_SHOWN: {
+      return {
+        ...state,
+        showTemperature: action.value,
+      };
+    }
+
+
+    case actionTypes.SEND_TEMPERATURE: {
+      return {
+        ...state,
+      };
+    }
+
+    case actionTypes.TEMPERATURE_SENT: {
       return {
         ...state,
       };

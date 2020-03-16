@@ -3,6 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import HomeScreenHeader from '../../components/HomeScreenHeader';
 import HomeScreenBody from '../../components/HomeScreenBody';
 import HealthSurveyModal from '../../components/HealthSurveyModal';
+import TemperatureModal from '../../components/TemperatureModal';
 
 
 const HomeScreen = () => {
@@ -11,6 +12,7 @@ const HomeScreen = () => {
       <HomeScreenHeader />
       <HomeScreenBody />
       <HealthSurveyModal />
+      <TemperatureModal />
     </View>
   );
 };

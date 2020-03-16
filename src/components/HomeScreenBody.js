@@ -8,6 +8,7 @@ import StatusSelectionView from './CurrentPositionFragment';
 import { connect } from 'react-redux';
 import * as constants from "../utils/constants";
 import CurrentPositionFragment from './CurrentPositionFragment';
+import EnterTemperatureFragment from './EnterTemperatureFragment';
 
 const HomeScreenBody = props => {
 
@@ -16,7 +17,7 @@ const HomeScreenBody = props => {
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     <CurrentPositionFragment />
-
+                    <EnterTemperatureFragment />
                     
                 </ScrollView>
             </SafeAreaView>

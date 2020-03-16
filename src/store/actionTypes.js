@@ -22,6 +22,11 @@ export const SURVEY_SENT = "SURVEY_SENT";
 export const SEND_LOCATION = "SEND_LOCATION";
 export const LOCATION_SENT = "LOCATION_SENT";
 
+//temperature
+export const TEMPERATURE_MODAL_SHOWN = "TEMPERATURE_MODAL_SHOWN";
+export const SEND_TEMPERATURE = "SEND_TEMPERATURE";
+export const TEMPERATURE_SENT = "TEMPERATURE_SENT";
+
 
 //request
 export const REQUEST_FAILED = "REQUEST_FAILED";
