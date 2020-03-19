@@ -27,7 +27,7 @@ const EnterTemperatureFragment = props => {
   return (
     <Fragment>
       <View style={styles.container}>
-        <Text style={styles.title}>{t("enterTemparatureFragment.title")}</Text>
+        <Text style={styles.title}>{t("enterTemperatureFragment.title")}</Text>
         <TemperatureView />
       </View>
     </Fragment>
