@@ -35,8 +35,13 @@
 		
 		"title": "Your safety first",
 		"contentSubtitle":"What symptoms are you currently feeling?"
-
 	},
+	"temperatureModal": {
+		"subtitle": "Periodic temperature measurement",
+		"title": "For your safety, enter your current temperature",
+		"confirmButton": "Confirm current temperature"
+	}
+	
 	
 
 }
