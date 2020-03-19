@@ -26,8 +26,18 @@
 			"seriouslyUnhealthy": "متعب جداً"
 		}
 	},
-	"EnterTemperatureFragment":{
+	"enterTemperatureFragment":{
 		"subtitle": "إدخل قياس درجة الحرارة",
 		"title" : "كيف يمكننا مساعدتك"
-	}
+	},
+	"healthSurveyModal": {
+		"noSymptoms":"تأكيد عدم وجود اعراض",
+		"oneSymptom":"تأكيد عرض",
+		"twoSymptoms":"تأكيد عرضين",
+		
+		"title": "سلامتك بالدنيا..",
+		"contentSubtitle":"ما هي الاعراض التي تشعر بها الان؟"
+
+	},
+	
 }

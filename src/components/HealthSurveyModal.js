@@ -9,8 +9,10 @@ import Modal from 'react-native-modal';
 import * as actionTypes from '../store/actionTypes';
 import {questions} from '../utils/mockData';
 import Button from './Button';
+import {useTranslation} from 'react-i18next';
 
 const HealthSurveyModal = props => {
+  const {t, i18n} = useTranslation();
   const toggleModal = () => {
     props.healthSurveyShown(false);
   };
@@ -100,11 +102,11 @@ const HealthSurveyModal = props => {
   var buttonMsg = `تأكيد ${numberOfSymptoms} أعراض`;
 
   if (numberOfSymptoms === 0) {
-    buttonMsg = 'تأكيد عدم وجود اعراض';
+    buttonMsg = t("healthSurveyModal.noSymptoms");
   } else if (numberOfSymptoms === 1) {
-    buttonMsg = 'تأكيد عرض';
+    buttonMsg = t("healthSurveyModal.oneSymptom");
   } else if (numberOfSymptoms === 2) {
-    buttonMsg = 'تأكيد عرضين';
+    buttonMsg = t("healthSurveyModal.twoSymptoms");
   }
 
   const pressedButton = () => {
@@ -119,9 +121,9 @@ const HealthSurveyModal = props => {
       onSwipeComplete={toggleModal}>
       <SafeAreaView>
         <View style={styles.content}>
-          <Text style={styles.contentTitle}>سلامتك بالدنيا..</Text>
+          <Text style={styles.contentTitle}>{t("healthSurveyModal.title")}</Text>
           <Text style={styles.contentSubTitle}>
-            ما هي الاعراض التي تشعر بها الان؟
+            {t("healthSurveyModal.contentSubtitle")}
           </Text>
           <Questions />
           <Button text={buttonMsg} onPress={pressedButton} />

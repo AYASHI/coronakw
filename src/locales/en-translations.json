@@ -21,13 +21,22 @@
 		"sick": {
 			"healthy": "Better",
 			"unhealthy": "Unwell",
-			"seriously_unhealthy": "Very Unwell"
+			"seriouslyUnhealthy": "Very Unwell"
 		}
 	},
-	"EnterTemperatureFragment":{
+	"enterTemperatureFragment":{
 		"subtitle": "Enter your temperature",
 		"title" : "How can we help you"
-	}
+	},
+	"healthSurveyModal": {
+		"noSymptoms":"Confirm no symptoms",
+		"oneSymptom":"Confirm one symptom",
+		"twoSymptoms":"Confirm two symptoms",
+		
+		"title": "Your safety first",
+		"contentSubtitle":"What symptoms are you currently feeling?"
 
+	},
+	
 
 }
