@@ -52,15 +52,15 @@ const StatusSelectionView = props => {
   };
 
   let array = [
-    {title: t('statusSelection.notsick.unhealthy'), emoji: '😔', hasDivider: false, healthValue: constants.UNHEALTHY},
-    {title: t('statusSelection.notsick.healthy'), emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
+    {title: t('statusSelection.notSick.unhealthy'), emoji: '😔', hasDivider: false, healthValue: constants.UNHEALTHY},
+    {title: t('statusSelection.notSick.healthy'), emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
   ];
 
   if (props.isSick) {
     array = [
       {title: t('statusSelection.sick.healthy'), emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
       {title: t('statusSelection.sick.unhealthy'), emoji: '🤒', hasDivider: false, healthValue: constants.UNHEALTHY},
-      {title: t('statusSelection.sick.seriously_unhealthy'), emoji: '🤧', hasDivider: false, healthValue: constants.SERIOUSLY_UNHEALTHY},
+      {title: t('statusSelection.sick.seriouslyUnhealthy'), emoji: '🤧', hasDivider: false, healthValue: constants.SERIOUSLY_UNHEALTHY},
     ];
   }
   const Statuses = () => {

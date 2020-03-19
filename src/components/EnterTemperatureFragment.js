@@ -21,13 +21,13 @@ const EnterTemperatureFragment = props => {
       style={styles.temperature}
       onPress={temperatureButtonTouched}>
       <Image source={images.temperature} />
-      <Text style={styles.subtitle}>{t('EnterTemperatureFragment.subtitle')}</Text>
+      <Text style={styles.subtitle}>{t('enterTemperatureFragment.subtitle')}</Text>
     </TouchableOpacity>
   );
   return (
     <Fragment>
       <View style={styles.container}>
-        <Text style={styles.title}>{t("EnterTemparatureFragment.title")}</Text>
+        <Text style={styles.title}>{t("enterTemparatureFragment.title")}</Text>
         <TemperatureView />
       </View>
     </Fragment>
