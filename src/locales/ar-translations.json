@@ -25,5 +25,9 @@
 			"unhealthy": "متعب",
 			"seriouslyUnhealthy": "متعب جداً"
 		}
+	},
+	"EnterTemperatureFragment":{
+		"subtitle": "إدخل قياس درجة الحرارة",
+		"title" : "كيف يمكننا مساعدتك"
 	}
 }

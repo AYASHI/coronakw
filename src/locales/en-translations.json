@@ -23,6 +23,10 @@
 			"unhealthy": "Unwell",
 			"seriously_unhealthy": "Very Unwell"
 		}
+	},
+	"EnterTemperatureFragment":{
+		"subtitle": "Enter your temperature",
+		"title" : "How can we help you"
 	}
 
 
