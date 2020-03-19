@@ -8,8 +8,11 @@ import Modal from 'react-native-modal';
 import * as actionTypes from '../store/actionTypes';
 import Button from './Button';
 import Spacer from './Spacer';
+import {useTranslation} from 'react-i18next';
 
 const TemperatureModal = props => {
+  const {t, i18n} = useTranslation();
+
   const styles = StyleSheet.create({
     content: {
       backgroundColor: 'white',
@@ -81,10 +84,8 @@ const TemperatureModal = props => {
       <View style={styles.content}>
         <Image source={images.scanner} />
 
-        <Text style={styles.contentSubTitle}>قياس درجة الحرارة الدورية</Text>
-        <Text style={styles.contentTitle}>
-          قم بإدخال درجة حراراتك الحالية، حرصاً على سلامتك..
-        </Text>
+        <Text style={styles.contentSubTitle}>{t('temperatureModal.subtitle')}</Text>
+        <Text style={styles.contentTitle}>{t('temperatureModal.title')}</Text>
         <TextInput
           placeholder="0.0"
           value={temperature}
@@ -110,7 +111,10 @@ const TemperatureModal = props => {
           style={styles.textInput}
         />
         <Spacer />
-        <Button text={'تأكيد درجة الحرارة الحالية'} onPress={pressedButton} />
+        <Button
+          text={t('temperatureModal.confirmButton')}
+          onPress={pressedButton}
+        />
       </View>
     </Modal>
   );

@@ -8,8 +8,10 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import images from '../utils/images';
 import colors from '../utils/colors';
 import fonts from '../utils/fonts';
+import {useTranslation} from 'react-i18next';
 
 const EnterTemperatureFragment = props => {
+  const {t, i18n} = useTranslation();
   const temperatureButtonTouched = () => {
     props.temperatureModalShown(true);
   };
@@ -19,13 +21,13 @@ const EnterTemperatureFragment = props => {
       style={styles.temperature}
       onPress={temperatureButtonTouched}>
       <Image source={images.temperature} />
-      <Text style={styles.subtitle}>إدخل قياس درجة الحرارة</Text>
+      <Text style={styles.subtitle}>{t('enterTemperatureFragment.subtitle')}</Text>
     </TouchableOpacity>
   );
   return (
     <Fragment>
       <View style={styles.container}>
-        <Text style={styles.title}>كيف يمكننا مساعدتك</Text>
+        <Text style={styles.title}>{t("enterTemperatureFragment.title")}</Text>
         <TemperatureView />
       </View>
     </Fragment>

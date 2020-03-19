@@ -3,8 +3,10 @@ import {View, Image, StyleSheet} from 'react-native';
 import images from '../../utils/images';
 import Button from '../../components/Button';
 import Spacer from '../../components/Spacer';
+import {useTranslation} from 'react-i18next';
 
 const LoginScreen = ({navigation}) => {
+  const {t, i18n} = useTranslation();
   const login = () => {
     navigation.navigate('Home');
   };
@@ -12,7 +14,7 @@ const LoginScreen = ({navigation}) => {
     <View style={styles.container}>
       <Image source={images.logo} />
       <Spacer />
-      <Button text={'تسجيل الدخول'} onPress={login} />
+      <Button text={t('auth.login_button')} onPress={login} />
     </View>
   );
 };

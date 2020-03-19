@@ -7,9 +7,10 @@ import layout from '../utils/layout';
 import StatusSelectionView from './StatusSelectionView';
 import { connect } from 'react-redux';
 import * as constants from "../utils/constants";
+import {useTranslation} from 'react-i18next';
 
 const HomeScreenHeader = props => {
-
+  const {t, i18n} = useTranslation();
   let containerColor = {
     backgroundColor: colors.status.green,
   }
@@ -25,8 +26,8 @@ const HomeScreenHeader = props => {
     <Fragment>
       <SafeAreaView style={[styles.saveArea, containerColor]} />
       <View style={[styles.container, containerColor]}>
-        <Text style={styles.lastUpdateText}>اخر تحديث منذ ساعة</Text>
-        <Text style={styles.howDoYouFeel}>كيف تشعر الأن؟</Text>
+        <Text style={styles.lastUpdateText}>{t('home.lastUpdateText')}</Text>
+        <Text style={styles.howDoYouFeel}>{t('home.howDoYouFeel')}</Text>
         <StatusSelectionView />
       </View>
     </Fragment>

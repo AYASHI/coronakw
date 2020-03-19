@@ -11,6 +11,8 @@ import {Provider} from 'react-redux';
 import store from './src/store/store';
 import AppNavigator from './src/navigators/AppNavigator';
 import {I18nManager} from 'react-native';
+import './i18n';
+
 const App = () => {
   I18nManager.forceRTL(true); // Change app layout to RTL
   return (
