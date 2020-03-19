@@ -1,9 +1,29 @@
 {
 	"auth":
 	{
-		"login_button":"تسجيل الدخول",
+		"login_button":"تسجيل الدخول"
 		
+	},
+	"home":
+	{
+		"lastUpdateText":"اخر تحديث منذ ساعة",
+		"howDoYouFeel":"كيف تشعر الأن؟"
+		
+	},
+	"currentPosition": {
+		"gpsButton":"تأكيد موقعي الحالي بالمنزل",
+		"title":"اين موقعك الحالي؟",
+		"subtitle":"شكراً لألتزامك بالحجر المنزلي حتي الأن"
+	},
+	"statusSelection": {
+		"notSick":{
+			"healthy": "بصحة جيدة",
+			"unhealthy":"بصحة غير جيدة"
+		},
+		"sick": {
+			"healthy": "تحسنت",
+			"unhealthy": "متعب",
+			"seriouslyUnhealthy": "متعب جداً"
+		}
 	}
-
-
 }

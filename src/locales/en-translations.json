@@ -1,1 +1,29 @@
-{}
+{
+	"auth":
+	{
+		"login_button":"Login"
+	},
+	"home":
+	{
+		"lastUpdateText":"Most recent update",
+		"howDoYouFeel":"How do you feel now?"
+	},
+	"currentPosition": {
+		"gpsButton":"Confirm that I'm currently at home.",
+		"title": "What is your current location?", 
+		"subtitle":"Thank you for abiding by house quarantine regulations so far."
+	}, 	
+	"statusSelection": {
+		"notSick":{
+			"healthy": "Well",
+			"unhealthy": "Unwell"
+		},
+		"sick": {
+			"healthy": "Better",
+			"unhealthy": "Unwell",
+			"seriously_unhealthy": "Very Unwell"
+		}
+	}
+
+
+}
