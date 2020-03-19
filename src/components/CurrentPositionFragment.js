@@ -16,8 +16,10 @@ import Geolocation from 'react-native-geolocation-service';
 import fonts from '../utils/fonts';
 import colors from '../utils/colors';
 import images from '../utils/images';
-
+import {useTranslation} from 'react-i18next';
 const CurrentPositionFragment = props => {
+  const {t, i18n} = useTranslation();
+
   const hasLocationPermission = async () => {
     if (
       Platform.OS === 'ios' ||
@@ -30,7 +32,9 @@ const CurrentPositionFragment = props => {
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
     );
 
-    if (hasPermission) return true;
+    if (hasPermission) {
+      return true;
+    }
 
     const status = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -86,16 +90,17 @@ const CurrentPositionFragment = props => {
   const LocationView = () => (
     <TouchableOpacity style={styles.location}>
       <Image source={images.location} />
-      <Button title="تأكيد موقعي الحالي بالمنزل" onPress={gpsButtonPressed} />
+      <Button
+        title={t('currentPosition.gpsButton')}
+        onPress={gpsButtonPressed}
+      />
     </TouchableOpacity>
   );
   return (
     <Fragment>
       <View style={styles.container}>
-        <Text style={styles.title}>اين موقعك الحالي؟</Text>
-        <Text style={styles.subtitle}>
-          شكراً لألتزامك بالحجر المنزلي حتي الأن
-        </Text>
+        <Text style={styles.title}>{t('currentPosition.title')}</Text>
+        <Text style={styles.subtitle}>{t('currentPosition.subtitle')}</Text>
         <LocationView />
       </View>
     </Fragment>
