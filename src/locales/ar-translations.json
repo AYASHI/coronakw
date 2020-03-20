@@ -7,7 +7,8 @@
 	"home":
 	{
 		"lastUpdateText":"اخر تحديث منذ ساعة",
-		"howDoYouFeel":"كيف تشعر الأن؟"
+		"howDoYouFeel":"كيف تشعر الأن؟",
+		"howCanWeHelp" : "كيف يمكننا مساعدتك"
 		
 	},
 	"currentPosition": {
@@ -27,8 +28,19 @@
 		}
 	},
 	"enterTemperatureFragment":{
-		"subtitle": "إدخل قياس درجة الحرارة",
-		"title" : "كيف يمكننا مساعدتك"
+		"subtitle": "إدخل قياس درجة الحرارة"
+	},
+	"possibleInfectionsFragment":{
+		"subtitle": "إدخل أسماء من خالطت"
+	},
+	"possibleInfectionsModal":{
+		"title": "ستقوم ووزارة الصحة بالتواصل معهم لتحميل التطبيق والأطمئنان علي حالتهم الصحية..",
+		"add": "اضافة",
+		"send_0": "الرجاء ادخال الاسماء",
+		"send_1": "ارسال اسم",
+		"send_2": "ارسال اسمين",
+		"send_3": "ارسال {{count}} اسماء",
+		"send_11": "ارسال {{count}} اسم"
 	},
 	"healthSurveyModal": {
 		"noSymptoms":"تأكيد عدم وجود اعراض",
@@ -42,6 +54,9 @@
 		"subtitle": "قياس درجة الحرارة الدورية",
 		"title": " قم بإدخال درجة حراراتك الحالية، حرصاً على سلامتك..",
 		"confirmButton": "تأكيد درجة الحرارة الحالية"
+	},
+	"button": {
+		"confirm": "تأكيد"
 	}
 	
 }
