@@ -4,13 +4,10 @@ import layout from '../utils/layout';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import colors from '../utils/colors';
 import fonts from '../utils/fonts';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import * as actionTypes from '../store/actionTypes';
-import * as constants from "../utils/constants";
+import * as constants from '../utils/constants';
 import {useTranslation} from 'react-i18next';
-
-
-
 
 const StatusSelectionView = props => {
   const {t, i18n} = useTranslation();
@@ -30,7 +27,7 @@ const StatusSelectionView = props => {
         //TODO: probably don't show this on every unhealthy click
         props.healthSurveyShown(true);
       }
-    }
+    };
     return (
       <View style={[styles.statusContainer, dividerStyle]}>
         <TouchableOpacity
@@ -40,7 +37,7 @@ const StatusSelectionView = props => {
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
-            opacity: props.healthState === statusProps.healthValue ? 1 : 0.3
+            opacity: props.healthState === statusProps.healthValue ? 1 : 0.3,
           }}>
           <View style={styles.circle}>
             <Text style={styles.emoji}>{statusProps.emoji}</Text>
@@ -52,15 +49,40 @@ const StatusSelectionView = props => {
   };
 
   let array = [
-    {title: t('statusSelection.notSick.unhealthy'), emoji: '😔', hasDivider: false, healthValue: constants.UNHEALTHY},
-    {title: t('statusSelection.notSick.healthy'), emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
+    {
+      title: t('statusSelection.notSick.unhealthy'),
+      emoji: '😔',
+      hasDivider: false,
+      healthValue: constants.UNHEALTHY,
+    },
+    {
+      title: t('statusSelection.notSick.healthy'),
+      emoji: '😊',
+      hasDivider: true,
+      healthValue: constants.HEALTHY,
+    },
   ];
 
   if (props.isSick) {
     array = [
-      {title: t('statusSelection.sick.healthy'), emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
-      {title: t('statusSelection.sick.unhealthy'), emoji: '🤒', hasDivider: false, healthValue: constants.UNHEALTHY},
-      {title: t('statusSelection.sick.seriouslyUnhealthy'), emoji: '🤧', hasDivider: false, healthValue: constants.SERIOUSLY_UNHEALTHY},
+      {
+        title: t('statusSelection.sick.healthy'),
+        emoji: '😊',
+        hasDivider: true,
+        healthValue: constants.HEALTHY,
+      },
+      {
+        title: t('statusSelection.sick.unhealthy'),
+        emoji: '🤒',
+        hasDivider: false,
+        healthValue: constants.UNHEALTHY,
+      },
+      {
+        title: t('statusSelection.sick.seriouslyUnhealthy'),
+        emoji: '🤧',
+        hasDivider: false,
+        healthValue: constants.SERIOUSLY_UNHEALTHY,
+      },
     ];
   }
   const Statuses = () => {
@@ -116,31 +138,34 @@ const styles = StyleSheet.create({
   },
 });
 
-
 // Map State To Props (Redux Store Passes State To Component)
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   // Redux Store --> Component
   return {
     healthState: state.home.healthState,
-    isSick: state.home.isSick
+    isSick: state.home.isSick,
   };
 };
 
-
 // Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   // Action
   return {
-    sendHealthState: (healthStateValue) => dispatch({
-      type: actionTypes.SEND_HEALTH_STATE,
-      value: healthStateValue,
-    }),
-    healthSurveyShown: (show) => dispatch({
-      type: actionTypes.HEALTH_SURVEY_SHOWN,
-      value: show,
-    })
+    sendHealthState: healthStateValue =>
+      dispatch({
+        type: actionTypes.SEND_HEALTH_STATE,
+        value: healthStateValue,
+      }),
+    healthSurveyShown: show =>
+      dispatch({
+        type: actionTypes.HEALTH_SURVEY_SHOWN,
+        value: show,
+      }),
   };
 };
 
 // Exports
-export default connect(mapStateToProps, mapDispatchToProps)(StatusSelectionView);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(StatusSelectionView);

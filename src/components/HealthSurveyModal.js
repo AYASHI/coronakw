@@ -14,7 +14,7 @@ import {useTranslation} from 'react-i18next';
 const HealthSurveyModal = props => {
   const {t, i18n} = useTranslation();
   const toggleModal = () => {
-    props.healthSurveyShown(false);
+    props.healthSurveyShown(true);
   };
 
   const styles = StyleSheet.create({
@@ -102,11 +102,11 @@ const HealthSurveyModal = props => {
   var buttonMsg = `تأكيد ${numberOfSymptoms} أعراض`;
 
   if (numberOfSymptoms === 0) {
-    buttonMsg = t("healthSurveyModal.noSymptoms");
+    buttonMsg = t('healthSurveyModal.noSymptoms');
   } else if (numberOfSymptoms === 1) {
-    buttonMsg = t("healthSurveyModal.oneSymptom");
+    buttonMsg = t('healthSurveyModal.oneSymptom');
   } else if (numberOfSymptoms === 2) {
-    buttonMsg = t("healthSurveyModal.twoSymptoms");
+    buttonMsg = t('healthSurveyModal.twoSymptoms');
   }
 
   const pressedButton = () => {
@@ -121,9 +121,11 @@ const HealthSurveyModal = props => {
       onSwipeComplete={toggleModal}>
       <SafeAreaView>
         <View style={styles.content}>
-          <Text style={styles.contentTitle}>{t("healthSurveyModal.title")}</Text>
+          <Text style={styles.contentTitle}>
+            {t('healthSurveyModal.title')}
+          </Text>
           <Text style={styles.contentSubTitle}>
-            {t("healthSurveyModal.contentSubtitle")}
+            {t('healthSurveyModal.contentSubtitle')}
           </Text>
           <Questions />
           <Button text={buttonMsg} onPress={pressedButton} />

@@ -21,7 +21,9 @@ const EnterTemperatureFragment = props => {
       style={styles.temperature}
       onPress={temperatureButtonTouched}>
       <Image source={images.temperature} />
-      <Text style={styles.subtitle}>{t('enterTemperatureFragment.subtitle')}</Text>
+      <Text style={styles.subtitle}>
+        {t('enterTemperatureFragment.subtitle')}
+      </Text>
     </TouchableOpacity>
   );
   return (
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     padding: layout.margin,
-    paddingBottom: 0
+    paddingBottom: 0,
   },
 
   title: {

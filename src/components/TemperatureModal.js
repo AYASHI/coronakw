@@ -84,7 +84,9 @@ const TemperatureModal = props => {
       <View style={styles.content}>
         <Image source={images.scanner} />
 
-        <Text style={styles.contentSubTitle}>{t('temperatureModal.subtitle')}</Text>
+        <Text style={styles.contentSubTitle}>
+          {t('temperatureModal.subtitle')}
+        </Text>
         <Text style={styles.contentTitle}>{t('temperatureModal.title')}</Text>
         <TextInput
           placeholder="0.0"

@@ -48,12 +48,10 @@ const PossibleInfectionsModal = props => {
     },
   });
 
-
   const [names, setNames] = useState([]);
 
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
 
   const closeModal = () => {
     props.possibleInfectionsModalShown(false);
@@ -61,35 +59,32 @@ const PossibleInfectionsModal = props => {
   };
 
   var buttonText;
-  
-  if (name == "" || phone == "") {
+
+  if (name == '' || phone == '') {
     if (names.length == 0) {
       buttonText = t('button.close');
-    }
-    else {
+    } else {
       buttonText = t('possibleInfectionsModal.send', {count: names.length});
     }
-  }
-  else {
+  } else {
     buttonText = t('possibleInfectionsModal.add');
   }
 
   const pressedButton = () => {
     //is there any text added?  If so, add them to array, clear input and update state.
-    if (name == "" || phone == "") {
+    if (name == '' || phone == '') {
       closeModal();
       if (names.length > 0) {
-        props.sendPossibleInfections(names);  
+        props.sendPossibleInfections(names);
       }
-    }
-    else {
+    } else {
       const person = {
         name,
-        phone
-      } 
+        phone,
+      };
       setNames([...names, person]);
-      setName("");
-      setPhone("");
+      setName('');
+      setPhone('');
     }
     //no input?  send data
   };
@@ -103,16 +98,25 @@ const PossibleInfectionsModal = props => {
       <View style={styles.content}>
         <Image source={images.shakeHand} />
 
-        <Text style={styles.contentSubTitle}>{t('possibleInfectionsFragment.subtitle')}</Text>
-        <Text style={styles.contentTitle}>{t('possibleInfectionsModal.title')}</Text>
-        
-        <TextInput value={name} onChangeText={setName}      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} placeholder="Placeholder for name input from onboarding"></TextInput>
-        <TextInput value={phone} onChangeText={setPhone}        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} placeholder="Placeholder for phone input from onboarding"></TextInput>
+        <Text style={styles.contentSubTitle}>
+          {t('possibleInfectionsFragment.subtitle')}
+        </Text>
+        <Text style={styles.contentTitle}>
+          {t('possibleInfectionsModal.title')}
+        </Text>
+
+        <TextInput
+          value={name}
+          onChangeText={setName}
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          placeholder="Placeholder for name input from onboarding"></TextInput>
+        <TextInput
+          value={phone}
+          onChangeText={setPhone}
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          placeholder="Placeholder for phone input from onboarding"></TextInput>
         <Spacer />
-        <Button
-          text={buttonText}
-          onPress={pressedButton}
-        />
+        <Button text={buttonText} onPress={pressedButton} />
       </View>
     </Modal>
   );
@@ -145,4 +149,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 // Exports
-export default connect(mapStateToProps, mapDispatchToProps)(PossibleInfectionsModal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PossibleInfectionsModal);
