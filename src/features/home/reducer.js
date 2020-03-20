@@ -9,7 +9,7 @@ const initialState = {
   showSurvey: false,
   showTemperature: false,
   showPossibleInfections: false,
-  answers: {}
+  answers: {},
 };
 
 // Just dummy reducer
@@ -111,7 +111,6 @@ export default function homeReducer(state = initialState, action) {
       };
     }
 
-
     case actionTypes.SEND_POSSIBLE_INFECTIONS: {
       return {
         ...state,
@@ -123,10 +122,6 @@ export default function homeReducer(state = initialState, action) {
         ...state,
       };
     }
-
-
-
-
 
     /////
     default:

@@ -1,59 +1,70 @@
-import React from 'react';
-import {View, Image, StyleSheet, Text, I18nManager} from 'react-native';
-import images from '../../utils/images';
-import Button from '../../components/Button';
+import React, {useState} from 'react';
+import {View} from 'react-native';
+
 import Spacer from '../../components/Spacer';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {connect} from 'react-redux';
+import * as actionTypes from '../../store/actionTypes';
+import styles from './styles';
+import {
+  LogoFragment,
+  TitleFragment,
+  SubmitButtonFragment,
+  InputFragment,
+  AuthContainer,
+} from './AuthComponents';
 import {useTranslation} from 'react-i18next';
-import TextField from '../../components/TextField';
-import fonts from '../../utils/fonts';
-import colors from '../../utils/colors';
 
 const LoginScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
     navigation.navigate('Phone');
   };
-  
+  const [civilID, setCivilID] = useState('');
+
   return (
-    <View style={styles.container}>
-      <Image style ={styles.logo} source={images.logo} />
-      <Spacer />
-      <Text style={styles.instructionText}>
-        {t('auth.civil_id_instruction')}
-      </Text>
-      <TextField
-        keyboard="numeric"
-        placeholder={t('auth.civil_id_placeholder')}
-        onInputValueChange={newValue => {}}
-      />
-      <Spacer />
-      <View style={{width: '90%'}}>
-        <Button text={t('auth.login_button')} onPress={login} />
-      </View>
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <AuthContainer>
+        <View style={styles.container}>
+          <LogoFragment />
+          <Spacer />
+          <TitleFragment title={t('auth.enter_civil_id')} />
+          <InputFragment
+            maxDigits={12}
+            onChange={setCivilID}
+            placeholder={t('auth.civil_id_placeholder')}
+            title={t('auth.civil_id_instruction')}
+          />
+          <Spacer space={20} />
+          <SubmitButtonFragment title={t('auth.login_next')} action={login} />
+        </View>
+      </AuthContainer>
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  instructionText: {
-    textAlign: 'left',
-    fontFamily: fonts.Bold,
-    color: colors.marine,
-    fontSize: 20,
-    width: '90%',
-  },
-  logo: {
-    width: 161,
-    height: 240,
-    marginBottom: 60,
-    resizeMode: 'contain'
-  }
-});
+// Map State To Props (Redux Store Passes State To Component)
+const mapStateToProps = state => {
+  console.log('state', state);
+  return {
+    isValid: true,
+  };
+};
 
-export default LoginScreen;
+// Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
+const mapDispatchToProps = dispatch => {
+  // Action
+  return {
+    validateCivilId: civilID =>
+      dispatch({
+        type: actionTypes.CIVIL_ID_SEND,
+        value: civilID,
+      }),
+  };
+};
+
+// Exports
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoginScreen);

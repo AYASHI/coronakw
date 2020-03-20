@@ -10,6 +10,7 @@ export default class TextField extends Component {
     onInputValueChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string.isRequired,
     isSecureText: PropTypes.bool,
+    maxDigits: PropTypes.number,
     keyboard: PropTypes.oneOf([
       'default',
       'email-address',
@@ -22,6 +23,7 @@ export default class TextField extends Component {
   static defaultProps = {
     isSecureText: false,
     keyboard: 'default',
+    maxDigits: 10000,
   };
 
   onChangeText = value => {
@@ -29,20 +31,17 @@ export default class TextField extends Component {
     this.props.onInputValueChange(value);
   };
 
-  componentWillMount() {
-    this.setState({inputValue: ''});
-  }
-
   render() {
     const {rightPadding} = this.props;
     const {isSecureText} = this.props;
+    const {title} = this.props;
     const {placeholder} = this.props;
 
     const fieldFlex = rightPadding == null ? 1 : 0.85;
     return (
       <View style={styles.inputContentView}>
-        <Text style={styles.infoText}>{placeholder}</Text>
-        <View style = {{height: 5}}></View>
+        <Text style={styles.infoText}>{title}</Text>
+        <View style={{height: 5}} />
         <View
           style={{
             flexDirection: 'row',
@@ -58,8 +57,9 @@ export default class TextField extends Component {
                 textAlign: I18nManager.isRTL ? 'right' : 'left',
               },
             ]}
+            maxLength={this.props.maxDigits}
             placeholder={placeholder}
-            placeholderTextColor="transparent"
+            placeholderTextColor={colors.paleGreyTwo}
             secureTextEntry={!!isSecureText}
             onChangeText={value => this.onChangeText(value)}
             value={this.props.inputValue}
@@ -81,8 +81,8 @@ export const styles = StyleSheet.create({
     width: '90%',
   },
   inputsTextInput: {
-    fontSize: 12,
-    fontFamily: fonts.Bold,
+    fontFamily: fonts.Medium,
+    fontSize: 16,
     borderRadius: 5,
     backgroundColor: colors.opacityWhite,
     height: 50,

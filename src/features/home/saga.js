@@ -90,29 +90,35 @@ function* sendTemperatureSaga(action) {
   }
 }
 
-
 function* sendPossibleInfectionsSaga(action) {
   const data = action.value;
   try {
-    const json = yield axios.post(constants.BASE_URL + '/possibleInfections', data).then(response => response);
-    yield put({ type: actionTypes.POSSIBLE_INFECTIONS_SENT });
-
-  }
-  catch (error) {
+    const json = yield axios
+      .post(constants.BASE_URL + '/possibleInfections', data)
+      .then(response => response);
+    yield put({type: actionTypes.POSSIBLE_INFECTIONS_SENT});
+  } catch (error) {
     console.log(error);
     // Construct an error message.  Should we use specific errors in actionTypes or general failure msg?  Depends how we're supposed to handle it.
-    yield put({ type: actionTypes.REQUEST_FAILED, payload: { status: error.response.status, message: error.response.statusText } });
+    yield put({
+      type: actionTypes.REQUEST_FAILED,
+      payload: {
+        status: error.response.status,
+        message: error.response.statusText,
+      },
+    });
   }
 }
-
-
 
 function* watchHomeSaga() {
   yield takeLatest(actionTypes.SEND_SURVEY, sendSurvey);
   yield takeLatest(actionTypes.SEND_HEALTH_STATE, sendHealthStateSaga);
   yield takeLatest(actionTypes.SEND_LOCATION, sendLocationSaga);
   yield takeLatest(actionTypes.SEND_TEMPERATURE, sendTemperatureSaga);
-  yield takeLatest(actionTypes.SEND_POSSIBLE_INFECTIONS, sendPossibleInfectionsSaga);
+  yield takeLatest(
+    actionTypes.SEND_POSSIBLE_INFECTIONS,
+    sendPossibleInfectionsSaga,
+  );
 }
 
 export default watchHomeSaga;

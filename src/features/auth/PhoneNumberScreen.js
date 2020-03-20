@@ -1,12 +1,19 @@
-import React from 'react';
-import {View, Image, StyleSheet, Text, I18nManager} from 'react-native';
-import images from '../../utils/images';
-import Button from '../../components/Button';
+import React, {useState} from 'react';
+import {View} from 'react-native';
+
 import Spacer from '../../components/Spacer';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {connect} from 'react-redux';
+import * as actionTypes from '../../store/actionTypes';
+import styles from './styles';
+import {
+  LogoFragment,
+  TitleFragment,
+  SubmitButtonFragment,
+  AuthContainer,
+  InstructionFragment,
+} from './AuthComponents';
 import {useTranslation} from 'react-i18next';
-import TextField from '../../components/TextField';
-import fonts from '../../utils/fonts';
-import colors from '../../utils/colors';
 import PhoneNumberInput from '../../components/PhoneNumberInput';
 
 const PhoneNumberScreen = ({navigation}) => {
@@ -14,43 +21,51 @@ const PhoneNumberScreen = ({navigation}) => {
   const login = () => {
     navigation.navigate('OTP');
   };
-  
+  const [phoneNumber, setPhoneNumber] = useState('');
+
   return (
-    <View style={styles.container}>
-      <Image style ={styles.logo} source={images.logo} />
-      <Spacer />
-      <Text style={styles.instructionText}>
-        {t('auth.civil_id_instruction')}
-      </Text>
-      <PhoneNumberInput></PhoneNumberInput>
-      <Spacer />
-      <View style={{width: '90%'}}>
-        <Button text={t('auth.login_button')} onPress={login} />
-      </View>
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <AuthContainer>
+        <View style={styles.container}>
+          <LogoFragment />
+          <Spacer />
+          <TitleFragment title={t('auth.enter_phone_number')} />
+          <InstructionFragment title={t('auth.phone_number_instruction')} />
+          <PhoneNumberInput
+            placeholder={t('onboarding.phoneNumber')}
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
+          />
+          <Spacer space={20} />
+          <SubmitButtonFragment title={t('auth.login_next')} action={login} />
+        </View>
+      </AuthContainer>
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  instructionText: {
-    textAlign: 'left',
-    fontFamily: fonts.Bold,
-    color: colors.marine,
-    fontSize: 20,
-    width: '90%',
-  },
-  logo: {
-    width: 161,
-    height: 240,
-    marginBottom: 60,
-    resizeMode: 'contain'
-  }
-});
+// Map State To Props (Redux Store Passes State To Component)
+const mapStateToProps = state => {
+  console.log('state', state);
+  return {
+    isValid: true,
+  };
+};
 
-export default PhoneNumberScreen;
+// Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
+const mapDispatchToProps = dispatch => {
+  // Action
+  return {
+    validateCivilId: civilID =>
+      dispatch({
+        type: actionTypes.PHONE_NUMBER_SEND,
+        value: civilID,
+      }),
+  };
+};
+
+// Exports
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PhoneNumberScreen);
