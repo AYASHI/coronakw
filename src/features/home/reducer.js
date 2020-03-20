@@ -9,6 +9,7 @@ const initialState = {
   isSick: false,
   showSurvey: false,
   showTemperature: false,
+  showPossibleInfections: false,
   answers: {}
 };
 
@@ -108,6 +109,33 @@ export default function homeReducer(state = initialState, action) {
       };
     }
 
+    /////  possible infections part
+
+    case actionTypes.POSSIBLE_INFECTIONS_MODAL_SHOWN: {
+      return {
+        ...state,
+        showPossibleInfections: action.value,
+      };
+    }
+
+
+    case actionTypes.SEND_POSSIBLE_INFECTIONS: {
+      return {
+        ...state,
+      };
+    }
+
+    case actionTypes.POSSIBLE_INFECTIONS_SENT: {
+      return {
+        ...state,
+      };
+    }
+
+
+
+
+
+    /////
     default:
       return state;
   }

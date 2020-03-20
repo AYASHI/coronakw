@@ -7,12 +7,13 @@ import fonts from '../utils/fonts';
 import { connect } from 'react-redux';
 import * as actionTypes from '../store/actionTypes';
 import * as constants from "../utils/constants";
+import {useTranslation} from 'react-i18next';
 
 
 
 
 const StatusSelectionView = props => {
-
+  const {t, i18n} = useTranslation();
 
   const StatusButton = statusProps => {
     const dividerStyle = statusProps.hasDivider
@@ -51,15 +52,15 @@ const StatusSelectionView = props => {
   };
 
   let array = [
-    {title: 'بصحة جيدة', emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
-    {title: 'بصحة غير جيدة', emoji: '😔', hasDivider: false, healthValue: constants.UNHEALTHY},
+    {title: t('statusSelection.notSick.unhealthy'), emoji: '😔', hasDivider: false, healthValue: constants.UNHEALTHY},
+    {title: t('statusSelection.notSick.healthy'), emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
   ];
 
   if (props.isSick) {
     array = [
-      {title: 'تحسنت', emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
-      {title: 'متعب', emoji: '🤒', hasDivider: false, healthValue: constants.UNHEALTHY},
-      {title: 'متعب جداً', emoji: '🤧', hasDivider: false, healthValue: constants.SERIOUSLY_UNHEALTHY},
+      {title: t('statusSelection.sick.healthy'), emoji: '😊', hasDivider: true, healthValue: constants.HEALTHY},
+      {title: t('statusSelection.sick.unhealthy'), emoji: '🤒', hasDivider: false, healthValue: constants.UNHEALTHY},
+      {title: t('statusSelection.sick.seriouslyUnhealthy'), emoji: '🤧', hasDivider: false, healthValue: constants.SERIOUSLY_UNHEALTHY},
     ];
   }
   const Statuses = () => {

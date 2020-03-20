@@ -10,24 +10,24 @@ import colors from '../utils/colors';
 import fonts from '../utils/fonts';
 import {useTranslation} from 'react-i18next';
 
-const EnterTemperatureFragment = props => {
+const PossibleInfectionsFragment = props => {
   const {t, i18n} = useTranslation();
-  const temperatureButtonTouched = () => {
-    props.temperatureModalShown(true);
+  const buttonTouched = () => {
+    props.possibleInfectionsModalShown(true);
   };
 
-  const TemperatureView = () => (
+  const PossibleInfectionsView = () => (
     <TouchableOpacity
       style={styles.temperature}
-      onPress={temperatureButtonTouched}>
-      <Image source={images.temperature} />
-      <Text style={styles.subtitle}>{t('enterTemperatureFragment.subtitle')}</Text>
+      onPress={buttonTouched}>
+      <Image source={images.shakeHand} />
+      <Text style={styles.subtitle}>{t('possibleInfectionsFragment.subtitle')}</Text>
     </TouchableOpacity>
   );
   return (
     <Fragment>
       <View style={styles.container}>
-        <TemperatureView />
+        <PossibleInfectionsView />
       </View>
     </Fragment>
   );
@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     padding: layout.margin,
-    paddingBottom: 0
   },
 
   title: {
@@ -72,10 +71,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   // Action
   return {
-    temperatureModalShown: isShown =>
+    possibleInfectionsModalShown: shown =>
       dispatch({
-        type: actionTypes.TEMPERATURE_MODAL_SHOWN,
-        value: isShown,
+        type: actionTypes.POSSIBLE_INFECTIONS_MODAL_SHOWN,
+        value: shown,
       }),
   };
 };
@@ -83,4 +82,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(EnterTemperatureFragment);
+)(PossibleInfectionsFragment);

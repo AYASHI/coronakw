@@ -4,6 +4,7 @@ import HomeScreenHeader from '../../components/HomeScreenHeader';
 import HomeScreenBody from '../../components/HomeScreenBody';
 import HealthSurveyModal from '../../components/HealthSurveyModal';
 import TemperatureModal from '../../components/TemperatureModal';
+import PossibleInfectionsModal from '../../components/PossibleInfectionsModal';
 
 
 const HomeScreen = () => {
@@ -13,6 +14,7 @@ const HomeScreen = () => {
       <HomeScreenBody />
       <HealthSurveyModal />
       <TemperatureModal />
+      <PossibleInfectionsModal />
     </View>
   );
 };

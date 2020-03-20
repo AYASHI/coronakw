@@ -1,0 +1,59 @@
+{
+	"auth":
+	{
+		"login_button":"Login"
+	},
+	"home":
+	{
+		"lastUpdateText":"Most recent update",
+		"howDoYouFeel":"How do you feel now?",
+		"howCanWeHelp" : "How can we help you?"
+	},
+	"currentPosition": {
+		"gpsButton":"Confirm that I'm currently at home.",
+		"title": "What is your current location?", 
+		"subtitle":"Thank you for abiding by house quarantine regulations so far."
+	}, 	
+	"statusSelection": {
+		"notSick":{
+			"healthy": "Well",
+			"unhealthy": "Unwell"
+		},
+		"sick": {
+			"healthy": "Better",
+			"unhealthy": "Unwell",
+			"seriouslyUnhealthy": "Very Unwell"
+		}
+	},
+	"enterTemperatureFragment":{
+		"subtitle": "Enter your temperature"
+	},
+	"possibleInfectionsFragment":{
+		"subtitle": "Names of people you interacted with"
+	},
+	"possibleInfectionsModal":{
+		"title": "The Ministry of Health will get in touch to ensure their health",
+		"add": "Add",
+		"send": "Send {{count}} name",
+		"send_plural": "Send {{count}} names"
+	},
+	"healthSurveyModal": {
+		"noSymptoms":"Confirm no symptoms",
+		"oneSymptom":"Confirm one symptom",
+		"twoSymptoms":"Confirm two symptoms",
+		
+		"title": "Your safety first",
+		"contentSubtitle":"What symptoms are you currently feeling?"
+	},
+	"temperatureModal": {
+		"subtitle": "Periodic temperature measurement",
+		"title": "For your safety, enter your current temperature",
+		"confirmButton": "Confirm current temperature"
+	},
+	"button": {
+		"confirm": "Confirm",
+		"close": "Close"
+	}
+	
+
+}

@@ -5,6 +5,7 @@ const images = {
   scanner: require('../assets/images/scanner.png'),
   location: require('../assets/images/location.png'),
   temperature: require('../assets/images/temperature.png'),
+  shakeHand: require('../assets/images/peopleNames.png'),
 };
 
 export default images;
