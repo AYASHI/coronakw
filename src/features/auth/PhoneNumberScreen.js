@@ -7,6 +7,7 @@ import {useTranslation} from 'react-i18next';
 import TextField from '../../components/TextField';
 import fonts from '../../utils/fonts';
 import colors from '../../utils/colors';
+import PhoneNumberInput from '../../components/PhoneNumberInput';
 
 const PhoneNumberScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
@@ -21,11 +22,7 @@ const PhoneNumberScreen = ({navigation}) => {
       <Text style={styles.instructionText}>
         {t('auth.civil_id_instruction')}
       </Text>
-      <TextField
-        keyboard="numeric"
-        placeholder={t('auth.civil_id_placeholder')}
-        onInputValueChange={newValue => {}}
-      />
+      <PhoneNumberInput></PhoneNumberInput>
       <Spacer />
       <View style={{width: '90%'}}>
         <Button text={t('auth.login_button')} onPress={login} />

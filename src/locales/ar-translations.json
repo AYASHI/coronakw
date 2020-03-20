@@ -1,6 +1,8 @@
 {
   "auth": {
-    "login_button": "تسجيل الدخول"
+    "login_button": "تسجيل الدخول",
+    "civil_id_instruction": "أدخل رقم البطاقة المدنية",
+		"civil_id_placeholder": "رقم البطاقة المدنية مكون من 12 رقم"
   },
   "onboarding": {
     "personalInfo": "البيانات الشخصية",

@@ -11,7 +11,7 @@ import colors from '../../utils/colors';
 const OTPScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    navigation.navigate('Home');
+    navigation.navigate('OnBoarding');
   };
   
   return (

@@ -1,6 +1,8 @@
 {
   "auth": {
-    "login_button": "Login"
+    "login_button": "Login",
+    "civil_id_instruction": "Enter your civil ID number",
+		"civil_id_placeholder": "Civil ID number has 12 digits"
   },
   "onboarding": {
     "personalInfo": "Personal information",

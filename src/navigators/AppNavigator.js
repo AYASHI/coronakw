@@ -14,6 +14,8 @@ const AppNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator headerMode={'none'}>
         <Stack.Screen name={'Login'} component={LoginScreen} />
+        <Stack.Screen name={'Phone'} component={PhoneNumberScreen} />
+        <Stack.Screen name={'OTP'} component={OTPScreen} />
         <Stack.Screen name={'OnBoarding'} component={RegistrationScreen} />
         <Stack.Screen name={'Home'} component={HomeScreen} />
       </Stack.Navigator>
