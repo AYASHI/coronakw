@@ -17,11 +17,11 @@ const PossibleInfectionsFragment = props => {
   };
 
   const PossibleInfectionsView = () => (
-    <TouchableOpacity
-      style={styles.temperature}
-      onPress={buttonTouched}>
+    <TouchableOpacity style={styles.temperature} onPress={buttonTouched}>
       <Image source={images.shakeHand} />
-      <Text style={styles.subtitle}>{t('possibleInfectionsFragment.subtitle')}</Text>
+      <Text style={styles.subtitle}>
+        {t('possibleInfectionsFragment.subtitle')}
+      </Text>
     </TouchableOpacity>
   );
   return (

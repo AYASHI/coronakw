@@ -6,6 +6,8 @@ const images = {
   location: require('../assets/images/location.png'),
   temperature: require('../assets/images/temperature.png'),
   shakeHand: require('../assets/images/peopleNames.png'),
+  id: require('../assets/images/id.png'),
+  arrowDown: require('../assets/images/arrowDown.png'),
 };
 
 export default images;

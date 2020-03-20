@@ -6,9 +6,15 @@ import fonts from '../utils/fonts';
 import layout from '../utils/layout';
 
 const Button = props => {
-  const disabledStyle = props.disabled ? { backgroundColor: colors.greenDisabled } : { backgroundColor: colors.green }
+  const disabledStyle = props.disabled
+    ? {backgroundColor: colors.greenDisabled}
+    : {backgroundColor: colors.green};
   return (
-    <TouchableOpacity activeOpacity={props.disabled ? 0.2 : 0.7} style={[styles.container, disabledStyle]} onPress={props.onPress} disabled={props.disabled}>
+    <TouchableOpacity
+      activeOpacity={props.disabled ? 0.2 : 0.7}
+      style={[styles.container, disabledStyle]}
+      onPress={props.onPress}
+      disabled={props.disabled}>
       <Text style={styles.text}>{props.text}</Text>
     </TouchableOpacity>
   );
@@ -21,7 +27,7 @@ const styles = StyleSheet.create({
     paddingStart: layout.margin,
     paddingEnd: layout.margin,
     borderRadius: layout.radius,
-    
+
     height: 56,
   },
   text: {

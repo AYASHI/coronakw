@@ -8,7 +8,7 @@ import {useTranslation} from 'react-i18next';
 const LoginScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    navigation.navigate('Home');
+    navigation.navigate('OnBoarding');
   };
   return (
     <View style={styles.container}>
