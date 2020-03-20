@@ -1,6 +1,5 @@
 import * as actionTypes from '../../store/actionTypes';
-import * as constants from "../../utils/constants";
-
+import * as constants from '../../utils/constants';
 
 // initial dummy state
 const initialState = {
@@ -24,8 +23,6 @@ export default function homeReducer(state = initialState, action) {
       };
     }
 
-
-
     case actionTypes.HEALTH_STATE_SENT: {
       return {
         ...state,
@@ -40,31 +37,28 @@ export default function homeReducer(state = initialState, action) {
       };
     }
 
-
     case actionTypes.CHANGED_ANSWER: {
-
-      //Need a new reference else the prop will not update because it's the same object being modified.  Is this the best way to do it?  
+      //Need a new reference else the prop will not update because it's the same object being modified.  Is this the best way to do it?
       let newAnswers = JSON.parse(JSON.stringify(state.answers));
       newAnswers[action.value.response.id] = action.value.response.answer;
 
       return {
         ...state,
-        answers: newAnswers
+        answers: newAnswers,
       };
     }
 
     case actionTypes.SEND_SURVEY: {
       return {
         ...state,
-        answers: {}
+        answers: {},
       };
     }
-
 
     case actionTypes.SURVEY_SENT: {
       return {
         ...state,
-        isSick: state.healthState != constants.HEALTHY  //TODO: this should be determined by the backend based on survey answers?
+        isSick: state.healthState != constants.HEALTHY, //TODO: this should be determined by the backend based on survey answers?
       };
     }
 
@@ -95,7 +89,6 @@ export default function homeReducer(state = initialState, action) {
         showTemperature: action.value,
       };
     }
-
 
     case actionTypes.SEND_TEMPERATURE: {
       return {

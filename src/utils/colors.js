@@ -1,6 +1,10 @@
 const colors = {
+  paleGreyTwo: '#dfe1e6',
+  marine: '#092f52',
+  brownishGrey: '#696969',
   green: '#009641',
   greenDisabled: '#00964188',
+  black: '#1a1a1a',
   opacityWhite: 'rgba(255,255,255,0.6)',
   opacityBlack: 'rgba(0, 0, 0, 0.6)',
   separatorColor: '#eaeef1',

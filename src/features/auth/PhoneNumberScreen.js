@@ -8,10 +8,10 @@ import TextField from '../../components/TextField';
 import fonts from '../../utils/fonts';
 import colors from '../../utils/colors';
 
-const LoginScreen = ({navigation}) => {
+const PhoneNumberScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    navigation.navigate('Phone');
+    navigation.navigate('OTP');
   };
   
   return (
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginScreen;
+export default PhoneNumberScreen;

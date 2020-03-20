@@ -5,20 +5,19 @@ import fonts from '../utils/fonts';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import layout from '../utils/layout';
 import StatusSelectionView from './StatusSelectionView';
-import { connect } from 'react-redux';
-import * as constants from "../utils/constants";
+import {connect} from 'react-redux';
+import * as constants from '../utils/constants';
 import {useTranslation} from 'react-i18next';
 
 const HomeScreenHeader = props => {
   const {t, i18n} = useTranslation();
   let containerColor = {
     backgroundColor: colors.status.green,
-  }
+  };
 
   if (props.healthState == constants.UNHEALTHY) {
     containerColor.backgroundColor = colors.status.yellow;
-  }
-  else if (props.healthState == constants.SERIOUSLY_UNHEALTHY) {
+  } else if (props.healthState == constants.SERIOUSLY_UNHEALTHY) {
     containerColor.backgroundColor = colors.status.red;
   }
 
@@ -59,18 +58,21 @@ const styles = StyleSheet.create({
 });
 
 // Map State To Props (Redux Store Passes State To Component)
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   // Redux Store --> Component
   return {
     healthState: state.home.healthState,
-    isSick: state.home.isSick
+    isSick: state.home.isSick,
   };
 };
 
 // Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   // Action
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreenHeader);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreenHeader);
