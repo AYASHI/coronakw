@@ -19,7 +19,7 @@ import YesNoQuestion from '../../components/YesNoQuestion';
 import Button from '../../components/Button';
 import DropDown from '../../components/DropDown';
 
-const RegistrationScreen = () => {
+const RegistrationScreen = props => {
   const {t} = useTranslation();
   const [civilID, setCivilID] = useState('');
   const [fullName, setFullName] = useState('');
@@ -42,6 +42,9 @@ const RegistrationScreen = () => {
         <DropDown placeholder={t('placeholder.selectCountries')} />
       </Fragment>
     );
+  };
+  const confirm = () => {
+    props.navigation.navigate('Home');
   };
   return (
     <SafeAreaView style={styles.saveArea}>
@@ -70,7 +73,7 @@ const RegistrationScreen = () => {
         <Spacer space={32} />
         <CountrySelectionFragment />
         <Spacer space={32} />
-        <Button text={t('button.confirm')} />
+        <Button text={t('button.confirm')} onPress={confirm} />
       </ScrollView>
     </SafeAreaView>
   );
