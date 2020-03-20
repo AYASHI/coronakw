@@ -12,3 +12,5 @@ export const questions = [
   },
   {id: '6', questionText: 'الصعوبة بالتنفس'},
 ];
+
+export const countries = ['United State', 'Iran', 'Italy', 'China', 'Japan'];

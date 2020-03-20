@@ -1,62 +1,73 @@
 {
-	"auth":
-	{
-		"login_button":"تسجيل الدخول"
-		
-	},
-	"home":
-	{
-		"lastUpdateText":"اخر تحديث منذ ساعة",
-		"howDoYouFeel":"كيف تشعر الأن؟",
-		"howCanWeHelp" : "كيف يمكننا مساعدتك"
-		
-	},
-	"currentPosition": {
-		"gpsButton":"تأكيد موقعي الحالي بالمنزل",
-		"title":"اين موقعك الحالي؟",
-		"subtitle":"شكراً لألتزامك بالحجر المنزلي حتي الأن"
-	},
-	"statusSelection": {
-		"notSick":{
-			"healthy": "بصحة جيدة",
-			"unhealthy":"بصحة غير جيدة"
-		},
-		"sick": {
-			"healthy": "تحسنت",
-			"unhealthy": "متعب",
-			"seriouslyUnhealthy": "متعب جداً"
-		}
-	},
-	"enterTemperatureFragment":{
-		"subtitle": "إدخل قياس درجة الحرارة"
-	},
-	"possibleInfectionsFragment":{
-		"subtitle": "إدخل أسماء من خالطت"
-	},
-	"possibleInfectionsModal":{
-		"title": "ستقوم ووزارة الصحة بالتواصل معهم لتحميل التطبيق والأطمئنان علي حالتهم الصحية..",
-		"add": "اضافة",
-		"send_0": "الرجاء ادخال الاسماء",
-		"send_1": "ارسال اسم",
-		"send_2": "ارسال اسمين",
-		"send_3": "ارسال {{count}} اسماء",
-		"send_11": "ارسال {{count}} اسم"
-	},
-	"healthSurveyModal": {
-		"noSymptoms":"تأكيد عدم وجود اعراض",
-		"oneSymptom":"تأكيد عرض",
-		"twoSymptoms":"تأكيد عرضين",
-		
-		"title": "سلامتك بالدنيا..",
-		"contentSubtitle":"ما هي الاعراض التي تشعر بها الان؟"
-	},
-	"temperatureModal": {
-		"subtitle": "قياس درجة الحرارة الدورية",
-		"title": " قم بإدخال درجة حراراتك الحالية، حرصاً على سلامتك..",
-		"confirmButton": "تأكيد درجة الحرارة الحالية"
-	},
-	"button": {
-		"confirm": "تأكيد"
-	}
-	
+  "auth": {
+    "login_button": "تسجيل الدخول"
+  },
+  "onboarding": {
+    "personalInfo": "البيانات الشخصية",
+    "infoAccuracy": "الدقة في المعلومات ستساعدنا في الوصول إليك أسرع والأطمئنان علي حالتك الصحية..",
+    "civilId": "الرقم المدني",
+    "fullName": "الإسم بالكامل",
+    "phoneNumber": "رقم التلفون",
+    "travelOutsideKuwait": "هل قمت بالسفر خارج الكويت خلال ال ٤٥ يوم الماضية؟",
+    "selectCountries": "اذكر الدول التي قمت بزيارتها خلال ال ٤٥ يوم الماضية؟"
+  },
+  "home": {
+    "lastUpdateText": "اخر تحديث منذ ساعة",
+    "howDoYouFeel": "كيف تشعر الأن؟",
+    "howCanWeHelp": "كيف يمكننا مساعدتك"
+  },
+  "currentPosition": {
+    "gpsButton": "تأكيد موقعي الحالي بالمنزل",
+    "title": "اين موقعك الحالي؟",
+    "subtitle": "شكراً لألتزامك بالحجر المنزلي حتي الأن"
+  },
+  "statusSelection": {
+    "notSick": {
+      "healthy": "بصحة جيدة",
+      "unhealthy": "بصحة غير جيدة"
+    },
+    "sick": {
+      "healthy": "تحسنت",
+      "unhealthy": "متعب",
+      "seriouslyUnhealthy": "متعب جداً"
+    }
+  },
+  "enterTemperatureFragment": {
+    "subtitle": "إدخل قياس درجة الحرارة"
+  },
+  "possibleInfectionsFragment": {
+    "subtitle": "إدخل أسماء من خالطت"
+  },
+  "possibleInfectionsModal": {
+    "title": "ستقوم ووزارة الصحة بالتواصل معهم لتحميل التطبيق والأطمئنان علي حالتهم الصحية..",
+    "add": "اضافة",
+    "send_0": "الرجاء ادخال الاسماء",
+    "send_1": "ارسال اسم",
+    "send_2": "ارسال اسمين",
+    "send_3": "ارسال {{count}} اسماء",
+    "send_11": "ارسال {{count}} اسم"
+  },
+  "healthSurveyModal": {
+    "noSymptoms": "تأكيد عدم وجود اعراض",
+    "oneSymptom": "تأكيد عرض",
+    "twoSymptoms": "تأكيد عرضين",
+
+    "title": "سلامتك بالدنيا..",
+    "contentSubtitle": "ما هي الاعراض التي تشعر بها الان؟"
+  },
+  "temperatureModal": {
+    "subtitle": "قياس درجة الحرارة الدورية",
+    "title": " قم بإدخال درجة حراراتك الحالية، حرصاً على سلامتك..",
+    "confirmButton": "تأكيد درجة الحرارة الحالية"
+  },
+  "button": {
+    "confirm": "تأكيد"
+  },
+  "placeholder": {
+    "selectCountries": "اختار من القائمة جميع الدول"
+  },
+  "yesNoQuestion": {
+    "yes": "نعم",
+    "no": "لا"
+  }
 }
