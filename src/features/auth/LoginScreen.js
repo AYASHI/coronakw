@@ -7,6 +7,7 @@ import Spacer from '../../components/Spacer';
 import {useTranslation} from 'react-i18next';
 import * as actionTypes from '../../store/actionTypes';
 import {I18nManager} from 'react-native';
+import RNRestart from 'react-native-restart'; // Import package from node modules
 
 // import i18n from 'i18next';
 
@@ -34,6 +35,7 @@ const LoginScreen = ({navigation, props}) => {
         type: actionTypes.CHANGE_LANGUAGE,
         value: newLang,
       });
+      setTimeout(() => RNRestart.Restart(), 50);
     } catch (error) {
       // Error saving data
     }

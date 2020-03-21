@@ -5,11 +5,10 @@ import en from './src/locales/en-translations.json';
 import ar from './src/locales/ar-translations.json';
 import store from './src/store/store';
 
-const lang = store.getState().auth.language;
 const languageDetector = {
   type: 'languageDetector',
   async: true,
-  detect: cb => cb(lang),
+  detect: cb => cb('ar'),
   init: () => {},
   cacheUserLanguage: () => {},
 };
@@ -26,7 +25,7 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    fallbackLng: 'en',
+    fallbackLng: 'ar',
     debug: true,
     resources: {
       en: {
