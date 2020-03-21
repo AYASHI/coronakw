@@ -49,4 +49,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 // Exports
-export default connect(mapStateToProps, mapDispatchToProps)(TemperatureModal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TemperatureModal);

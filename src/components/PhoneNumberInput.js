@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {View, Text, StyleSheet, TextInput, I18nManager} from 'react-native';
 import colors from '../utils/colors';
 import fonts from '../utils/fonts';
 
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.Medium,
     fontSize: 16,
     flex: 1,
+    textAlign: I18nManager.isRTL ? 'right' : 'left',
   },
   textInputTitle: {
     color: '#696969',

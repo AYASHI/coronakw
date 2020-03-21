@@ -19,9 +19,9 @@ import Screens from '../../navigators/Screens';
 const LoginScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    navigation.navigate(Screens.Phone);
+    navigation.navigate(Screens.Registration);
   };
-  const [civilID, setCivilID] = useState('');
+  const [otp, setOTP] = useState('');
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -29,15 +29,14 @@ const LoginScreen = ({navigation}) => {
         <View style={styles.container}>
           <LogoFragment />
           <Spacer />
-          <TitleFragment title={t('auth.enter_civil_id')} />
+          <TitleFragment title={t('auth.enter_otp')} />
           <InputFragment
-            maxDigits={12}
-            onChange={setCivilID}
-            placeholder={t('auth.civil_id_placeholder')}
-            title={t('auth.civil_id_instruction')}
+            onChange={setOTP}
+            placeholder={t('auth.otp_placeholder')}
+            title={t('auth.otp_instruction')}
           />
           <Spacer space={20} />
-          <SubmitButtonFragment title={t('auth.login_next')} action={login} />
+          <SubmitButtonFragment title={t('auth.login_button')} action={login} />
         </View>
       </AuthContainer>
     </SafeAreaView>
@@ -58,7 +57,7 @@ const mapDispatchToProps = dispatch => {
   return {
     validateCivilId: civilID =>
       dispatch({
-        type: actionTypes.CIVIL_ID_SEND,
+        type: actionTypes.SEND_OTP,
         value: civilID,
       }),
   };

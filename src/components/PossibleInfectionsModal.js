@@ -109,12 +109,14 @@ const PossibleInfectionsModal = props => {
           value={name}
           onChangeText={setName}
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          placeholder="Placeholder for name input from onboarding"></TextInput>
+          placeholder="Placeholder for name input from onboarding"
+        />
         <TextInput
           value={phone}
           onChangeText={setPhone}
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          placeholder="Placeholder for phone input from onboarding"></TextInput>
+          placeholder="Placeholder for phone input from onboarding"
+        />
         <Spacer />
         <Button text={buttonText} onPress={pressedButton} />
       </View>

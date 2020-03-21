@@ -1,6 +1,15 @@
 {
   "auth": {
-    "login_button": "Login"
+    "login_button": "Login",
+    "enter_civil_id": "Enter your civil ID number",
+    "civil_id_instruction": "Civil ID number has 12 digits",
+    "civil_id_placeholder": "112233445566",
+    "enter_phone_number": "Enter your phone number",
+    "phone_number_instruction": "Please enter your phone number so we can send you the verification code.",
+    "login_next": "Next",
+    "enter_otp": "Enter Verification Code",
+    "otp_instruction": "Verification Code has been sent to the phone number ending with",
+    "otp_placeholder": "Veridication Code"
   },
   "onboarding": {
     "personalInfo": "Personal information",
