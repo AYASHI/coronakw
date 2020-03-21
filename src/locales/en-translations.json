@@ -20,7 +20,7 @@
     "travelOutsideKuwait": "Did you travel outside kuwait last 45 days?",
     "selectCountries": "Select countries you visited last 45 days?",
     "quarantineLocationTitle": "Home quarantine location info",
-    "quarantineLocationSubTitle": "الحجر المنزلي واجب وطني ويتطلب منك درجة عالية من الإلتزام حرصاً على صحتك وصحة من هم حولك."
+    "quarantineLocationSubTitle": "Home quarantine is a national duty and requires the highest  degree of commitment to ensure your health and the health of those around you."
   },
   "home": {
     "lastUpdateText": "Most recent update",
@@ -77,7 +77,8 @@
     "area": "Area",
     "street": "Street",
     "block": "Block",
-    "phoneNumber": "Phone number"
+    "phoneNumber": "Phone number",
+    "name": "Full name"
   },
   "yesNoQuestion": {
     "yes": "Yes",
