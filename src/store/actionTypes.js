@@ -50,3 +50,4 @@ export const REQUEST_FAILED = 'REQUEST_FAILED';
 
 //errors
 export const HIDE_ERROR = 'HIDE_ERROR';
+export const SHOW_ERROR = 'SHOW_ERROR';

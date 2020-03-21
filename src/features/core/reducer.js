@@ -14,6 +14,13 @@ export default function coreReducer(state = initialState, action) {
         errorMessage: action.payload.message,
       };
     }
+    case actionTypes.SHOW_ERROR: {
+        return {
+          ...state,
+          isError: true,
+          errorMessage: action.message,
+        };
+      }
     case actionTypes.HIDE_ERROR: {
       return {
         ...state,

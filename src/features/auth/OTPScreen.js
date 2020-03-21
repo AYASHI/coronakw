@@ -16,7 +16,7 @@ import {
 import {useTranslation} from 'react-i18next';
 import Screens from '../../navigators/Screens';
 
-const OTPScreen = ({navigation, isValid, validateOTP}) => {
+const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
     validateOTP(otp);
@@ -42,7 +42,13 @@ const OTPScreen = ({navigation, isValid, validateOTP}) => {
             title={t('auth.otp_instruction')}
           />
           <Spacer space={20} />
-          <SubmitButtonFragment title={t('auth.login_button')} action={login} />
+          <SubmitButtonFragment title={t('auth.login_button')} action={() => {
+            if(otp.length == 0) {
+              showError(t('auth.otp_is_not_valid'))
+            } else {
+              login()
+            }
+          }} />
         </View>
       </AuthContainer>
     </SafeAreaView>
@@ -58,6 +64,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    showError: message => {
+      dispatch({
+        type: actionTypes.SHOW_ERROR,
+        message: message
+      })
+    },
     validateOTP: otp =>
       dispatch({
         type: actionTypes.SEND_OTP,

@@ -16,7 +16,7 @@ import {
 import {useTranslation} from 'react-i18next';
 import Screens from '../../navigators/Screens';
 
-const LoginScreen = ({navigation, validateCivilId, isRegistered}) => {
+const LoginScreen = ({navigation, validateCivilId, isRegistered, showError}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
     validateCivilId(civilID);
@@ -43,7 +43,13 @@ const LoginScreen = ({navigation, validateCivilId, isRegistered}) => {
             title={t('auth.civil_id_instruction')}
           />
           <Spacer space={20} />
-          <SubmitButtonFragment title={t('auth.login_next')} action={login} />
+          <SubmitButtonFragment title={t('auth.login_next')} action={() => {
+            if (civilID.length == 0 || civilID.length != 12) {
+              showError(t('auth.civil_id_is_not_valid'))
+            } else {
+              login()
+            }
+          }} />
         </View>
       </AuthContainer>
     </SafeAreaView>
@@ -59,6 +65,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    showError: message => {
+      dispatch({
+        type: actionTypes.SHOW_ERROR,
+          message: message
+      })
+    },
     validateCivilId: civilID =>
       dispatch({
         type: actionTypes.CIVIL_ID_SEND,

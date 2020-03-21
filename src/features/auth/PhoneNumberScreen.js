@@ -17,7 +17,7 @@ import {useTranslation} from 'react-i18next';
 import PhoneNumberInput from '../../components/PhoneNumberInput';
 import Screens from '../../navigators/Screens';
 
-const PhoneNumberScreen = ({navigation, validatePhoneNumber, isValid}) => {
+const PhoneNumberScreen = ({navigation, validatePhoneNumber, isValid, showError}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
     validatePhoneNumber(phoneNumber);
@@ -45,7 +45,13 @@ const PhoneNumberScreen = ({navigation, validatePhoneNumber, isValid}) => {
             onChangeText={setPhoneNumber}
           />
           <Spacer space={20} />
-          <SubmitButtonFragment title={t('auth.login_next')} action={login} />
+          <SubmitButtonFragment title={t('auth.login_next')} action={() => {
+            if(phoneNumber.length == 0 || phoneNumber.length != 8) {
+              showError(t('auth.phone_number_is_not_Valid'))
+            } else {
+              login()
+            }
+          }} />
         </View>
       </AuthContainer>
     </SafeAreaView>
@@ -61,6 +67,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    showError: message => {
+      dispatch({
+        type: actionTypes.SHOW_ERROR,
+          message: message
+      })
+    },
     validatePhoneNumber: phone =>
       dispatch({
         type: actionTypes.PHONE_NUMBER_SEND,
