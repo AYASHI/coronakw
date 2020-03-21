@@ -9,27 +9,32 @@ import * as actionTypes from '../store/actionTypes';
 import Button from './Button';
 import Spacer from './Spacer';
 import {useTranslation} from 'react-i18next';
+import CustomTextInput from './CustomTextInput';
+import PhoneNumberInput from './PhoneNumberInput';
 
 const PossibleInfectionsModal = props => {
   const {t, i18n} = useTranslation();
 
   const styles = StyleSheet.create({
+    header: {
+      alignItems: 'center',
+    },
     content: {
       backgroundColor: 'white',
       padding: 22,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 4,
+      borderRadius: 20,
       borderColor: 'rgba(0, 0, 0, 0.1)',
     },
     contentTitle: {
       color: '#616161',
       fontSize: 15,
       marginBottom: 12,
+      textAlign: 'center',
     },
     contentSubTitle: {
       fontSize: 28,
       marginBottom: 12,
+      textAlign: 'center',
     },
     textInput: {
       // Setting up Hint Align center.
@@ -60,8 +65,8 @@ const PossibleInfectionsModal = props => {
 
   var buttonText;
 
-  if (name == '' || phone == '') {
-    if (names.length == 0) {
+  if (name === '' || phone === '') {
+    if (names.length === 0) {
       buttonText = t('button.close');
     } else {
       buttonText = t('possibleInfectionsModal.send', {count: names.length});
@@ -96,27 +101,29 @@ const PossibleInfectionsModal = props => {
       swipeDirection="down"
       onSwipeComplete={closeModal}>
       <View style={styles.content}>
-        <Image source={images.shakeHand} />
+        <View style={styles.header}>
+          <Image source={images.shakeHand} />
 
-        <Text style={styles.contentSubTitle}>
-          {t('possibleInfectionsFragment.subtitle')}
-        </Text>
-        <Text style={styles.contentTitle}>
-          {t('possibleInfectionsModal.title')}
-        </Text>
+          <Text style={styles.contentSubTitle}>
+            {t('possibleInfectionsFragment.subtitle')}
+          </Text>
+          <Text style={styles.contentTitle}>
+            {t('possibleInfectionsModal.title')}
+          </Text>
+        </View>
 
-        <TextInput
+        <CustomTextInput
+          title={t('placeholder.name')}
           value={name}
           onChangeText={setName}
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          placeholder="Placeholder for name input from onboarding"
         />
-        <TextInput
+        <Spacer />
+        <PhoneNumberInput
+          placeholder={t('placeholder.phoneNumber')}
           value={phone}
           onChangeText={setPhone}
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          placeholder="Placeholder for phone input from onboarding"
         />
+
         <Spacer />
         <Button text={buttonText} onPress={pressedButton} />
       </View>

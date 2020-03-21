@@ -79,7 +79,8 @@
     "area": "المنطقة",
     "street": "الشارع",
     "block": "قطقة",
-    "phoneNumber": "رقم التلفون"
+    "phoneNumber": "رقم التلفون",
+    "name": "الإسم بالكامل"
   },
   "yesNoQuestion": {
     "yes": "نعم",
