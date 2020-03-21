@@ -13,4 +13,55 @@ export const questions = [
   {id: '6', questionText: 'الصعوبة بالتنفس'},
 ];
 
-export const countries = ['United State', 'Iran', 'Italy', 'China', 'Japan'];
+export const countries = [
+  {
+    id: 1,
+    text: 'الصين',
+  },
+  {
+    id: 2,
+    text: 'اليابان',
+  },
+  {
+    id: 3,
+    text: 'امريكا',
+  },
+  {
+    id: 4,
+    text: 'ايطاليا',
+  },
+  {
+    id: 5,
+    text: 'المملكة المتحدة',
+  },
+  {
+    id: 6,
+    text: 'اسبانيا',
+  },
+];
+export const areas = [
+  {
+    id: 1,
+    text: 'حولي',
+  },
+  {
+    id: 2,
+    text: 'ميدان حولي',
+  },
+  {
+    id: 3,
+    text: 'السالمية',
+  },
+  {
+    id: 4,
+    text: 'شرق',
+  },
+  {
+    id: 5,
+    text: 'جابر الاحمد',
+  },
+  {
+    id: 6,
+    text: 'المهبولة',
+  },
+];

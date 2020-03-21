@@ -14,7 +14,7 @@ import {useTranslation} from 'react-i18next';
 const HealthSurveyModal = props => {
   const {t, i18n} = useTranslation();
   const toggleModal = () => {
-    props.healthSurveyShown(true);
+    props.healthSurveyShown(false);
   };
 
   const styles = StyleSheet.create({
@@ -85,6 +85,7 @@ const HealthSurveyModal = props => {
         data={questions}
         renderItem={Question}
         ItemSeparatorComponent={ListSeparator}
+        keyExtractor={item => item.id + ''}
       />
     );
   };
@@ -167,7 +168,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 // Exports
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(HealthSurveyModal);
+export default connect(mapStateToProps, mapDispatchToProps)(HealthSurveyModal);

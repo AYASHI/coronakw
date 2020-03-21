@@ -1,17 +1,18 @@
-import React from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import React, {Fragment} from 'react';
+import {Text, TextInput, StyleSheet} from 'react-native';
 import colors from '../utils/colors';
 import fonts from '../utils/fonts';
 const CustomTextInput = props => {
   return (
-    <View>
+    <Fragment>
       <Text style={styles.textInputTitle}> {props.title}</Text>
       <TextInput
         style={styles.textInput}
         value={props.value}
         onChangeText={props.onChangeText}
+        keyboardType={props.number ? 'phone-pad' : 'default'}
       />
-    </View>
+    </Fragment>
   );
 };
 
