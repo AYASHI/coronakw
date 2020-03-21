@@ -10,18 +10,19 @@ import {
   LogoFragment,
   TitleFragment,
   SubmitButtonFragment,
-  InputFragment,
   AuthContainer,
+  InstructionFragment,
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
+import PhoneNumberInput from '../../components/PhoneNumberInput';
 import Screens from '../../navigators/Screens';
 
-const LoginScreen = ({navigation}) => {
+const PhoneNumberScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    navigation.navigate(Screens.Phone);
+    navigation.navigate(Screens.OTP);
   };
-  const [civilID, setCivilID] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -29,12 +30,12 @@ const LoginScreen = ({navigation}) => {
         <View style={styles.container}>
           <LogoFragment />
           <Spacer />
-          <TitleFragment title={t('auth.enter_civil_id')} />
-          <InputFragment
-            maxDigits={12}
-            onChange={setCivilID}
-            placeholder={t('auth.civil_id_placeholder')}
-            title={t('auth.civil_id_instruction')}
+          <TitleFragment title={t('auth.enter_phone_number')} />
+          <InstructionFragment title={t('auth.phone_number_instruction')} />
+          <PhoneNumberInput
+            placeholder={t('onboarding.phoneNumber')}
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
           />
           <Spacer space={20} />
           <SubmitButtonFragment title={t('auth.login_next')} action={login} />
@@ -58,7 +59,7 @@ const mapDispatchToProps = dispatch => {
   return {
     validateCivilId: civilID =>
       dispatch({
-        type: actionTypes.CIVIL_ID_SEND,
+        type: actionTypes.PHONE_NUMBER_SEND,
         value: civilID,
       }),
   };
@@ -68,4 +69,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LoginScreen);
+)(PhoneNumberScreen);

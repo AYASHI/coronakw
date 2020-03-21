@@ -168,4 +168,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 // Exports
-export default connect(mapStateToProps, mapDispatchToProps)(HealthSurveyModal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HealthSurveyModal);

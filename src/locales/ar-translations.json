@@ -1,6 +1,15 @@
 {
   "auth": {
-    "login_button": "تسجيل الدخول"
+    "login_button": "تسجيل الدخول",
+    "enter_civil_id": "أدخل رقم البطاقة المدنية",
+    "civil_id_instruction": "رقم البطاقة المدنية مكون من 12 رقم",
+    "civil_id_placeholder": "112233445566",
+    "enter_phone_number": "أدخل رقم الجوال",
+    "phone_number_instruction": "من فضلك ادخل رقم الجوال لكي نستطيع ان نرسل لك كود التحقيق.",
+    "login_next": "التالي",
+    "enter_otp": "ادخل كود التحقيق",
+    "otp_instructin": "تم ارسال كود التحقيق الى الجوال المنتهي ب",
+    "otp_placeholder": "رقم التحقيق"
   },
   "onboarding": {
     "personalInfo": "البيانات الشخصية",
