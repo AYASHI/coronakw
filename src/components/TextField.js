@@ -69,11 +69,8 @@ export default class TextField extends Component {
 export const styles = StyleSheet.create({
   inputContentView: {
     justifyContent: 'center',
-    marginLeft: 24,
-    marginRight: 24,
     marginTop: 8,
     marginBottom: 8,
-    width: '90%',
   },
   inputsTextInput: {
     fontFamily: fonts.Medium,

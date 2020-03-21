@@ -3,7 +3,7 @@ import TextField from '../../components/TextField';
 import images from '../../utils/images';
 import Button from '../../components/Button';
 import styles from './styles';
-import {View, Image, Text, KeyboardAvoidingView} from 'react-native';
+import {Image, Text, KeyboardAvoidingView, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 export const LogoFragment = () => {
@@ -24,9 +24,7 @@ export const InstructionFragment = ({title}) => {
 
 export const SubmitButtonFragment = ({title, action}) => {
   return (
-    <View style={{width: '90%'}}>
       <Button text={title} onPress={action} />
-    </View>
   );
 };
 
