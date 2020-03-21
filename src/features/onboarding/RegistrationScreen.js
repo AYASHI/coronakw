@@ -18,6 +18,7 @@ import PhoneNumberInput from '../../components/PhoneNumberInput';
 import YesNoQuestion from '../../components/YesNoQuestion';
 import Button from '../../components/Button';
 import DropDown from '../../components/DropDown';
+import Screens from '../../navigators/Screens';
 
 const RegistrationScreen = props => {
   const {t} = useTranslation();
@@ -44,7 +45,7 @@ const RegistrationScreen = props => {
     );
   };
   const confirm = () => {
-    props.navigation.navigate('Home');
+    props.navigation.navigate(Screens.TakeTemperature);
   };
   return (
     <SafeAreaView style={styles.saveArea}>
