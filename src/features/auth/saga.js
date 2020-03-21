@@ -11,9 +11,10 @@ function* validateCivilIdSaga(action) {
   const data = {civil_id: action.value};
   try {
     const json = yield axios
-      .post(constants.BASE_URL + '/civilid', data)
+      .post(constants.BASE_URL + '/verifyCivilid', data)
       .then(response => response);
-    yield put({type: actionTypes.CIVIL_ID_SENT, value: json.data.isValid});
+      
+    yield put({type: actionTypes.CIVIL_ID_SENT, payload: {value: json.data.already_registered}});
   } catch (error) {
     console.log(error);
     // Construct an error message.  Should we use specific errors in actionTypes or general failure msg?  Depends how we're supposed to handle it.

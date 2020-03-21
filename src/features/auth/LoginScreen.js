@@ -16,13 +16,20 @@ import {
 import {useTranslation} from 'react-i18next';
 import Screens from '../../navigators/Screens';
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({navigation, validateCivilId, isRegistered}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    navigation.navigate(Screens.Phone);
+    validateCivilId(civilID)
+    // navigation.navigate(Screens.Phone);
   };
   const [civilID, setCivilID] = useState('');
-
+  if (isRegistered != null || isRegistered != undefined) {
+      if (isRegistered) {
+        navigation.navigate(Screens.Phone)
+      } else {
+        navigation.navigate(Screens.Registration)
+      }
+  }
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -48,7 +55,7 @@ const LoginScreen = ({navigation}) => {
 const mapStateToProps = state => {
   console.log('state', state);
   return {
-    isValid: true,
+    isRegistered: state.auth.isRegistered ?? null,
   };
 };
 

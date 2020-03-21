@@ -17,7 +17,7 @@ export default function authReducer(state = initialState, action) {
     case actionTypes.CIVIL_ID_SENT: {
       return {
         ...state,
-        isCivilIDValid: action.value,
+        isRegistered: action.payload.value,
       };
     }
     case actionTypes.PHONE_NUMBER_SENT: {

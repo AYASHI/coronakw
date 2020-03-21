@@ -1,6 +1,6 @@
-import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
 import createSagaMiddleware from 'redux-saga';
-
+import Reactotron from '../../ReactotronConfig'
 import homeReducer from '../features/home/reducer';
 import authReducer from '../features/auth/reducer';
 
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+const store = createStore(rootReducer, compose(applyMiddleware(sagaMiddleware),Reactotron.createEnhancer()));
 
 sagaMiddleware.run(watchAuthSaga);
 sagaMiddleware.run(watchHomeSaga);
