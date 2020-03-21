@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
   countrySelectionTitle: {
     fontFamily: fonts.Medium,
     fontSize: 17,
+    textAlign: 'left',
   },
 });
 
