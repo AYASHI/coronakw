@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
-
+import React, {useState, useEffect} from 'react';
+import {View, TouchableOpacity, Text} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 import Spacer from '../../components/Spacer';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../store/actionTypes';
 import styles from './styles';
 import {
   LogoFragment,
@@ -14,13 +13,43 @@ import {
   AuthContainer,
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
+import * as actionTypes from '../../store/actionTypes';
+import {I18nManager} from 'react-native';
+import RNRestart from 'react-native-restart'; // Import package from node modules
 import Screens from '../../navigators/Screens';
 
-const LoginScreen = ({navigation}) => {
+// import i18n from 'i18next';
+
+const LoginScreen = ({navigation, props}) => {
   const {t, i18n} = useTranslation();
+  const language = useSelector(state => state.language.current);
+  // const [lang, setLang] = useState(language);
+  const dispatch = useDispatch();
+
   const login = () => {
     navigation.navigate(Screens.Phone);
   };
+  const changeLanguage = () => {
+    let newLang = 'en';
+    try {
+      if (language == 'en') {
+        newLang = 'ar';
+        I18nManager.forceRTL(true);
+      } else {
+        I18nManager.forceRTL(false);
+      }
+      // changeLanguage(newLang);
+      i18n.changeLanguage(newLang);
+      dispatch({
+        type: actionTypes.CHANGE_LANGUAGE,
+        value: newLang,
+      });
+      setTimeout(() => RNRestart.Restart(), 50);
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
   const [civilID, setCivilID] = useState('');
 
   return (
@@ -39,6 +68,9 @@ const LoginScreen = ({navigation}) => {
           <Spacer space={20} />
           <SubmitButtonFragment title={t('auth.login_next')} action={login} />
         </View>
+        <TouchableOpacity onPress={changeLanguage} style={{alignSelf:'center',}}>
+          <Text>{language == 'en' ? 'العربية' : 'English'}</Text>
+        </TouchableOpacity>
       </AuthContainer>
     </SafeAreaView>
   );
