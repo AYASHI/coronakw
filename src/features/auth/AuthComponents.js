@@ -23,9 +23,7 @@ export const InstructionFragment = ({title}) => {
 };
 
 export const SubmitButtonFragment = ({title, action}) => {
-  return (
-      <Button text={title} onPress={action} />
-  );
+  return <Button text={title} onPress={action} />;
 };
 
 export const InputFragment = ({

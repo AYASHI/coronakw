@@ -20,16 +20,28 @@ export default function authReducer(state = initialState, action) {
         isRegistered: action.payload.value,
       };
     }
+    case actionTypes.PHONE_NUMBER_SEND: {
+      return {
+        ...state,
+        phoneNumber: action.value,
+      };
+    }
     case actionTypes.PHONE_NUMBER_SENT: {
       return {
         ...state,
-        isPhoneNumberValid: action.value,
+        isPhoneNumberValid: action.payload.value,
+      };
+    }
+    case actionTypes.SEND_OTP: {
+      return {
+        ...state,
+        otp: action.value,
       };
     }
     case actionTypes.OTP_SENT: {
       return {
         ...state,
-        isOTPVerified: action.value,
+        isOTPVerified: action.payload.value,
       };
     }
     /////

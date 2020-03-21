@@ -16,13 +16,19 @@ import {
 import {useTranslation} from 'react-i18next';
 import Screens from '../../navigators/Screens';
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({navigation, isValid, validateOTP}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    navigation.navigate(Screens.Registration);
+    validateOTP(otp)
   };
   const [otp, setOTP] = useState('');
-
+  if (isValid != null || isValid != undefined) {
+    if (isValid) {
+      navigation.navigate(Screens.Registration);
+    } else {
+      alert('code is not valid');
+    }
+  }
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -47,7 +53,7 @@ const LoginScreen = ({navigation}) => {
 const mapStateToProps = state => {
   console.log('state', state);
   return {
-    isValid: true,
+    isValid: state.auth.isOTPVerified ?? null,
   };
 };
 
@@ -55,10 +61,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   // Action
   return {
-    validateCivilId: civilID =>
+    validateOTP: otp =>
       dispatch({
         type: actionTypes.SEND_OTP,
-        value: civilID,
+        value: otp,
       }),
   };
 };

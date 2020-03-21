@@ -19,16 +19,16 @@ import Screens from '../../navigators/Screens';
 const LoginScreen = ({navigation, validateCivilId, isRegistered}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    validateCivilId(civilID)
+    validateCivilId(civilID);
     // navigation.navigate(Screens.Phone);
   };
   const [civilID, setCivilID] = useState('');
   if (isRegistered != null || isRegistered != undefined) {
-      if (isRegistered) {
-        navigation.navigate(Screens.Phone)
-      } else {
-        navigation.navigate(Screens.Registration)
-      }
+    if (isRegistered) {
+      navigation.navigate(Screens.Phone);
+    } else {
+      navigation.navigate(Screens.Registration);
+    }
   }
   return (
     <SafeAreaView style={styles.safeArea}>

@@ -17,11 +17,19 @@ import {useTranslation} from 'react-i18next';
 import PhoneNumberInput from '../../components/PhoneNumberInput';
 import Screens from '../../navigators/Screens';
 
-const PhoneNumberScreen = ({navigation}) => {
+const PhoneNumberScreen = ({navigation, validatePhoneNumber, isValid}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    navigation.navigate(Screens.OTP);
+    validatePhoneNumber(phoneNumber);
+    // navigation.navigate(Screens.OTP);
   };
+  if (isValid != null || isValid != undefined) {
+    if (isValid) {
+      navigation.navigate(Screens.OTP);
+    } else {
+      alert('phone not valid');
+    }
+  }
   const [phoneNumber, setPhoneNumber] = useState('');
 
   return (
@@ -47,9 +55,9 @@ const PhoneNumberScreen = ({navigation}) => {
 
 // Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
-  console.log('state', state);
+  console.log('state: phone number', state);
   return {
-    isValid: true,
+    isValid: state.auth.isPhoneNumberValid ?? null,
   };
 };
 
@@ -57,10 +65,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   // Action
   return {
-    validateCivilId: civilID =>
+    validatePhoneNumber: phone =>
       dispatch({
         type: actionTypes.PHONE_NUMBER_SEND,
-        value: civilID,
+        value: phone,
       }),
   };
 };

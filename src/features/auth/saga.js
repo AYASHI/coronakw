@@ -7,14 +7,13 @@ function* tryLoginSaga(action) {}
 
 function* registerSaga(action) {}
 
-function* validateCivilIdSaga(action) {
-  const data = {civil_id: action.value};
+function* handleApiCall(apiCallYield, actionYield) {
   try {
-    const json = yield axios
-      .post(constants.BASE_URL + '/verifyCivilid', data)
-      .then(response => response);
-      
-    yield put({type: actionTypes.CIVIL_ID_SENT, payload: {value: json.data.already_registered}});
+    const json = yield apiCallYield;
+    if (json.data.is_error) {
+    } else {
+      yield put(actionYield(json));
+    }
   } catch (error) {
     console.log(error);
     // Construct an error message.  Should we use specific errors in actionTypes or general failure msg?  Depends how we're supposed to handle it.
@@ -26,29 +25,50 @@ function* validateCivilIdSaga(action) {
       },
     });
   }
+}
+
+function* validateCivilIdSaga(action) {
+  const data = {civil_id: action.value};
+
+  const json = axios
+    .post(constants.BASE_URL + '/verifyCivilid', data)
+    .then(response => response);
+  yield handleApiCall(json, json => {
+    return {
+      type: actionTypes.CIVIL_ID_SENT,
+      payload: {value: json.data.already_registered},
+    };
+  });
 }
 
 function* validatePhoneNumberSaga(action) {
   const data = {phone_number: action.value};
-  try {
-    const json = yield axios
-      .post(constants.BASE_URL + '/phonenumber', data)
-      .then(response => response);
-    yield put({type: actionTypes.PHONE_NUMBER_SENT});
-  } catch (error) {
-    console.log(error);
-    // Construct an error message.  Should we use specific errors in actionTypes or general failure msg?  Depends how we're supposed to handle it.
-    yield put({
-      type: actionTypes.REQUEST_FAILED,
-      payload: {
-        status: error.response.status,
-        message: error.response.statusText,
-      },
-    });
-  }
+  
+  const json = yield axios
+  .post(constants.BASE_URL + '/verifyPhonenumber', data)
+  .then(response => response);
+  yield handleApiCall(json, json => {
+    return {  
+      type: actionTypes.PHONE_NUMBER_SENT,
+      payload: {value: json.data.is_valid},
+    };
+  });
 }
 
-function* validateOTPSaga(action) {}
+function* validateOTPSaga(action) {
+  const data = {otp: action.value};
+  
+  const json = yield axios
+  .post(constants.BASE_URL + '/verifyotp', data)
+  .then(response => response);
+
+  yield handleApiCall(json, json => {
+    return {  
+      type: actionTypes.OTP_SENT,
+      payload: {value: json.data.is_valid},
+    };
+  });
+}
 
 function* watchAuthSaga() {
   yield takeLatest(actionTypes.TRY_LOGIN, tryLoginSaga);

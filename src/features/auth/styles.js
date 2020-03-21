@@ -10,7 +10,7 @@ export default StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
     justifyContent: 'center',
     margin: 16,
     marginTop: 100,
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     marginBottom: 60,
     marginTop: 0,
     resizeMode: 'contain',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   infoText: {
     color: colors.opacityBlack,
