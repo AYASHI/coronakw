@@ -15,11 +15,12 @@ import {
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
 import PhoneNumberInput from '../../components/PhoneNumberInput';
+import Screens from '../../navigators/Screens';
 
 const PhoneNumberScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    navigation.navigate('OTP');
+    navigation.navigate(Screens.OTP);
   };
   const [phoneNumber, setPhoneNumber] = useState('');
 

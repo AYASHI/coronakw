@@ -14,11 +14,12 @@ import {
   AuthContainer,
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
+import Screens from '../../navigators/Screens';
 
 const LoginScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    navigation.navigate('OnBoarding');
+    navigation.navigate(Screens.Registration);
   };
   const [otp, setOTP] = useState('');
 

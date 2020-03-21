@@ -14,11 +14,12 @@ import {
   AuthContainer,
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
+import Screens from '../../navigators/Screens';
 
 const LoginScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    navigation.navigate('Phone');
+    navigation.navigate(Screens.Phone);
   };
   const [civilID, setCivilID] = useState('');
 
