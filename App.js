@@ -15,7 +15,7 @@ import './i18n';
 const App = () => {
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
+      <PersistGate loading={null} persistor={persistor}>
         <AppNavigator />
       </PersistGate>
     </Provider>
