@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFUIDisplay-Bold.otf</string>
@@ -46,6 +46,11 @@
 		<string>SFUIDisplay-Medium.otf</string>
 		<string>SFUIDisplay-Regular.otf</string>
 		<string>SFUIDisplay-Semibold.otf</string>
+		<string>ArabicUITextBold.otf</string>
+		<string>ArabicUITextLight.otf</string>
+		<string>ArabicUITextRegular.ttf</string>
+		<string>ArabicUITextSemiBold.otf</string>
+		<string>ArabicUITextMedium.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

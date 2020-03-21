@@ -42,12 +42,7 @@ export default class TextField extends Component {
       <View style={styles.inputContentView}>
         <Text style={styles.infoText}>{title}</Text>
         <View style={{height: 5}} />
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignItems: 'stretch',
-          }}>
+        <View style={styles.inputContainer}>
           <TextInput
             keyboardType={this.props.keyboard}
             style={[
@@ -74,11 +69,8 @@ export default class TextField extends Component {
 export const styles = StyleSheet.create({
   inputContentView: {
     justifyContent: 'center',
-    marginLeft: 24,
-    marginRight: 24,
     marginTop: 8,
     marginBottom: 8,
-    width: '90%',
   },
   inputsTextInput: {
     fontFamily: fonts.Medium,
@@ -94,10 +86,16 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
   },
   infoText: {
+    fontFamily: fonts.REGULAR,
     color: colors.opacityBlack,
     marginBottom: 8,
     fontSize: 15,
     opacity: 0.77,
     textAlign: 'left',
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
   },
 });
