@@ -1,6 +1,15 @@
 {
   "auth": {
-    "login_button": "تسجيل الدخول"
+    "login_button": "تسجيل الدخول",
+    "enter_civil_id": "أدخل رقم البطاقة المدنية",
+    "civil_id_instruction": "رقم البطاقة المدنية مكون من 12 رقم",
+    "civil_id_placeholder": "112233445566",
+    "enter_phone_number": "أدخل رقم الجوال",
+    "phone_number_instruction": "من فضلك ادخل رقم الجوال لكي نستطيع ان نرسل لك كود التحقيق.",
+    "login_next": "التالي",
+    "enter_otp": "ادخل كود التحقيق",
+    "otp_instruction": "تم ارسال كود التحقيق الى الجوال المنتهي ب",
+    "otp_placeholder": "رقم التحقيق"
   },
   "onboarding": {
     "personalInfo": "البيانات الشخصية",
@@ -9,7 +18,9 @@
     "fullName": "الإسم بالكامل",
     "phoneNumber": "رقم التلفون",
     "travelOutsideKuwait": "هل قمت بالسفر خارج الكويت خلال ال ٤٥ يوم الماضية؟",
-    "selectCountries": "اذكر الدول التي قمت بزيارتها خلال ال ٤٥ يوم الماضية؟"
+    "selectCountries": "اذكر الدول التي قمت بزيارتها خلال ال ٤٥ يوم الماضية؟",
+    "quarantineLocationTitle": "معلومات موقع الحجر المنزلي",
+    "quarantineLocationSubTitle": "الحجر المنزلي واجب وطني ويتطلب منك درجة عالية من الإلتزام حرصاً على صحتك وصحة من هم حولك."
   },
   "home": {
     "lastUpdateText": "اخر تحديث منذ ساعة",
@@ -64,7 +75,12 @@
     "confirm": "تأكيد"
   },
   "placeholder": {
-    "selectCountries": "اختار من القائمة جميع الدول"
+    "selectCountries": "اختار من القائمة جميع الدول",
+    "area": "المنطقة",
+    "street": "الشارع",
+    "block": "قطقة",
+    "phoneNumber": "رقم التلفون",
+    "name": "الإسم بالكامل"
   },
   "yesNoQuestion": {
     "yes": "نعم",

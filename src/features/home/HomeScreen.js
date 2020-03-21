@@ -6,7 +6,6 @@ import HealthSurveyModal from '../../components/HealthSurveyModal';
 import TemperatureModal from '../../components/TemperatureModal';
 import PossibleInfectionsModal from '../../components/PossibleInfectionsModal';
 
-
 const HomeScreen = () => {
   return (
     <View style={styles.container}>

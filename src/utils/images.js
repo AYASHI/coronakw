@@ -4,6 +4,7 @@ const images = {
   uncheck: require('../assets/images/uncheck.png'),
   scanner: require('../assets/images/scanner.png'),
   location: require('../assets/images/location.png'),
+  locationLarge: require('../assets/images/locationLarge.png'),
   temperature: require('../assets/images/temperature.png'),
   shakeHand: require('../assets/images/peopleNames.png'),
   id: require('../assets/images/id.png'),

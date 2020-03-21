@@ -7,10 +7,11 @@ import {TouchableOpacity, FlatList} from 'react-native-gesture-handler';
 import Modal from 'react-native-modal';
 import Button from './Button';
 import {useTranslation} from 'react-i18next';
-import {countries} from '../utils/mockData';
+import Spacer from './Spacer';
 const DropDown = props => {
   const [text, setText] = useState(props.placeholder);
   const [showModal, setShowModal] = useState(false);
+  const [selectedItems, setSelectedItems] = useState({});
   const {t} = useTranslation();
   const onPress = () => {
     setShowModal(true);
@@ -18,11 +19,26 @@ const DropDown = props => {
   const closeModal = () => {
     setShowModal(false);
   };
+
   const renderItem = itemInfo => {
     const item = itemInfo.item;
+    const checked = false;
+    // selectedItems.hasOwnProperty(item.id) && selectedItems[item.id] === true;
+    const handleTouch = () => {
+      // setSelectedItems(prev => {
+      //   const temp = {id: item.id, checked: !checked};
+      //   return {...prev, temp};
+      // });
+      //props.changedAnswer({id: item.id, checked: !checked});
+    };
+
     return (
-      <TouchableOpacity style={styles.itemContainer}>
-        <Text style={styles.itemText}>{item}</Text>
+      <TouchableOpacity style={styles.itemContainer} onPress={handleTouch}>
+        <Text style={styles.itemText}>{item.text}</Text>
+        <Image
+          source={checked ? images.check : images.uncheck}
+          style={styles.checkImage}
+        />
       </TouchableOpacity>
     );
   };
@@ -41,10 +57,12 @@ const DropDown = props => {
         <SafeAreaView>
           <View style={styles.content}>
             <FlatList
-              data={countries}
+              data={props.data}
               renderItem={renderItem}
               ItemSeparatorComponent={ListSeparator}
+              keyExtractor={item => item.id + ''}
             />
+            <Spacer />
             <Button text={t('button.confirm')} onPress={pressedButton} />
           </View>
         </SafeAreaView>
@@ -91,11 +109,17 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     height: 44,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   itemText: {
     fontFamily: fonts.REGULAR,
     fontSize: 15,
+  },
+  checkImage: {
+    width: 15,
+    height: 15,
   },
 });
 export default DropDown;

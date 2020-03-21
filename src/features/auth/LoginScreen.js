@@ -1,13 +1,22 @@
 import React, {useState, useEffect} from 'react';
-import {View, Image, StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {View, TouchableOpacity, Text} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import images from '../../utils/images';
-import Button from '../../components/Button';
 import Spacer from '../../components/Spacer';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {connect} from 'react-redux';
+import styles from './styles';
+import {
+  LogoFragment,
+  TitleFragment,
+  SubmitButtonFragment,
+  InputFragment,
+  AuthContainer,
+} from './AuthComponents';
 import {useTranslation} from 'react-i18next';
 import * as actionTypes from '../../store/actionTypes';
 import {I18nManager} from 'react-native';
 import RNRestart from 'react-native-restart'; // Import package from node modules
+import Screens from '../../navigators/Screens';
 
 // import i18n from 'i18next';
 
@@ -18,7 +27,7 @@ const LoginScreen = ({navigation, props}) => {
   const dispatch = useDispatch();
 
   const login = () => {
-    navigation.navigate('OnBoarding');
+    navigation.navigate(Screens.Phone);
   };
   const changeLanguage = () => {
     let newLang = 'en';
@@ -41,26 +50,54 @@ const LoginScreen = ({navigation, props}) => {
     }
   };
 
+  const [civilID, setCivilID] = useState('');
+
   return (
-    <View style={styles.container}>
-      <Image source={images.logo} />
-      <Spacer />
-      <Button text={t('auth.login_button')} onPress={login} />
-      <Spacer />
-      <TouchableOpacity onPress={changeLanguage}>
-        <Text>{language == 'en' ? 'العربية' : 'English'}</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <AuthContainer>
+        <View style={styles.container}>
+          <LogoFragment />
+          <Spacer />
+          <TitleFragment title={t('auth.enter_civil_id')} />
+          <InputFragment
+            maxDigits={12}
+            onChange={setCivilID}
+            placeholder={t('auth.civil_id_placeholder')}
+            title={t('auth.civil_id_instruction')}
+          />
+          <Spacer space={20} />
+          <SubmitButtonFragment title={t('auth.login_next')} action={login} />
+        </View>
+        <TouchableOpacity onPress={changeLanguage} style={{alignSelf:'center',}}>
+          <Text>{language == 'en' ? 'العربية' : 'English'}</Text>
+        </TouchableOpacity>
+      </AuthContainer>
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+// Map State To Props (Redux Store Passes State To Component)
+const mapStateToProps = state => {
+  console.log('state', state);
+  return {
+    isValid: true,
+  };
+};
 
-export default LoginScreen;
+// Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
+const mapDispatchToProps = dispatch => {
+  // Action
+  return {
+    validateCivilId: civilID =>
+      dispatch({
+        type: actionTypes.CIVIL_ID_SEND,
+        value: civilID,
+      }),
+  };
+};
+
+// Exports
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoginScreen);
