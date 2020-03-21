@@ -85,7 +85,7 @@ const HealthSurveyModal = props => {
         data={questions}
         renderItem={Question}
         ItemSeparatorComponent={ListSeparator}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id + ''}
       />
     );
   };
@@ -168,7 +168,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 // Exports
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(HealthSurveyModal);
+export default connect(mapStateToProps, mapDispatchToProps)(HealthSurveyModal);

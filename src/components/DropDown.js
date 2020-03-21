@@ -60,7 +60,7 @@ const DropDown = props => {
               data={props.data}
               renderItem={renderItem}
               ItemSeparatorComponent={ListSeparator}
-              keyExtractor={item => item.id}
+              keyExtractor={item => item.id + ''}
             />
             <Spacer />
             <Button text={t('button.confirm')} onPress={pressedButton} />

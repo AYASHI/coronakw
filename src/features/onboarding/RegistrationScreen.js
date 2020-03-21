@@ -58,6 +58,7 @@ const RegistrationScreen = props => {
         <CustomTextInput
           title={t('onboarding.civilId')}
           value={civilID}
+          number={true}
           onChangeText={setCivilID}
         />
         <Spacer />
