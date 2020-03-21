@@ -36,4 +36,10 @@ export default StyleSheet.create({
     textAlign: 'left',
     width: '90%',
   },
+  keyboardAvoiding: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignContent: 'stretch',
+  },
 });

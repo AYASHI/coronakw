@@ -51,12 +51,7 @@ export const AuthContainer = props => {
   return (
     <ScrollView style={{flex: 1}}>
       <KeyboardAvoidingView
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-          alignContent: 'stretch',
-        }}
+        style={styles.keyboardAvoiding}
         behavior="position"
         enabled
         keyboardVerticalOffset={60}>
