@@ -2,6 +2,7 @@
 export const TRY_LOGIN = 'TRY_LOGIN';
 export const TRY_LOGIN_SUCCESS = 'TRY_LOGIN_SUCCESS';
 export const TRY_LOGIN_FAILED = 'TRY_LOGIN_FAILED';
+export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 
 // register action
 export const TRY_REGISTER = 'TRY_REGISTER';

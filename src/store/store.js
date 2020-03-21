@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import homeReducer from '../features/home/reducer';
 import authReducer from '../features/auth/reducer';
+import languageReducer from '../locales/reducer';
 
 import watchAuthSaga from '../features/auth/saga';
 import watchHomeSaga from '../features/home/saga';
@@ -10,6 +11,7 @@ import watchHomeSaga from '../features/home/saga';
 const rootReducer = combineReducers({
   auth: authReducer,
   home: homeReducer,
+  language: languageReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
