@@ -9,6 +9,7 @@ import Screens from './Screens';
 import TakeLocationScreen from '../features/onboarding/TakeLocationScreen';
 import PhoneNumberScreen from '../features/auth/PhoneNumberScreen';
 import OTPScreen from '../features/auth/OTPScreen';
+import WithErrorDisplay from '../features/core/WithErrorDisplay';
 
 const Stack = createStackNavigator();
 
@@ -37,4 +38,4 @@ const AppNavigator = () => {
   );
 };
 
-export default AppNavigator;
+export default WithErrorDisplay(AppNavigator);

@@ -21,7 +21,6 @@ const PhoneNumberScreen = ({navigation, validatePhoneNumber, isValid}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
     validatePhoneNumber(phoneNumber);
-    // navigation.navigate(Screens.OTP);
   };
   if (isValid != null || isValid != undefined) {
     if (isValid) {
@@ -53,7 +52,6 @@ const PhoneNumberScreen = ({navigation, validatePhoneNumber, isValid}) => {
   );
 };
 
-// Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
   console.log('state: phone number', state);
   return {
@@ -61,9 +59,7 @@ const mapStateToProps = state => {
   };
 };
 
-// Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
 const mapDispatchToProps = dispatch => {
-  // Action
   return {
     validatePhoneNumber: phone =>
       dispatch({

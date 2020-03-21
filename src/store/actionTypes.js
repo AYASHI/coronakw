@@ -47,3 +47,6 @@ export const POSSIBLE_INFECTIONS_SENT = 'POSSIBLE_INFECTIONS_SENT';
 
 //request
 export const REQUEST_FAILED = 'REQUEST_FAILED';
+
+//errors
+export const HIDE_ERROR = 'HIDE_ERROR';

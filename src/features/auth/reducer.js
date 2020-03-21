@@ -1,5 +1,4 @@
 import * as actionTypes from '../../store/actionTypes';
-import * as constants from '../../utils/constants';
 
 // initial state
 const initialState = {

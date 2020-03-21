@@ -20,7 +20,6 @@ const LoginScreen = ({navigation, validateCivilId, isRegistered}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
     validateCivilId(civilID);
-    // navigation.navigate(Screens.Phone);
   };
   const [civilID, setCivilID] = useState('');
   if (isRegistered != null || isRegistered != undefined) {
@@ -51,7 +50,6 @@ const LoginScreen = ({navigation, validateCivilId, isRegistered}) => {
   );
 };
 
-// Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
   console.log('state', state);
   return {
@@ -59,9 +57,7 @@ const mapStateToProps = state => {
   };
 };
 
-// Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
 const mapDispatchToProps = dispatch => {
-  // Action
   return {
     validateCivilId: civilID =>
       dispatch({
@@ -71,7 +67,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-// Exports
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

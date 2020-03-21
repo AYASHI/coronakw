@@ -16,10 +16,10 @@ import {
 import {useTranslation} from 'react-i18next';
 import Screens from '../../navigators/Screens';
 
-const LoginScreen = ({navigation, isValid, validateOTP}) => {
+const OTPScreen = ({navigation, isValid, validateOTP}) => {
   const {t, i18n} = useTranslation();
   const login = () => {
-    validateOTP(otp)
+    validateOTP(otp);
   };
   const [otp, setOTP] = useState('');
   if (isValid != null || isValid != undefined) {
@@ -49,7 +49,6 @@ const LoginScreen = ({navigation, isValid, validateOTP}) => {
   );
 };
 
-// Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
   console.log('state', state);
   return {
@@ -57,9 +56,7 @@ const mapStateToProps = state => {
   };
 };
 
-// Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
 const mapDispatchToProps = dispatch => {
-  // Action
   return {
     validateOTP: otp =>
       dispatch({
@@ -69,8 +66,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-// Exports
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LoginScreen);
+)(OTPScreen);

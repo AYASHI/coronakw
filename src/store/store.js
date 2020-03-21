@@ -6,8 +6,10 @@ import authReducer from '../features/auth/reducer';
 
 import watchAuthSaga from '../features/auth/saga';
 import watchHomeSaga from '../features/home/saga';
+import coreReducer from '../features/core/reducer';
 
 const rootReducer = combineReducers({
+  core: coreReducer,
   auth: authReducer,
   home: homeReducer,
 });
