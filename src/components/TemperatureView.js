@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
   },
   contentSubTitle: {
     fontSize: 28,
+    textAlign: 'center',
     marginBottom: 12,
   },
   textInput: {
