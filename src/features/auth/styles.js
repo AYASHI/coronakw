@@ -10,8 +10,9 @@ export default StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
+    flexDirection: "column",
     justifyContent: 'center',
-    alignItems: 'center',
+    margin: 16,
     marginTop: 100,
   },
   instructionText: {
@@ -19,7 +20,6 @@ export default StyleSheet.create({
     fontFamily: fonts.Bold,
     color: colors.marine,
     fontSize: 20,
-    width: '90%',
   },
   logo: {
     width: 161,
@@ -27,6 +27,7 @@ export default StyleSheet.create({
     marginBottom: 60,
     marginTop: 0,
     resizeMode: 'contain',
+    alignSelf: 'center'
   },
   infoText: {
     color: colors.opacityBlack,
@@ -34,6 +35,11 @@ export default StyleSheet.create({
     fontSize: 15,
     opacity: 0.77,
     textAlign: 'left',
-    width: '90%',
+  },
+  keyboardAvoiding: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignContent: 'stretch',
   },
 });
