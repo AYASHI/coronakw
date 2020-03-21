@@ -9,7 +9,9 @@
     "fullName": "Full Name",
     "phoneNumber": "Phone Number",
     "travelOutsideKuwait": "Did you travel outside kuwait last 45 days?",
-    "selectCountries": "Select countries you visited last 45 days?"
+    "selectCountries": "Select countries you visited last 45 days?",
+    "quarantineLocationTitle": "Home quarantine location info",
+    "quarantineLocationSubTitle": "الحجر المنزلي واجب وطني ويتطلب منك درجة عالية من الإلتزام حرصاً على صحتك وصحة من هم حولك."
   },
   "home": {
     "lastUpdateText": "Most recent update",
@@ -62,7 +64,11 @@
     "close": "Close"
   },
   "placeholder": {
-    "selectCountries": "Select countries from list"
+    "selectCountries": "Select countries from list",
+    "area": "Area",
+    "street": "Street",
+    "block": "Block",
+    "phoneNumber": "Phone number"
   },
   "yesNoQuestion": {
     "yes": "Yes",

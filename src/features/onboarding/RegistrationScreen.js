@@ -19,6 +19,7 @@ import YesNoQuestion from '../../components/YesNoQuestion';
 import Button from '../../components/Button';
 import DropDown from '../../components/DropDown';
 import Screens from '../../navigators/Screens';
+import {countries} from '../../utils/mockData';
 
 const RegistrationScreen = props => {
   const {t} = useTranslation();
@@ -40,7 +41,10 @@ const RegistrationScreen = props => {
         <Text style={styles.countrySelectionTitle}>
           {t('onboarding.selectCountries')}
         </Text>
-        <DropDown placeholder={t('placeholder.selectCountries')} />
+        <DropDown
+          placeholder={t('placeholder.selectCountries')}
+          data={countries}
+        />
       </Fragment>
     );
   };

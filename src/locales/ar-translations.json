@@ -9,7 +9,9 @@
     "fullName": "الإسم بالكامل",
     "phoneNumber": "رقم التلفون",
     "travelOutsideKuwait": "هل قمت بالسفر خارج الكويت خلال ال ٤٥ يوم الماضية؟",
-    "selectCountries": "اذكر الدول التي قمت بزيارتها خلال ال ٤٥ يوم الماضية؟"
+    "selectCountries": "اذكر الدول التي قمت بزيارتها خلال ال ٤٥ يوم الماضية؟",
+    "quarantineLocationTitle": "معلومات موقع الحجر المنزلي",
+    "quarantineLocationSubTitle": "الحجر المنزلي واجب وطني ويتطلب منك درجة عالية من الإلتزام حرصاً على صحتك وصحة من هم حولك."
   },
   "home": {
     "lastUpdateText": "اخر تحديث منذ ساعة",
@@ -64,7 +66,11 @@
     "confirm": "تأكيد"
   },
   "placeholder": {
-    "selectCountries": "اختار من القائمة جميع الدول"
+    "selectCountries": "اختار من القائمة جميع الدول",
+    "area": "المنطقة",
+    "street": "الشارع",
+    "block": "قطقة",
+    "phoneNumber": "رقم التلفون"
   },
   "yesNoQuestion": {
     "yes": "نعم",
