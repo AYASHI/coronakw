@@ -9,12 +9,12 @@ import styles from './styles';
 import {
   LogoFragment,
   TitleFragment,
-  SubmitButtonFragment,
   InputFragment,
   AuthContainer,
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
 import Screens from '../../navigators/Screens';
+import Button from '../../components/Button';
 
 const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
   const {t, i18n} = useTranslation();
@@ -42,7 +42,7 @@ const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
             title={t('auth.otp_instruction')}
           />
           <Spacer space={20} />
-          <SubmitButtonFragment title={t('auth.login_button')} action={() => {
+          <Button text={t('auth.login_button')} onPress={() => {
             if(otp.length == 0) {
               showError(t('auth.otp_is_not_valid'))
             } else {
