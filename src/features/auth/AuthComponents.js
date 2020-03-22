@@ -1,7 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import TextField from '../../components/TextField';
 import images from '../../utils/images';
-import Button from '../../components/Button';
 import styles from './styles';
 import {Image, Text, KeyboardAvoidingView, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -20,12 +19,6 @@ export const TitleFragment = ({title}) => {
 
 export const InstructionFragment = ({title}) => {
   return <Text style={styles.infoText}>{title}</Text>;
-};
-
-export const SubmitButtonFragment = ({title, action}) => {
-  return (
-      <Button text={title} onPress={action} />
-  );
 };
 
 export const InputFragment = ({

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 
 import Spacer from '../../components/Spacer';
@@ -9,20 +9,36 @@ import styles from './styles';
 import {
   LogoFragment,
   TitleFragment,
-  SubmitButtonFragment,
   InputFragment,
   AuthContainer,
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
 import Screens from '../../navigators/Screens';
+import Button from '../../components/Button';
+import ActionCreators from '../../store/action';
+import {bindActionCreators} from 'redux';
 
-const LoginScreen = ({navigation}) => {
-  const {t, i18n} = useTranslation();
-  const login = () => {
-    navigation.navigate(Screens.Registration);
+const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
+  const {t} = useTranslation();
+  
+  const submit = () => {
+    if (otp.length == 0) {
+      showError(t('auth.otp_is_not_valid'));
+    } else {
+      validateOTP(otp);
+    }
   };
-  const [otp, setOTP] = useState('');
 
+  const [otp, setOTP] = useState('');
+  useEffect(() => {
+    if (isValid != null || isValid != undefined) {
+      if (isValid) {
+        navigation.navigate(Screens.Registration);
+      } else {
+        alert('code is not valid');
+      }
+    }
+  })
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -36,35 +52,33 @@ const LoginScreen = ({navigation}) => {
             title={t('auth.otp_instruction')}
           />
           <Spacer space={20} />
-          <SubmitButtonFragment title={t('auth.login_button')} action={login} />
+          <Button
+            text={t('auth.login_button')}
+            onPress={submit}
+          />
         </View>
       </AuthContainer>
     </SafeAreaView>
   );
 };
 
-// Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
-  console.log('state', state);
   return {
-    isValid: true,
+    isValid: state.auth.isOTPVerified ?? null,
   };
 };
 
-// Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
 const mapDispatchToProps = dispatch => {
-  // Action
-  return {
-    validateCivilId: civilID =>
-      dispatch({
-        type: actionTypes.SEND_OTP,
-        value: civilID,
-      }),
-  };
+  return bindActionCreators(
+    {
+      showError: ActionCreators.showError,
+      validateOTP: ActionCreators.validateOTP,
+    },
+    dispatch,
+  );
 };
 
-// Exports
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LoginScreen);
+)(OTPScreen);

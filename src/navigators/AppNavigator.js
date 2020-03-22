@@ -1,4 +1,4 @@
-import React, {useEffect }from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../features/home/HomeScreen';
@@ -11,6 +11,8 @@ import Screens from './Screens';
 import TakeLocationScreen from '../features/onboarding/TakeLocationScreen';
 import PhoneNumberScreen from '../features/auth/PhoneNumberScreen';
 import OTPScreen from '../features/auth/OTPScreen';
+import WithErrorDisplay from '../features/core/WithErrorDisplay';
+import WithLoadingHud from '../features/core/WithLoadingHud';
 
 const Stack = createStackNavigator();
 
@@ -45,4 +47,4 @@ const AppNavigator = () => {
   );
 };
 
-export default AppNavigator;
+export default WithLoadingHud(WithErrorDisplay(AppNavigator));
