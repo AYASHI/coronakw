@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import Reactotron from '../../ReactotronConfig';
 import {persistStore, persistReducer} from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk';
 
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
@@ -34,7 +35,13 @@ const pReducer = persistReducer(persistConfig, rootReducer);
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(pReducer, applyMiddleware(sagaMiddleware));
+const store = createStore(
+  pReducer,
+  compose(
+    applyMiddleware(thunk, sagaMiddleware),
+    Reactotron.createEnhancer(),
+  ),
+);
 export const persistor = persistStore(store);
 
 sagaMiddleware.run(watchAuthSaga);

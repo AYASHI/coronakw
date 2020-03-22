@@ -17,6 +17,8 @@ import {I18nManager} from 'react-native';
 import RNRestart from 'react-native-restart'; // Import package from node modules
 import Screens from '../../navigators/Screens';
 import Button from '../../components/Button';
+import {bindActionCreators} from 'redux';
+import ActionCreators from '../../store/action';
 
 const LoginScreen = ({
   navigation,
@@ -29,8 +31,12 @@ const LoginScreen = ({
   // const [lang, setLang] = useState(language);
   const dispatch = useDispatch();
 
-  const login = () => {
-    validateCivilId(civilID);
+  const submit = () => {
+    if (civilID.length == 0 || civilID.length != 12) {
+      showError(t('auth.civil_id_is_not_valid'));
+    } else {
+      validateCivilId(civilID);
+    }
   };
   const changeLanguage = () => {
     let newLang = 'en';
@@ -54,13 +60,15 @@ const LoginScreen = ({
   };
 
   const [civilID, setCivilID] = useState('');
-  if (isRegistered != null || isRegistered != undefined) {
-    if (isRegistered) {
-      navigation.navigate(Screens.Phone);
-    } else {
-      navigation.navigate(Screens.Registration);
+  useEffect(() => {
+    if (isRegistered != null || isRegistered != undefined) {
+      if (isRegistered) {
+        navigation.navigate(Screens.Phone);
+      } else {
+        navigation.navigate(Screens.Registration);
+      }
     }
-  }
+  })
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -75,13 +83,10 @@ const LoginScreen = ({
             title={t('auth.civil_id_instruction')}
           />
           <Spacer space={20} />
-          <Button text={t('auth.login_next')} onPress={() => {
-            if (civilID.length == 0 || civilID.length != 12) {
-              showError(t('auth.civil_id_is_not_valid'))
-            } else {
-              login()
-            }
-          }} />
+          <Button
+            text={t('auth.login_next')}
+            onPress={submit}
+          />
         </View>
         <TouchableOpacity
           onPress={changeLanguage}
@@ -100,19 +105,13 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    showError: message => {
-      dispatch({
-        type: actionTypes.SHOW_ERROR,
-        message: message,
-      });
+  return bindActionCreators(
+    {
+      showError: ActionCreators.showError,
+      validateCivilId: ActionCreators.validateCivilId,
     },
-    validateCivilId: civilID =>
-      dispatch({
-        type: actionTypes.CIVIL_ID_SEND,
-        value: civilID,
-      }),
-  };
+    dispatch,
+  );
 };
 
 export default connect(

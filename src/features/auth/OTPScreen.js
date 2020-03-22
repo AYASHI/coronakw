@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 
 import Spacer from '../../components/Spacer';
@@ -15,20 +15,30 @@ import {
 import {useTranslation} from 'react-i18next';
 import Screens from '../../navigators/Screens';
 import Button from '../../components/Button';
+import ActionCreators from '../../store/action';
+import {bindActionCreators} from 'redux';
 
 const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
-  const {t, i18n} = useTranslation();
-  const login = () => {
-    validateOTP(otp);
-  };
-  const [otp, setOTP] = useState('');
-  if (isValid != null || isValid != undefined) {
-    if (isValid) {
-      navigation.navigate(Screens.Registration);
+  const {t} = useTranslation();
+  
+  const submit = () => {
+    if (otp.length == 0) {
+      showError(t('auth.otp_is_not_valid'));
     } else {
-      alert('code is not valid');
+      validateOTP(otp);
     }
-  }
+  };
+
+  const [otp, setOTP] = useState('');
+  useEffect(() => {
+    if (isValid != null || isValid != undefined) {
+      if (isValid) {
+        navigation.navigate(Screens.Registration);
+      } else {
+        alert('code is not valid');
+      }
+    }
+  })
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -42,13 +52,10 @@ const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
             title={t('auth.otp_instruction')}
           />
           <Spacer space={20} />
-          <Button text={t('auth.login_button')} onPress={() => {
-            if(otp.length == 0) {
-              showError(t('auth.otp_is_not_valid'))
-            } else {
-              login()
-            }
-          }} />
+          <Button
+            text={t('auth.login_button')}
+            onPress={submit}
+          />
         </View>
       </AuthContainer>
     </SafeAreaView>
@@ -62,19 +69,13 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    showError: message => {
-      dispatch({
-        type: actionTypes.SHOW_ERROR,
-        message: message,
-      });
+  return bindActionCreators(
+    {
+      showError: ActionCreators.showError,
+      validateOTP: ActionCreators.validateOTP,
     },
-    validateOTP: otp =>
-      dispatch({
-        type: actionTypes.SEND_OTP,
-        value: otp,
-      }),
-  };
+    dispatch,
+  );
 };
 
 export default connect(

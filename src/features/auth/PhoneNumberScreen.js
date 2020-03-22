@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 
 import Spacer from '../../components/Spacer';
@@ -16,6 +16,8 @@ import {useTranslation} from 'react-i18next';
 import PhoneNumberInput from '../../components/PhoneNumberInput';
 import Screens from '../../navigators/Screens';
 import Button from '../../components/Button';
+import ActionCreators from '../../store/action';
+import {bindActionCreators} from 'redux';
 
 const PhoneNumberScreen = ({
   navigation,
@@ -23,18 +25,24 @@ const PhoneNumberScreen = ({
   isValid,
   showError,
 }) => {
-  const {t, i18n} = useTranslation();
-  const login = () => {
-    validatePhoneNumber(phoneNumber);
-  };
-  if (isValid != null || isValid != undefined) {
-    if (isValid) {
-      navigation.navigate(Screens.OTP);
+  const {t} = useTranslation();
+  const submit = () => {
+    if (phoneNumber.length == 0 || phoneNumber.length != 8) {
+      showError(t('auth.phone_number_is_not_Valid'));
     } else {
-      alert('phone not valid');
+      validatePhoneNumber(phoneNumber);
     }
-  }
+  };
+  
   const [phoneNumber, setPhoneNumber] = useState('');
+
+  useEffect(() => {
+    if (isValid != null || isValid != undefined) {
+      if (isValid) {
+        navigation.navigate(Screens.OTP);
+      }
+    }
+  })
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -50,13 +58,10 @@ const PhoneNumberScreen = ({
             onChangeText={setPhoneNumber}
           />
           <Spacer space={20} />
-          <Button text={t('auth.login_next')} onPress={() => {
-            if(phoneNumber.length == 0 || phoneNumber.length != 8) {
-              showError(t('auth.phone_number_is_not_Valid'))
-            } else {
-              login()
-            }
-          }} />
+          <Button
+            text={t('auth.login_next')}
+            onPress={submit}
+          />
         </View>
       </AuthContainer>
     </SafeAreaView>
@@ -70,19 +75,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    showError: message => {
-      dispatch({
-        type: actionTypes.SHOW_ERROR,
-        message: message,
-      });
-    },
-    validatePhoneNumber: phone =>
-      dispatch({
-        type: actionTypes.PHONE_NUMBER_SEND,
-        value: phone,
-      }),
-  };
+  return bindActionCreators({
+    showError: ActionCreators.showError,
+    validatePhoneNumber: ActionCreators.validatePhoneNumber,
+  },dispatch);
 };
 
 // Exports

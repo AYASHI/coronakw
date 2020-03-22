@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
   commonShadow: {
     shadowColor: 'black',
     shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 0 },
+    shadowOffset: {width: 0, height: 0},
     shadowRadius: 8,
     elevation: 4,
-  }
+  },
 });
