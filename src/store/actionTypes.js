@@ -48,6 +48,8 @@ export const POSSIBLE_INFECTIONS_SENT = 'POSSIBLE_INFECTIONS_SENT';
 
 //request
 export const REQUEST_FAILED = 'REQUEST_FAILED';
+export const REQUEST_STARTED = 'REQUEST_STARTED';
+export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 
 //errors
 export const HIDE_ERROR = 'HIDE_ERROR';

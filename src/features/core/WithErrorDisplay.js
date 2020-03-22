@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {Alert} from 'react-native';
+import {Alert, View} from 'react-native';
 import React from 'react';
 import * as actionTypes from '../../store/actionTypes';
 
@@ -20,7 +20,11 @@ const withErrorDisplay = Comp => props => {
       {cancelable: false},
     );
   }
-  return <Comp {...props} />;
+  return (
+    <View style={{flex: 1}}>
+      <Comp {...props} />
+    </View>
+  );
 };
 
 const mapErrorStateToProps1 = state => {

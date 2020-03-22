@@ -21,7 +21,7 @@ function* validateCivilIdSaga(action) {
 function* validatePhoneNumberSaga(action) {
   const data = {phone_number: action.value};
 
-  const json = yield axios
+  const json = axios
     .post(constants.BASE_URL + '/verifyPhonenumber', data)
     .then(response => response);
   yield handleApiCall(json, json => {
@@ -35,7 +35,7 @@ function* validatePhoneNumberSaga(action) {
 function* validateOTPSaga(action) {
   const data = {otp: action.value};
 
-  const json = yield axios
+  const json = axios
     .post(constants.BASE_URL + '/verifyotp', data)
     .then(response => response);
 

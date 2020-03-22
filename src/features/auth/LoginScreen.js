@@ -18,7 +18,12 @@ import {I18nManager} from 'react-native';
 import RNRestart from 'react-native-restart'; // Import package from node modules
 import Screens from '../../navigators/Screens';
 
-const LoginScreen = ({navigation, validateCivilId, isRegistered, showError}) => {
+const LoginScreen = ({
+  navigation,
+  validateCivilId,
+  isRegistered,
+  showError,
+}) => {
   const {t, i18n} = useTranslation();
   const language = useSelector(state => state.language.current);
   // const [lang, setLang] = useState(language);
@@ -70,15 +75,20 @@ const LoginScreen = ({navigation, validateCivilId, isRegistered, showError}) => 
             title={t('auth.civil_id_instruction')}
           />
           <Spacer space={20} />
-          <SubmitButtonFragment title={t('auth.login_next')} action={() => {
-            if (civilID.length == 0 || civilID.length != 12) {
-              showError(t('auth.civil_id_is_not_valid'))
-            } else {
-              login()
-            }
-          }} />
+          <SubmitButtonFragment
+            title={t('auth.login_next')}
+            action={() => {
+              if (civilID.length == 0 || civilID.length != 12) {
+                showError(t('auth.civil_id_is_not_valid'));
+              } else {
+                login();
+              }
+            }}
+          />
         </View>
-        <TouchableOpacity onPress={changeLanguage} style={{alignSelf:'center',}}>
+        <TouchableOpacity
+          onPress={changeLanguage}
+          style={{alignSelf: 'center'}}>
           <Text>{language == 'en' ? 'العربية' : 'English'}</Text>
         </TouchableOpacity>
       </AuthContainer>
@@ -87,7 +97,6 @@ const LoginScreen = ({navigation, validateCivilId, isRegistered, showError}) => 
 };
 
 const mapStateToProps = state => {
-  console.log('state', state);
   return {
     isRegistered: state.auth.isRegistered ?? null,
   };
@@ -98,8 +107,8 @@ const mapDispatchToProps = dispatch => {
     showError: message => {
       dispatch({
         type: actionTypes.SHOW_ERROR,
-          message: message
-      })
+        message: message,
+      });
     },
     validateCivilId: civilID =>
       dispatch({

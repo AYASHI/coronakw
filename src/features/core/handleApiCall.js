@@ -5,6 +5,7 @@ import {takeLatest, put} from 'redux-saga/effects';
 
 export default function* handleApiCall(apiCall, action) {
   try {
+    yield put({type: actionTypes.REQUEST_STARTED});
     const json = yield apiCall;
     if (json.data.is_error) {
       yield put({
@@ -17,6 +18,7 @@ export default function* handleApiCall(apiCall, action) {
     } else {
       yield put(action(json));
     }
+    yield put({type: actionTypes.REQUEST_SUCCESS});
   } catch (error) {
     yield put({
       type: actionTypes.REQUEST_FAILED,

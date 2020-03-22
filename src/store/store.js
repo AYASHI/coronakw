@@ -40,5 +40,4 @@ export const persistor = persistStore(store);
 sagaMiddleware.run(watchAuthSaga);
 sagaMiddleware.run(watchHomeSaga);
 
-
 export default store;

@@ -42,13 +42,16 @@ const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
             title={t('auth.otp_instruction')}
           />
           <Spacer space={20} />
-          <SubmitButtonFragment title={t('auth.login_button')} action={() => {
-            if(otp.length == 0) {
-              showError(t('auth.otp_is_not_valid'))
-            } else {
-              login()
-            }
-          }} />
+          <SubmitButtonFragment
+            title={t('auth.login_button')}
+            action={() => {
+              if (otp.length == 0) {
+                showError(t('auth.otp_is_not_valid'));
+              } else {
+                login();
+              }
+            }}
+          />
         </View>
       </AuthContainer>
     </SafeAreaView>
@@ -56,7 +59,6 @@ const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
 };
 
 const mapStateToProps = state => {
-  console.log('state', state);
   return {
     isValid: state.auth.isOTPVerified ?? null,
   };
@@ -67,8 +69,8 @@ const mapDispatchToProps = dispatch => {
     showError: message => {
       dispatch({
         type: actionTypes.SHOW_ERROR,
-        message: message
-      })
+        message: message,
+      });
     },
     validateOTP: otp =>
       dispatch({
