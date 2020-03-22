@@ -9,13 +9,13 @@ import styles from './styles';
 import {
   LogoFragment,
   TitleFragment,
-  SubmitButtonFragment,
   AuthContainer,
   InstructionFragment,
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
 import PhoneNumberInput from '../../components/PhoneNumberInput';
 import Screens from '../../navigators/Screens';
+import Button from '../../components/Button';
 
 const PhoneNumberScreen = ({
   navigation,
@@ -50,16 +50,13 @@ const PhoneNumberScreen = ({
             onChangeText={setPhoneNumber}
           />
           <Spacer space={20} />
-          <SubmitButtonFragment
-            title={t('auth.login_next')}
-            action={() => {
-              if (phoneNumber.length == 0 || phoneNumber.length != 8) {
-                showError(t('auth.phone_number_is_not_Valid'));
-              } else {
-                login();
-              }
-            }}
-          />
+          <Button text={t('auth.login_next')} onPress={() => {
+            if(phoneNumber.length == 0 || phoneNumber.length != 8) {
+              showError(t('auth.phone_number_is_not_Valid'))
+            } else {
+              login()
+            }
+          }} />
         </View>
       </AuthContainer>
     </SafeAreaView>

@@ -8,7 +8,6 @@ import styles from './styles';
 import {
   LogoFragment,
   TitleFragment,
-  SubmitButtonFragment,
   InputFragment,
   AuthContainer,
 } from './AuthComponents';
@@ -17,6 +16,7 @@ import * as actionTypes from '../../store/actionTypes';
 import {I18nManager} from 'react-native';
 import RNRestart from 'react-native-restart'; // Import package from node modules
 import Screens from '../../navigators/Screens';
+import Button from '../../components/Button';
 
 const LoginScreen = ({
   navigation,
@@ -75,16 +75,13 @@ const LoginScreen = ({
             title={t('auth.civil_id_instruction')}
           />
           <Spacer space={20} />
-          <SubmitButtonFragment
-            title={t('auth.login_next')}
-            action={() => {
-              if (civilID.length == 0 || civilID.length != 12) {
-                showError(t('auth.civil_id_is_not_valid'));
-              } else {
-                login();
-              }
-            }}
-          />
+          <Button text={t('auth.login_next')} onPress={() => {
+            if (civilID.length == 0 || civilID.length != 12) {
+              showError(t('auth.civil_id_is_not_valid'))
+            } else {
+              login()
+            }
+          }} />
         </View>
         <TouchableOpacity
           onPress={changeLanguage}
