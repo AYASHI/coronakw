@@ -10,7 +10,7 @@ function* sendHealthStateSaga(action) {
   const json = axios
     .post(constants.BASE_URL + '/healthState', data)
     .then(response => response);
-  handleApiCall(json, json => {
+  handleApiCall(json, _ => {
     return {type: actionTypes.HEALTH_STATE_SENT};
   });
 }

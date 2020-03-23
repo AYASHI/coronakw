@@ -20,6 +20,9 @@ import Button from '../../components/Button';
 import DropDown from '../../components/DropDown';
 import Screens from '../../navigators/Screens';
 import {countries} from '../../utils/mockData';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import ActionCreators from '../../store/action';
 
 const RegistrationScreen = props => {
   const {t} = useTranslation();
@@ -118,4 +121,23 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegistrationScreen;
+const mapStateToProps = state => {
+  return {
+    isRegistered: state.auth.isRegistered ?? null,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      showError: ActionCreators.showError,
+      validateCivilId: ActionCreators.validateCivilId,
+    },
+    dispatch,
+  );
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(RegistrationScreen);

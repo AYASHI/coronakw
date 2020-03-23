@@ -3,7 +3,6 @@ import {View, TouchableOpacity, Text} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import Spacer from '../../components/Spacer';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {connect} from 'react-redux';
 import styles from './styles';
 import {
   LogoFragment,
@@ -19,6 +18,7 @@ import Screens from '../../navigators/Screens';
 import Button from '../../components/Button';
 import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
+import {connect} from 'react-redux';
 
 const LoginScreen = ({
   navigation,
@@ -68,7 +68,7 @@ const LoginScreen = ({
         navigation.navigate(Screens.Registration);
       }
     }
-  })
+  });
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -83,10 +83,7 @@ const LoginScreen = ({
             title={t('auth.civil_id_instruction')}
           />
           <Spacer space={20} />
-          <Button
-            text={t('auth.login_next')}
-            onPress={submit}
-          />
+          <Button text={t('auth.login_next')} onPress={submit} />
         </View>
         <TouchableOpacity
           onPress={changeLanguage}

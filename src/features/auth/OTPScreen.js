@@ -4,7 +4,6 @@ import {View} from 'react-native';
 import Spacer from '../../components/Spacer';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../store/actionTypes';
 import styles from './styles';
 import {
   LogoFragment,
@@ -20,7 +19,7 @@ import {bindActionCreators} from 'redux';
 
 const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
   const {t} = useTranslation();
-  
+
   const submit = () => {
     if (otp.length == 0) {
       showError(t('auth.otp_is_not_valid'));
@@ -38,7 +37,7 @@ const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
         alert('code is not valid');
       }
     }
-  })
+  });
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -52,10 +51,7 @@ const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
             title={t('auth.otp_instruction')}
           />
           <Spacer space={20} />
-          <Button
-            text={t('auth.login_button')}
-            onPress={submit}
-          />
+          <Button text={t('auth.login_button')} onPress={submit} />
         </View>
       </AuthContainer>
     </SafeAreaView>

@@ -19,6 +19,9 @@ import DropDown from '../../components/DropDown';
 import {areas} from '../../utils/mockData';
 import Spacer from '../../components/Spacer';
 import PhoneNumberInput from '../../components/PhoneNumberInput';
+import {bindActionCreators} from 'redux';
+import ActionCreators from '../../store/action';
+import {connect} from 'react-redux';
 
 const TakeLocationScreen = ({navigation}) => {
   const {t} = useTranslation();
@@ -101,4 +104,23 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TakeLocationScreen;
+const mapStateToProps = state => {
+  return {
+    isRegistered: state.auth.isRegistered ?? null,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      showError: ActionCreators.showError,
+      validateCivilId: ActionCreators.validateCivilId,
+    },
+    dispatch,
+  );
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TakeLocationScreen);

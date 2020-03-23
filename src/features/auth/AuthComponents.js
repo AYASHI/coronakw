@@ -1,8 +1,8 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment} from 'react';
 import TextField from '../../components/TextField';
 import images from '../../utils/images';
 import styles from './styles';
-import {Image, Text, KeyboardAvoidingView, View} from 'react-native';
+import {Image, Text, KeyboardAvoidingView} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 export const LogoFragment = () => {

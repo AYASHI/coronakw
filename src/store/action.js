@@ -26,8 +26,35 @@ const validatePhoneNumber = phone => dispatch =>
     value: phone,
   });
 
+const registerUser = (
+  civil,
+  name,
+  phone,
+  didTravelOutside,
+  countriesVisited,
+) => dispatch =>
+  dispatch({
+    type: actionTypes.TRY_REGISTER,
+    value: {civil, name, phone, didTravelOutside, countriesVisited},
+  });
+
+const confirmTempreture = temp => dispatch =>
+  dispatch({
+    type: actionTypes.SEND_TEMPERATURE,
+    value: temp,
+  });
+
+const sendLocation = (areaId, street, block, phone) => dispatch =>
+  dispatch({
+    type: actionTypes.SEND_LOCATION,
+    value: {areaId, street, block, phone},
+  });
+
 // action creators
 const ActionCreators = {
+  sendLocation,
+  confirmTempreture,
+  registerUser,
   validateCivilId,
   showError,
   validateOTP,

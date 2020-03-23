@@ -15,6 +15,7 @@ import watchAuthSaga from '../features/auth/saga';
 import watchHomeSaga from '../features/home/saga';
 import {AsyncStorage} from 'react-native';
 import coreReducer from '../features/core/reducer';
+import watchOnBoardingSaga from '../features/onboarding/saga';
 
 const persistConfig = {
   core: coreReducer,
@@ -46,5 +47,6 @@ export const persistor = persistStore(store);
 
 sagaMiddleware.run(watchAuthSaga);
 sagaMiddleware.run(watchHomeSaga);
+sagaMiddleware.run(watchOnBoardingSaga)
 
 export default store;

@@ -1,10 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
-
 import Spacer from '../../components/Spacer';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {connect} from 'react-redux';
-import * as actionTypes from '../../store/actionTypes';
 import styles from './styles';
 import {
   LogoFragment,
@@ -18,6 +15,7 @@ import Screens from '../../navigators/Screens';
 import Button from '../../components/Button';
 import ActionCreators from '../../store/action';
 import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
 const PhoneNumberScreen = ({
   navigation,
@@ -33,7 +31,7 @@ const PhoneNumberScreen = ({
       validatePhoneNumber(phoneNumber);
     }
   };
-  
+
   const [phoneNumber, setPhoneNumber] = useState('');
 
   useEffect(() => {
@@ -42,7 +40,7 @@ const PhoneNumberScreen = ({
         navigation.navigate(Screens.OTP);
       }
     }
-  })
+  });
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -58,10 +56,7 @@ const PhoneNumberScreen = ({
             onChangeText={setPhoneNumber}
           />
           <Spacer space={20} />
-          <Button
-            text={t('auth.login_next')}
-            onPress={submit}
-          />
+          <Button text={t('auth.login_next')} onPress={submit} />
         </View>
       </AuthContainer>
     </SafeAreaView>
@@ -75,10 +70,13 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({
-    showError: ActionCreators.showError,
-    validatePhoneNumber: ActionCreators.validatePhoneNumber,
-  },dispatch);
+  return bindActionCreators(
+    {
+      showError: ActionCreators.showError,
+      validatePhoneNumber: ActionCreators.validatePhoneNumber,
+    },
+    dispatch,
+  );
 };
 
 // Exports

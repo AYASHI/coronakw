@@ -17,9 +17,15 @@ export const SEND_OTP = 'SEND_OTP';
 export const OTP_SENT = 'OTP_SENT';
 
 // register action
-export const TRY_REGISTER = 'TRY_REGISTER';
+export const SEND_REGISTER = 'SEND_REGISTER';
+export const REGISTER_SENT = 'REGISTER_SENT';
+
 export const TRY_REGISTER_SUCCESS = 'TRY_REGISTER_SUCCESS';
 export const TRY_REGISTER_FAILED = 'TRY_REGISTER_FAILED';
+
+// areas
+export const SEND_AREAS = 'SEND_AREAS';
+export const AREAS_SENT = 'AREAS_SENT';
 
 //health state
 export const SEND_HEALTH_STATE = 'SEND_HEALTH_STATE';
