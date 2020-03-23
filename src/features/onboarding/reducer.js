@@ -13,6 +13,12 @@ export default function onBoardingReducer(state = initialState, action) {
         isSuccess: action.payload,
       };
     }
+    case actionTypes.TEMPERATURE_SENT: {
+        return {
+            ...state,
+            temperatureRecorded: action.payload
+        }
+    }
     /////
     default:
       return state;

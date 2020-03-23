@@ -41,7 +41,7 @@ const registerUser = (
 const confirmTempreture = temp => dispatch =>
   dispatch({
     type: actionTypes.SEND_TEMPERATURE,
-    value: temp,
+    value: {temperature: temp},
   });
 
 const sendLocation = (areaId, street, block, phone) => dispatch =>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import Screens from '../../navigators/Screens';
 import TemperatureView from '../../components/TemperatureView';
@@ -6,14 +6,20 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ActionCreators from '../../store/action';
 
-const TakeTemperatureScreen = ({navigation}) => {
-  const confirmTemperature = degree => {
-    navigation.navigate(Screens.TakeLocation);
+const TakeTemperatureScreen = ({navigation, confirmTemperature, isSuccess}) => {
+  const confirmTemperaturePressed = degree => {
+    confirmTemperature(degree)
   };
+  
+  useEffect(() => {
+    if (isSuccess) {
+      navigation.navigate(Screens.TakeLocation);
+    }
+  })
 
   return (
     <SafeAreaView style={styles.saveArea}>
-      <TemperatureView onTemperatureConfirm={confirmTemperature} />
+      <TemperatureView onTemperatureConfirm={confirmTemperaturePressed} />
     </SafeAreaView>
   );
 };
@@ -26,7 +32,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    isRegistered: state.auth.isRegistered ?? null,
+    isSuccess: state.boarding.temperatureRecorded ?? null,
   };
 };
 
@@ -34,7 +40,7 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       showError: ActionCreators.showError,
-      validateCivilId: ActionCreators.validateCivilId,
+      confirmTemperature: ActionCreators.confirmTempreture,
     },
     dispatch,
   );
