@@ -18,7 +18,6 @@ function* register(action) {
 
 function* recordTemperature(action) {
     const data = {...action.value};
-    console.log('temperature dara to send', data);
     
     const json = axios
       .post(constants.BASE_URL + '/temperature', data)
@@ -29,9 +28,22 @@ function* recordTemperature(action) {
     });
 }
 
+function* sendLocation(action) {
+    const data = {...action.value};
+    
+    const json = axios
+      .post(constants.BASE_URL + '/reportLocation', data)
+      .then(response => response);
+  
+    yield handleApiCall(json, json => {
+      return {type: actionTypes.LOCATION_SENT, payload: json.data.success};
+    });
+}
+
 function* watchOnBoardingSaga() {
   yield takeLatest(actionTypes.SEND_REGISTER, register);
-  yield takeLatest(actionTypes.SEND_TEMPERATURE, recordTemperature)
+  yield takeLatest(actionTypes.SEND_TEMPERATURE, recordTemperature);
+  yield takeLatest(actionTypes.SEND_LOCATION, sendLocation)
 }
 
 export default watchOnBoardingSaga;

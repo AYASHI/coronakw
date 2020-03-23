@@ -44,10 +44,10 @@ const confirmTempreture = temp => dispatch =>
     value: {temperature: temp},
   });
 
-const sendLocation = (areaId, street, block, phone) => dispatch =>
+const sendLocation = (latitude, longitude, areaId, street, block, phone) => dispatch =>
   dispatch({
     type: actionTypes.SEND_LOCATION,
-    value: {areaId, street, block, phone},
+    value: {latitude, longitude,area_id: areaId, street, block, phone_number: phone},
   });
 
 // action creators

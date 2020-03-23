@@ -19,6 +19,12 @@ export default function onBoardingReducer(state = initialState, action) {
             temperatureRecorded: action.payload
         }
     }
+    case actionTypes.LOCATION_SENT: {
+        return {
+            ...state, 
+            locationSent: action.payload
+        }
+    }
     /////
     default:
       return state;

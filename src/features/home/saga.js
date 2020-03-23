@@ -36,26 +36,6 @@ function* sendSurvey(action) {
   });
 }
 
-function* sendLocationSaga(action) {
-  const json = axios
-    .post(constants.BASE_URL + '/location', action.value)
-    .then(response => response);
-  yield put({type: actionTypes.LOCATION_SENT});
-  handleApiCall(json, json => {
-    return {type: actionTypes.LOCATION_SENT};
-  });
-}
-
-function* sendTemperatureSaga(action) {
-  const data = {temperature: action.value};
-  const json = axios
-    .post(constants.BASE_URL + '/temperature', data)
-    .then(response => response);
-  handleApiCall(json, json => {
-    return {type: actionTypes.TEMPERATURE_SENT};
-  });
-}
-
 function* sendPossibleInfectionsSaga(action) {
   const data = action.value;
 
@@ -71,8 +51,6 @@ function* sendPossibleInfectionsSaga(action) {
 function* watchHomeSaga() {
   yield takeLatest(actionTypes.SEND_SURVEY, sendSurvey);
   yield takeLatest(actionTypes.SEND_HEALTH_STATE, sendHealthStateSaga);
-  yield takeLatest(actionTypes.SEND_LOCATION, sendLocationSaga);
-  yield takeLatest(actionTypes.SEND_TEMPERATURE, sendTemperatureSaga);
   yield takeLatest(
     actionTypes.SEND_POSSIBLE_INFECTIONS,
     sendPossibleInfectionsSaga,
