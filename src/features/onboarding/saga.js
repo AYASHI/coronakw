@@ -5,14 +5,14 @@ import {takeLatest, takeEvery, put} from 'redux-saga/effects';
 import handleApiCall from '../core/handleApiCall';
 
 function* register(action) {
-  const data = {healthState: action.value};
-
+  const data = {...action.value};
+  
   const json = axios
     .post(constants.BASE_URL + '/register', data)
     .then(response => response);
 
   yield handleApiCall(json, json => {
-    return {type: actionTypes.HEALTH_STATE_SENT, payload: json.data.success};
+    return {type: actionTypes.REGISTER_SENT, payload: json.data.success};
   });
 }
  

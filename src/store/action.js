@@ -34,8 +34,8 @@ const registerUser = (
   countriesVisited,
 ) => dispatch =>
   dispatch({
-    type: actionTypes.TRY_REGISTER,
-    value: {civil, name, phone, didTravelOutside, countriesVisited},
+    type: actionTypes.SEND_REGISTER,
+    value: {civil_id: civil, name, phone_number: phone, did_travel_outside: didTravelOutside, visited_countries: countriesVisited},
   });
 
 const confirmTempreture = temp => dispatch =>

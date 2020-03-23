@@ -1,17 +1,13 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, Fragment, useEffect} from 'react';
 import {
   View,
   Text,
   SafeAreaView,
-  StyleSheet,
   Image,
   ScrollView,
 } from 'react-native';
 import images from '../../utils/images';
 import {useTranslation} from 'react-i18next';
-import fonts from '../../utils/fonts';
-import colors from '../../utils/colors';
-import layout from '../../utils/layout';
 import CustomTextInput from '../../components/CustomTextInput';
 import Spacer from '../../components/Spacer';
 import PhoneNumberInput from '../../components/PhoneNumberInput';
@@ -23,12 +19,16 @@ import {countries} from '../../utils/mockData';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ActionCreators from '../../store/action';
+import styles from './styles';
 
 const RegistrationScreen = props => {
   const {t} = useTranslation();
   const [civilID, setCivilID] = useState('');
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [didTravel, setDidTravel] = useState(false);
+  const [visitedCountries, setCountriesVisited] = useState([])
+
   const HeaderFragment = () => {
     return (
       <View style={styles.header}>
@@ -51,9 +51,17 @@ const RegistrationScreen = props => {
       </Fragment>
     );
   };
+
   const confirm = () => {
-    props.navigation.navigate(Screens.TakeTemperature);
+    props.register(civilID, fullName, phoneNumber, didTravel, visitedCountries)
   };
+
+  useEffect(() => {
+    if(props.isRegistered) {
+      props.navigation.navigate(Screens.TakeTemperature);
+    }
+  })
+
   return (
     <SafeAreaView style={styles.saveArea}>
       <ScrollView style={styles.container}>
@@ -78,7 +86,7 @@ const RegistrationScreen = props => {
           onChangeText={setPhoneNumber}
         />
         <Spacer space={32} />
-        <YesNoQuestion onQuestionSelected={index => {}} />
+        <YesNoQuestion onQuestionSelected={index => {setDidTravel(index == 0)}} />
         <Spacer space={32} />
         <CountrySelectionFragment />
         <Spacer space={32} />
@@ -88,42 +96,10 @@ const RegistrationScreen = props => {
   );
 };
 
-const styles = StyleSheet.create({
-  saveArea: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  container: {
-    flex: 1,
-    marginTop: 24,
-    margin: layout.margin,
-  },
-  header: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 32,
-  },
-  title: {
-    fontFamily: fonts.Medium,
-    fontSize: 22,
-    color: colors.darkBlue,
-  },
-  subtitle: {
-    fontFamily: fonts.REGULAR,
-    fontSize: 15,
-    textAlign: 'center',
-    marginTop: 10,
-    color: colors.darkGray,
-  },
-  countrySelectionTitle: {
-    fontFamily: fonts.Medium,
-    fontSize: 17,
-  },
-});
 
 const mapStateToProps = state => {
   return {
-    isRegistered: state.auth.isRegistered ?? null,
+    isRegistered: state.boarding.isSuccess ?? null,
   };
 };
 
@@ -131,7 +107,7 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       showError: ActionCreators.showError,
-      validateCivilId: ActionCreators.validateCivilId,
+      register: ActionCreators.registerUser,
     },
     dispatch,
   );
