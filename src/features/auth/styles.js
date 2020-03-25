@@ -42,4 +42,14 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
     alignContent: 'stretch',
   },
+  languageButton: {
+    backgroundColor: '#f5f5f9',
+    marginLeft: 20,
+    marginTop: 7,
+    marginBottom: 7,
+    marginRight: 20,
+  },
+  languageButtonText: {
+    color: '#0254af',
+  },
 });
