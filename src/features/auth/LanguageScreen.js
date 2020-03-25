@@ -1,21 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import React from 'react';
+import {View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import Spacer from '../../components/Spacer';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {connect} from 'react-redux';
 import styles from './styles';
-import {
-  LogoFragment,
-  TitleFragment,
-  InputFragment,
-  AuthContainer,
-} from './AuthComponents';
+import {LogoFragment} from './AuthComponents';
 import {useTranslation} from 'react-i18next';
 import * as actionTypes from '../../store/actionTypes';
 import {I18nManager} from 'react-native';
 import RNRestart from 'react-native-restart'; // Import package from node modules
-import Screens from '../../navigators/Screens';
 import Button from '../../components/Button';
 import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
@@ -23,9 +17,7 @@ import ActionCreators from '../../store/action';
 const LanguageScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const language = useSelector(state => state.language.current);
-  // const [lang, setLang] = useState(language);
   const dispatch = useDispatch();
-
 
   const changeLanguage = newLang => {
     // Check the current langauge compared to the button press
