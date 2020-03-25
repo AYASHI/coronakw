@@ -20,60 +20,64 @@ import Button from '../../components/Button';
 import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
 
-const LanguageScreen = () => {
+const LanguageScreen = ({navigation}) => {
   const {t, i18n} = useTranslation();
   const language = useSelector(state => state.language.current);
   // const [lang, setLang] = useState(language);
   const dispatch = useDispatch();
 
-  const submit = () => {
-    if (civilID.length == 0 || civilID.length != 12) {
-      showError(t('auth.civil_id_is_not_valid'));
-    } else {
-      validateCivilId(civilID);
-    }
-  };
 
-  const changeLanguage = () => {
-    let newLang = 'en';
-    try {
-      if (language == 'en') {
-        newLang = 'ar';
-        I18nManager.forceRTL(true);
-      } else {
-        I18nManager.forceRTL(false);
-      }
-      // changeLanguage(newLang);
-      i18n.changeLanguage(newLang);
+  const changeLanguage = newLang => {
+    // Check the current langauge compared to the button press
+    if (language == newLang || (newLang == 'ar' && language == null)) {
+      // If they are the some, set in redux and navigate.
+      navigation.navigate('Login');
       dispatch({
         type: actionTypes.CHANGE_LANGUAGE,
         value: newLang,
       });
-      setTimeout(() => RNRestart.Restart(), 50);
-    } catch (error) {
-      // Error saving data
+    } else {
+      // If they are different, change language, set in redux, and restart the app.
+      try {
+        i18n.changeLanguage(newLang);
+        dispatch({
+          type: actionTypes.CHANGE_LANGUAGE,
+          value: newLang,
+        });
+        if (newLang == 'en') {
+          newLang = 'ar';
+          I18nManager.forceRTL(true);
+        } else {
+          I18nManager.forceRTL(false);
+        }
+        setTimeout(() => RNRestart.Restart(), 50);
+      } catch (error) {
+        // Error saving data
+      }
     }
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <AuthContainer>
-        <View style={styles.container}>
-          <LogoFragment />
-          <Spacer />
-       
-          <Spacer space={20} />
-          <Button
-            text={t('auth.login_next')}
-            onPress={submit}
-          />
-        </View>
-        <TouchableOpacity
-          onPress={changeLanguage}
-          style={{alignSelf: 'center'}}>
-          <Text>{language == 'en' ? 'العربية' : 'English'}</Text>
-        </TouchableOpacity>
-      </AuthContainer>
+      <View style={styles.container}>
+        <LogoFragment />
+        <Spacer />
+        <Spacer space={20} />
+      </View>
+      <Button
+        text={'الأستمرار باللغة العربية'}
+        onPress={() => changeLanguage('ar')}
+        style={styles.languageButton}
+        textStyle={styles.languageButtonText}
+      />
+      <Button
+        text={'Continue in English'}
+        onPress={() => changeLanguage('en')}
+        style={styles.languageButton}
+        textStyle={styles.languageButtonText}
+      />
+      <Spacer space={20} />
+
     </SafeAreaView>
   );
 };
