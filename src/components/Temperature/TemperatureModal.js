@@ -1,23 +1,30 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import Modal from 'react-native-modal';
-import * as actionTypes from '../store/actionTypes';
 import TemperatureView from './TemperatureView';
+import ActionCreators from '../../store/action';
+import {bindActionCreators} from 'redux';
 
 const TemperatureModal = props => {
   const closeModal = () => {
     props.temperatureModalShown(false);
   };
-  const confirmTemperature = degree => {
-    closeModal();
-  };
+
+  useEffect(() => {
+    if (props.isSuccess) {
+      closeModal();
+      setTimeout(() => props.resetTemperatureRequestState(), 1000)
+    }
+  });
+
   return (
     <Modal
+      style={{zIndex: 10}}
       isVisible={props.showTemperature}
       avoidKeyboard={true}
       swipeDirection="down"
       onSwipeComplete={closeModal}>
-      <TemperatureView onTemperatureConfirm={confirmTemperature} />
+      <TemperatureView />
     </Modal>
   );
 };
@@ -27,6 +34,7 @@ const mapStateToProps = state => {
   console.log('state', state);
   // Redux Store --> Component
   return {
+    isSuccess: state.boarding.temperatureRecorded ?? null,
     showTemperature: state.home.showTemperature,
   };
 };
@@ -34,18 +42,14 @@ const mapStateToProps = state => {
 // Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
 const mapDispatchToProps = dispatch => {
   // Action
-  return {
-    temperatureModalShown: shown =>
-      dispatch({
-        type: actionTypes.TEMPERATURE_MODAL_SHOWN,
-        value: shown,
-      }),
-    sendTemperature: temperature =>
-      dispatch({
-        type: actionTypes.SEND_TEMPERATURE,
-        value: temperature,
-      }),
-  };
+  return bindActionCreators(
+    {
+      temperatureModalShown: ActionCreators.temperatureModalShown,
+      sendTemperature: ActionCreators.confirmTempreture,
+      resetTemperatureRequestState: ActionCreators.resetTemperatureRequestState
+    },
+    dispatch,
+  );
 };
 
 // Exports

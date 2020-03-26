@@ -3,7 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import HomeScreenHeader from '../../components/HomeScreenHeader';
 import HomeScreenBody from '../../components/HomeScreenBody';
 import HealthSurveyModal from '../../components/HealthSurveyModal';
-import TemperatureModal from '../../components/TemperatureModal';
+import TemperatureModal from '../../components/Temperature/TemperatureModal';
 import PossibleInfectionsModal from '../../components/PossibleInfectionsModal';
 
 const HomeScreen = () => {
@@ -17,6 +17,7 @@ const HomeScreen = () => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   saveArea: {
     flex: 1,
@@ -25,4 +26,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
 export default HomeScreen;
