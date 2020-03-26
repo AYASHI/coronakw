@@ -95,13 +95,7 @@ export default function homeReducer(state = initialState, action) {
         ...state,
       };
     }
-
-    case actionTypes.TEMPERATURE_SENT: {
-      return {
-        ...state,
-      };
-    }
-
+    
     /////  possible infections part
 
     case actionTypes.POSSIBLE_INFECTIONS_MODAL_SHOWN: {
