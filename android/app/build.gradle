@@ -128,11 +128,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.healthcare"
+        applicationId "com.healthcarekw.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
     splits {
         abi {
