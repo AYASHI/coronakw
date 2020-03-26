@@ -99,7 +99,8 @@ const PossibleInfectionsModal = props => {
       isVisible={props.showPossibleInfections}
       avoidKeyboard={true}
       swipeDirection="down"
-      onSwipeComplete={closeModal}>
+      onSwipeComplete={closeModal}
+      onBackButtonPress={closeModal}>
       <View style={styles.content}>
         <View style={styles.header}>
           <Image source={images.shakeHand} />

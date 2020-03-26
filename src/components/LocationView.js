@@ -4,12 +4,13 @@ import {
   Image,
   Platform,
   StyleSheet,
-  Button,
+  Text,
   PermissionsAndroid,
 } from 'react-native';
 import images from '../utils/images';
 import {useTranslation} from 'react-i18next';
 import Geolocation from 'react-native-geolocation-service';
+import fonts from '../utils/fonts';
 
 const LocationView = props => {
   const {t} = useTranslation();
@@ -83,12 +84,9 @@ const LocationView = props => {
 
   const backgroundColor = props.color || 'white';
   return (
-    <TouchableOpacity style={[styles.container, {backgroundColor}]}>
+    <TouchableOpacity style={[styles.container, {backgroundColor}]} onPress={gpsButtonPressed}>
       <Image source={images.location} />
-      <Button
-        title={t('currentPosition.gpsButton')}
-        onPress={gpsButtonPressed}
-      />
+      <Text>{t('currentPosition.gpsButton')}</Text>
     </TouchableOpacity>
   );
 };
@@ -97,6 +95,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     flexDirection: 'row',
     borderRadius: 8,
+    alignItems:'center',
     justifyContent: 'center',
     padding: 5,
   },

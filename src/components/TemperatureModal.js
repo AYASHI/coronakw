@@ -16,7 +16,8 @@ const TemperatureModal = props => {
       isVisible={props.showTemperature}
       avoidKeyboard={true}
       swipeDirection="down"
-      onSwipeComplete={closeModal}>
+      onSwipeComplete={closeModal}
+      onBackButtonPress={closeModal}>
       <TemperatureView onTemperatureConfirm={confirmTemperature} />
     </Modal>
   );
