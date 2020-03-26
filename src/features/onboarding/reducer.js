@@ -28,7 +28,8 @@ export default function onBoardingReducer(state = initialState, action) {
     case actionTypes.TEMPERATURE_RESET: {
       return {
         ...state,
-        temperatureRecorded: false,
+        temperatureRecorded: null,
+        shownFromOnBoarding: action.value
       }
     }
     /////

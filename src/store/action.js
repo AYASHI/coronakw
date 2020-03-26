@@ -77,9 +77,10 @@ const temperatureModalShown = shown => dispatch =>
   });
 
 
-const resetTemperatureRequestState = () => dispatch => {
+const resetTemperatureRequestState = (shownFromOnBoarding = true) => dispatch => {
   dispatch({
-    type: actionTypes.TEMPERATURE_RESET
+    type: actionTypes.TEMPERATURE_RESET,
+    value: shownFromOnBoarding
   });
 
 }

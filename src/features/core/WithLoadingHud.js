@@ -1,13 +1,14 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import React from 'react';
 import LoadingHUD from '../../components/LoadingHud';
-import {View} from 'react-native';
+import { View } from 'react-native';
 
 const withLoadingHud = Comp => props => {
   return (
-    <View style={{flex: 1}}>
-      <Comp {...props}>{props.children}</Comp>
+    <View style={{ flex: 1 }}>
       {props.isLoading && <LoadingHUD isLoading={props.isLoading} />}
+      <Comp {...props}>{props.children}</Comp>
+
     </View>
   );
 };

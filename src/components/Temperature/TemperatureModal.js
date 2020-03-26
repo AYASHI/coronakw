@@ -13,7 +13,7 @@ const TemperatureModal = props => {
   useEffect(() => {
     if (props.isSuccess) {
       closeModal();
-      setTimeout(() => props.resetTemperatureRequestState(), 1000)
+      setTimeout(() => props.resetTemperatureRequestState(), 100)
     }
   });
 
