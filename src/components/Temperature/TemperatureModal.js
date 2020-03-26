@@ -4,6 +4,7 @@ import Modal from 'react-native-modal';
 import TemperatureView from './TemperatureView';
 import ActionCreators from '../../store/action';
 import {bindActionCreators} from 'redux';
+import LoadingHUD from '../../components/LoadingHud';
 
 const TemperatureModal = props => {
   const closeModal = () => {
@@ -19,12 +20,13 @@ const TemperatureModal = props => {
 
   return (
     <Modal
-      style={{zIndex: 10}}
+      style={{zIndex: 1 }}
       isVisible={props.showTemperature}
       avoidKeyboard={true}
       swipeDirection="down"
       onSwipeComplete={closeModal}>
       <TemperatureView />
+      {props.isLoading && <LoadingHUD isLoading={props.isLoading} />}
     </Modal>
   );
 };
@@ -36,6 +38,7 @@ const mapStateToProps = state => {
   return {
     isSuccess: state.boarding.temperatureRecorded ?? null,
     showTemperature: state.home.showTemperature,
+    isLoading: state.core.isLoading ?? null,
   };
 };
 
