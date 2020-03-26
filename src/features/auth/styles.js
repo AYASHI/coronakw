@@ -13,7 +13,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     margin: 16,
-    marginTop: 100,
+    marginTop: 32,
   },
   instructionText: {
     textAlign: 'left',
@@ -22,10 +22,9 @@ export default StyleSheet.create({
     fontSize: 20,
   },
   logo: {
-    width: 161,
-    height: 240,
+    width: 100,
+    height: 150,
     marginBottom: 60,
-    marginTop: 0,
     resizeMode: 'contain',
     alignSelf: 'center',
   },

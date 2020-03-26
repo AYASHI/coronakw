@@ -119,7 +119,8 @@ const HealthSurveyModal = props => {
       isVisible={props.showSurvey}
       avoidKeyboard={true}
       swipeDirection="down"
-      onSwipeComplete={toggleModal}>
+      onSwipeComplete={toggleModal}
+      onBackButtonPress={toggleModal}>
       <SafeAreaView>
         <View style={styles.content}>
           <Text style={styles.contentTitle}>

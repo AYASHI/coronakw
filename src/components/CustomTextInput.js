@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   },
   textInputTitle: {
     color: '#696969',
+    textAlign: 'left',
   },
 });
 

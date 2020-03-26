@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: fonts.Medium,
     fontSize: 17,
+    textAlign: 'left',
   },
   questionsContainer: {
     marginTop: 16,

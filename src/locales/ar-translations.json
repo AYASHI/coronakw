@@ -2,15 +2,18 @@
   "auth": {
     "login_button": "تسجيل الدخول",
     "enter_civil_id": "أدخل رقم البطاقة المدنية",
+    "enter_serial_number" :"إدخل الرقم التسلسلي",
     "civil_id_instruction": "رقم البطاقة المدنية مكون من 12 رقم",
+    "serial_number_instruction": "الرقم موجود فى ظهر البطاقة المدنية ومكون من ١٠ ارقام ",
     "civil_id_placeholder": "112233445566",
+    "serial_number_placeholder": "1234567890",
     "enter_phone_number": "أدخل رقم الجوال",
     "phone_number_instruction": "من فضلك ادخل رقم الجوال لكي نستطيع ان نرسل لك كود التحقيق.",
     "login_next": "التالي",
     "enter_otp": "ادخل كود التحقيق",
     "otp_instruction": "تم ارسال كود التحقيق الى الجوال المنتهي ب",
     "otp_placeholder": "رقم التحقيق",
-    "civil_id_is_not_valid": "زقم البطاقة المدنية غير صالح",
+    "civil_id_is_not_valid": "رقم البطاقة المدنية غير صالح",
     "otp_is_not_valid": "رمز التفعيل غير صالح",
     "phone_number_is_not_Valid": "رقم الهاتف غير صالح"
   },
@@ -81,7 +84,7 @@
     "selectCountries": "اختار من القائمة جميع الدول",
     "area": "المنطقة",
     "street": "الشارع",
-    "block": "قطقة",
+    "block": "قطعة",
     "phoneNumber": "رقم التلفون",
     "name": "الإسم بالكامل"
   },

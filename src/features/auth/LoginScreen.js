@@ -55,6 +55,13 @@ const LoginScreen = ({
             placeholder={t('auth.civil_id_placeholder')}
             title={t('auth.civil_id_instruction')}
           />
+          <TitleFragment title={t('auth.enter_serial_number')} />
+          <InputFragment
+            maxDigits={12}
+            onChange={setCivilID}
+            placeholder={t('auth.serial_number_placeholder')}
+            title={t('auth.serial_number_instruction')}
+          />
           <Spacer space={20} />
           <Button text={t('auth.login_next')} onPress={submit} />
         </View>

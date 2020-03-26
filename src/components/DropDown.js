@@ -53,7 +53,8 @@ const DropDown = props => {
         isVisible={showModal}
         avoidKeyboard={true}
         swipeDirection="down"
-        onSwipeComplete={closeModal}>
+        onSwipeComplete={closeModal}
+        onBackButtonPress={closeModal}>
         <SafeAreaView>
           <View style={styles.content}>
             <FlatList

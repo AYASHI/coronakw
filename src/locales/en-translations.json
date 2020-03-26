@@ -2,8 +2,11 @@
   "auth": {
     "login_button": "Login",
     "enter_civil_id": "Enter your civil ID number",
+    "enter_serial_number" :"Enter serial number",
     "civil_id_instruction": "Civil ID number has 12 digits",
+    "serial_number_instruction": "This is on back of civil id has 10 digits",
     "civil_id_placeholder": "112233445566",
+    "serial_number_placeholder": "1234567890",
     "enter_phone_number": "Enter your phone number",
     "phone_number_instruction": "Please enter your phone number so we can send you the verification code.",
     "login_next": "Next",
