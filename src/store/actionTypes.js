@@ -17,9 +17,15 @@ export const SEND_OTP = 'SEND_OTP';
 export const OTP_SENT = 'OTP_SENT';
 
 // register action
-export const TRY_REGISTER = 'TRY_REGISTER';
+export const SEND_REGISTER = 'SEND_REGISTER';
+export const REGISTER_SENT = 'REGISTER_SENT';
+
 export const TRY_REGISTER_SUCCESS = 'TRY_REGISTER_SUCCESS';
 export const TRY_REGISTER_FAILED = 'TRY_REGISTER_FAILED';
+
+// areas
+export const SEND_AREAS = 'SEND_AREAS';
+export const AREAS_SENT = 'AREAS_SENT';
 
 //health state
 export const SEND_HEALTH_STATE = 'SEND_HEALTH_STATE';
@@ -31,6 +37,10 @@ export const CHANGED_ANSWER = 'CHANGED_ANSWER';
 export const SEND_SURVEY = 'SEND_SURVEY';
 export const SURVEY_SENT = 'SURVEY_SENT';
 
+//Questions
+export const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
+export const QUESTIONS_FETCHED = 'QUESTIONS_FETCHED';
+
 //location
 export const SEND_LOCATION = 'SEND_LOCATION';
 export const LOCATION_SENT = 'LOCATION_SENT';
@@ -39,6 +49,7 @@ export const LOCATION_SENT = 'LOCATION_SENT';
 export const TEMPERATURE_MODAL_SHOWN = 'TEMPERATURE_MODAL_SHOWN';
 export const SEND_TEMPERATURE = 'SEND_TEMPERATURE';
 export const TEMPERATURE_SENT = 'TEMPERATURE_SENT';
+export const TEMPERATURE_RESET = 'TEMPERATURE_RESET';
 
 //possible infections
 export const POSSIBLE_INFECTIONS_MODAL_SHOWN =

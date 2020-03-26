@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import layout from '../utils/layout';
+import layout from '../../utils/layout';
 import {connect} from 'react-redux';
-import * as actionTypes from '../store/actionTypes';
+import * as actionTypes from '../../store/actionTypes';
 
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import images from '../utils/images';
-import colors from '../utils/colors';
-import fonts from '../utils/fonts';
+import images from '../../utils/images';
+import colors from '../../utils/colors';
+import fonts from '../../utils/fonts';
 import {useTranslation} from 'react-i18next';
 
 const EnterTemperatureFragment = props => {

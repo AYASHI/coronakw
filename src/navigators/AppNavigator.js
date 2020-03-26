@@ -17,7 +17,7 @@ import WithLoadingHud from '../features/core/WithLoadingHud';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
-  const {t, i18n} = useTranslation();
+  const {i18n} = useTranslation();
   const language = useSelector(state => state.language.current);
   useEffect(() => {
     i18n.changeLanguage(language);
@@ -35,13 +35,15 @@ const AppNavigator = () => {
           name={Screens.TakeTemperature}
           component={TakeTemperatureScreen}
         />
-        <Stack.Screen name={Screens.Home} component={HomeScreen} />
         <Stack.Screen
           name={Screens.TakeLocation}
           component={TakeLocationScreen}
         />
+        
+        <Stack.Screen name={Screens.Home} component={HomeScreen} />
         <Stack.Screen name={Screens.Phone} component={PhoneNumberScreen} />
         <Stack.Screen name={Screens.OTP} component={OTPScreen} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

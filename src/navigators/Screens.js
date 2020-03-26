@@ -1,4 +1,5 @@
 const Screens = {
+  Language: 'Language',
   Login: 'Login',
   Phone: 'Phone',
   OTP: 'OTP',

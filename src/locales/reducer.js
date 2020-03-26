@@ -2,7 +2,7 @@ import * as actionTypes from '../store/actionTypes';
 
 // initial state
 const initialState = {
-  current: 'ar',
+  current: null,
 };
 
 export default function languageReducer(state = initialState, action) {

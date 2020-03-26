@@ -29,7 +29,7 @@ const DropDown = props => {
       //   const temp = {id: item.id, checked: !checked};
       //   return {...prev, temp};
       // });
-      //props.changedAnswer({id: item.id, checked: !checked});
+      props.changedAnswer({id: item.id, checked: !checked});
     };
 
     return (

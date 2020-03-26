@@ -10,7 +10,7 @@ function* sendHealthStateSaga(action) {
   const json = axios
     .post(constants.BASE_URL + '/healthState', data)
     .then(response => response);
-  handleApiCall(json, json => {
+  yield handleApiCall(json, _ => {
     return {type: actionTypes.HEALTH_STATE_SENT};
   });
 }
@@ -29,30 +29,19 @@ function* sendSurvey(action) {
   const json = axios
     .post(constants.BASE_URL + '/survey', data)
     .then(response => response);
-  yield put({type: actionTypes.SURVEY_SENT});
 
-  handleApiCall(json, json => {
+  yield handleApiCall(json, json => {
     return {type: actionTypes.SURVEY_SENT};
   });
 }
 
-function* sendLocationSaga(action) {
+function* getQuestionsList() {
   const json = axios
-    .post(constants.BASE_URL + '/location', action.value)
+    .get(constants.BASE_URL + '/QuestionsCategories/List')
     .then(response => response);
-  yield put({type: actionTypes.LOCATION_SENT});
-  handleApiCall(json, json => {
-    return {type: actionTypes.LOCATION_SENT};
-  });
-}
 
-function* sendTemperatureSaga(action) {
-  const data = {temperature: action.value};
-  const json = axios
-    .post(constants.BASE_URL + '/temperature', data)
-    .then(response => response);
-  handleApiCall(json, json => {
-    return {type: actionTypes.TEMPERATURE_SENT};
+  yield handleApiCall(json, json => {
+    return {type: actionTypes.QUESTIONS_FETCHED};
   });
 }
 
@@ -63,16 +52,15 @@ function* sendPossibleInfectionsSaga(action) {
     .post(constants.BASE_URL + '/possibleInfections', data)
     .then(response => response);
 
-  handleApiCall(json, json => {
+  yield handleApiCall(json, json => {
     return {type: actionTypes.POSSIBLE_INFECTIONS_SENT};
   });
 }
 
 function* watchHomeSaga() {
+  yield takeLatest(actionTypes.FETCH_QUESTIONS, getQuestionsList);
   yield takeLatest(actionTypes.SEND_SURVEY, sendSurvey);
   yield takeLatest(actionTypes.SEND_HEALTH_STATE, sendHealthStateSaga);
-  yield takeLatest(actionTypes.SEND_LOCATION, sendLocationSaga);
-  yield takeLatest(actionTypes.SEND_TEMPERATURE, sendTemperatureSaga);
   yield takeLatest(
     actionTypes.SEND_POSSIBLE_INFECTIONS,
     sendPossibleInfectionsSaga,
