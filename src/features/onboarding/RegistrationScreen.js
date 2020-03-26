@@ -1,11 +1,5 @@
 import React, {useState, Fragment, useEffect} from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {View, Text, SafeAreaView, Image, ScrollView} from 'react-native';
 import images from '../../utils/images';
 import {useTranslation} from 'react-i18next';
 import CustomTextInput from '../../components/CustomTextInput';
@@ -27,7 +21,7 @@ const RegistrationScreen = props => {
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [didTravel, setDidTravel] = useState(false);
-  const [visitedCountries, setCountriesVisited] = useState([])
+  const [visitedCountries, setCountriesVisited] = useState([]);
 
   const HeaderFragment = () => {
     return (
@@ -53,14 +47,14 @@ const RegistrationScreen = props => {
   };
 
   const confirm = () => {
-    props.register(civilID, fullName, phoneNumber, didTravel, visitedCountries)
+    props.register(civilID, fullName, phoneNumber, didTravel, visitedCountries);
   };
 
   useEffect(() => {
-    if(props.isRegistered) {
+    if (props.isRegistered) {
       props.navigation.navigate(Screens.TakeTemperature);
     }
-  })
+  });
 
   return (
     <SafeAreaView style={styles.saveArea}>
@@ -86,7 +80,11 @@ const RegistrationScreen = props => {
           onChangeText={setPhoneNumber}
         />
         <Spacer space={32} />
-        <YesNoQuestion onQuestionSelected={index => {setDidTravel(index == 0)}} />
+        <YesNoQuestion
+          onQuestionSelected={index => {
+            setDidTravel(index == 0);
+          }}
+        />
         <Spacer space={32} />
         <CountrySelectionFragment />
         <Spacer space={32} />
@@ -95,7 +93,6 @@ const RegistrationScreen = props => {
     </SafeAreaView>
   );
 };
-
 
 const mapStateToProps = state => {
   return {

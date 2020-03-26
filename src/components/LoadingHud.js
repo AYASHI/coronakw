@@ -5,17 +5,22 @@ import {Modal, StyleSheet, View, ActivityIndicator} from 'react-native';
 export default (LoadingHUD = props => {
   const loading = props.isLoading || false;
   return (
-    <Modal
-      animationType="fade"
-      transparent
-      visible={loading}
-      onRequestClose={() => null}>
-      <View style={styles.modal}>
-        <View style={[styles.hudStyle, styles.commonShadow]}>
-          <ActivityIndicator animating size="large" color="grey" />
-        </View>
+    <View style={styles.modal}>
+      <View style={[styles.hudStyle, styles.commonShadow]}>
+        <ActivityIndicator animating size="large" color="grey" />
       </View>
-    </Modal>
+    </View>
+    // <Modal
+    //   animationType="fade"
+    //   transparent
+    //   visible={loading}
+    //   onRequestClose={() => null}>
+    //   <View style={styles.modal}>
+    //     <View style={[styles.hudStyle, styles.commonShadow]}>
+    //       <ActivityIndicator animating size="large" color="grey" />
+    //     </View>
+    //   </View>
+    // </Modal>
   );
 });
 
@@ -29,10 +34,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   modal: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    zIndex: 100,
+    width: '100%',
+    height: '100%',
     backgroundColor: 'rgba(0,0,0,0.1)',
   },
   commonShadow: {

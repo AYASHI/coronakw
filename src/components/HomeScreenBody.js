@@ -8,7 +8,7 @@ import StatusSelectionView from './CurrentPositionFragment';
 import {connect} from 'react-redux';
 import * as constants from '../utils/constants';
 import CurrentPositionFragment from './CurrentPositionFragment';
-import EnterTemperatureFragment from './EnterTemperatureFragment';
+import EnterTemperatureFragment from './Temperature/EnterTemperatureFragment';
 import PossibleInfectionsFragment from './PossibleInfectionsFragment';
 import {useTranslation} from 'react-i18next';
 

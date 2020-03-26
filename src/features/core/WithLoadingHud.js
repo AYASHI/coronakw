@@ -6,8 +6,8 @@ import {View} from 'react-native';
 const withLoadingHud = Comp => props => {
   return (
     <View style={{flex: 1}}>
-      {props.isLoading && <LoadingHUD isLoading={props.isLoading} />}
       <Comp {...props}>{props.children}</Comp>
+      {props.isLoading && <LoadingHUD isLoading={props.isLoading} />}
     </View>
   );
 };

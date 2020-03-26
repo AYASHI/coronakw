@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -26,20 +26,27 @@ import {connect} from 'react-redux';
 const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
   const {t} = useTranslation();
 
-  const [location, setLocation] = useState('')
-  const [phone, setPhone] = useState('')
-  const [block, setblock] = useState('')
-  const [street, setStreet] = useState('')
-  const [area, setArea] = useState('')
+  const [location, setLocation] = useState('');
+  const [phone, setPhone] = useState('');
+  const [block, setblock] = useState('');
+  const [street, setStreet] = useState('');
+  const [area, setArea] = useState('');
   const confirm = () => {
-    sendLocation(location.latitude,location.longitude, area.id, street, block, phone)
+    sendLocation(
+      location.latitude,
+      location.longitude,
+      area.id,
+      street,
+      block,
+      phone,
+    );
   };
 
   useEffect(() => {
-    if (isSuccess ) {
+    if (isSuccess) {
       navigation.navigate(Screens.Home);
     }
-  })
+  });
 
   const Header = () => {
     return (
@@ -56,7 +63,7 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
     );
   };
   const onLocationSelected = location => {
-    setLocation(location)
+    setLocation(location);
   };
 
   return (
@@ -72,13 +79,26 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
             onLocationSelected={onLocationSelected}
             color={'#f5f5f9'}
           />
-          <DropDown placeholder={t('placeholder.area')} data={areas} changedAnswer={setArea}/>
+          <DropDown
+            placeholder={t('placeholder.area')}
+            data={areas}
+            changedAnswer={setArea}
+          />
           <Spacer />
-          <CustomTextInput title={t('placeholder.street')}  onChangeText={setStreet}/>
+          <CustomTextInput
+            title={t('placeholder.street')}
+            onChangeText={setStreet}
+          />
           <Spacer />
-          <CustomTextInput title={t('placeholder.block')}  onChangeText={setblock}/>
+          <CustomTextInput
+            title={t('placeholder.block')}
+            onChangeText={setblock}
+          />
           <Spacer />
-          <PhoneNumberInput placeholder={t('placeholder.phoneNumber')}  onChangeText={setPhone} />
+          <PhoneNumberInput
+            placeholder={t('placeholder.phoneNumber')}
+            onChangeText={setPhone}
+          />
           <Spacer />
           <Button text={t('button.confirm')} onPress={confirm} />
         </KeyboardAvoidingView>

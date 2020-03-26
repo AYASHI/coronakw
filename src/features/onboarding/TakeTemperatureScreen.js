@@ -1,25 +1,21 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import Screens from '../../navigators/Screens';
-import TemperatureView from '../../components/TemperatureView';
+import TemperatureView from '../../components/Temperature/TemperatureView';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ActionCreators from '../../store/action';
 
-const TakeTemperatureScreen = ({navigation, confirmTemperature, isSuccess}) => {
-  const confirmTemperaturePressed = degree => {
-    confirmTemperature(degree)
-  };
-  
+const TakeTemperatureScreen = ({navigation, isSuccess}) => {
   useEffect(() => {
     if (isSuccess) {
       navigation.navigate(Screens.TakeLocation);
     }
-  })
+  });
 
   return (
     <SafeAreaView style={styles.saveArea}>
-      <TemperatureView onTemperatureConfirm={confirmTemperaturePressed} />
+      <TemperatureView />
     </SafeAreaView>
   );
 };
@@ -37,13 +33,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      showError: ActionCreators.showError,
-      confirmTemperature: ActionCreators.confirmTempreture,
-    },
-    dispatch,
-  );
+  return {};
 };
 
 export default connect(

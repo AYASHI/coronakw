@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, Image, TextInput} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import images from '../utils/images';
-import Spacer from './Spacer';
-import Button from './Button';
-import colors from '../utils/colors';
+import images from '../../utils/images';
+import Spacer from '../Spacer';
+import Button from '../Button';
+import colors from '../../utils/colors';
+import {connect} from 'react-redux';
+import ActionCreators from '../../store/action';
+import {bindActionCreators} from 'redux';
 
 const TemperatureView = props => {
   const {t} = useTranslation();
@@ -26,7 +29,10 @@ const TemperatureView = props => {
     return temp;
   };
   const pressedButton = () => {
-    props.onTemperatureConfirm(parseFloat(temperature));
+    props.confirmTemperature(parseFloat(temperature));
+    if (props.onTemperatureConfirm) {
+      props.onTemperatureConfirm(parseFloat(temperature));
+    }
   };
   return (
     <View style={styles.content}>
@@ -69,8 +75,6 @@ const TemperatureView = props => {
   );
 };
 
-export default TemperatureView;
-
 const styles = StyleSheet.create({
   content: {
     backgroundColor: 'white',
@@ -106,3 +110,21 @@ const styles = StyleSheet.create({
     backgroundColor: colors.paleGrey,
   },
 });
+
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      confirmTemperature: ActionCreators.confirmTempreture,
+    },
+    dispatch,
+  );
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TemperatureView);

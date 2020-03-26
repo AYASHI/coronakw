@@ -4,7 +4,7 @@ import Reactotron from '../../ReactotronConfig';
 import {persistStore, persistReducer} from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
-import { createLogger } from 'redux-logger'
+import {createLogger} from 'redux-logger';
 
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
@@ -30,16 +30,15 @@ const persistConfig = {
 const logger = createLogger({
   predicate: (getState, action) => true,
   collapsed: true,
-  duration: true
-})
-
+  duration: true,
+});
 
 const rootReducer = combineReducers({
   core: coreReducer,
   auth: authReducer,
   home: homeReducer,
   language: languageReducer,
-  boarding: onBoardingReducer
+  boarding: onBoardingReducer,
 });
 
 const pReducer = persistReducer(persistConfig, rootReducer);
@@ -57,6 +56,6 @@ export const persistor = persistStore(store);
 
 sagaMiddleware.run(watchAuthSaga);
 sagaMiddleware.run(watchHomeSaga);
-sagaMiddleware.run(watchOnBoardingSaga)
+sagaMiddleware.run(watchOnBoardingSaga);
 
 export default store;

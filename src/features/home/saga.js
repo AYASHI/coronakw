@@ -10,7 +10,7 @@ function* sendHealthStateSaga(action) {
   const json = axios
     .post(constants.BASE_URL + '/healthState', data)
     .then(response => response);
-  handleApiCall(json, _ => {
+  yield handleApiCall(json, _ => {
     return {type: actionTypes.HEALTH_STATE_SENT};
   });
 }
@@ -29,10 +29,19 @@ function* sendSurvey(action) {
   const json = axios
     .post(constants.BASE_URL + '/survey', data)
     .then(response => response);
-  yield put({type: actionTypes.SURVEY_SENT});
 
-  handleApiCall(json, json => {
+  yield handleApiCall(json, json => {
     return {type: actionTypes.SURVEY_SENT};
+  });
+}
+
+function* getQuestionsList() {
+  const json = axios
+    .get(constants.BASE_URL + '/QuestionsCategories/List')
+    .then(response => response);
+
+  yield handleApiCall(json, json => {
+    return {type: actionTypes.QUESTIONS_FETCHED};
   });
 }
 
@@ -43,12 +52,13 @@ function* sendPossibleInfectionsSaga(action) {
     .post(constants.BASE_URL + '/possibleInfections', data)
     .then(response => response);
 
-  handleApiCall(json, json => {
+  yield handleApiCall(json, json => {
     return {type: actionTypes.POSSIBLE_INFECTIONS_SENT};
   });
 }
 
 function* watchHomeSaga() {
+  yield takeLatest(actionTypes.FETCH_QUESTIONS, getQuestionsList);
   yield takeLatest(actionTypes.SEND_SURVEY, sendSurvey);
   yield takeLatest(actionTypes.SEND_HEALTH_STATE, sendHealthStateSaga);
   yield takeLatest(

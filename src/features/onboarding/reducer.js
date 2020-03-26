@@ -14,16 +14,22 @@ export default function onBoardingReducer(state = initialState, action) {
       };
     }
     case actionTypes.TEMPERATURE_SENT: {
-        return {
-            ...state,
-            temperatureRecorded: action.payload
-        }
+      return {
+        ...state,
+        temperatureRecorded: action.payload,
+      };
     }
     case actionTypes.LOCATION_SENT: {
-        return {
-            ...state, 
-            locationSent: action.payload
-        }
+      return {
+        ...state,
+        locationSent: action.payload,
+      };
+    }
+    case actionTypes.TEMPERATURE_RESET: {
+      return {
+        ...state,
+        temperatureRecorded: false,
+      }
     }
     /////
     default:
