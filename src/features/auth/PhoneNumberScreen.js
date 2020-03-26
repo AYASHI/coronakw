@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 
 import Spacer from '../../components/Spacer';
@@ -9,20 +9,40 @@ import styles from './styles';
 import {
   LogoFragment,
   TitleFragment,
-  SubmitButtonFragment,
   AuthContainer,
   InstructionFragment,
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
 import PhoneNumberInput from '../../components/PhoneNumberInput';
 import Screens from '../../navigators/Screens';
+import Button from '../../components/Button';
+import ActionCreators from '../../store/action';
+import {bindActionCreators} from 'redux';
 
-const PhoneNumberScreen = ({navigation}) => {
-  const {t, i18n} = useTranslation();
-  const login = () => {
-    navigation.navigate(Screens.OTP);
+const PhoneNumberScreen = ({
+  navigation,
+  validatePhoneNumber,
+  isValid,
+  showError,
+}) => {
+  const {t} = useTranslation();
+  const submit = () => {
+    if (phoneNumber.length == 0 || phoneNumber.length != 8) {
+      showError(t('auth.phone_number_is_not_Valid'));
+    } else {
+      validatePhoneNumber(phoneNumber);
+    }
   };
+  
   const [phoneNumber, setPhoneNumber] = useState('');
+
+  useEffect(() => {
+    if (isValid != null || isValid != undefined) {
+      if (isValid) {
+        navigation.navigate(Screens.OTP);
+      }
+    }
+  })
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -38,31 +58,27 @@ const PhoneNumberScreen = ({navigation}) => {
             onChangeText={setPhoneNumber}
           />
           <Spacer space={20} />
-          <SubmitButtonFragment title={t('auth.login_next')} action={login} />
+          <Button
+            text={t('auth.login_next')}
+            onPress={submit}
+          />
         </View>
       </AuthContainer>
     </SafeAreaView>
   );
 };
 
-// Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
-  console.log('state', state);
   return {
-    isValid: true,
+    isValid: state.auth.isPhoneNumberValid ?? null,
   };
 };
 
-// Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
 const mapDispatchToProps = dispatch => {
-  // Action
-  return {
-    validateCivilId: civilID =>
-      dispatch({
-        type: actionTypes.PHONE_NUMBER_SEND,
-        value: civilID,
-      }),
-  };
+  return bindActionCreators({
+    showError: ActionCreators.showError,
+    validatePhoneNumber: ActionCreators.validatePhoneNumber,
+  },dispatch);
 };
 
 // Exports

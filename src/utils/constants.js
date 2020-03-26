@@ -1,5 +1,5 @@
 export const BASE_URL =
-  'https://29e02c26-6207-48f7-9f9e-5f98254acd64.mock.pstmn.io';
+  'https://bc5baa2c-3702-4b38-9bf4-b462315178e6.mock.pstmn.io';
 
 //health status
 export const HEALTHY = 1;
