@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../features/home/HomeScreen';
 import LoginScreen from '../features/auth/LoginScreen';
+import LanguageScreen from '../features/auth/LanguageScreen';
 import RegistrationScreen from '../features/onboarding/RegistrationScreen';
 import {useTranslation} from 'react-i18next';
 import {useSelector, useDispatch} from 'react-redux';
@@ -17,15 +18,17 @@ import WithLoadingHud from '../features/core/WithLoadingHud';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
-  const {i18n} = useTranslation();
+  const {t, i18n} = useTranslation();
   const language = useSelector(state => state.language.current);
+  const screen = language ?  Screens.Login : Screens.Language;
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language]);
 
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode={'none'}>
+      <Stack.Navigator headerMode={'none'} initialRouteName={screen}>
+        <Stack.Screen name={Screens.Language} component={LanguageScreen} />
         <Stack.Screen name={Screens.Login} component={LoginScreen} />
         <Stack.Screen
           name={Screens.Registration}
