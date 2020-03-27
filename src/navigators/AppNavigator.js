@@ -39,11 +39,10 @@ const AppNavigator = () => {
           name={Screens.TakeLocation}
           component={TakeLocationScreen}
         />
-        
+
         <Stack.Screen name={Screens.Home} component={HomeScreen} />
         <Stack.Screen name={Screens.Phone} component={PhoneNumberScreen} />
         <Stack.Screen name={Screens.OTP} component={OTPScreen} />
-        
       </Stack.Navigator>
     </NavigationContainer>
   );

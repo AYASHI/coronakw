@@ -95,7 +95,7 @@ export default function homeReducer(state = initialState, action) {
         ...state,
       };
     }
-    
+
     /////  possible infections part
 
     case actionTypes.POSSIBLE_INFECTIONS_MODAL_SHOWN: {

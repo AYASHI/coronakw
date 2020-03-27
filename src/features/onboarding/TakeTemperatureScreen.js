@@ -6,11 +6,15 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ActionCreators from '../../store/action';
 
-const TakeTemperatureScreen = ({navigation, isSuccess, resetTemperatureRequestState}) => {
+const TakeTemperatureScreen = ({
+  navigation,
+  isSuccess,
+  resetTemperatureRequestState,
+}) => {
   useEffect(() => {
     if (isSuccess) {
       navigation.navigate(Screens.TakeLocation);
-      setTimeout(() => resetTemperatureRequestState(true), 500)
+      setTimeout(() => resetTemperatureRequestState(true), 500);
     }
   });
 
@@ -31,8 +35,8 @@ const mapStateToProps = state => {
   // to prevent this component from receing isSuccess state
   if (state.boarding.shownFromOnBoarding) {
     return {
-      isSuccess: null
-    }
+      isSuccess: null,
+    };
   }
   return {
     isSuccess: state.boarding.temperatureRecorded ?? null,
@@ -40,9 +44,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({
-    resetTemperatureRequestState: ActionCreators.resetTemperatureRequestState
-  }, dispatch);
+  return bindActionCreators(
+    {
+      resetTemperatureRequestState: ActionCreators.resetTemperatureRequestState,
+    },
+    dispatch,
+  );
 };
 
 export default connect(

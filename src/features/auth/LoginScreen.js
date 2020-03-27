@@ -16,23 +16,21 @@ import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
 import {connect} from 'react-redux';
 
-const LoginScreen = ({
-  navigation,
-  validateCivilId,
-  isRegistered,
-  showError,
-}) => {
+const LoginScreen = ({checkIsUserRegistered, navigation, setCivilInfo, isRegistered, showError}) => {
   const {t, i18n} = useTranslation();
 
   const submit = () => {
     if (civilID.length == 0 || civilID.length != 12) {
       showError(t('auth.civil_id_is_not_valid'));
     } else {
-      validateCivilId(civilID);
+      setCivilInfo(civilID, serialNumber);
+      checkIsUserRegistered(civilID, serialNumber)
     }
   };
 
   const [civilID, setCivilID] = useState('');
+  const [serialNumber, setSerialNumber] = useState('');
+
   useEffect(() => {
     if (isRegistered != null || isRegistered != undefined) {
       if (isRegistered) {
@@ -42,6 +40,7 @@ const LoginScreen = ({
       }
     }
   });
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -57,8 +56,8 @@ const LoginScreen = ({
           />
           <TitleFragment title={t('auth.enter_serial_number')} />
           <InputFragment
-            maxDigits={12}
-            onChange={setCivilID}
+            maxDigits={10}
+            onChange={setSerialNumber}
             placeholder={t('auth.serial_number_placeholder')}
             title={t('auth.serial_number_instruction')}
           />
@@ -80,7 +79,8 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       showError: ActionCreators.showError,
-      validateCivilId: ActionCreators.validateCivilId,
+      setCivilInfo: ActionCreators.setCivilInformation,
+      checkIsUserRegistered: ActionCreators.checkIsUserRegistered
     },
     dispatch,
   );

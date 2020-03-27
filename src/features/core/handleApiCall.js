@@ -7,18 +7,18 @@ export default function* handleApiCall(apiCall, action) {
   try {
     yield put({type: actionTypes.REQUEST_STARTED});
     const json = yield apiCall;
-    if (json.data.is_error) {
+    if (!json.data.isSuccess) {
       yield put({
         type: actionTypes.REQUEST_FAILED,
         payload: {
           status: 300,
-          message: json.data.error_message,
+          message: json.data.message,
         },
       });
     } else {
       yield put(action(json));
     }
-    yield put({type: actionTypes.REQUEST_SUCCESS});
+    yield put({type: actionTypes.REQUEST_SUCCESS, value: json.data.message});
   } catch (error) {
     yield put({
       type: actionTypes.REQUEST_FAILED,

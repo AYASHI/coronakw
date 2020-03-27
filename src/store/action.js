@@ -20,11 +20,20 @@ const validateOTP = otp => dispatch =>
     value: otp,
   });
 
-const validatePhoneNumber = phone => dispatch =>
+const validatePhoneNumber = phone => (dispatch, getState) =>{
+  console.log('validate phone', getState());
+
   dispatch({
     type: actionTypes.PHONE_NUMBER_SEND,
-    value: phone,
-  });
+    payload: {
+      phone,
+      civilID: getState().auth.civilID,
+      serialNumber: getState().auth.serialNumber,
+    },
+  })
+}
+ 
+  ;
 
 const registerUser = (
   civil,
@@ -76,17 +85,38 @@ const temperatureModalShown = shown => dispatch =>
     value: shown,
   });
 
-
-const resetTemperatureRequestState = (shownFromOnBoarding = true) => dispatch => {
+const resetTemperatureRequestState = (
+  shownFromOnBoarding = true,
+) => dispatch => {
   dispatch({
     type: actionTypes.TEMPERATURE_RESET,
-    value: shownFromOnBoarding
+    value: shownFromOnBoarding,
   });
+};
 
-}
+const setCivilInformation = (civilID, serialNumber) => dispatch => {
+  dispatch({
+    type: actionTypes.SET_CIVIL_INFORMATION,
+    payload: {
+      civilID,
+      serialNumber,
+    },
+  });
+};
 
+const checkIsUserRegistered = (civilID, serialNumber) => dispatch => {
+  dispatch({
+    type: actionTypes.SEND_CHECK_ISREGISTERED,
+    payload: {
+      civilID,
+      serialNumber,
+    },
+  });
+};
 // action creators
 const ActionCreators = {
+  checkIsUserRegistered,
+  setCivilInformation,
   resetTemperatureRequestState,
   temperatureModalShown,
   sendLocation,

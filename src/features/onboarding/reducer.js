@@ -29,8 +29,8 @@ export default function onBoardingReducer(state = initialState, action) {
       return {
         ...state,
         temperatureRecorded: null,
-        shownFromOnBoarding: action.value
-      }
+        shownFromOnBoarding: action.value,
+      };
     }
     /////
     default:

@@ -13,7 +13,7 @@ export default function authReducer(state = initialState, action) {
         civil_id: action.value,
       };
     }
-    case actionTypes.CIVIL_ID_SENT: {
+    case actionTypes.CHECK_ISREGISTERED_SENT: {
       return {
         ...state,
         isRegistered: action.payload.value,
@@ -41,6 +41,14 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         isOTPVerified: action.payload.value,
+      };
+    }
+
+    case actionTypes.SET_CIVIL_INFORMATION: {
+      return {
+        ...state,
+        civilID: action.payload.civilID,
+        serialNumber: action.payload.serialNumber,
       };
     }
     /////

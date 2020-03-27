@@ -14,13 +14,13 @@ const TemperatureModal = props => {
   useEffect(() => {
     if (props.isSuccess) {
       closeModal();
-      setTimeout(() => props.resetTemperatureRequestState(), 100)
+      setTimeout(() => props.resetTemperatureRequestState(), 100);
     }
   });
 
   return (
     <Modal
-      style={{zIndex: 1 }}
+      style={{zIndex: 1}}
       isVisible={props.showTemperature}
       avoidKeyboard={true}
       swipeDirection="down"
@@ -49,7 +49,7 @@ const mapDispatchToProps = dispatch => {
     {
       temperatureModalShown: ActionCreators.temperatureModalShown,
       sendTemperature: ActionCreators.confirmTempreture,
-      resetTemperatureRequestState: ActionCreators.resetTemperatureRequestState
+      resetTemperatureRequestState: ActionCreators.resetTemperatureRequestState,
     },
     dispatch,
   );
