@@ -22,7 +22,7 @@ export default function authReducer(state = initialState, action) {
     case actionTypes.PHONE_NUMBER_SEND: {
       return {
         ...state,
-        phoneNumber: action.value,
+        phoneNumber: action.payload.phone,
       };
     }
     case actionTypes.PHONE_NUMBER_SENT: {

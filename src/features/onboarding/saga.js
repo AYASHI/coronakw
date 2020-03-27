@@ -8,11 +8,11 @@ function* register(action) {
   const data = {...action.value};
 
   const json = axios
-    .post(constants.BASE_URL + '/register', data)
+    .post(constants.BASE_URL + '/Users/Register', data)
     .then(response => response);
 
   yield handleApiCall(json, json => {
-    return {type: actionTypes.REGISTER_SENT, payload: json.data.success};
+    return {type: actionTypes.REGISTER_SENT, payload: json.data.isSuccess};
   });
 }
 

@@ -36,20 +36,17 @@ const validatePhoneNumber = phone => (dispatch, getState) =>{
   ;
 
 const registerUser = (
-  civil,
-  name,
-  phone,
-  didTravelOutside,
-  countriesVisited,
-) => dispatch =>
+  otp,
+) => (dispatch, getState) =>
   dispatch({
     type: actionTypes.SEND_REGISTER,
     value: {
-      civil_id: civil,
-      name,
-      phone_number: phone,
-      did_travel_outside: didTravelOutside,
-      visited_countries: countriesVisited,
+      CivilId: getState().auth.civilID,
+      MobileNumber: getState().auth.phoneNumber,
+      otp: otp,
+      CivilIdSerialNumber: getState().auth.serialNumber,
+      UniqueDeviceId: "23232",
+      FireBaseTokenId: "232343"
     },
   });
 
