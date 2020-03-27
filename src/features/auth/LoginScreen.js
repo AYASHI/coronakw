@@ -16,32 +16,29 @@ import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
 import {connect} from 'react-redux';
 
-const LoginScreen = ({
-  navigation,
-  validateCivilId,
-  isRegistered,
-  showError,
-}) => {
-  const {t, i18n} = useTranslation();
+const LoginScreen = ({validateCivilId, navigation, setCivilInfo, isCivilValid, showError}) => {
+  const {t} = useTranslation();
 
   const submit = () => {
     if (civilID.length == 0 || civilID.length != 12) {
       showError(t('auth.civil_id_is_not_valid'));
     } else {
-      validateCivilId(civilID);
+      setCivilInfo(civilID, serialNumber);
+      validateCivilId(civilID, serialNumber)
     }
   };
 
   const [civilID, setCivilID] = useState('');
-  useEffect(() => {
-    if (isRegistered != null || isRegistered != undefined) {
-      if (isRegistered) {
+  const [serialNumber, setSerialNumber] = useState('');
+
+  useEffect(() =>{
+    if (isCivilValid != null || isCivilValid != undefined) {
+      if (isCivilValid) {
         navigation.navigate(Screens.Phone);
-      } else {
-        navigation.navigate(Screens.Registration);
       }
     }
-  });
+  })
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -57,8 +54,8 @@ const LoginScreen = ({
           />
           <TitleFragment title={t('auth.enter_serial_number')} />
           <InputFragment
-            maxDigits={12}
-            onChange={setCivilID}
+            maxDigits={10}
+            onChange={setSerialNumber}
             placeholder={t('auth.serial_number_placeholder')}
             title={t('auth.serial_number_instruction')}
           />
@@ -72,7 +69,7 @@ const LoginScreen = ({
 
 const mapStateToProps = state => {
   return {
-    isRegistered: state.auth.isRegistered ?? null,
+    isCivilValid: state.auth.isCivilValid ?? null,
   };
 };
 
@@ -80,7 +77,8 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       showError: ActionCreators.showError,
-      validateCivilId: ActionCreators.validateCivilId,
+      setCivilInfo: ActionCreators.setCivilInformation,
+      validateCivilId: ActionCreators.validateCivilId
     },
     dispatch,
   );

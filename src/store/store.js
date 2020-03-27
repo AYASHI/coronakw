@@ -17,13 +17,13 @@ import watchHomeSaga from '../features/home/saga';
 import {AsyncStorage} from 'react-native';
 import coreReducer from '../features/core/reducer';
 import watchOnBoardingSaga from '../features/onboarding/saga';
-import onBoardingReducer from '../features/onboarding/reducer';
+import onBoardingReducer, { userReducer } from '../features/onboarding/reducer';
 
 const persistConfig = {
   core: coreReducer,
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['language'],
+  whitelist: ['language', 'user'],
   stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
 };
 
@@ -39,6 +39,7 @@ const rootReducer = combineReducers({
   home: homeReducer,
   language: languageReducer,
   boarding: onBoardingReducer,
+  user: userReducer
 });
 
 const pReducer = persistReducer(persistConfig, rootReducer);

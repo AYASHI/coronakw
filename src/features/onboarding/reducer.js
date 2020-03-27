@@ -10,7 +10,10 @@ export default function onBoardingReducer(state = initialState, action) {
     case actionTypes.REGISTER_SENT: {
       return {
         ...state,
-        isSuccess: action.payload,
+        isRegisterationSuccess: action.payload ? true : false,
+        token: action.payload.Token,
+        userId: action.payload.UserId,
+        isHomeQuarantine: action.payload.IsHomeQuarantine
       };
     }
     case actionTypes.TEMPERATURE_SENT: {
@@ -29,10 +32,25 @@ export default function onBoardingReducer(state = initialState, action) {
       return {
         ...state,
         temperatureRecorded: null,
-        shownFromOnBoarding: action.value
-      }
+        shownFromOnBoarding: action.value,
+      };
     }
     /////
+    default:
+      return state;
+  }
+}
+
+
+export  function userReducer(state = initialState, action) {
+  switch (action.type) {
+    case actionTypes.REGISTER_SENT: {
+      return {
+        ...state,
+        token: action.payload.Token,
+        userId: action.payload.UserId,
+      };
+    }
     default:
       return state;
   }

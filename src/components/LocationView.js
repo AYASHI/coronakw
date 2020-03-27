@@ -84,7 +84,9 @@ const LocationView = props => {
 
   const backgroundColor = props.color || 'white';
   return (
-    <TouchableOpacity style={[styles.container, {backgroundColor}]} onPress={gpsButtonPressed}>
+    <TouchableOpacity
+      style={[styles.container, {backgroundColor}]}
+      onPress={gpsButtonPressed}>
       <Image source={images.location} />
       <Text>{t('currentPosition.gpsButton')}</Text>
     </TouchableOpacity>
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     flexDirection: 'row',
     borderRadius: 8,
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'center',
     padding: 5,
   },

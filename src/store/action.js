@@ -1,9 +1,12 @@
 import * as actionTypes from './actionTypes';
 
-const validateCivilId = civilID => dispatch => {
+const validateCivilId = (CivilId, SerialNumber) => dispatch => {
   return dispatch({
     type: actionTypes.CIVIL_ID_SEND,
-    value: civilID,
+    payload: {
+      CivilId,
+      SerialNumber
+    },
   });
 };
 
@@ -20,27 +23,33 @@ const validateOTP = otp => dispatch =>
     value: otp,
   });
 
-const validatePhoneNumber = phone => dispatch =>
+const validatePhoneNumber = phone => (dispatch, getState) =>{
+  console.log('validate phone', getState());
+
   dispatch({
     type: actionTypes.PHONE_NUMBER_SEND,
-    value: phone,
-  });
+    payload: {
+      phone,
+      civilID: getState().auth.civilID,
+      serialNumber: getState().auth.serialNumber,
+    },
+  })
+}
+ 
+  ;
 
 const registerUser = (
-  civil,
-  name,
-  phone,
-  didTravelOutside,
-  countriesVisited,
-) => dispatch =>
+  otp,
+) => (dispatch, getState) =>
   dispatch({
     type: actionTypes.SEND_REGISTER,
     value: {
-      civil_id: civil,
-      name,
-      phone_number: phone,
-      did_travel_outside: didTravelOutside,
-      visited_countries: countriesVisited,
+      CivilId: getState().auth.civilID,
+      MobileNumber: getState().auth.phoneNumber,
+      otp: otp,
+      CivilIdSerialNumber: getState().auth.serialNumber,
+      UniqueDeviceId: "23232",
+      FireBaseTokenId: "232343"
     },
   });
 
@@ -76,17 +85,38 @@ const temperatureModalShown = shown => dispatch =>
     value: shown,
   });
 
-
-const resetTemperatureRequestState = (shownFromOnBoarding = true) => dispatch => {
+const resetTemperatureRequestState = (
+  shownFromOnBoarding = true,
+) => dispatch => {
   dispatch({
     type: actionTypes.TEMPERATURE_RESET,
-    value: shownFromOnBoarding
+    value: shownFromOnBoarding,
   });
+};
 
-}
+const setCivilInformation = (civilID, serialNumber) => dispatch => {
+  dispatch({
+    type: actionTypes.SET_CIVIL_INFORMATION,
+    payload: {
+      civilID,
+      serialNumber,
+    },
+  });
+};
 
+const checkIsUserRegistered = (civilID, serialNumber) => dispatch => {
+  dispatch({
+    type: actionTypes.SEND_CHECK_ISREGISTERED,
+    payload: {
+      civilID,
+      serialNumber,
+    },
+  });
+};
 // action creators
 const ActionCreators = {
+  checkIsUserRegistered,
+  setCivilInformation,
   resetTemperatureRequestState,
   temperatureModalShown,
   sendLocation,

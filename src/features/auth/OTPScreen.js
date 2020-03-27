@@ -17,14 +17,14 @@ import Button from '../../components/Button';
 import ActionCreators from '../../store/action';
 import {bindActionCreators} from 'redux';
 
-const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
+const OTPScreen = ({navigation, isValid, registerUser, showError}) => {
   const {t} = useTranslation();
 
   const submit = () => {
     if (otp.length == 0) {
       showError(t('auth.otp_is_not_valid'));
     } else {
-      validateOTP(otp);
+      registerUser(otp);
     }
   };
 
@@ -32,7 +32,7 @@ const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
   useEffect(() => {
     if (isValid != null || isValid != undefined) {
       if (isValid) {
-        navigation.navigate(Screens.Registration);
+        navigation.navigate(Screens.Home);
       } else {
         alert('code is not valid');
       }
@@ -60,7 +60,7 @@ const OTPScreen = ({navigation, isValid, validateOTP, showError}) => {
 
 const mapStateToProps = state => {
   return {
-    isValid: state.auth.isOTPVerified ?? null,
+    isValid: state.boarding.isRegisterationSuccess ?? null,
   };
 };
 
@@ -68,7 +68,7 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       showError: ActionCreators.showError,
-      validateOTP: ActionCreators.validateOTP,
+      registerUser: ActionCreators.registerUser,
     },
     dispatch,
   );

@@ -69,7 +69,6 @@ const LanguageScreen = ({navigation}) => {
         textStyle={styles.languageButtonText}
       />
       <Spacer space={20} />
-
     </SafeAreaView>
   );
 };
