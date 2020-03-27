@@ -5,15 +5,15 @@ import {takeLatest, put} from 'redux-saga/effects';
 import handleApiCall from '../core/handleApiCall';
 
 function* validateCivilIdSaga(action) {
-  const data = {civil_id: action.value};
+  const data = {...action.payload};
 
   const json = axios
-    .post(constants.BASE_URL + '/verifyCivilid', data)
+    .post(constants.BASE_URL + '/Users/CheckCivilIdSerial', data)
     .then(response => response);
   yield handleApiCall(json, json => {
     return {
       type: actionTypes.CIVIL_ID_SENT,
-      payload: {value: json.data.already_registered},
+      payload: {value: json.data.isSuccess},
     };
   });
 }

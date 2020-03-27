@@ -1,9 +1,12 @@
 import * as actionTypes from './actionTypes';
 
-const validateCivilId = civilID => dispatch => {
+const validateCivilId = (CivilId, SerialNumber) => dispatch => {
   return dispatch({
     type: actionTypes.CIVIL_ID_SEND,
-    value: civilID,
+    payload: {
+      CivilId,
+      SerialNumber
+    },
   });
 };
 

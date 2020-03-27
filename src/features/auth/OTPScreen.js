@@ -32,7 +32,7 @@ const OTPScreen = ({navigation, isValid, registerUser, showError}) => {
   useEffect(() => {
     if (isValid != null || isValid != undefined) {
       if (isValid) {
-        navigation.navigate(Screens.Registration);
+        navigation.navigate(Screens.Home);
       } else {
         alert('code is not valid');
       }

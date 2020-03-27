@@ -16,15 +16,15 @@ import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
 import {connect} from 'react-redux';
 
-const LoginScreen = ({checkIsUserRegistered, navigation, setCivilInfo, isRegistered, showError}) => {
-  const {t, i18n} = useTranslation();
+const LoginScreen = ({validateCivilId, navigation, setCivilInfo, isCivilValid, showError}) => {
+  const {t} = useTranslation();
 
   const submit = () => {
     if (civilID.length == 0 || civilID.length != 12) {
       showError(t('auth.civil_id_is_not_valid'));
     } else {
       setCivilInfo(civilID, serialNumber);
-      checkIsUserRegistered(civilID, serialNumber)
+      validateCivilId(civilID, serialNumber)
     }
   };
 
@@ -32,11 +32,9 @@ const LoginScreen = ({checkIsUserRegistered, navigation, setCivilInfo, isRegiste
   const [serialNumber, setSerialNumber] = useState('');
 
   useEffect(() => {
-    if (isRegistered != null || isRegistered != undefined) {
-      if (isRegistered) {
+    if (isCivilValid != null || isCivilValid != undefined) {
+      if (isCivilValid) {
         navigation.navigate(Screens.Phone);
-      } else {
-        navigation.navigate(Screens.Registration);
       }
     }
   });
@@ -71,7 +69,7 @@ const LoginScreen = ({checkIsUserRegistered, navigation, setCivilInfo, isRegiste
 
 const mapStateToProps = state => {
   return {
-    isRegistered: state.auth.isRegistered ?? null,
+    isCivilValid: state.auth.isCivilValid ?? null,
   };
 };
 
@@ -80,7 +78,7 @@ const mapDispatchToProps = dispatch => {
     {
       showError: ActionCreators.showError,
       setCivilInfo: ActionCreators.setCivilInformation,
-      checkIsUserRegistered: ActionCreators.checkIsUserRegistered
+      validateCivilId: ActionCreators.validateCivilId
     },
     dispatch,
   );

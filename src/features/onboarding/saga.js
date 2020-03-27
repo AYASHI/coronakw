@@ -12,7 +12,7 @@ function* register(action) {
     .then(response => response);
 
   yield handleApiCall(json, json => {
-    return {type: actionTypes.REGISTER_SENT, payload: json.data.isSuccess};
+    return {type: actionTypes.REGISTER_SENT, payload: json.data};
   });
 }
 

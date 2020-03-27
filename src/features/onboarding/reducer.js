@@ -10,7 +10,10 @@ export default function onBoardingReducer(state = initialState, action) {
     case actionTypes.REGISTER_SENT: {
       return {
         ...state,
-        isRegisterationSuccess: action.payload,
+        isRegisterationSuccess: action.payload.isSuccess,
+        token: action.payload.token,
+        userId: action.payload.UserId,
+        isHomeQuarantine: action.payload.isHomeQuarantine
       };
     }
     case actionTypes.TEMPERATURE_SENT: {
