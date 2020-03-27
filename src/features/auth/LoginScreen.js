@@ -31,13 +31,13 @@ const LoginScreen = ({validateCivilId, navigation, setCivilInfo, isCivilValid, s
   const [civilID, setCivilID] = useState('');
   const [serialNumber, setSerialNumber] = useState('');
 
-  useEffect(() => {
+  useEffect(() =>{
     if (isCivilValid != null || isCivilValid != undefined) {
       if (isCivilValid) {
         navigation.navigate(Screens.Phone);
       }
     }
-  });
+  })
 
   return (
     <SafeAreaView style={styles.safeArea}>
