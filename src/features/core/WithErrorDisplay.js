@@ -6,7 +6,7 @@ import * as actionTypes from '../../store/actionTypes';
 const withErrorDisplay = Comp => props => {
   if (props.isError) {
     Alert.alert(
-      'Ops!!',
+      'Error',
       props.errorMessage,
       [
         {
