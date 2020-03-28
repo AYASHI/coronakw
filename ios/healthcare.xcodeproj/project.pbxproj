@@ -681,7 +681,7 @@
 			baseConfigurationReference = A8DBC5304C7A6F2D645421DC /* Pods-healthcare.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 25XAYPPP8T;
 				INFOPLIST_FILE = healthcare/Info.plist;
@@ -703,7 +703,7 @@
 			baseConfigurationReference = 6C53E3F46F1A446136FACFCB /* Pods-healthcare.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 25XAYPPP8T;
 				INFOPLIST_FILE = healthcare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
