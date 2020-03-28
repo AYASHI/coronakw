@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -37,6 +37,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Health care use your location.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Health care use your location.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFUIDisplay-Bold.otf</string>
@@ -64,9 +68,5 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Health care use your location.</string>
-	<key>NSLocationAlwaysUsageDescription </key>
-	<string>Health care use your location.</string>
 </dict>
 </plist>
