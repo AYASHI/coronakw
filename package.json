@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "npx eslint . --fix",
-    "format": "npx prettier -c '**/*.js'  --write"
+    "format": "npx prettier -c '**/*.js'  --write",
+    "pods": "cd ios; pod install; cd .."
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.7",
