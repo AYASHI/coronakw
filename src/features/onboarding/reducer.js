@@ -11,9 +11,9 @@ export default function onBoardingReducer(state = initialState, action) {
       return {
         ...state,
         isRegisterationSuccess: action.payload ? true : false,
-        token: action.payload.Token,
-        userId: action.payload.UserId,
-        isHomeQuarantine: action.payload.IsHomeQuarantine
+        token: action.payload.token,
+        userId: action.payload.userId,
+        isHomeQuarantine: action.payload.isHomeQuarantine
       };
     }
     case actionTypes.TEMPERATURE_SENT: {
@@ -47,8 +47,10 @@ export  function userReducer(state = initialState, action) {
     case actionTypes.REGISTER_SENT: {
       return {
         ...state,
-        token: action.payload.Token,
-        userId: action.payload.UserId,
+        token: action.payload.token,
+        userId: action.payload.userId,
+        expiration: action.payload.expiration,
+        isHomeQuarantine: action.payload.isHomeQuarantine
       };
     }
     default:
