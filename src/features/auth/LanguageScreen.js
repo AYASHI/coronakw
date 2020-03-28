@@ -21,31 +21,20 @@ const LanguageScreen = ({navigation}) => {
 
   const changeLanguage = newLang => {
     // Check the current langauge compared to the button press
-    if (language == newLang || (newLang == 'ar' && language == null)) {
-      // If they are the some, set in redux and navigate.
-      navigation.navigate('Login');
+    try {
+      i18n.changeLanguage(newLang);
       dispatch({
         type: actionTypes.CHANGE_LANGUAGE,
         value: newLang,
       });
-    } else {
-      // If they are different, change language, set in redux, and restart the app.
-      try {
-        i18n.changeLanguage(newLang);
-        dispatch({
-          type: actionTypes.CHANGE_LANGUAGE,
-          value: newLang,
-        });
-        if (newLang == 'en') {
-          newLang = 'ar';
-          I18nManager.forceRTL(true);
-        } else {
-          I18nManager.forceRTL(false);
-        }
-        setTimeout(() => RNRestart.Restart(), 50);
-      } catch (error) {
-        // Error saving data
+      if (newLang == 'ar') {
+        I18nManager.forceRTL(true);
+      } else {
+        I18nManager.forceRTL(false);
       }
+      setTimeout(() => RNRestart.Restart(), 50);
+    } catch (error) {
+      // Error saving data
     }
   };
 
