@@ -1,13 +1,12 @@
 import {connect} from 'react-redux';
 import {Alert, View} from 'react-native';
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import * as actionTypes from '../../store/actionTypes';
-import { bindActionCreators } from 'redux';
+import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
 
 const withErrorDisplay = Comp => props => {
-  
-  useEffect(() =>{
+  useEffect(() => {
     if (props.isError && !props.isBackgroundCheck) {
       Alert.alert(
         'Ops!!',
@@ -23,14 +22,8 @@ const withErrorDisplay = Comp => props => {
         ],
         {cancelable: false},
       );
-    } 
-    if (props.isBackgroundCheck) {
-      setTimeout(() => {
-        props.hideError();
-        props.setAsBackgroundCheck(false)
-      }, 1500);
     }
-  })
+  }, [props.isError]);
 
   return (
     <View style={{flex: 1}}>
@@ -43,15 +36,18 @@ const mapErrorStateToProps1 = state => {
   return {
     isError: state.core.isError ?? null,
     errorMessage: state.core.errorMessage,
-    isBackgroundCheck: state.core.isBackgroundCheck ?? false
+    isBackgroundCheck: state.core.isBackgroundCheck ?? false,
   };
 };
 
 const mapDispatchToProps1 = dispatch => {
-  return bindActionCreators({
-    hideError: ActionCreators.hideError,
-    setAsBackgroundCheck: ActionCreators.setAsBackgroundCheck
-  }, dispatch);
+  return bindActionCreators(
+    {
+      hideError: ActionCreators.hideError,
+      setAsBackgroundCheck: ActionCreators.setAsBackgroundCheck,
+    },
+    dispatch,
+  );
 };
 
 const WithErrorDisplay = component => {

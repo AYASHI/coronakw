@@ -149,7 +149,6 @@ const PossibleInfectionsModal = props => {
 
 // Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
-  console.log('state', state);
   // Redux Store --> Component
   return {
     showPossibleInfections: state.home.showPossibleInfections,

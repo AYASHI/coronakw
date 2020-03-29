@@ -44,8 +44,8 @@ export default function coreReducer(state = initialState, action) {
     case actionTypes.SET_AS_BACKGROUND_FETCH: {
       return {
         ...state,
-        isBackgroundCheck: action.value
-      }
+        isBackgroundCheck: action.value,
+      };
     }
     /////
     default:

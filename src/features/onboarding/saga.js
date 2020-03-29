@@ -39,10 +39,10 @@ function* recordTemperature(action) {
 }
 
 function* sendLocation(action) {
-  const data = {...action.value};
+  const data = {...action.payload};
 
   const json = axios
-    .post(constants.BASE_URL + '/reportLocation', data)
+    .put(constants.BASE_URL + '/Patients/Location', data)
     .then(response => response);
 
   yield handleApiCall(json, json => {

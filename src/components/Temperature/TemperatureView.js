@@ -57,7 +57,6 @@ const TemperatureView = props => {
         underlineColorAndroid="transparent"
         maxLength={4}
         onKeyPress={({nativeEvent}) => {
-          console.log(nativeEvent);
           if (nativeEvent.key === 'Backspace') {
             setTemperature(-1);
           }

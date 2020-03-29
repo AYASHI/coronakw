@@ -8,13 +8,19 @@ import PossibleInfectionsModal from '../../components/PossibleInfectionsModal';
 import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
 import {connect} from 'react-redux';
+import Screens from '../../navigators/Screens';
 
 const HomeScreen = props => {
-
-  const [load, _] = useState(true)
+  const [load, _] = useState(true);
   useEffect(() => {
-    props.checkLocation()
+    props.checkLocation();
   }, [load]);
+
+  useEffect(() => {
+    if (props.shouldUpdateLocation) {
+      props.navigation.navigate(Screens.TakeLocation);
+    }
+  });
 
   return (
     <View style={styles.container}>
@@ -38,7 +44,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    isValid: state.boarding.isRegisterationSuccess ?? null,
+    shouldUpdateLocation: state.home.shouldUpdateLocation ?? null,
   };
 };
 

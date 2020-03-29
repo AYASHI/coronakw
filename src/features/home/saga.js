@@ -65,9 +65,17 @@ function* getLocation(action) {
     .get(constants.BASE_URL + '/Patients/Location')
     .then(response => response);
 
-  yield handleApiCall(json, _ => {
-    return {type: actionTypes.GET_LOCATION_SENT, payload: {...json.data}};
-  });
+  yield handleApiCall(
+    json,
+    json => {
+      return {type: actionTypes.GET_LOCATION_SENT, payload: {...json.data}};
+    },
+    true,
+  );
+
+  // reset state
+  yield put({type: actionTypes.SET_AS_BACKGROUND_FETCH, value: false});
+  yield put({type: actionTypes.HIDE_ERROR});
 }
 
 function* watchHomeSaga() {
