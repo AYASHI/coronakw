@@ -11,6 +11,9 @@ import Spacer from './Spacer';
 import {useTranslation} from 'react-i18next';
 import CustomTextInput from './CustomTextInput';
 import PhoneNumberInput from './PhoneNumberInput';
+import { bindActionCreators } from 'redux';
+import ActionCreators from '../store/action';
+import { validateAll, validate, isNotValidMobileNumber, isnull, phoneNumberValidation, nameValidation } from '../utils/validation';
 
 const PossibleInfectionsModal = props => {
   const {t, i18n} = useTranslation();
@@ -65,33 +68,39 @@ const PossibleInfectionsModal = props => {
 
   var buttonText;
 
-  if (name === '' || phone === '') {
-    if (names.length === 0) {
-      buttonText = t('button.close');
-    } else {
-      buttonText = t('possibleInfectionsModal.send', {count: names.length});
-    }
+  if (isnull(name) && isnull(phone)) {
+    buttonText = t('button.close');
   } else {
-    buttonText = t('possibleInfectionsModal.add');
+    buttonText = t('possibleInfectionsModal.send');
   }
 
   const pressedButton = () => {
     //is there any text added?  If so, add them to array, clear input and update state.
-    if (name == '' || phone == '') {
+    
+    if (isnull(name) && isnull(phone)) {
       closeModal();
-      if (names.length > 0) {
-        props.sendPossibleInfections(names);
-      }
-    } else {
+      return
+    }
+    
+    const validations = [
+      phoneNumberValidation(phone, t('validation.phonenumber')), 
+      nameValidation(name, t('validation.name'))
+    ]
+    const validationResult = validateAll(validations)
+    
+    if (validationResult.valid) {
+      closeModal();
       const person = {
         name,
         phone,
       };
-      setNames([...names, person]);
-      setName('');
-      setPhone('');
+      props.addPatientAssociate(person);
+      setName('')
+      setPhone('')
+    } else {
+      props.showError(validationResult.message)
     }
-    //no input?  send data
+     
   };
 
   return (
@@ -144,18 +153,11 @@ const mapStateToProps = state => {
 // Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
 const mapDispatchToProps = dispatch => {
   // Action
-  return {
-    possibleInfectionsModalShown: shown =>
-      dispatch({
-        type: actionTypes.POSSIBLE_INFECTIONS_MODAL_SHOWN,
-        value: shown,
-      }),
-    sendPossibleInfections: possibleInfections =>
-      dispatch({
-        type: actionTypes.SEND_POSSIBLE_INFECTIONS,
-        value: possibleInfections,
-      }),
-  };
+  return bindActionCreators({
+    showError: ActionCreators.showError,
+    addPatientAssociate: ActionCreators.addPatientAssociate,
+    possibleInfectionsModalShown: ActionCreators.possibleInfectionsModalShown
+  }, dispatch)
 };
 
 // Exports

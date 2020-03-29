@@ -10,6 +10,8 @@ export default function coreReducer(state = initialState, action) {
     case actionTypes.REQUEST_FAILED: {
       return {
         ...state,
+        isError: true,
+        errorMessage: action.payload.message,
         isLoading: false,
       };
     }

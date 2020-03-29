@@ -1,4 +1,16 @@
 {
+  "common": {
+    "ok": "Ok",
+    "cancel": "Cancel",
+    "error": "Ops!!!"
+  },
+  "validation": {
+    "civilid": "Civil id is not valid",
+    "otp": "Verification code is not valid",
+    "phonenumber": "Phone number is not valid",
+    "name": "Name field is not valid",
+    "serialnumber" : "Serial number is not valid"
+  },
   "auth": {
     "login_button": "Login",
     "enter_civil_id": "Enter your civil ID number",
@@ -12,10 +24,7 @@
     "login_next": "Next",
     "enter_otp": "Enter Verification Code",
     "otp_instruction": "Verification Code has been sent to the phone number ending with",
-    "otp_placeholder": "Veridication Code",
-    "civil_id_is_not_valid": "Civil id is not valid",
-    "otp_is_not_valid": "Verification code is not valid",
-    "phone_number_is_not_Valid": "Phone number is not valid"
+    "otp_placeholder": "Veridication Code"
   },
   "onboarding": {
     "personalInfo": "Personal information",
@@ -58,7 +67,7 @@
   "possibleInfectionsModal": {
     "title": "The Ministry of Health will get in touch to ensure their health",
     "add": "Add",
-    "send": "Send {{count}} name",
+    "send": "Send",
     "send_plural": "Send {{count}} names"
   },
   "healthSurveyModal": {
