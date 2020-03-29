@@ -46,10 +46,11 @@ function* getQuestionsList() {
 }
 
 function* sendPossibleInfectionsSaga(action) {
-  const data = action.value;
+  const data = action.payload;
+  axios.defaults.headers.common['Authorization'] = `Bearer ${action.token}`;
 
   const json = axios
-    .post(constants.BASE_URL + '/possibleInfections', data)
+    .post(constants.BASE_URL + '/PatientAssociates/Create', data)
     .then(response => response);
 
   yield handleApiCall(json, json => {

@@ -26,6 +26,7 @@ const persistConfig = {
   whitelist: ['language', 'user'],
   stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
 };
+// persistConfig.storage.removeItem('persist:root')
 
 const logger = createLogger({
   predicate: (getState, action) => true,
