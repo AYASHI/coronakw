@@ -41,6 +41,12 @@ export default function coreReducer(state = initialState, action) {
         errorMessage: '',
       };
     }
+    case actionTypes.SET_AS_BACKGROUND_FETCH: {
+      return {
+        ...state,
+        isBackgroundCheck: action.value
+      }
+    }
     /////
     default:
       return state;

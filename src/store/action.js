@@ -35,8 +35,6 @@ const validatePhoneNumber = phone => (dispatch, getState) =>{
     },
   })
 }
- 
-  ;
 
 const registerUser = (
   otp,
@@ -114,7 +112,6 @@ const checkIsUserRegistered = (civilID, serialNumber) => dispatch => {
   });
 };
 
-
 const addPatientAssociate = (person) => (dispatch, getState) => {
 
   const mapped =  {
@@ -139,8 +136,28 @@ const possibleInfectionsModalShown = (shown) => dispatch => {
   })
 }
 
+const checkLocation = () => dispatch => {
+  setAsBackgroundCheck(true)(dispatch)
+  dispatch ({
+    type: actionTypes.SEND_HEALTH_STATE
+  })
+}
+
+const setAsBackgroundCheck = isBackground => dispatch => {
+  dispatch({
+    type: actionTypes.SET_AS_BACKGROUND_FETCH,
+    value: isBackground
+  })
+}
+const hideError= () => dispatch =>
+dispatch({
+  type: actionTypes.HIDE_ERROR,
+})
 // action creators
 const ActionCreators = {
+  hideError,
+  setAsBackgroundCheck,
+  checkLocation,
   possibleInfectionsModalShown,
   addPatientAssociate,
   checkIsUserRegistered,

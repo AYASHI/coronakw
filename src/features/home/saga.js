@@ -47,7 +47,7 @@ function* getQuestionsList() {
 
 function* sendPossibleInfectionsSaga(action) {
   const data = action.payload;
-  axios.defaults.headers.common['Authorization'] = `Bearer ${action.token}`;
+  axios.defaults.headers.common.Authorization = `Bearer ${action.token}`;
 
   const json = axios
     .post(constants.BASE_URL + '/PatientAssociates/Create', data)
@@ -58,7 +58,20 @@ function* sendPossibleInfectionsSaga(action) {
   });
 }
 
+function* getLocation(action) {
+  axios.defaults.headers.common.Authorization = `Bearer ${action.token}`;
+
+  const json = axios
+    .get(constants.BASE_URL + '/Patients/Location')
+    .then(response => response);
+
+  yield handleApiCall(json, _ => {
+    return {type: actionTypes.GET_LOCATION_SENT, payload: {...json.data}};
+  });
+}
+
 function* watchHomeSaga() {
+  yield takeLatest(actionTypes.SEND_GET_LOCATION, getLocation);
   yield takeLatest(actionTypes.FETCH_QUESTIONS, getQuestionsList);
   yield takeLatest(actionTypes.SEND_SURVEY, sendSurvey);
   yield takeLatest(actionTypes.SEND_HEALTH_STATE, sendHealthStateSaga);

@@ -116,6 +116,13 @@ export default function homeReducer(state = initialState, action) {
         ...state,
       };
     }
+    
+    case actionTypes.GET_LOCATION_SENT: {
+      return {
+        ...state,
+        isQuarantine: action.payload.data.isQuarantine
+      }
+    }
 
     /////
     default:

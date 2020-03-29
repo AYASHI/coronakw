@@ -13,7 +13,7 @@ export default function onBoardingReducer(state = initialState, action) {
         isRegisterationSuccess: action.payload ? true : false,
         token: action.payload.token,
         userId: action.payload.userId,
-        isHomeQuarantine: action.payload.isHomeQuarantine
+        isHomeQuarantine: action.payload.isHomeQuarantine,
       };
     }
     case actionTypes.TEMPERATURE_SENT: {
@@ -41,8 +41,7 @@ export default function onBoardingReducer(state = initialState, action) {
   }
 }
 
-
-export  function userReducer(state = initialState, action) {
+export function userReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.REGISTER_SENT: {
       return {
@@ -50,7 +49,7 @@ export  function userReducer(state = initialState, action) {
         token: action.payload.token,
         userId: action.payload.userId,
         expiration: action.payload.expiration,
-        isHomeQuarantine: action.payload.isHomeQuarantine
+        isHomeQuarantine: action.payload.isHomeQuarantine,
       };
     }
     default:

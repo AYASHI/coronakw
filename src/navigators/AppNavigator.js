@@ -14,7 +14,7 @@ import PhoneNumberScreen from '../features/auth/PhoneNumberScreen';
 import OTPScreen from '../features/auth/OTPScreen';
 import WithErrorDisplay from '../features/core/WithErrorDisplay';
 import WithLoadingHud from '../features/core/WithLoadingHud';
-import { isnull } from '../utils/validation';
+import {isnull} from '../utils/validation';
 
 const Stack = createStackNavigator();
 
@@ -23,12 +23,12 @@ const AppNavigator = () => {
   const language = useSelector(state => state.language.current);
   const token = useSelector(state => state.user.token);
 
-  let screen = language ?  Screens.Login : Screens.Language;
+  let screen = language ? Screens.Login : Screens.Language;
 
   if (!isnull(token)) {
-    screen = Screens.Home
+    screen = Screens.Home;
   }
-  
+
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language]);
@@ -46,6 +46,7 @@ const AppNavigator = () => {
           name={Screens.TakeTemperature}
           component={TakeTemperatureScreen}
         />
+
         <Stack.Screen
           name={Screens.TakeLocation}
           component={TakeLocationScreen}

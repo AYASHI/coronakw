@@ -7,7 +7,6 @@ const initialState = {
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
-
     case actionTypes.PHONE_NUMBER_SEND: {
       return {
         ...state,
@@ -44,8 +43,8 @@ export default function authReducer(state = initialState, action) {
     case actionTypes.CIVIL_ID_SENT: {
       return {
         ...state,
-        isCivilValid: action.payload.value
-      }
+        isCivilValid: action.payload.value,
+      };
     }
     /////
     default:
