@@ -19,7 +19,7 @@
     "serial_number_instruction": "الرقم موجود فى ظهر البطاقة المدنية ومكون من ١٠ ارقام ",
     "civil_id_placeholder": "112233445566",
     "serial_number_placeholder": "1234567890",
-    "enter_phone_number": "أدخل رقم الجوال",
+    "enter_phone_number": "أدخل رقم الهاتف",
     "phone_number_instruction": "من فضلك ادخل رقم الجوال لكي نستطيع ان نرسل لك كود التحقيق.",
     "login_next": "التالي",
     "enter_otp": "ادخل كود التحقيق",
@@ -97,7 +97,7 @@
     "area": "المنطقة",
     "street": "الشارع",
     "block": "قطعة",
-    "phoneNumber": "رقم التلفون",
+    "phoneNumber": "رقم الهاتف النقال",
     "name": "الإسم بالكامل"
   },
   "yesNoQuestion": {
