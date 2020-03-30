@@ -12,9 +12,8 @@ import {I18nManager} from 'react-native';
 import RNRestart from 'react-native-restart'; // Import package from node modules
 import Button from '../../components/Button';
 import {bindActionCreators} from 'redux';
-import ActionCreators from '../../store/action';
 
-const LanguageScreen = ({navigation}) => {
+const LanguageScreen = () => {
   const {t, i18n} = useTranslation();
   const language = useSelector(state => state.language.current);
   const dispatch = useDispatch();
@@ -64,15 +63,12 @@ const LanguageScreen = ({navigation}) => {
 
 const mapStateToProps = state => {
   return {
-    isRegistered: state.auth.isRegistered ?? null,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      showError: ActionCreators.showError,
-      validateCivilId: ActionCreators.validateCivilId,
     },
     dispatch,
   );

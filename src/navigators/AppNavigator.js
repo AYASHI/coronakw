@@ -14,13 +14,21 @@ import PhoneNumberScreen from '../features/auth/PhoneNumberScreen';
 import OTPScreen from '../features/auth/OTPScreen';
 import WithErrorDisplay from '../features/core/WithErrorDisplay';
 import WithLoadingHud from '../features/core/WithLoadingHud';
+import { isnull } from '../utils/validation';
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   const {t, i18n} = useTranslation();
   const language = useSelector(state => state.language.current);
-  const screen = language ?  Screens.Login : Screens.Language;
+  const token = useSelector(state => state.user.token);
+
+  let screen = language ?  Screens.Login : Screens.Language;
+
+  if (!isnull(token)) {
+    screen = Screens.Home
+  }
+  
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language]);

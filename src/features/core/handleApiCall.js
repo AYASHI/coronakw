@@ -17,8 +17,8 @@ export default function* handleApiCall(apiCall, action) {
       });
     } else {
       yield put(action(json));
+      yield put({type: actionTypes.REQUEST_SUCCESS, value: json.data.message});
     }
-    yield put({type: actionTypes.REQUEST_SUCCESS, value: json.data.message});
   } catch (error) {
     yield put({
       type: actionTypes.REQUEST_FAILED,

@@ -113,8 +113,36 @@ const checkIsUserRegistered = (civilID, serialNumber) => dispatch => {
     },
   });
 };
+
+
+const addPatientAssociate = (person) => (dispatch, getState) => {
+
+  const mapped =  {
+      AssociateName: person.name, 
+      AssociateAddress: "dummy",
+      AssociateFirstPhoneNumber: person.phone,
+      AssociateSecondPhoneNumber: "dummy",
+      IsTravelWith: false
+    }
+
+  dispatch({
+    type: actionTypes.SEND_POSSIBLE_INFECTIONS,
+    payload: {...mapped},
+    token: getState().user.token
+  });
+}
+
+const possibleInfectionsModalShown = (shown) => dispatch => {
+  dispatch({
+    type: actionTypes.POSSIBLE_INFECTIONS_MODAL_SHOWN,
+    value: shown,
+  })
+}
+
 // action creators
 const ActionCreators = {
+  possibleInfectionsModalShown,
+  addPatientAssociate,
   checkIsUserRegistered,
   setCivilInformation,
   resetTemperatureRequestState,

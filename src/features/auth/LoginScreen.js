@@ -15,17 +15,26 @@ import Button from '../../components/Button';
 import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
 import {connect} from 'react-redux';
+import { serialNumberValidation, civilidValidation, validateAll } from '../../utils/validation';
 
 const LoginScreen = ({validateCivilId, navigation, setCivilInfo, isCivilValid, showError}) => {
   const {t} = useTranslation();
 
   const submit = () => {
-    if (civilID.length == 0 || civilID.length != 12) {
-      showError(t('auth.civil_id_is_not_valid'));
-    } else {
+
+    const validations = [
+      serialNumberValidation(serialNumber, t('validation.serialnumber')), 
+      civilidValidation(civilID, t('validation.civilid'))
+    ]
+    const validationResult = validateAll(validations)
+
+    if (validationResult.valid) {
       setCivilInfo(civilID, serialNumber);
       validateCivilId(civilID, serialNumber)
+    } else {
+      showError(validationResult.message);
     }
+     
   };
 
   const [civilID, setCivilID] = useState('');
