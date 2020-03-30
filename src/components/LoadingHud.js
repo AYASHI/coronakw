@@ -10,17 +10,6 @@ export default (LoadingHUD = props => {
         <ActivityIndicator animating size="large" color="grey" />
       </View>
     </View>
-    // <Modal
-    //   animationType="fade"
-    //   transparent
-    //   visible={loading}
-    //   onRequestClose={() => null}>
-    //   <View style={styles.modal}>
-    //     <View style={[styles.hudStyle, styles.commonShadow]}>
-    //       <ActivityIndicator animating size="large" color="grey" />
-    //     </View>
-    //   </View>
-    // </Modal>
   );
 });
 

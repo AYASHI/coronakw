@@ -29,7 +29,7 @@ export default function* handleApiCall(
       type: actionTypes.REQUEST_FAILED,
       payload: {
         status: error.response.status,
-        message: error.response.statusText ?? error.message,
+        message: error.response.statusText ?? error.response.data.message,
       },
     });
   }

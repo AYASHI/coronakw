@@ -46,7 +46,7 @@ function* sendLocation(action) {
     .then(response => response);
 
   yield handleApiCall(json, json => {
-    return {type: actionTypes.LOCATION_SENT, payload: json.data.success};
+    return {type: actionTypes.LOCATION_SENT, payload: json.data.isSuccess};
   });
 }
 

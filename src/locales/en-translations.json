@@ -94,7 +94,13 @@
     "block": "Block",
     "phoneNumber": "Phone number",
     "name": "Full name",
-    "city": "City"
+    "city": "City",
+    "accomodationType": "Accommodation Type",
+    "buildingNumber": "Building number",
+    "housebuildingNumber": "House number",
+    "avenue": "Avenue",
+    "floor": "Floor",
+    "apartment": "Apartment Number"
   },
   "yesNoQuestion": {
     "yes": "Yes",

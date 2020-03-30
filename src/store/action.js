@@ -54,27 +54,34 @@ const confirmTempreture = temp => dispatch =>
   });
 
 const sendLocation = (
-  latitude,
-  longitude,
-  areaId,
-  street,
-  block,
-  phone,
+  Latitude,
+  Longitude,
+  AreaId,
+  Street,
+  Block,
+  CityId,
+  Avenue,
+  AccommodationType,
+  BuildingNumber,
+      HouseBuildingNumber,
+      Floor,
+      ApartmentNumber
 ) => dispatch =>
   dispatch({
     type: actionTypes.SEND_LOCATION,
     payload: {
-      Latitude: latitude,
-      Longitude: longitude,
-      AreaId: areaId,
-      Street: street,
-      Block: block,
-      phone_number: phone,
-      AccommodationType: 0,
-      Floor: '',
-      Avenue: '',
-      HouseBuildingNumber: '',
-      BuildingNumber: '',
+      Latitude,
+      Longitude,
+      AreaId,
+      CityId,
+      Street,
+      Block,
+      AccommodationType,
+      Floor,
+      Avenue,
+      HouseBuildingNumber,
+      BuildingNumber,
+      ApartmentNumber
     },
   });
 
@@ -158,25 +165,25 @@ const hideError = () => dispatch =>
 
 const startRequest = () => dispatch => {
   dispatch({
-    type: actionTypes.REQUEST_STARTED
-  })
-}
+    type: actionTypes.REQUEST_STARTED,
+  });
+};
 
-const setRequestAsFailed = (reason) => dispatch => {
+const setRequestAsFailed = reason => dispatch => {
   dispatch({
     type: actionTypes.REQUEST_FAILED,
     payload: {
       status: 310,
       message: reason,
-    }
-  })
-}
+    },
+  });
+};
 
 const setRequestAsSuccess = () => dispatch => {
   dispatch({
-    type: actionTypes.REQUEST_SUCCESS
-  })
-}
+    type: actionTypes.REQUEST_SUCCESS,
+  });
+};
 
 // action creators
 const ActionCreators = {

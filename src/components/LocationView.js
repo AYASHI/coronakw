@@ -12,8 +12,8 @@ import {useTranslation} from 'react-i18next';
 import Geolocation from 'react-native-geolocation-service';
 import fonts from '../utils/fonts';
 import ActionCreators from '../store/action';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 const LocationView = props => {
   const {t} = useTranslation();
@@ -58,8 +58,7 @@ const LocationView = props => {
       return;
     }
 
-
-    props.startRequest()
+    props.startRequest();
     Geolocation.getCurrentPosition(
       position => {
         console.log(position);
@@ -72,12 +71,12 @@ const LocationView = props => {
         };
 
         props.onLocationSelected(location);
-        props.setRequestAsSuccess()
+        props.setRequestAsSuccess();
       },
       error => {
         //TODO: notify user?
         console.log(error);
-        props.setRequestAsFailed(error.message)
+        props.setRequestAsFailed(error.message);
       },
       {
         enableHighAccuracy: true,
@@ -110,11 +109,8 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
 const mapStateToProps = state => {
-  return {
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {
@@ -123,7 +119,7 @@ const mapDispatchToProps = dispatch => {
       showError: ActionCreators.showError,
       startRequest: ActionCreators.startRequest,
       setRequestAsFailed: ActionCreators.setRequestAsFailed,
-      setRequestAsSuccess: ActionCreators.setRequestAsSuccess
+      setRequestAsSuccess: ActionCreators.setRequestAsSuccess,
     },
     dispatch,
   );

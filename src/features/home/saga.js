@@ -62,7 +62,7 @@ function* getLocation(action) {
   axios.defaults.headers.common.Authorization = `Bearer ${action.token}`;
 
   const json = axios
-    .get(constants.MOCK_BASE_URL + '/Patients/Location')
+    .get(constants.BASE_URL + '/Patients/Location')
     .then(response => response);
 
   yield handleApiCall(

@@ -13,6 +13,17 @@ export const questions = [
   {id: '6', questionText: 'الصعوبة بالتنفس'},
 ];
 
+export const accomodationTypes = [
+  {
+    id: 0,
+    text: 'Building',
+  },
+  {
+    id: 1,
+    text: 'House',
+  },
+];
+
 export const countries = [
   {
     id: 1,
@@ -39,29 +50,69 @@ export const countries = [
     text: 'اسبانيا',
   },
 ];
-export const areas = [
-  {
-    id: 1,
-    text: 'حولي',
-  },
-  {
-    id: 2,
-    text: 'ميدان حولي',
-  },
-  {
-    id: 3,
-    text: 'السالمية',
-  },
-  {
-    id: 4,
-    text: 'شرق',
-  },
-  {
-    id: 5,
-    text: 'جابر الاحمد',
-  },
-  {
-    id: 6,
-    text: 'المهبولة',
-  },
-];
+export const areas = cityId => {
+  const citiesSelected = cities.filter(city => {
+    return city.id === cityId;
+  });
+
+  if (citiesSelected.length > 0) {
+    const areas = citiesSelected[0].areas;
+    const mapped = areas.map(item => {
+      return {
+        ...item,
+        id: item.areaId,
+        text: item.areaName,
+      };
+    });
+
+    return mapped;
+  }
+
+  return [];
+};
+
+export const cities = (() => {
+  const parsed = JSON.parse(
+    `
+    [
+      {
+          "cityId": 1,
+          "cityName": "الكويت",
+          "areas": [
+              {
+                  "areaId": 1,
+                  "areaName": "دسمان"
+              },
+              {
+                  "areaId": 2,
+                  "areaName": "شرق"
+              }
+          ]
+      },
+      {
+          "cityId": 2,
+          "cityName": "حولي",
+          "areas": [
+              {
+                  "areaId": 3,
+                  "areaName": "السالمية"
+              },
+              {
+                  "areaId": 4,
+                  "areaName": "الجابرية"
+              }
+          ]
+      }
+    ]
+    `,
+  );
+
+  const mapped = parsed.map(item => {
+    return {
+      ...item,
+      id: item.cityId,
+      text: item.cityName,
+    };
+  });
+  return mapped;
+})();

@@ -29,7 +29,8 @@ const DropDown = props => {
       //   const temp = {id: item.id, checked: !checked};
       //   return {...prev, temp};
       // });
-      props.changedAnswer({id: item.id, checked: !checked});
+      props.changedAnswer({id: item.id, checked: !checked, text: item.text});
+      setShowModal(false);
     };
 
     return (
@@ -74,7 +75,7 @@ const DropDown = props => {
     <Fragment>
       <ModalFragment />
       <TouchableOpacity style={styles.container} onPress={onPress}>
-        <Text style={styles.text}>{text}</Text>
+        <Text style={styles.text}>{props.placeholder}</Text>
         <Image source={images.arrowDown} />
       </TouchableOpacity>
     </Fragment>
