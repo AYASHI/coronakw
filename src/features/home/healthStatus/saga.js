@@ -11,16 +11,9 @@ function* fetchStatusCategoriesSaga() {
     const api = axios.create({headers: {Authorization: 'Bearer ' + token}})
     const json = yield api.get(constants.BASE_URL + '/QuestionCategories/List')
     .then(response => response);
-
-    if(json.data) {
-      yield put(actions.fetchStatusCategoriesSuccess(json.data))
-    } else {
-      yield put(actions.fetchStatusCategoriesFailed())
-    }
-  // yield handleApiCall(json, json => {
-      
-  //   return {type: actionTypes.FETCH_STATUS_CATEGORIES_SUCCESS};
-  // });
+  yield handleApiCall(json, response => {
+    return {type: actionTypes.FETCH_STATUS_CATEGORIES_SUCCESS, payload: response.data.data};
+  });
   }
 
 
