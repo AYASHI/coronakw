@@ -84,6 +84,11 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
             data={areas}
             changedAnswer={setArea}
           />
+          <DropDown
+            placeholder={t('placeholder.city')}
+            data={areas}
+            changedAnswer={setArea}
+          />
           <Spacer />
           <CustomTextInput
             title={t('placeholder.street')}

@@ -93,7 +93,8 @@
     "street": "Street",
     "block": "Block",
     "phoneNumber": "Phone number",
-    "name": "Full name"
+    "name": "Full name",
+    "city": "City"
   },
   "yesNoQuestion": {
     "yes": "Yes",

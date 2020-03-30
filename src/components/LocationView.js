@@ -11,6 +11,9 @@ import images from '../utils/images';
 import {useTranslation} from 'react-i18next';
 import Geolocation from 'react-native-geolocation-service';
 import fonts from '../utils/fonts';
+import ActionCreators from '../store/action';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 const LocationView = props => {
   const {t} = useTranslation();
@@ -55,6 +58,8 @@ const LocationView = props => {
       return;
     }
 
+
+    props.startRequest()
     Geolocation.getCurrentPosition(
       position => {
         console.log(position);
@@ -67,10 +72,12 @@ const LocationView = props => {
         };
 
         props.onLocationSelected(location);
+        props.setRequestAsSuccess()
       },
       error => {
         //TODO: notify user?
         console.log(error);
+        props.setRequestAsFailed(error.message)
       },
       {
         enableHighAccuracy: true,
@@ -102,4 +109,27 @@ const styles = StyleSheet.create({
     padding: 5,
   },
 });
-export default LocationView;
+
+
+
+const mapStateToProps = state => {
+  return {
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      showError: ActionCreators.showError,
+      startRequest: ActionCreators.startRequest,
+      setRequestAsFailed: ActionCreators.setRequestAsFailed,
+      setRequestAsSuccess: ActionCreators.setRequestAsSuccess
+    },
+    dispatch,
+  );
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LocationView);

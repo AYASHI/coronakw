@@ -156,8 +156,33 @@ const hideError = () => dispatch =>
     type: actionTypes.HIDE_ERROR,
   });
 
+const startRequest = () => dispatch => {
+  dispatch({
+    type: actionTypes.REQUEST_STARTED
+  })
+}
+
+const setRequestAsFailed = (reason) => dispatch => {
+  dispatch({
+    type: actionTypes.REQUEST_FAILED,
+    payload: {
+      status: 310,
+      message: reason,
+    }
+  })
+}
+
+const setRequestAsSuccess = () => dispatch => {
+  dispatch({
+    type: actionTypes.REQUEST_SUCCESS
+  })
+}
+
 // action creators
 const ActionCreators = {
+  startRequest,
+  setRequestAsFailed,
+  setRequestAsSuccess,
   hideError,
   setAsBackgroundCheck: setAsBackgroundFetch,
   checkLocation,
