@@ -327,15 +327,16 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = GSQ8J4LCJC;
+						DevelopmentTeam = 25XAYPPP8T;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 25XAYPPP8T;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GSQ8J4LCJC;
+						DevelopmentTeam = 25XAYPPP8T;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
@@ -636,7 +637,7 @@
 			baseConfigurationReference = 994D5CBA002D3547B047816F /* Pods-healthcareTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = GSQ8J4LCJC;
+				DEVELOPMENT_TEAM = 25XAYPPP8T;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -661,7 +662,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = GSQ8J4LCJC;
+				DEVELOPMENT_TEAM = 25XAYPPP8T;
 				INFOPLIST_FILE = healthcareTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -681,6 +682,8 @@
 			baseConfigurationReference = A8DBC5304C7A6F2D645421DC /* Pods-healthcare.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 25XAYPPP8T;
@@ -694,6 +697,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.healthcarekw.app;
 				PRODUCT_NAME = healthcare;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -723,14 +727,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2A6E6099A8F15F1ADFB1ECEC /* Pods-healthcare-tvOS.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = GSQ8J4LCJC;
+				DEVELOPMENT_TEAM = 25XAYPPP8T;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "healthcare-tvOS/Info.plist";
@@ -752,7 +755,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD4EE33547356383A3A013FC /* Pods-healthcare-tvOS.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
