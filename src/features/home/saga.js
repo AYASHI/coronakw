@@ -35,16 +35,6 @@ function* sendSurvey(action) {
   });
 }
 
-function* getQuestionsList() {
-  const json = axios
-    .get(constants.BASE_URL + '/QuestionsCategories/List')
-    .then(response => response);
-
-  yield handleApiCall(json, json => {
-    return {type: actionTypes.QUESTIONS_FETCHED};
-  });
-}
-
 function* sendPossibleInfectionsSaga(action) {
   const data = action.value;
 
@@ -58,7 +48,6 @@ function* sendPossibleInfectionsSaga(action) {
 }
 
 function* watchHomeSaga() {
-  yield takeLatest(actionTypes.FETCH_QUESTIONS, getQuestionsList);
   yield takeLatest(actionTypes.SEND_SURVEY, sendSurvey);
   yield takeLatest(actionTypes.SEND_HEALTH_STATE, sendHealthStateSaga);
   yield takeLatest(
