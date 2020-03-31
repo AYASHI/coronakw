@@ -15,38 +15,46 @@ import Button from '../../components/Button';
 import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
 import {connect} from 'react-redux';
-import { serialNumberValidation, civilidValidation, validateAll } from '../../utils/validation';
+import {
+  serialNumberValidation,
+  civilidValidation,
+  validateAll,
+} from '../../utils/validation';
 
-const LoginScreen = ({validateCivilId, navigation, setCivilInfo, isCivilValid, showError}) => {
+const LoginScreen = ({
+  validateCivilId,
+  navigation,
+  setCivilInfo,
+  isCivilValid,
+  showError,
+}) => {
   const {t} = useTranslation();
 
   const submit = () => {
-
     const validations = [
-      serialNumberValidation(serialNumber, t('validation.serialnumber')), 
-      civilidValidation(civilID, t('validation.civilid'))
-    ]
-    const validationResult = validateAll(validations)
+      serialNumberValidation(serialNumber, t('validation.serialnumber')),
+      civilidValidation(civilID, t('validation.civilid')),
+    ];
+    const validationResult = validateAll(validations);
 
     if (validationResult.valid) {
       setCivilInfo(civilID, serialNumber);
-      validateCivilId(civilID, serialNumber)
+      validateCivilId(civilID, serialNumber);
     } else {
       showError(validationResult.message);
     }
-     
   };
 
   const [civilID, setCivilID] = useState('');
   const [serialNumber, setSerialNumber] = useState('');
 
-  useEffect(() =>{
+  useEffect(() => {
     if (isCivilValid != null || isCivilValid != undefined) {
       if (isCivilValid) {
         navigation.navigate(Screens.Phone);
       }
     }
-  })
+  });
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -87,7 +95,7 @@ const mapDispatchToProps = dispatch => {
     {
       showError: ActionCreators.showError,
       setCivilInfo: ActionCreators.setCivilInformation,
-      validateCivilId: ActionCreators.validateCivilId
+      validateCivilId: ActionCreators.validateCivilId,
     },
     dispatch,
   );

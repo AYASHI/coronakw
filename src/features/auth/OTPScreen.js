@@ -16,18 +16,15 @@ import Screens from '../../navigators/Screens';
 import Button from '../../components/Button';
 import ActionCreators from '../../store/action';
 import {bindActionCreators} from 'redux';
-import { otpValidation, validateAll } from '../../utils/validation';
+import {otpValidation, validateAll} from '../../utils/validation';
 
 const OTPScreen = ({navigation, isValid, registerUser, showError}) => {
   const {t} = useTranslation();
 
   const submit = () => {
-   
-    const validations = [
-      otpValidation(otp, t('validation.otp'))
-    ]
+    const validations = [otpValidation(otp, t('validation.otp'))];
 
-    const validationResult = validateAll(validations)
+    const validationResult = validateAll(validations);
 
     if (validationResult.valid) {
       registerUser(otp);

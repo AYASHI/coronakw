@@ -5,7 +5,7 @@ const validateCivilId = (CivilId, SerialNumber) => dispatch => {
     type: actionTypes.CIVIL_ID_SEND,
     payload: {
       CivilId,
-      SerialNumber
+      SerialNumber,
     },
   });
 };
@@ -23,9 +23,7 @@ const validateOTP = otp => dispatch =>
     value: otp,
   });
 
-const validatePhoneNumber = phone => (dispatch, getState) =>{
-  console.log('validate phone', getState());
-
+const validatePhoneNumber = phone => (dispatch, getState) => {
   dispatch({
     type: actionTypes.PHONE_NUMBER_SEND,
     payload: {
@@ -33,14 +31,10 @@ const validatePhoneNumber = phone => (dispatch, getState) =>{
       civilID: getState().auth.civilID,
       serialNumber: getState().auth.serialNumber,
     },
-  })
-}
- 
-  ;
+  });
+};
 
-const registerUser = (
-  otp,
-) => (dispatch, getState) =>
+const registerUser = otp => (dispatch, getState) =>
   dispatch({
     type: actionTypes.SEND_REGISTER,
     value: {
@@ -48,8 +42,8 @@ const registerUser = (
       MobileNumber: getState().auth.phoneNumber,
       otp: otp,
       CivilIdSerialNumber: getState().auth.serialNumber,
-      UniqueDeviceId: "23232",
-      FireBaseTokenId: "232343"
+      UniqueDeviceId: '23232',
+      FireBaseTokenId: '232343',
     },
   });
 
@@ -69,13 +63,18 @@ const sendLocation = (
 ) => dispatch =>
   dispatch({
     type: actionTypes.SEND_LOCATION,
-    value: {
-      latitude,
-      longitude,
-      area_id: areaId,
-      street,
-      block,
+    payload: {
+      Latitude: latitude,
+      Longitude: longitude,
+      AreaId: areaId,
+      Street: street,
+      Block: block,
       phone_number: phone,
+      AccommodationType: 0,
+      Floor: '',
+      Avenue: '',
+      HouseBuildingNumber: '',
+      BuildingNumber: '',
     },
   });
 
@@ -114,33 +113,54 @@ const checkIsUserRegistered = (civilID, serialNumber) => dispatch => {
   });
 };
 
-
-const addPatientAssociate = (person) => (dispatch, getState) => {
-
-  const mapped =  {
-      AssociateName: person.name, 
-      AssociateAddress: "dummy",
-      AssociateFirstPhoneNumber: person.phone,
-      AssociateSecondPhoneNumber: "dummy",
-      IsTravelWith: false
-    }
+const addPatientAssociate = person => (dispatch, getState) => {
+  const mapped = {
+    AssociateName: person.name,
+    AssociateAddress: 'dummy',
+    AssociateFirstPhoneNumber: person.phone,
+    AssociateSecondPhoneNumber: 'dummy',
+    IsTravelWith: false,
+  };
 
   dispatch({
     type: actionTypes.SEND_POSSIBLE_INFECTIONS,
     payload: {...mapped},
-    token: getState().user.token
+    token: getState().user.token,
   });
-}
+};
 
-const possibleInfectionsModalShown = (shown) => dispatch => {
+const possibleInfectionsModalShown = shown => dispatch => {
   dispatch({
     type: actionTypes.POSSIBLE_INFECTIONS_MODAL_SHOWN,
     value: shown,
-  })
-}
+  });
+};
+
+const checkLocation = () => (dispatch, getState) => {
+  setAsBackgroundFetch(true)(dispatch);
+  dispatch({
+    type: actionTypes.SEND_GET_LOCATION,
+    token: getState().user.token,
+  });
+};
+
+const setAsBackgroundFetch = isBackground => dispatch => {
+  dispatch({
+    type: actionTypes.SET_AS_BACKGROUND_FETCH,
+    value: isBackground,
+  });
+};
+
+const hideError = () => dispatch =>
+  dispatch({
+    type: actionTypes.HIDE_ERROR,
+  });
 
 // action creators
 const ActionCreators = {
+  hideError,
+  setAsBackgroundCheck: setAsBackgroundFetch,
+  checkLocation,
   possibleInfectionsModalShown,
   addPatientAssociate,
   checkIsUserRegistered,

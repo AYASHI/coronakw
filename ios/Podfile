@@ -45,13 +45,3 @@ target 'healthcare' do
 
   use_native_modules!
 end
-
-target 'healthcare-tvOS' do
-  # Pods for healthcare-tvOS
-
-  target 'healthcare-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-end

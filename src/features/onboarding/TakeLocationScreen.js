@@ -95,11 +95,6 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
             onChangeText={setblock}
           />
           <Spacer />
-          <PhoneNumberInput
-            placeholder={t('placeholder.phoneNumber')}
-            onChangeText={setPhone}
-          />
-          <Spacer />
           <Button text={t('button.confirm')} onPress={confirm} />
         </KeyboardAvoidingView>
       </ScrollView>

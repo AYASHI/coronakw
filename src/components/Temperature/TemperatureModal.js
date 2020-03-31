@@ -33,7 +33,6 @@ const TemperatureModal = props => {
 
 // Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
-  console.log('state', state);
   // Redux Store --> Component
   return {
     isSuccess: state.boarding.temperatureRecorded ?? null,

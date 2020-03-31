@@ -62,16 +62,11 @@ const LanguageScreen = () => {
 };
 
 const mapStateToProps = state => {
-  return {
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-    },
-    dispatch,
-  );
+  return bindActionCreators({}, dispatch);
 };
 
 export default connect(

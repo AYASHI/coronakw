@@ -11,9 +11,16 @@ import Spacer from './Spacer';
 import {useTranslation} from 'react-i18next';
 import CustomTextInput from './CustomTextInput';
 import PhoneNumberInput from './PhoneNumberInput';
-import { bindActionCreators } from 'redux';
+import {bindActionCreators} from 'redux';
 import ActionCreators from '../store/action';
-import { validateAll, validate, isNotValidMobileNumber, isnull, phoneNumberValidation, nameValidation } from '../utils/validation';
+import {
+  validateAll,
+  validate,
+  isNotValidMobileNumber,
+  isnull,
+  phoneNumberValidation,
+  nameValidation,
+} from '../utils/validation';
 
 const PossibleInfectionsModal = props => {
   const {t, i18n} = useTranslation();
@@ -76,18 +83,18 @@ const PossibleInfectionsModal = props => {
 
   const pressedButton = () => {
     //is there any text added?  If so, add them to array, clear input and update state.
-    
+
     if (isnull(name) && isnull(phone)) {
       closeModal();
-      return
+      return;
     }
-    
+
     const validations = [
-      phoneNumberValidation(phone, t('validation.phonenumber')), 
-      nameValidation(name, t('validation.name'))
-    ]
-    const validationResult = validateAll(validations)
-    
+      phoneNumberValidation(phone, t('validation.phonenumber')),
+      nameValidation(name, t('validation.name')),
+    ];
+    const validationResult = validateAll(validations);
+
     if (validationResult.valid) {
       closeModal();
       const person = {
@@ -95,12 +102,11 @@ const PossibleInfectionsModal = props => {
         phone,
       };
       props.addPatientAssociate(person);
-      setName('')
-      setPhone('')
+      setName('');
+      setPhone('');
     } else {
-      props.showError(validationResult.message)
+      props.showError(validationResult.message);
     }
-     
   };
 
   return (
@@ -143,7 +149,6 @@ const PossibleInfectionsModal = props => {
 
 // Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
-  console.log('state', state);
   // Redux Store --> Component
   return {
     showPossibleInfections: state.home.showPossibleInfections,
@@ -153,11 +158,14 @@ const mapStateToProps = state => {
 // Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
 const mapDispatchToProps = dispatch => {
   // Action
-  return bindActionCreators({
-    showError: ActionCreators.showError,
-    addPatientAssociate: ActionCreators.addPatientAssociate,
-    possibleInfectionsModalShown: ActionCreators.possibleInfectionsModalShown
-  }, dispatch)
+  return bindActionCreators(
+    {
+      showError: ActionCreators.showError,
+      addPatientAssociate: ActionCreators.addPatientAssociate,
+      possibleInfectionsModalShown: ActionCreators.possibleInfectionsModalShown,
+    },
+    dispatch,
+  );
 };
 
 // Exports
