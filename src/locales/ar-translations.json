@@ -98,7 +98,14 @@
     "street": "الشارع",
     "block": "قطعة",
     "phoneNumber": "رقم الهاتف النقال",
-    "name": "الإسم بالكامل"
+    "name": "الإسم بالكامل",
+    "city": "المدينة",
+    "accomodationType": "نوع السكن",
+    "buildingNumber": "رقم البناية",
+    "housebuildingNumber": "رقم المنزل",
+    "avenue": "الجادة",
+    "floor": "الطابق",
+    "apartment": "رقم الشقة"
   },
   "yesNoQuestion": {
     "yes": "نعم",

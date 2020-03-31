@@ -124,7 +124,7 @@ export default function homeReducer(state = initialState, action) {
         ...state,
         isQuarantine: isQuarantine,
         shouldUpdateLocation: isQuarantine && !isLocationFilled,
-        lastVitalStatusCategoryId
+        lastVitalStatusCategoryId,
       };
     }
 

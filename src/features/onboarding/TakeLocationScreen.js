@@ -16,12 +16,13 @@ import layout from '../../utils/layout';
 import LocationView from '../../components/LocationView';
 import CustomTextInput from '../../components/CustomTextInput';
 import DropDown from '../../components/DropDown';
-import {areas} from '../../utils/mockData';
+import {areas, cities, accomodationTypes} from '../../utils/mockData';
 import Spacer from '../../components/Spacer';
 import PhoneNumberInput from '../../components/PhoneNumberInput';
 import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
 import {connect} from 'react-redux';
+import {isnull} from '../../utils/validation';
 
 const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
   const {t} = useTranslation();
@@ -31,19 +32,43 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
   const [block, setblock] = useState('');
   const [street, setStreet] = useState('');
   const [area, setArea] = useState('');
+  const [city, setCity] = useState({});
+  const [cityTitle, setCityTitle] = useState(null);
+  const [accomdation, setAccomodation] = useState({
+    id: 0,
+    text: t('placeholder.accomodationType'),
+  });
+  const [floor, setFloor] = useState('');
+  const [apartment, setApartment] = useState(0);
+  const [building, setBuilding] = useState(0);
+  const [houseBuilding, setHouseBuilding] = useState(0);
+  const [avenue, setAvenue] = useState('');
+
   const confirm = () => {
     sendLocation(
-      location.latitude,
-      location.longitude,
+      location.latitude ?? '29', // within kuwait
+      location.longitude ?? '48', // withing kuwait
       area.id,
       street,
       block,
-      phone,
+      city.id,
+      avenue,
+      accomdation.id,
+      building,
+      houseBuilding,
+      floor,
+      apartment
     );
   };
 
   useEffect(() => {
+    setCityTitle(city.text);
+  }, [city]);
+
+  useEffect(() => {
     if (isSuccess) {
+      console.log('horray update location is syccess lets go home');
+      
       navigation.navigate(Screens.Home);
     }
   });
@@ -79,11 +104,23 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
             onLocationSelected={onLocationSelected}
             color={'#f5f5f9'}
           />
+
           <DropDown
-            placeholder={t('placeholder.area')}
-            data={areas}
-            changedAnswer={setArea}
+            placeholder={cityTitle ?? t('placeholder.city')}
+            data={cities}
+            changedAnswer={setCity}
           />
+
+          {cityTitle && (
+            <DropDown
+              placeholder={
+                (isnull(area) ? null : area.text) ?? t('placeholder.area')
+              }
+              data={areas(city.id)}
+              changedAnswer={setArea}
+            />
+          )}
+
           <Spacer />
           <CustomTextInput
             title={t('placeholder.street')}
@@ -95,6 +132,54 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
             onChangeText={setblock}
           />
           <Spacer />
+
+          <CustomTextInput
+            title={t('placeholder.avenue')}
+            onChangeText={setAvenue}
+          />
+          <Spacer />
+
+          <DropDown
+            placeholder={accomdation.text}
+            data={accomodationTypes}
+            changedAnswer={setAccomodation}
+          />
+
+          <Spacer />
+
+          {accomdation.id === 1 && (
+            <View>
+              <CustomTextInput
+                title={t('placeholder.housebuildingNumber')}
+                onChangeText={setHouseBuilding}
+              />
+
+              <Spacer />
+            </View>
+          )}
+
+          {accomdation.id === 0 && (
+            <View>
+              <CustomTextInput
+                title={t('placeholder.buildingNumber')}
+                onChangeText={setBuilding}
+              />
+              <Spacer />
+
+              <CustomTextInput
+                title={t('placeholder.floor')}
+                onChangeText={setFloor}
+              />
+              <Spacer />
+
+              <CustomTextInput
+                title={t('placeholder.apartment')}
+                onChangeText={setApartment}
+              />
+              <Spacer />
+            </View>
+          )}
+
           <Button text={t('button.confirm')} onPress={confirm} />
         </KeyboardAvoidingView>
       </ScrollView>
