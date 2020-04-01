@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Image} from 'react-native';
 import layout from '../utils/layout';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import colors from '../utils/colors';
@@ -8,25 +8,27 @@ import {connect} from 'react-redux';
 import * as actionTypes from '../store/actionTypes';
 import * as constants from '../utils/constants';
 import {useTranslation} from 'react-i18next';
+import * as actions from '../features/home/healthStatus/actions';
 
 const StatusSelectionView = props => {
   const {t, i18n} = useTranslation();
 
-  const StatusButton = statusProps => {
-    const dividerStyle = statusProps.hasDivider
+  const StatusButton = statusCategory => {
+    const dividerStyle = false //statusProps.hasDivider
       ? {
           borderEndWidth: 1,
           borderColor: colors.separatorColor,
         }
       : {};
     const handleTouch = () => {
-      props.sendHealthState(statusProps.healthValue);
+      props.fetchQuestions(statusCategory.questionCategoryId, props.userId);
+      // props.sendHealthState(statusProps.healthValue);
 
-      //show survey if clicked on not healthy
-      if (statusProps.healthValue == constants.UNHEALTHY && !props.isSick) {
-        //TODO: probably don't show this on every unhealthy click
-        props.healthSurveyShown(true);
-      }
+      // //show survey if clicked on not healthy
+      // if (statusProps.healthValue == constants.UNHEALTHY && !props.isSick) {
+      //   //TODO: probably don't show this on every unhealthy click
+      //   props.healthSurveyShown(true);
+      // }
     };
     return (
       <View style={[styles.statusContainer, dividerStyle]}>
@@ -37,61 +39,28 @@ const StatusSelectionView = props => {
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
-            opacity: props.healthState === statusProps.healthValue ? 1 : 0.3,
+            //opacity: props.healthState === statusProps.healthValue ? 1 : 0.3,
           }}>
           <View style={styles.circle}>
-            <Text style={styles.emoji}>{statusProps.emoji}</Text>
+            <Image
+              source={{uri: statusCategory.imagePath.replace(/\s+/g, '')}}
+              style={styles.emoji}
+            />
           </View>
-          <Text style={styles.statusTitle}>{statusProps.title}</Text>
+          <Text style={styles.statusTitle}>{statusCategory.title}</Text>
         </TouchableOpacity>
       </View>
     );
   };
 
-  let array = [
-    {
-      title: t('statusSelection.notSick.unhealthy'),
-      emoji: '😔',
-      hasDivider: false,
-      healthValue: constants.UNHEALTHY,
-    },
-    {
-      title: t('statusSelection.notSick.healthy'),
-      emoji: '😊',
-      hasDivider: true,
-      healthValue: constants.HEALTHY,
-    },
-  ];
-
-  if (props.isSick) {
-    array = [
-      {
-        title: t('statusSelection.sick.healthy'),
-        emoji: '😊',
-        hasDivider: true,
-        healthValue: constants.HEALTHY,
-      },
-      {
-        title: t('statusSelection.sick.unhealthy'),
-        emoji: '🤒',
-        hasDivider: false,
-        healthValue: constants.UNHEALTHY,
-      },
-      {
-        title: t('statusSelection.sick.seriouslyUnhealthy'),
-        emoji: '🤧',
-        hasDivider: false,
-        healthValue: constants.SERIOUSLY_UNHEALTHY,
-      },
-    ];
-  }
   const Statuses = () => {
     return (
       <>
-        {array.map(item => (
+        {props.categories.map(item => (
           <StatusButton
-            title={item.title}
-            emoji={item.emoji}
+            title={item.questionCategoryName}
+            imagePath={item.imagePath}
+            questionCategoryId={item.questionCategoryId}
             hasDivider={item.hasDivider}
             healthValue={item.healthValue}
           />
@@ -130,7 +99,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   emoji: {
-    fontSize: 60,
+    width: 80,
+    height: 80,
   },
   statusTitle: {
     fontFamily: fonts.Semibold,
@@ -144,6 +114,7 @@ const mapStateToProps = state => {
   return {
     healthState: state.home.healthState,
     isSick: state.home.isSick,
+    userId: state.user.userId,
   };
 };
 
@@ -161,6 +132,8 @@ const mapDispatchToProps = dispatch => {
         type: actionTypes.HEALTH_SURVEY_SHOWN,
         value: show,
       }),
+    fetchQuestions: (QuestionCategoryId, PatientId) =>
+      dispatch(actions.fetchQuestions(QuestionCategoryId, PatientId)),
   };
 };
 

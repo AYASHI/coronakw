@@ -47,6 +47,17 @@ export default function homeReducer(state = initialState, action) {
       };
     }
 
+    case actionTypes.CHANGED_ANSWER_YES_NO: {
+      //Need a new reference else the prop will not update because it's the same object being modified.  Is this the best way to do it?
+      let newAnswers = {}//JSON.parse(JSON.stringify(state.answers));
+      newAnswers[action.value.response.id] = action.value.response.answer;
+
+      return {
+        ...state,
+        answers: newAnswers,
+      };
+    }
+
     case actionTypes.SEND_SURVEY: {
       return {
         ...state,
@@ -116,6 +127,15 @@ export default function homeReducer(state = initialState, action) {
       };
     }
 
+    // remaining days 
+
+    case actionTypes.FETCH_REMAINING_DAYS_SUCCESS:{
+      return {
+        ...state,
+        quarantine: action.payload
+      }
+    }
+    
     case actionTypes.GET_LOCATION_SENT: {
       const {
         data: {isQuarantine, isLocationFilled, lastVitalStatusCategoryId},

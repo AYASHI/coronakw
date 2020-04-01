@@ -56,8 +56,9 @@ const styles = StyleSheet.create({
   subtitle: {
     fontFamily: fonts.Medium,
     textAlign: 'left',
-    fontSize: 17,
+    fontSize: 15,
     marginStart: 10,
+    flexWrap:'wrap'
   },
 });
 

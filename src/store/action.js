@@ -143,6 +143,18 @@ const possibleInfectionsModalShown = shown => dispatch => {
   });
 };
 
+const fetchRemainingDays = () => dispatch =>
+dispatch({
+  type: actionTypes.FETCH_REMAINING_DAYS,
+});
+
+const fetchRemainingDaysSuccess = (data) => {
+  return {
+    type: actionTypes.FETCH_REMAINING_DAYS_SUCCESS,
+    payload: data
+  }
+}
+
 const checkLocation = () => (dispatch, getState) => {
   setAsBackgroundFetch(true)(dispatch);
   dispatch({
@@ -206,6 +218,8 @@ const ActionCreators = {
   showError,
   validateOTP,
   validatePhoneNumber,
+  fetchRemainingDays,
+  fetchRemainingDaysSuccess
 };
 
 export default ActionCreators;

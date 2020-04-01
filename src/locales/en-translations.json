@@ -105,5 +105,10 @@
   "yesNoQuestion": {
     "yes": "Yes",
     "no": "No"
+  },
+  "remainingDays" :{
+    "desc": "Thank you for your commitment to the home and your contribution to avoiding the spread of infection",
+    "title":"Staying at home is your national duty",
+    "subtitle":"Remaining Days"
   }
 }

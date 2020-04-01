@@ -7,6 +7,7 @@ const Screens = {
   Registration: 'Registration',
   TakeTemperature: 'TakeTemperature',
   TakeLocation: 'TakeLocationScreen',
+  Questions: 'QuestionsScreen'
 };
 
 export default Screens;

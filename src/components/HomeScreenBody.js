@@ -18,9 +18,9 @@ const HomeScreenBody = props => {
     <Fragment>
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
-          <CurrentPositionFragment />
+          {/* <CurrentPositionFragment /> */}
           <Text style={styles.title}>{t('home.howCanWeHelp')}</Text>
-          <EnterTemperatureFragment />
+          {/* <EnterTemperatureFragment /> */}
           <PossibleInfectionsFragment />
         </ScrollView>
       </SafeAreaView>
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     textAlign: 'left',
     padding: 5,
+    marginStart: 16
   },
 });
 

@@ -11,6 +11,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import homeReducer from '../features/home/reducer';
 import authReducer from '../features/auth/reducer';
 import languageReducer from '../locales/reducer';
+import statusReducer from '../features/home/healthStatus/statusReducer';
 
 import watchAuthSaga from '../features/auth/saga';
 import watchHomeSaga from '../features/home/saga';
@@ -18,6 +19,7 @@ import {AsyncStorage} from 'react-native';
 import coreReducer from '../features/core/reducer';
 import watchOnBoardingSaga from '../features/onboarding/saga';
 import onBoardingReducer, {userReducer} from '../features/onboarding/reducer';
+import watchHealthStatusSaga from '../features/home/healthStatus/saga';
 
 const persistConfig = {
   core: coreReducer,
@@ -41,6 +43,7 @@ const rootReducer = combineReducers({
   language: languageReducer,
   boarding: onBoardingReducer,
   user: userReducer,
+  status: statusReducer,
 });
 
 const pReducer = persistReducer(persistConfig, rootReducer);
@@ -59,5 +62,6 @@ export const persistor = persistStore(store);
 sagaMiddleware.run(watchAuthSaga);
 sagaMiddleware.run(watchHomeSaga);
 sagaMiddleware.run(watchOnBoardingSaga);
+sagaMiddleware.run(watchHealthStatusSaga);
 
 export default store;

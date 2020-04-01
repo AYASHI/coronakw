@@ -5,17 +5,13 @@ import images from '../utils/images';
 import colors from '../utils/colors';
 import fonts from '../utils/fonts';
 import {connect} from 'react-redux';
-import Modal from 'react-native-modal';
-import * as actionTypes from '../store/actionTypes';
-import {questions} from '../utils/mockData';
 import Button from './Button';
 import {useTranslation} from 'react-i18next';
+import * as actions from '../features/home/healthStatus/actions';
+import reactotron from 'reactotron-react-native';
 
 const HealthSurveyModal = props => {
   const {t, i18n} = useTranslation();
-  const toggleModal = () => {
-    props.healthSurveyShown(false);
-  };
 
   const styles = StyleSheet.create({
     content: {
@@ -62,18 +58,36 @@ const HealthSurveyModal = props => {
   const Question = questionProps => {
     const question = questionProps.item;
     const checked =
-      props.answers.hasOwnProperty(question.id) &&
-      props.answers[question.id] === true;
+      props.answers.hasOwnProperty(question.questionOptionId) &&
+      props.answers[question.questionOptionId] === true;
     const handleTouch = () => {
-      props.changedAnswer({id: question.id, answer: !checked});
+      if(props.single){
+        props.changeAnswerYesNo({id: question.questionOptionId, answer: !checked});
+      } else {
+        props.changeAnswer({id: question.questionOptionId, answer: !checked});
+      }
     };
 
     return (
       <TouchableOpacity onPress={handleTouch} style={styles.questionContainer}>
-        <Text style={styles.contentQuestion}>{question.questionText}</Text>
+        <Text style={styles.contentQuestion}>{question.optionText}</Text>
         <Image source={checked ? images.check : images.uncheck} />
       </TouchableOpacity>
     );
+  };
+
+  const pressedButton = () => {
+    
+    if (props.onSelectOptions) {
+      let arr = []
+      Object.keys(props.answers).forEach(key=> {
+        if (props.answers[key]) {
+          arr.push(key)
+        }
+      })
+    const answerText = arr.join()
+      props.onSelectOptions(answerText)
+    }
   };
 
   const ListSeparator = () => <View style={styles.listSeparator} />;
@@ -82,10 +96,10 @@ const HealthSurveyModal = props => {
     return (
       <FlatList
         style={styles.list}
-        data={questions}
+        data={props.question.options}
         renderItem={Question}
         ItemSeparatorComponent={ListSeparator}
-        keyExtractor={item => item.id + ''}
+        keyExtractor={item => item.questionOptionId + ''}
       />
     );
   };
@@ -110,30 +124,26 @@ const HealthSurveyModal = props => {
     buttonMsg = t('healthSurveyModal.twoSymptoms');
   }
 
-  const pressedButton = () => {
-    toggleModal();
-    props.sendSurvey(props.answers);
-  };
-  return (
-    <Modal
-      isVisible={props.showSurvey}
-      avoidKeyboard={true}
-      swipeDirection="down"
-      onSwipeComplete={toggleModal}
-      onBackButtonPress={toggleModal}>
-      <SafeAreaView>
-        <View style={styles.content}>
+  
+  
+  const MultiOptionQuestion = () => {
+    return (
+      <View style={styles.content}>
           <Text style={styles.contentTitle}>
             {t('healthSurveyModal.title')}
           </Text>
           <Text style={styles.contentSubTitle}>
-            {t('healthSurveyModal.contentSubtitle')}
+            {props.question.questionText}
           </Text>
           <Questions />
           <Button text={buttonMsg} onPress={pressedButton} />
         </View>
+    )
+  }
+  return (   
+      <SafeAreaView>
+        <MultiOptionQuestion/>
       </SafeAreaView>
-    </Modal>
   );
 };
 
@@ -150,21 +160,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   // Action
   return {
-    changedAnswer: response =>
-      dispatch({
-        type: actionTypes.CHANGED_ANSWER,
-        value: {response},
-      }),
-    healthSurveyShown: show =>
-      dispatch({
-        type: actionTypes.HEALTH_SURVEY_SHOWN,
-        value: show,
-      }),
-    sendSurvey: answers =>
-      dispatch({
-        type: actionTypes.SEND_SURVEY,
-        value: answers,
-      }),
+    changeAnswer: response =>dispatch(actions.changeAnswer(response)),
+    changeAnswerYesNo: response =>dispatch(actions.changeAnswerYesNo(response))
   };
 };
 
