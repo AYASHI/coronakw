@@ -23,6 +23,7 @@ function* fetchStatusCategoriesSaga() {
 }
 
 function* fetchQuestionsSaga({payload}) {
+  yield put({type: actionTypes.REQUEST_STARTED});
   // Get token from redux
   const token = yield select(state => state.user.token);
   const api = axios.create({headers: {Authorization: 'Bearer ' + token}});
@@ -32,6 +33,7 @@ function* fetchQuestionsSaga({payload}) {
     .then(response => response);
 
   if (data) {
+    yield put({type: actionTypes.REQUEST_SUCCESS, value: data.message});
     yield put(actions.fetchQuestionsSuccess(data));
   } else {
     yield put(actions.fetchQuestionsFailed());
@@ -40,15 +42,18 @@ function* fetchQuestionsSaga({payload}) {
 
 function* submitAnswersSaga({payload}) {
   // Get token from redux
+  yield put({type: actionTypes.REQUEST_STARTED});
   const token = yield select(state => state.user.token);
   const api = axios.create({headers: {Authorization: 'Bearer ' + token}});
   const {data} = yield api
     .post(constants.BASE_URL + '/Questions/Answer', payload)
     .then(response => response);
   if (data) {
+    yield put({type: actionTypes.REQUEST_SUCCESS, value: data.message});
     yield put(actions.submitAnswersSuccess());
     NavigationService.goBack()
     showMessage({message: data.message, type: 'success'})
+
   } else {
     yield put(actions.submitAnswersFailed());
     showMessage({message: data.message, type: 'warning'})
