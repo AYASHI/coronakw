@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     zIndex: 100,
+    elevation: 10,
     width: '100%',
     height: '100%',
     backgroundColor: 'rgba(0,0,0,0.1)',
