@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 15,
     marginStart: 10,
-    flexWrap:'wrap'
+    flexWrap: 'wrap',
   },
 });
 

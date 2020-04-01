@@ -61,8 +61,11 @@ const HealthSurveyModal = props => {
       props.answers.hasOwnProperty(question.questionOptionId) &&
       props.answers[question.questionOptionId] === true;
     const handleTouch = () => {
-      if(props.single){
-        props.changeAnswerYesNo({id: question.questionOptionId, answer: !checked});
+      if (props.single) {
+        props.changeAnswerYesNo({
+          id: question.questionOptionId,
+          answer: !checked,
+        });
       } else {
         props.changeAnswer({id: question.questionOptionId, answer: !checked});
       }
@@ -77,16 +80,15 @@ const HealthSurveyModal = props => {
   };
 
   const pressedButton = () => {
-    
     if (props.onSelectOptions) {
-      let arr = []
-      Object.keys(props.answers).forEach(key=> {
+      let arr = [];
+      Object.keys(props.answers).forEach(key => {
         if (props.answers[key]) {
-          arr.push(key)
+          arr.push(key);
         }
-      })
-    const answerText = arr.join()
-      props.onSelectOptions(answerText)
+      });
+      const answerText = arr.join();
+      props.onSelectOptions(answerText);
     }
   };
 
@@ -124,26 +126,22 @@ const HealthSurveyModal = props => {
     buttonMsg = t('healthSurveyModal.twoSymptoms');
   }
 
-  
-  
   const MultiOptionQuestion = () => {
     return (
       <View style={styles.content}>
-          <Text style={styles.contentTitle}>
-            {t('healthSurveyModal.title')}
-          </Text>
-          <Text style={styles.contentSubTitle}>
-            {props.question.questionText}
-          </Text>
-          <Questions />
-          <Button text={buttonMsg} onPress={pressedButton} />
-        </View>
-    )
-  }
-  return (   
-      <SafeAreaView>
-        <MultiOptionQuestion/>
-      </SafeAreaView>
+        <Text style={styles.contentTitle}>{t('healthSurveyModal.title')}</Text>
+        <Text style={styles.contentSubTitle}>
+          {props.question.questionText}
+        </Text>
+        <Questions />
+        <Button text={buttonMsg} onPress={pressedButton} />
+      </View>
+    );
+  };
+  return (
+    <SafeAreaView>
+      <MultiOptionQuestion />
+    </SafeAreaView>
   );
 };
 
@@ -160,8 +158,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   // Action
   return {
-    changeAnswer: response =>dispatch(actions.changeAnswer(response)),
-    changeAnswerYesNo: response =>dispatch(actions.changeAnswerYesNo(response))
+    changeAnswer: response => dispatch(actions.changeAnswer(response)),
+    changeAnswerYesNo: response =>
+      dispatch(actions.changeAnswerYesNo(response)),
   };
 };
 

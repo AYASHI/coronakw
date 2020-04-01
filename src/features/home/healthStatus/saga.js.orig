@@ -51,8 +51,14 @@ function* submitAnswersSaga({payload}) {
   if (data) {
     yield put({type: actionTypes.REQUEST_SUCCESS, value: data.message});
     yield put(actions.submitAnswersSuccess());
+<<<<<<< HEAD
+    NavigationService.goBack()
+    showMessage({message: data.message, type: 'success'})
+
+=======
     NavigationService.goBack();
     showMessage({message: data.message, type: 'success'});
+>>>>>>> refactor remaining days view and fixes stylign and locale, code format
   } else {
     yield put(actions.submitAnswersFailed());
     showMessage({message: data.message, type: 'warning'});

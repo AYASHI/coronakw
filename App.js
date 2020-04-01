@@ -13,7 +13,7 @@ import AppNavigator from './src/navigators/AppNavigator';
 import {PersistGate} from 'redux-persist/lib/integration/react';
 import './i18n';
 import FlashMessage from 'react-native-flash-message';
-console.disableYellowBox = true
+console.disableYellowBox = true;
 const App = () => {
   return (
     <Provider store={store}>

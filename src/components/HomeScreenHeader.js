@@ -11,11 +11,10 @@ import {useTranslation} from 'react-i18next';
 import * as statusActions from '../features/home/healthStatus/actions';
 
 const HomeScreenHeader = props => {
-
   const {t} = useTranslation();
 
   useEffect(() => {
-   // props.fetchStatusCategories();
+    // props.fetchStatusCategories();
   }, []);
 
   let containerColor = {

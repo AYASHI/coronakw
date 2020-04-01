@@ -6,24 +6,34 @@ import HealthSurveyModal from '../../components/HealthSurveyModal';
 import TemperatureModal from '../../components/Temperature/TemperatureModal';
 import PossibleInfectionsModal from '../../components/PossibleInfectionsModal';
 import {connect} from 'react-redux';
-import {CardSection} from './remainingDays';
+import {RemainingDaysSection} from './remainingDays';
 import {useTranslation} from 'react-i18next';
 import Spacer from '../../components/Spacer';
-import ActionsCreators  from '../../store/action';
-import * as statusActions from './healthStatus/actions'
+import ActionsCreators from '../../store/action';
+import * as statusActions from './healthStatus/actions';
 import {isnull} from '../../utils/validation';
 import {bindActionCreators} from 'redux';
 import Screens from '../../navigators/Screens';
 
-const HomeScreen = ({shouldUpdateLocation, checkLocation,fetchRemainingDays, quarantine,questions ,questionsReady, answerQuestion, navigation, fetchStatusCategories}) => {
+const HomeScreen = ({
+  shouldUpdateLocation,
+  checkLocation,
+  fetchRemainingDays,
+  quarantine,
+  questions,
+  questionsReady,
+  answerQuestion,
+  navigation,
+  fetchStatusCategories,
+}) => {
   const {t} = useTranslation();
   useEffect(() => {
     if (shouldUpdateLocation) {
       navigation.navigate(Screens.TakeLocation);
     }
     fetchStatusCategories();
-    fetchRemainingDays()
-  }, [])
+    fetchRemainingDays();
+  }, []);
 
   const [load, _] = useState(true);
   useEffect(() => {
@@ -31,27 +41,25 @@ const HomeScreen = ({shouldUpdateLocation, checkLocation,fetchRemainingDays, qua
   }, [load]);
 
   useEffect(() => {
-    if(questionsReady) {
-      navigation.navigate(Screens.Questions,questions)
+    if (questionsReady) {
+      navigation.navigate(Screens.Questions, questions);
     }
-  }, [questionsReady])
-
+  }, [questionsReady]);
 
   showQuarantineMessage = () => {
-    return !(isnull(quarantine) || !quarantine.isQuarantine) || true
-  }
+    return !(isnull(quarantine) || !quarantine.isQuarantine);
+  };
 
   const RemainingDaysFragment = () => {
     if (!showQuarantineMessage()) {
-      return <Fragment/>
+      return <Fragment />;
     }
-  
+
     return (
-      <CardSection
+      <RemainingDaysSection
         maxVal={14}
-        currVal={ 11}
-        // currVal={quarantine.days}
-        style ={{margin: 20}}
+        currVal={quarantine.days}
+        style={styles.RemainingDaysSection}
         title={t('remainingDays.title')}
         message={t('remainingDays.desc')}
         subtitle={t('remainingDays.subtitle')}
@@ -59,18 +67,14 @@ const HomeScreen = ({shouldUpdateLocation, checkLocation,fetchRemainingDays, qua
     );
   };
 
-  const onTemperatureConfirm = temperature => {
-    setTShow(false)
-  }
-
   return (
     <View style={styles.container}>
       <HomeScreenHeader />
       {showQuarantineMessage() && (
         <View>
-          <Spacer space={80}/>
-        <RemainingDaysFragment />
-          </View>
+          <Spacer space={80} />
+          <RemainingDaysFragment />
+        </View>
       )}
       <HomeScreenBody />
       <PossibleInfectionsModal />
@@ -85,6 +89,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  RemainingDaysSection: {
+    margin: 20
+  }
 });
 
 const mapStateToProps = state => {

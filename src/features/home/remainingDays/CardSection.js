@@ -1,70 +1,60 @@
 import React from 'react';
 import {StyleSheet, Image, View, Text} from 'react-native';
-import {Text as Typo, Block, Progress} from '.';
-import {colors} from './theme';
+import {Progress} from '.';
 import icon from '../../../assets/images/icon.jpg';
+import fonts from '../../../utils/fonts';
 
-export default class Card extends React.Component {
-  // For English
-  
-  // For Arabic
+export default Card = props => {
+
   renderMessageView = message => (
-    <View style={style.messageBlock} >
+    <View style={style.messageBlock}>
       <Image
         style={style.icon}
         resizeMode="contain"
         width={80}
-        height={80}
+        height={60}
         source={icon}
       />
-      
-      <Text
-        style = {style.messageText}
-        numberOfLines = {3}
-      >
-       {message}
+
+      <Text style={style.messageText} numberOfLines={3}>
+        {message}
       </Text>
     </View>
   );
 
-  render() {
-    const {title, subtitle, message, maxVal, currVal, isLTR} = this.props;
+   
+    const {title, subtitle, message, maxVal, currVal} = props;
     return (
-      <View
-        style={[style.container, {...this.props.style}]}>
-        <Text
-          style={style.title}>
-          {title}
-        </Text>
-        {this.renderMessageView(message)}
-        <Progress
-          isLTR={true}
-          subtitle={subtitle}
-          maxVal={maxVal}
-          currVal={currVal}
-        />
+      <View style={[style.container, {...props.style}]}>
+        <Text style={style.title}>{title}</Text>
+        {renderMessageView(`${message}`)}
+        <Progress subtitle={subtitle} maxVal={maxVal} currVal={currVal} />
       </View>
     );
-  }
+  
 }
 
 const style = StyleSheet.create({
   icon: {
-    flex: 1
+    flex: 1,
   },
-  messageBlock:{
-    flexDirection:'row', 
-    alignItems:'center', 
-    justifyContent: 'flex-start', 
+  messageBlock: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginTop: 12,
   },
   messageText: {
     textAlign: 'left',
     flex: 3,
-    marginLeft: 5
+    marginLeft: 5,
+    fontSize: 15,
+    fontFamily: fonts.Medium,
   },
   title: {
-    textAlign: 'left'
+    textAlign: 'left',
+    fontSize: 17,
+    fontFamily: fonts.Medium,
   },
-  container: {
-  }
+  container: {},
 });
