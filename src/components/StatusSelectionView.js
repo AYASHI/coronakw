@@ -8,28 +8,27 @@ import {connect} from 'react-redux';
 import * as actionTypes from '../store/actionTypes';
 import * as constants from '../utils/constants';
 import {useTranslation} from 'react-i18next';
-import reactotron from 'reactotron-react-native';
 import * as actions from '../features/home/healthStatus/actions';
 
 const StatusSelectionView = props => {
   const {t, i18n} = useTranslation();
 
-  const StatusButton = statusProps => {
-    const dividerStyle = statusProps.hasDivider
+  const StatusButton = statusCategory => {
+    const dividerStyle = false //statusProps.hasDivider
       ? {
           borderEndWidth: 1,
           borderColor: colors.separatorColor,
         }
       : {};
     const handleTouch = () => {
+      props.fetchQuestions(statusCategory.questionCategoryId, props.userId);
+      // props.sendHealthState(statusProps.healthValue);
 
-      props.sendHealthState(statusProps.healthValue);
-
-      //show survey if clicked on not healthy
-      if (statusProps.healthValue == constants.UNHEALTHY && !props.isSick) {
-        //TODO: probably don't show this on every unhealthy click
-        props.healthSurveyShown(true);
-      }
+      // //show survey if clicked on not healthy
+      // if (statusProps.healthValue == constants.UNHEALTHY && !props.isSick) {
+      //   //TODO: probably don't show this on every unhealthy click
+      //   props.healthSurveyShown(true);
+      // }
     };
     return (
       <View style={[styles.statusContainer, dividerStyle]}>
@@ -43,9 +42,12 @@ const StatusSelectionView = props => {
             //opacity: props.healthState === statusProps.healthValue ? 1 : 0.3,
           }}>
           <View style={styles.circle}>
-            <Image source={{uri: statusProps.imagePath.replace(/\s+/g, '')}} style={styles.emoji}/>
+            <Image
+              source={{uri: statusCategory.imagePath.replace(/\s+/g, '')}}
+              style={styles.emoji}
+            />
           </View>
-          <Text style={styles.statusTitle}>{statusProps.title}</Text>
+          <Text style={styles.statusTitle}>{statusCategory.title}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -58,6 +60,7 @@ const StatusSelectionView = props => {
           <StatusButton
             title={item.questionCategoryName}
             imagePath={item.imagePath}
+            questionCategoryId={item.questionCategoryId}
             hasDivider={item.hasDivider}
             healthValue={item.healthValue}
           />
@@ -97,7 +100,7 @@ const styles = StyleSheet.create({
   },
   emoji: {
     width: 80,
-    height: 80
+    height: 80,
   },
   statusTitle: {
     fontFamily: fonts.Semibold,
@@ -111,6 +114,7 @@ const mapStateToProps = state => {
   return {
     healthState: state.home.healthState,
     isSick: state.home.isSick,
+    userId: state.user.userId,
   };
 };
 
@@ -128,7 +132,8 @@ const mapDispatchToProps = dispatch => {
         type: actionTypes.HEALTH_SURVEY_SHOWN,
         value: show,
       }),
-      fetchQuestions:()=> dispatch(actions.fetchQuestions())
+    fetchQuestions: (QuestionCategoryId, PatientId) =>
+      dispatch(actions.fetchQuestions(QuestionCategoryId, PatientId)),
   };
 };
 

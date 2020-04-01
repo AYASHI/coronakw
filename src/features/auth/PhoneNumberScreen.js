@@ -16,7 +16,7 @@ import Button from '../../components/Button';
 import ActionCreators from '../../store/action';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import { phoneNumberValidation, validateAll } from '../../utils/validation';
+import {phoneNumberValidation, validateAll} from '../../utils/validation';
 
 const PhoneNumberScreen = ({
   navigation,
@@ -26,19 +26,17 @@ const PhoneNumberScreen = ({
 }) => {
   const {t} = useTranslation();
   const submit = () => {
-    
     const validations = [
-      phoneNumberValidation(phoneNumber, t('validation.phonenumber'))
-    ]
+      phoneNumberValidation(phoneNumber, t('validation.phonenumber')),
+    ];
 
-    const validationResult = validateAll(validations)
+    const validationResult = validateAll(validations);
 
     if (validationResult.valid) {
       validatePhoneNumber(phoneNumber);
     } else {
       showError(validationResult.message);
     }
-
   };
 
   const [phoneNumber, setPhoneNumber] = useState('');

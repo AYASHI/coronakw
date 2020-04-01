@@ -5,7 +5,7 @@ const validateCivilId = (CivilId, SerialNumber) => dispatch => {
     type: actionTypes.CIVIL_ID_SEND,
     payload: {
       CivilId,
-      SerialNumber
+      SerialNumber,
     },
   });
 };
@@ -23,8 +23,7 @@ const validateOTP = otp => dispatch =>
     value: otp,
   });
 
-const validatePhoneNumber = phone => (dispatch, getState) =>{
-  console.log('validate phone', getState());
+const validatePhoneNumber = phone => (dispatch, getState) => {
 
   dispatch({
     type: actionTypes.PHONE_NUMBER_SEND,
@@ -33,14 +32,10 @@ const validatePhoneNumber = phone => (dispatch, getState) =>{
       civilID: getState().auth.civilID,
       serialNumber: getState().auth.serialNumber,
     },
-  })
-}
- 
-  ;
+  });
+};
 
-const registerUser = (
-  otp,
-) => (dispatch, getState) =>
+const registerUser = otp => (dispatch, getState) =>
   dispatch({
     type: actionTypes.SEND_REGISTER,
     value: {
@@ -48,8 +43,8 @@ const registerUser = (
       MobileNumber: getState().auth.phoneNumber,
       otp: otp,
       CivilIdSerialNumber: getState().auth.serialNumber,
-      UniqueDeviceId: "23232",
-      FireBaseTokenId: "232343"
+      UniqueDeviceId: '23232',
+      FireBaseTokenId: '232343',
     },
   });
 
@@ -114,30 +109,41 @@ const checkIsUserRegistered = (civilID, serialNumber) => dispatch => {
   });
 };
 
-
-const addPatientAssociate = (person) => (dispatch, getState) => {
-
-  const mapped =  {
-      AssociateName: person.name, 
-      AssociateAddress: "dummy",
-      AssociateFirstPhoneNumber: person.phone,
-      AssociateSecondPhoneNumber: "dummy",
-      IsTravelWith: false
-    }
+const addPatientAssociate = person => (dispatch, getState) => {
+  const mapped = {
+    AssociateName: person.name,
+    AssociateAddress: 'dummy',
+    AssociateFirstPhoneNumber: person.phone,
+    AssociateSecondPhoneNumber: 'dummy',
+    IsTravelWith: false,
+  };
 
   dispatch({
     type: actionTypes.SEND_POSSIBLE_INFECTIONS,
     payload: {...mapped},
-    token: getState().user.token
+    token: getState().user.token,
   });
-}
+};
 
-const possibleInfectionsModalShown = (shown) => dispatch => {
+const possibleInfectionsModalShown = shown => dispatch => {
   dispatch({
     type: actionTypes.POSSIBLE_INFECTIONS_MODAL_SHOWN,
     value: shown,
-  })
-}
+  });
+};
+
+const fetchRemainingDays = () => {
+  return {
+    type: actionTypes.FETCH_REMAINING_DAYS
+  }
+};
+
+const fetchRemainingDaysSuccess = (data) => {
+  return {
+    type: actionTypes.FETCH_REMAINING_DAYS_SUCCESS,
+    payload: data
+  }
+};
 
 // action creators
 const ActionCreators = {
@@ -154,6 +160,8 @@ const ActionCreators = {
   showError,
   validateOTP,
   validatePhoneNumber,
+  fetchRemainingDays,
+  fetchRemainingDaysSuccess
 };
 
 export default ActionCreators;

@@ -29,7 +29,7 @@ const TemperatureView = props => {
     return temp;
   };
   const pressedButton = () => {
-    props.confirmTemperature(parseFloat(temperature));
+    console.log('pressedButton')
     if (props.onTemperatureConfirm) {
       props.onTemperatureConfirm(parseFloat(temperature));
     }
@@ -57,7 +57,6 @@ const TemperatureView = props => {
         underlineColorAndroid="transparent"
         maxLength={4}
         onKeyPress={({nativeEvent}) => {
-          console.log(nativeEvent);
           if (nativeEvent.key === 'Backspace') {
             setTemperature(-1);
           }
@@ -111,20 +110,5 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => {
-  return {};
-};
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      confirmTemperature: ActionCreators.confirmTempreture,
-    },
-    dispatch,
-  );
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(TemperatureView);
+export default TemperatureView;

@@ -21,11 +21,13 @@ const TemperatureModal = props => {
   return (
     <Modal
       style={{zIndex: 1}}
-      isVisible={props.showTemperature}
+      isVisible={props.show}
       avoidKeyboard={true}
+      onModalHide={props.onModalHide}
       swipeDirection="down"
-      onSwipeComplete={closeModal}>
-      <TemperatureView />
+     onSwipeComplete={closeModal}
+      >
+      <TemperatureView onTemperatureConfirm={props.onTemperatureConfirm}/>
       {props.isLoading && <LoadingHUD isLoading={props.isLoading} />}
     </Modal>
   );
@@ -33,11 +35,10 @@ const TemperatureModal = props => {
 
 // Map State To Props (Redux Store Passes State To Component)
 const mapStateToProps = state => {
-  console.log('state', state);
   // Redux Store --> Component
   return {
     isSuccess: state.boarding.temperatureRecorded ?? null,
-    showTemperature: state.home.showTemperature,
+    //showTemperature: state.home.showTemperature,
     isLoading: state.core.isLoading ?? null,
   };
 };

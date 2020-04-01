@@ -8,13 +8,15 @@ import StatusSelectionView from './StatusSelectionView';
 import {connect} from 'react-redux';
 import * as constants from '../utils/constants';
 import {useTranslation} from 'react-i18next';
-import * as statusActions from '../features/home/healthStatus/actions'
+import * as statusActions from '../features/home/healthStatus/actions';
+
 const HomeScreenHeader = props => {
-  const {t, i18n} = useTranslation();
+
+  const {t} = useTranslation();
 
   useEffect(() => {
-    props.fetchStatusCategories()
-  }, [])
+   // props.fetchStatusCategories();
+  }, []);
 
   let containerColor = {
     backgroundColor: colors.status.green,
@@ -32,7 +34,7 @@ const HomeScreenHeader = props => {
       <View style={[styles.container, containerColor]}>
         <Text style={styles.lastUpdateText}>{t('home.lastUpdateText')}</Text>
         <Text style={styles.howDoYouFeel}>{t('home.howDoYouFeel')}</Text>
-        <StatusSelectionView categories={props.statusCategories}/>
+        <StatusSelectionView categories={props.statusCategories} />
       </View>
     </Fragment>
   );
@@ -68,7 +70,7 @@ const mapStateToProps = state => {
   return {
     healthState: state.home.healthState,
     isSick: state.home.isSick,
-    statusCategories: state.status.statusCategories
+    statusCategories: state.status.statusCategories,
   };
 };
 
@@ -76,7 +78,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   // Action
   return {
-    fetchStatusCategories: ()=> dispatch(statusActions.fetchStatusCategories())
+    fetchStatusCategories: () =>
+      dispatch(statusActions.fetchStatusCategories()),
   };
 };
 

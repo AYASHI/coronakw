@@ -15,7 +15,8 @@ import OTPScreen from '../features/auth/OTPScreen';
 import WithErrorDisplay from '../features/core/WithErrorDisplay';
 import WithLoadingHud from '../features/core/WithLoadingHud';
 import { isnull } from '../utils/validation';
-
+import QuestionsScreen from '../features/home/healthStatus/QuestionsScreen';
+import * as NavigationService from './NavigationService'
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -34,7 +35,9 @@ const AppNavigator = () => {
   }, [language]);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={nav => {
+      NavigationService.setNavigator(nav)
+    }}>
       <Stack.Navigator headerMode={'none'} initialRouteName={screen}>
         <Stack.Screen name={Screens.Language} component={LanguageScreen} />
         <Stack.Screen name={Screens.Login} component={LoginScreen} />
@@ -54,6 +57,7 @@ const AppNavigator = () => {
         <Stack.Screen name={Screens.Home} component={HomeScreen} />
         <Stack.Screen name={Screens.Phone} component={PhoneNumberScreen} />
         <Stack.Screen name={Screens.OTP} component={OTPScreen} />
+        <Stack.Screen name={Screens.Questions} component={QuestionsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

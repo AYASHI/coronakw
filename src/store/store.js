@@ -18,7 +18,7 @@ import watchHomeSaga from '../features/home/saga';
 import {AsyncStorage} from 'react-native';
 import coreReducer from '../features/core/reducer';
 import watchOnBoardingSaga from '../features/onboarding/saga';
-import onBoardingReducer, { userReducer } from '../features/onboarding/reducer';
+import onBoardingReducer, {userReducer} from '../features/onboarding/reducer';
 import watchHealthStatusSaga from '../features/home/healthStatus/saga';
 
 const persistConfig = {
@@ -43,7 +43,7 @@ const rootReducer = combineReducers({
   language: languageReducer,
   boarding: onBoardingReducer,
   user: userReducer,
-  status: statusReducer
+  status: statusReducer,
 });
 
 const pReducer = persistReducer(persistConfig, rootReducer);
