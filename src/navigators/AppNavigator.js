@@ -17,6 +17,7 @@ import WithLoadingHud from '../features/core/WithLoadingHud';
 import { isnull } from '../utils/validation';
 import QuestionsScreen from '../features/home/healthStatus/QuestionsScreen';
 import * as NavigationService from './NavigationService'
+
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -24,12 +25,12 @@ const AppNavigator = () => {
   const language = useSelector(state => state.language.current);
   const token = useSelector(state => state.user.token);
 
-  let screen = language ?  Screens.Login : Screens.Language;
+  let screen = language ? Screens.Login : Screens.Language;
 
   if (!isnull(token)) {
-    screen = Screens.Home
+    screen = Screens.Home;
   }
-  
+
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language]);
@@ -49,6 +50,7 @@ const AppNavigator = () => {
           name={Screens.TakeTemperature}
           component={TakeTemperatureScreen}
         />
+
         <Stack.Screen
           name={Screens.TakeLocation}
           component={TakeLocationScreen}

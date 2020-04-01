@@ -35,7 +35,7 @@ function* validatePhoneNumberSaga(action) {
     };
   });
 }
- 
+
 function* watchAuthSaga() {
   yield takeLatest(actionTypes.PHONE_NUMBER_SEND, validatePhoneNumberSaga);
   yield takeLatest(actionTypes.CIVIL_ID_SEND, validateCivilIdSaga);

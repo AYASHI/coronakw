@@ -1,9 +1,11 @@
-import axios from 'axios';
 import * as actionTypes from '../../store/actionTypes';
-import * as constants from '../../utils/constants';
-import {takeLatest, put} from 'redux-saga/effects';
+import {put} from 'redux-saga/effects';
 
-export default function* handleApiCall(apiCall, action) {
+export default function* handleApiCall(
+  apiCall,
+  action,
+  passResponseOnfailure = false,
+) {
   try {
     yield put({type: actionTypes.REQUEST_STARTED});
     const json = yield apiCall;
@@ -15,6 +17,9 @@ export default function* handleApiCall(apiCall, action) {
           message: json.data.message,
         },
       });
+      if (passResponseOnfailure) {
+        yield put(action(json));
+      }
     } else {
       yield put(action(json));
       yield put({type: actionTypes.REQUEST_SUCCESS, value: json.data.message});
@@ -24,7 +29,7 @@ export default function* handleApiCall(apiCall, action) {
       type: actionTypes.REQUEST_FAILED,
       payload: {
         status: error.response.status,
-        message: error.response.statusText,
+        message: error.response.statusText ?? error.response.data.message,
       },
     });
   }

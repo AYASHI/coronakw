@@ -1,10 +1,9 @@
 import * as actionTypes from '../../../store/actionTypes';
 
-export function fetchStatusCategories() {
-  return {
+export const  fetchStatusCategories = () => dispatch => 
+dispatch({
     type: actionTypes.FETCH_STATUS_CATEGORIES,
-  };
-}
+  });
 
 export function fetchStatusCategoriesSuccess(categories) {
   return {
@@ -39,7 +38,7 @@ export function fetchQuestionsFailed() {
   };
 }
 
-export function questionAnswered(answer) {
+export function questionAnswered( answer) { 
   return {
     type: actionTypes.ANSWER_QUESTION,
     payload: answer

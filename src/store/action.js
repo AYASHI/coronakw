@@ -24,7 +24,6 @@ const validateOTP = otp => dispatch =>
   });
 
 const validatePhoneNumber = phone => (dispatch, getState) => {
-
   dispatch({
     type: actionTypes.PHONE_NUMBER_SEND,
     payload: {
@@ -55,22 +54,34 @@ const confirmTempreture = temp => dispatch =>
   });
 
 const sendLocation = (
-  latitude,
-  longitude,
-  areaId,
-  street,
-  block,
-  phone,
+  Latitude,
+  Longitude,
+  AreaId,
+  Street,
+  Block,
+  CityId,
+  Avenue,
+  AccommodationType,
+  BuildingNumber,
+      HouseBuildingNumber,
+      Floor,
+      ApartmentNumber
 ) => dispatch =>
   dispatch({
     type: actionTypes.SEND_LOCATION,
-    value: {
-      latitude,
-      longitude,
-      area_id: areaId,
-      street,
-      block,
-      phone_number: phone,
+    payload: {
+      Latitude,
+      Longitude,
+      AreaId,
+      CityId,
+      Street,
+      Block,
+      AccommodationType,
+      Floor,
+      Avenue,
+      HouseBuildingNumber,
+      BuildingNumber,
+      ApartmentNumber
     },
   });
 
@@ -132,21 +143,68 @@ const possibleInfectionsModalShown = shown => dispatch => {
   });
 };
 
-const fetchRemainingDays = () => {
-  return {
-    type: actionTypes.FETCH_REMAINING_DAYS
-  }
-};
+const fetchRemainingDays = () => dispatch =>
+dispatch({
+  type: actionTypes.FETCH_REMAINING_DAYS,
+});
 
 const fetchRemainingDaysSuccess = (data) => {
   return {
     type: actionTypes.FETCH_REMAINING_DAYS_SUCCESS,
     payload: data
   }
+}
+
+const checkLocation = () => (dispatch, getState) => {
+  setAsBackgroundFetch(true)(dispatch);
+  dispatch({
+    type: actionTypes.SEND_GET_LOCATION,
+    token: getState().user.token,
+  });
+};
+
+const setAsBackgroundFetch = isBackground => dispatch => {
+  dispatch({
+    type: actionTypes.SET_AS_BACKGROUND_FETCH,
+    value: isBackground,
+  });
+};
+
+const hideError = () => dispatch =>
+  dispatch({
+    type: actionTypes.HIDE_ERROR,
+  });
+
+const startRequest = () => dispatch => {
+  dispatch({
+    type: actionTypes.REQUEST_STARTED,
+  });
+};
+
+const setRequestAsFailed = reason => dispatch => {
+  dispatch({
+    type: actionTypes.REQUEST_FAILED,
+    payload: {
+      status: 310,
+      message: reason,
+    },
+  });
+};
+
+const setRequestAsSuccess = () => dispatch => {
+  dispatch({
+    type: actionTypes.REQUEST_SUCCESS,
+  });
 };
 
 // action creators
 const ActionCreators = {
+  startRequest,
+  setRequestAsFailed,
+  setRequestAsSuccess,
+  hideError,
+  setAsBackgroundCheck: setAsBackgroundFetch,
+  checkLocation,
   possibleInfectionsModalShown,
   addPatientAssociate,
   checkIsUserRegistered,

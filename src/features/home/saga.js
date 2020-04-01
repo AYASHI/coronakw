@@ -38,7 +38,7 @@ function* sendSurvey(action) {
 
 function* sendPossibleInfectionsSaga(action) {
   const data = action.payload;
-  axios.defaults.headers.common['Authorization'] = `Bearer ${action.token}`;
+  axios.defaults.headers.common.Authorization = `Bearer ${action.token}`;
 
   const json = axios
     .post(constants.BASE_URL + '/PatientAssociates/Create', data)
@@ -63,14 +63,31 @@ function* remainingDaysSaga() {
   
 }
 
+function* getLocation(action) {
+  axios.defaults.headers.common.Authorization = `Bearer ${action.token}`;
+
+  const json = axios
+    .get(constants.BASE_URL + '/Patients/Location')
+    .then(response => response);
+
+  yield handleApiCall(
+    json,
+    json => {
+      return {type: actionTypes.GET_LOCATION_SENT, payload: {...json.data}};
+    },
+    true,
+  );
+
+  // reset state
+  yield put({type: actionTypes.SET_AS_BACKGROUND_FETCH, value: false});
+  yield put({type: actionTypes.HIDE_ERROR});
+}
 
 function* watchHomeSaga() {
+  yield takeLatest(actionTypes.SEND_GET_LOCATION, getLocation);
   yield takeLatest(actionTypes.SEND_SURVEY, sendSurvey);
   yield takeLatest(actionTypes.SEND_HEALTH_STATE, sendHealthStateSaga);
-  yield takeLatest(
-    actionTypes.SEND_POSSIBLE_INFECTIONS,
-    sendPossibleInfectionsSaga,
-  );
+  yield takeLatest(actionTypes.SEND_POSSIBLE_INFECTIONS,sendPossibleInfectionsSaga);
   yield takeLatest(actionTypes.FETCH_REMAINING_DAYS, remainingDaysSaga);
 }
 

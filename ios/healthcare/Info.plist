@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Health Care</string>
+	<string>Shlonik</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -63,9 +63,9 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Health care use your location.</string>
+	<string>Shlonik use your location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Health care use your location.</string>
+	<string>Shlonik use your location.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

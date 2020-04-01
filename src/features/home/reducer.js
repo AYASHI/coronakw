@@ -14,7 +14,6 @@ const initialState = {
 
 // Just dummy reducer
 export default function homeReducer(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case actionTypes.SEND_HEALTH_STATE: {
       return {
@@ -135,6 +134,18 @@ export default function homeReducer(state = initialState, action) {
         ...state,
         quarantine: action.payload
       }
+    }
+    
+    case actionTypes.GET_LOCATION_SENT: {
+      const {
+        data: {isQuarantine, isLocationFilled, lastVitalStatusCategoryId},
+      } = action.payload;
+      return {
+        ...state,
+        isQuarantine: isQuarantine,
+        shouldUpdateLocation: isQuarantine && !isLocationFilled,
+        lastVitalStatusCategoryId,
+      };
     }
 
     /////

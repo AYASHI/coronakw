@@ -1,5 +1,5 @@
 import React, {useEffect, Fragment, useState} from 'react';
-import {View, StyleSheet, Button} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import HomeScreenHeader from '../../components/HomeScreenHeader';
 import HomeScreenBody from '../../components/HomeScreenBody';
 import HealthSurveyModal from '../../components/HealthSurveyModal';
@@ -9,20 +9,26 @@ import {connect} from 'react-redux';
 import {CardSection} from './remainingDays';
 import {useTranslation} from 'react-i18next';
 import Spacer from '../../components/Spacer';
-import actions  from '../../store/action';
+import ActionsCreators  from '../../store/action';
 import * as statusActions from './healthStatus/actions'
 import {isnull} from '../../utils/validation';
-import Screens from '../../navigators/Screens'
+import {bindActionCreators} from 'redux';
+import Screens from '../../navigators/Screens';
 
-const HomeScreen = ({fetchRemainingDays, quarantine,questions ,questionsReady, answerQuestion, navigation, fetchStatusCategories}) => {
+const HomeScreen = ({shouldUpdateLocation, checkLocation,fetchRemainingDays, quarantine,questions ,questionsReady, answerQuestion, navigation, fetchStatusCategories}) => {
   const {t} = useTranslation();
   useEffect(() => {
+    if (shouldUpdateLocation) {
+      navigation.navigate(Screens.TakeLocation);
+    }
     fetchStatusCategories();
     fetchRemainingDays()
   }, [])
 
-  const [tShow, setTShow] = useState(false)
-  const [hShow, setHShow] = useState(false)
+  const [load, _] = useState(true);
+  useEffect(() => {
+    checkLocation();
+  }, [load]);
 
   useEffect(() => {
     if(questionsReady) {
@@ -50,20 +56,13 @@ const HomeScreen = ({fetchRemainingDays, quarantine,questions ,questionsReady, a
   const onTemperatureConfirm = temperature => {
     setTShow(false)
   }
-  const onSelectOptions = () =>{
-    setHShow(false)
-  }
-  const onTModalHide = ()=> {
-    answerQuestion()
-  }
+
+
   return (
     <View style={styles.container}>
       <HomeScreenHeader />
-      {/* <Spacer space={90} /> */}
       <RemainingDaysFragment />
       <HomeScreenBody />
-      {/* <TemperatureModal show={false} onTemperatureConfirm={onTemperatureConfirm} onModalHide={onTModalHide}/> */}
-      {/* <HealthSurveyModal show={false} onSelectOptions= {onSelectOptions} onModalHide={onTModalHide}/> */}
       <PossibleInfectionsModal />
     </View>
   );
@@ -83,17 +82,23 @@ const mapStateToProps = state => {
     quarantine: state.home.quarantine,
     questions: state.status.questions,
     currentQuestionIndex: state.status.currentQuestionIndex,
-    questionsReady: state.status.questionsReady
+    questionsReady: state.status.questionsReady,
+    shouldUpdateLocation: state.home.shouldUpdateLocation ?? null,
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    fetchStatusCategories: () =>
-      dispatch(statusActions.fetchStatusCategories()),
-    fetchRemainingDays: ()=> dispatch(actions.fetchRemainingDays()),
-    answerQuestion: ()=> dispatch(statusActions.questionAnswered())
-  };
+  return bindActionCreators(
+    {
+      fetchStatusCategories: statusActions.fetchStatusCategories,
+      fetchRemainingDays: ActionsCreators.fetchRemainingDays,
+      checkLocation: ActionsCreators.checkLocation,
+    },
+    dispatch,
+  );
 };
 
-export default connect(mapStateToProps,mapDispatchToProps )(HomeScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreen);
