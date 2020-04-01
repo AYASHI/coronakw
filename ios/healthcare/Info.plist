@@ -37,6 +37,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Shlonik use your location.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Shlonik use your location.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Shlonik use your location.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFUIDisplay-Bold.otf</string>
@@ -62,10 +68,6 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Shlonik use your location.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Shlonik use your location.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
