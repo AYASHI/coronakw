@@ -37,15 +37,21 @@ const HomeScreen = ({shouldUpdateLocation, checkLocation,fetchRemainingDays, qua
   }, [questionsReady])
 
 
+  showQuarantineMessage = () => {
+    return !(isnull(quarantine) || !quarantine.isQuarantine) || true
+  }
+
   const RemainingDaysFragment = () => {
-    if (isnull(quarantine) || !quarantine.isQuarantine) {
+    if (!showQuarantineMessage()) {
       return <Fragment/>
     }
   
     return (
       <CardSection
         maxVal={14}
-        currVal={quarantine.days}
+        currVal={ 11}
+        // currVal={quarantine.days}
+        style ={{margin: 20}}
         title={t('remainingDays.title')}
         message={t('remainingDays.desc')}
         subtitle={t('remainingDays.subtitle')}
@@ -57,11 +63,15 @@ const HomeScreen = ({shouldUpdateLocation, checkLocation,fetchRemainingDays, qua
     setTShow(false)
   }
 
-
   return (
     <View style={styles.container}>
       <HomeScreenHeader />
-      <RemainingDaysFragment />
+      {showQuarantineMessage() && (
+        <View>
+          <Spacer space={80}/>
+        <RemainingDaysFragment />
+          </View>
+      )}
       <HomeScreenBody />
       <PossibleInfectionsModal />
     </View>

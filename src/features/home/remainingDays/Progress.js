@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Block, Text} from '.';
-import {fonts, colors} from './theme';
+import {  StyleSheet, View, Text} from 'react-native';
+import {  colors} from './theme';
+import fonts from '../../../utils/fonts';
+
 export default class Progress extends React.Component {
   progPerc = (max, curr) => {
     if (max && curr) {
@@ -13,32 +14,22 @@ export default class Progress extends React.Component {
 
   renderLTR = subtitle => {
     return (
-      <Block
-        style={{marginBottom: 10, marginLeft: 10, marginRight: 10}}
-        row
-        flex={false}>
-        <Text color={colors.cgreen}>{subtitle}</Text>
-        <Block />
-        <Text color={colors.cgreen}>{this.getRatio()}</Text>
-      </Block>
+      <View
+        style={{
+          marginBottom: 8, 
+          flexDirection:'row',
+          justifyContent: 'space-between'
+        }}
+        >
+        <Text style={style.text}>{subtitle}</Text>
+        <Text style={style.text}>{this.getRatio()}</Text>
+      </View>
     );
   };
-  renderRTL = subtitle => {
-    return (
-      <Block
-        style={{marginBottom: 10, marginLeft: 10, marginRight: 10}}
-        row
-        flex={false}>
-        <Text color={colors.cgreen}>{this.getRatio()}</Text>
-        <Block />
-        <Text color={colors.cgreen}>{subtitle}</Text>
-      </Block>
-    );
-  };
+
   getRatio = () => {
     const {isLTR, maxVal, currVal} = this.props;
     if (isLTR) {
-      console.log('Left to right', isLTR);
       return ' Day ' + currVal + '/' + maxVal;
     }
     return (
@@ -75,19 +66,21 @@ function toArabic(digit) {
 
 const style = StyleSheet.create({
   progCont: {
-    width: '95%',
-    height: 15,
+    height: 6,
     borderRadius: 10,
-    marginLeft: 10,
-    marginRight: 10,
     backgroundColor: '#31dfe8',
     justifyContent: 'center',
   },
   prog: {
     backgroundColor: colors.cgreen,
-    height: 13,
+    height: 6,
     borderRadius: 10,
     position: 'absolute',
     width: '50%',
   },
+  text: {
+    color: colors.cgreen,
+    fontFamily: fonts.Medium,
+    fontSize: 15
+  }
 });
