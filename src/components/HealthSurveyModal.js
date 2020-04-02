@@ -116,7 +116,7 @@ const HealthSurveyModal = props => {
         )
       : 0;
 
-  var buttonMsg = `تأكيد ${numberOfSymptoms} أعراض`;
+  var buttonMsg = t('healthSurveyModal.confirm') + ` ${numberOfSymptoms} ` + t('healthSurveyModal.symptoms') ;
 
   if (numberOfSymptoms === 0) {
     buttonMsg = t('healthSurveyModal.noSymptoms');
