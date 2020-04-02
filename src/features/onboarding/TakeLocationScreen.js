@@ -23,6 +23,7 @@ import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
 import {connect} from 'react-redux';
 import {isnull} from '../../utils/validation';
+import {useNavigation} from '@react-navigation/native';
 
 const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
   const {t} = useTranslation();

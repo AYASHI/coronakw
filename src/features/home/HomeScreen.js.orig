@@ -23,9 +23,13 @@ const HomeScreen = ({
   questionsReady,
   navigation,
   fetchStatusCategories,
+<<<<<<< HEAD
   patientVitalStatusColor,
   chatRoomUrl,
   locationUpdated
+=======
+  locationUpdated,
+>>>>>>> disable back on update location navigation
 }) => {
   const {t} = useTranslation();
   useEffect(() => {

@@ -56,6 +56,7 @@ const AppNavigator = () => {
         <Stack.Screen
           name={Screens.TakeLocation}
           component={TakeLocationScreen}
+          options={{gestureEnabled: false}}
         />
 
         <Stack.Screen name={Screens.Home} component={HomeScreen}/>
