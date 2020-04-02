@@ -129,7 +129,7 @@ const HealthSurveyModal = props => {
   const MultiOptionQuestion = () => {
     return (
       <View style={styles.content}>
-        <Text style={styles.contentTitle}>{t('healthSurveyModal.title')}</Text>
+        {/* <Text style={styles.contentTitle}>{t('healthSurveyModal.title')}</Text> */}
         <Text style={styles.contentSubTitle}>
           {props.question.questionText}
         </Text>
