@@ -29,7 +29,7 @@ const TemperatureView = props => {
     return temp;
   };
   const pressedButton = () => {
-    console.log('pressedButton')
+    console.log('pressedButton');
     if (props.onTemperatureConfirm) {
       props.onTemperatureConfirm(parseFloat(temperature));
     }
@@ -109,6 +109,5 @@ const styles = StyleSheet.create({
     backgroundColor: colors.paleGrey,
   },
 });
-
 
 export default TemperatureView;

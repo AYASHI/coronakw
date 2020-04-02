@@ -25,9 +25,8 @@ const TemperatureModal = props => {
       avoidKeyboard={true}
       onModalHide={props.onModalHide}
       swipeDirection="down"
-     onSwipeComplete={closeModal}
-      >
-      <TemperatureView onTemperatureConfirm={props.onTemperatureConfirm}/>
+      onSwipeComplete={closeModal}>
+      <TemperatureView onTemperatureConfirm={props.onTemperatureConfirm} />
       {props.isLoading && <LoadingHUD isLoading={props.isLoading} />}
     </Modal>
   );

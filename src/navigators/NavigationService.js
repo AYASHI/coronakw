@@ -6,7 +6,7 @@ export function setNavigator(nav) {
 }
 export function navigate(routeName, params) {
   if (config.navigator && routeName) {
-    config.navigator.navigate({ routeName, params });
+    config.navigator.navigate({routeName, params});
   }
 }
 export function goBack() {

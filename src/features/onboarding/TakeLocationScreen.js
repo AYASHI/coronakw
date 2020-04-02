@@ -57,7 +57,7 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
       building,
       houseBuilding,
       floor,
-      apartment
+      apartment,
     );
   };
 
@@ -68,7 +68,7 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
   useEffect(() => {
     if (isSuccess) {
       console.log('horray update location is syccess lets go home');
-      
+
       navigation.navigate(Screens.Home);
     }
   });

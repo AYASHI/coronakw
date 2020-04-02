@@ -14,6 +14,8 @@ const colors = {
   darkBlue: '#092f52',
   borderColor: '#dfe1e6',
   mustard: '#d9b600',
+  tealish: '#26c1c9',
+  tealishDisabled: 'rgba(38, 193, 201, 0.26)',
   status: {
     green: '#02b875',
     yellow: '#c8910d',

@@ -63,9 +63,9 @@ const sendLocation = (
   Avenue,
   AccommodationType,
   BuildingNumber,
-      HouseBuildingNumber,
-      Floor,
-      ApartmentNumber
+  HouseBuildingNumber,
+  Floor,
+  ApartmentNumber,
 ) => dispatch =>
   dispatch({
     type: actionTypes.SEND_LOCATION,
@@ -81,7 +81,7 @@ const sendLocation = (
       Avenue,
       HouseBuildingNumber,
       BuildingNumber,
-      ApartmentNumber
+      ApartmentNumber,
     },
   });
 
@@ -144,16 +144,16 @@ const possibleInfectionsModalShown = shown => dispatch => {
 };
 
 const fetchRemainingDays = () => dispatch =>
-dispatch({
-  type: actionTypes.FETCH_REMAINING_DAYS,
-});
+  dispatch({
+    type: actionTypes.FETCH_REMAINING_DAYS,
+  });
 
-const fetchRemainingDaysSuccess = (data) => {
+const fetchRemainingDaysSuccess = data => {
   return {
     type: actionTypes.FETCH_REMAINING_DAYS_SUCCESS,
-    payload: data
-  }
-}
+    payload: data,
+  };
+};
 
 const checkLocation = () => (dispatch, getState) => {
   setAsBackgroundFetch(true)(dispatch);
@@ -219,7 +219,7 @@ const ActionCreators = {
   validateOTP,
   validatePhoneNumber,
   fetchRemainingDays,
-  fetchRemainingDaysSuccess
+  fetchRemainingDaysSuccess,
 };
 
 export default ActionCreators;

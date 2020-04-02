@@ -25,28 +25,28 @@ export default function statusReducer(state = initialState, action) {
         questions: action.payload.questions,
         vitalStatusId: action.payload.vitalStatusId,
         questionsReady: true,
-        currentQuestionIndex: 0
+        currentQuestionIndex: 0,
       };
     }
 
-    case actionTypes.ANSWER_QUESTION: { 
-      const qa = state.questionsAnswers
-      qa.push(action.payload)
+    case actionTypes.ANSWER_QUESTION: {
+      const qa = state.questionsAnswers;
+      qa.push(action.payload);
       return {
         ...state,
         currentQuestionIndex: state.currentQuestionIndex + 1,
-        questionsAnswers:qa
+        questionsAnswers: qa,
       };
     }
 
-    case actionTypes.SUBMIT_ANSWERS_SUCCESS:{
-      return{
+    case actionTypes.SUBMIT_ANSWERS_SUCCESS: {
+      return {
         ...state,
         questions: [],
         questionsReady: false,
         questionsAnswers: [],
-        currentQuestionIndex: -1
-      }
+        currentQuestionIndex: -1,
+      };
     }
 
     default:

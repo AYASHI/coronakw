@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     textAlign: 'left',
     padding: 5,
-    marginStart: 16
+    marginStart: 16,
   },
 });
 

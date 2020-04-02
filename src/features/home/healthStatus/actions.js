@@ -1,7 +1,7 @@
 import * as actionTypes from '../../../store/actionTypes';
 
-export const  fetchStatusCategories = () => dispatch => 
-dispatch({
+export const fetchStatusCategories = () => dispatch =>
+  dispatch({
     type: actionTypes.FETCH_STATUS_CATEGORIES,
   });
 
@@ -38,10 +38,10 @@ export function fetchQuestionsFailed() {
   };
 }
 
-export function questionAnswered( answer) { 
+export function questionAnswered(answer) {
   return {
     type: actionTypes.ANSWER_QUESTION,
-    payload: answer
+    payload: answer,
   };
 }
 
@@ -49,33 +49,31 @@ export function changeAnswer(response) {
   return {
     type: actionTypes.CHANGED_ANSWER,
     value: {response},
-  }
+  };
 }
 
 export function changeAnswerYesNo(response) {
   return {
     type: actionTypes.CHANGED_ANSWER_YES_NO,
     value: {response},
-  }
+  };
 }
 
 export function submitAnswers(payload) {
   return {
     payload,
     type: actionTypes.SUBMIT_ANSWERS,
-  }
+  };
 }
 
 export function submitAnswersSuccess() {
   return {
     type: actionTypes.SUBMIT_ANSWERS_SUCCESS,
-  }
+  };
 }
 
 export function submitAnswersFailed() {
   return {
     type: actionTypes.SUBMIT_ANSWERS_FAILED,
-  }
+  };
 }
-
-
