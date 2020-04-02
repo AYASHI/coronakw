@@ -11,7 +11,7 @@ import CurrentPositionFragment from './CurrentPositionFragment';
 import EnterTemperatureFragment from './Temperature/EnterTemperatureFragment';
 import PossibleInfectionsFragment from './PossibleInfectionsFragment';
 import {useTranslation} from 'react-i18next';
-
+import ChatView from './ChatView'
 const HomeScreenBody = props => {
   const {t, i18n} = useTranslation();
   return (
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     padding: layout.margin,
-    paddingTop: 90,
   },
   scrollView: {
     // paddingVertical: 90   //I couldn't get the text to fall behind the StatusSelectionView.  zIndex didn't do much and there's no time to mess around with it.

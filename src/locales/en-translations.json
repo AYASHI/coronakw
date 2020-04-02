@@ -2,7 +2,7 @@
   "common": {
     "ok": "Ok",
     "cancel": "Cancel",
-    "error": "Ops!!!"
+    "error": "Error"
   },
   "validation": {
     "civilid": "Civil id is not valid",
@@ -111,5 +111,8 @@
     "title":"Staying at home is your national duty",
     "subtitle":"Remaining Days",
     "ratioTitle": "{{current}}/{{total}} Day"
+  },
+  "chat": {
+    "title" : "Start live chat ..."
   }
 }
