@@ -31,12 +31,11 @@ const HomeScreen = ({
   useEffect(() => {
     if (shouldUpdateLocation) {
       navigation.navigate(Screens.TakeLocation);
-    } else if (!isnull(shouldUpdateLocation)){
+    } else if (!isnull(shouldUpdateLocation)) {
       fetchStatusCategories();
-      fetchRemainingDays()
+      fetchRemainingDays();
     }
   }, [shouldUpdateLocation]);
-
 
   useEffect(() => {
     checkLocation();
@@ -46,9 +45,10 @@ const HomeScreen = ({
     // called after user update their location
     if (locationUpdated) {
       fetchStatusCategories();
-      fetchRemainingDays()
+      fetchRemainingDays();
     }
-  }, [locationUpdated])
+  }, [locationUpdated]);
+
   useEffect(() => {
     if (questionsReady) {
       navigation.navigate(Screens.Questions, questions);
