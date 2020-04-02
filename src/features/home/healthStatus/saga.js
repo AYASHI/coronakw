@@ -4,7 +4,6 @@ import * as constants from '../../../utils/constants';
 import {takeLatest, put, select} from 'redux-saga/effects';
 import handleApiCall from '../../core/handleApiCall';
 import * as actions from './actions';
-import reactotron from 'reactotron-react-native';
 import * as NavigationService from '../../../navigators/NavigationService';
 import {showMessage} from 'react-native-flash-message';
 import Screens from '../../../navigators/Screens';

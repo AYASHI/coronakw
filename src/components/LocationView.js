@@ -10,7 +10,6 @@ import {
 import images from '../utils/images';
 import {useTranslation} from 'react-i18next';
 import Geolocation from 'react-native-geolocation-service';
-import fonts from '../utils/fonts';
 import ActionCreators from '../store/action';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -44,8 +43,10 @@ const LocationView = props => {
     //TODO: What do we want to do here?
     if (status === PermissionsAndroid.RESULTS.DENIED) {
       console.log('Location permission denied by user.');
+      props.showError("Permission is denied to fetch location, please enable it.")
     } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
       console.log('Location permission revoked by user.');
+      props.showError("Permission is denied to fetch location, please enable it.")
     }
 
     return false;
