@@ -116,7 +116,7 @@ const HealthSurveyModal = props => {
         )
       : 0;
 
-  var buttonMsg = `تأكيد ${numberOfSymptoms} أعراض`;
+  var buttonMsg = t('healthSurveyModal.confirm') + ` ${numberOfSymptoms} ` + t('healthSurveyModal.symptoms') ;
 
   if (numberOfSymptoms === 0) {
     buttonMsg = t('healthSurveyModal.noSymptoms');
@@ -129,7 +129,7 @@ const HealthSurveyModal = props => {
   const MultiOptionQuestion = () => {
     return (
       <View style={styles.content}>
-        <Text style={styles.contentTitle}>{t('healthSurveyModal.title')}</Text>
+        {/* <Text style={styles.contentTitle}>{t('healthSurveyModal.title')}</Text> */}
         <Text style={styles.contentSubTitle}>
           {props.question.questionText}
         </Text>

@@ -76,7 +76,9 @@
     "twoSymptoms": "Confirm two symptoms",
 
     "title": "Your safety first",
-    "contentSubtitle": "What symptoms are you currently feeling?"
+    "contentSubtitle": "What symptoms are you currently feeling?",
+    "confirm": "Confirm",
+    "symptoms": "symptoms"
   },
   "temperatureModal": {
     "subtitle": "Periodic temperature measurement",

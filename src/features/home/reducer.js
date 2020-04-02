@@ -153,6 +153,12 @@ export default function homeReducer(state = initialState, action) {
         answers: {} // clear previous answers
       }
     }
+    case actionTypes.ANSWER_QUESTION: {
+      return {
+        ...state,
+        answers: {} // clear previous answers
+      }
+    }
 
     /////
     default:

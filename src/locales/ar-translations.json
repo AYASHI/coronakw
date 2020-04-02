@@ -81,7 +81,9 @@
     "twoSymptoms": "تأكيد عرضين",
 
     "title": "سلامتك بالدنيا..",
-    "contentSubtitle": "ما هي الاعراض التي تشعر بها الان؟"
+    "contentSubtitle": "ما هي الاعراض التي تشعر بها الان؟",
+    "confirm": "تآكيد",
+    "symptoms": "آعراض"
   },
   "temperatureModal": {
     "subtitle": "قياس درجة الحرارة الدورية",
