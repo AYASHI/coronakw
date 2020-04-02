@@ -25,7 +25,6 @@ export default function homeReducer(state = initialState, action) {
     case actionTypes.HEALTH_STATE_SENT: {
       return {
         ...state,
-        // healthState: action.value,
       };
     }
 
@@ -146,6 +145,13 @@ export default function homeReducer(state = initialState, action) {
         shouldUpdateLocation: isQuarantine && !isLocationFilled,
         lastVitalStatusCategoryId,
       };
+    }
+
+    case actionTypes.SUBMIT_ANSWERS_SUCCESS:{
+      return{
+        ...state,
+        answer: {}
+      }
     }
 
     /////

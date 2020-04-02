@@ -43,6 +43,10 @@
 	<string>Shlonik use your location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Shlonik use your location.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Shlonik use your microphone for crash reporting</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Shlonik use your photo for crash reporting</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFUIDisplay-Bold.otf</string>
