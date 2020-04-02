@@ -33,7 +33,8 @@ const HomeScreen = ({
       navigation.navigate(Screens.TakeLocation);
     } else if (!isnull(shouldUpdateLocation)) {
       fetchStatusCategories();
-      fetchRemainingDays();
+      // Getting remaining days only if the user isQuarantine 
+      if(quarantine && quarantine.isQuarantine)  fetchRemainingDays();
     }
   }, [shouldUpdateLocation]);
 
@@ -45,7 +46,8 @@ const HomeScreen = ({
     // called after user update their location
     if (locationUpdated) {
       fetchStatusCategories();
-      fetchRemainingDays();
+      // Getting remaining days only if the user isQuarantine 
+      if(quarantine && quarantine.isQuarantine) fetchRemainingDays();
     }
   }, [locationUpdated]);
 
