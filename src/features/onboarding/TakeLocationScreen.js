@@ -18,18 +18,15 @@ import CustomTextInput from '../../components/CustomTextInput';
 import DropDown from '../../components/DropDown';
 import {areas, cities, accomodationTypes} from '../../utils/mockData';
 import Spacer from '../../components/Spacer';
-import PhoneNumberInput from '../../components/PhoneNumberInput';
 import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
 import {connect} from 'react-redux';
 import {isnull} from '../../utils/validation';
-import {useNavigation} from '@react-navigation/native';
 
 const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
   const {t} = useTranslation();
 
   const [location, setLocation] = useState('');
-  const [phone, setPhone] = useState('');
   const [block, setblock] = useState('');
   const [street, setStreet] = useState('');
   const [area, setArea] = useState('');
