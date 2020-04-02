@@ -14,9 +14,9 @@ import PhoneNumberScreen from '../features/auth/PhoneNumberScreen';
 import OTPScreen from '../features/auth/OTPScreen';
 import WithErrorDisplay from '../features/core/WithErrorDisplay';
 import WithLoadingHud from '../features/core/WithLoadingHud';
-import { isnull } from '../utils/validation';
+import {isnull} from '../utils/validation';
 import QuestionsScreen from '../features/home/healthStatus/QuestionsScreen';
-import * as NavigationService from './NavigationService'
+import * as NavigationService from './NavigationService';
 
 const Stack = createStackNavigator();
 
@@ -36,9 +36,10 @@ const AppNavigator = () => {
   }, [language]);
 
   return (
-    <NavigationContainer ref={nav => {
-      NavigationService.setNavigator(nav)
-    }}>
+    <NavigationContainer
+      ref={nav => {
+        NavigationService.setNavigator(nav);
+      }}>
       <Stack.Navigator headerMode={'none'} initialRouteName={screen}>
         <Stack.Screen name={Screens.Language} component={LanguageScreen} />
         <Stack.Screen name={Screens.Login} component={LoginScreen} />
