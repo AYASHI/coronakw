@@ -6,7 +6,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import layout from '../utils/layout';
 import StatusSelectionView from './StatusSelectionView';
 import {connect} from 'react-redux';
-import * as constants from '../utils/constants';
 import {useTranslation} from 'react-i18next';
 import * as statusActions from '../features/home/healthStatus/actions';
 
@@ -14,18 +13,9 @@ const HomeScreenHeader = props => {
   const {t} = useTranslation();
 
   useEffect(() => {
-    // props.fetchStatusCategories();
-  }, []);
-
-  let containerColor = {
-    backgroundColor: colors.status.green,
-  };
-
-  if (props.healthState == constants.UNHEALTHY) {
-    containerColor.backgroundColor = colors.status.yellow;
-  } else if (props.healthState == constants.SERIOUSLY_UNHEALTHY) {
-    containerColor.backgroundColor = colors.status.red;
-  }
+  }, [props.patientVitalStatusColor]);
+  
+  let containerColor = {backgroundColor: props.patientVitalStatusColor ? props.patientVitalStatusColor.toLowerCase() : 'green'}
 
   return (
     <Fragment>
@@ -70,6 +60,7 @@ const mapStateToProps = state => {
     healthState: state.home.healthState,
     isSick: state.home.isSick,
     statusCategories: state.status.statusCategories,
+    patientVitalStatusColor: state.home.patientVitalStatusColor
   };
 };
 
