@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   RemainingDaysSection: {
-    margin: 20
-  }
+    margin: 20,
+  },
 });
 
 const mapStateToProps = state => {

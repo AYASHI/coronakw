@@ -24,7 +24,7 @@
     "login_next": "Next",
     "enter_otp": "Enter Verification Code",
     "otp_instruction": "Verification Code has been sent to the phone number ending with",
-    "otp_placeholder": "Veridication Code"
+    "otp_placeholder": "Verification Code"
   },
   "onboarding": {
     "personalInfo": "Personal information",
