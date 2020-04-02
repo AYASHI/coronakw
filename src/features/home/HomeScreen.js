@@ -14,6 +14,7 @@ import * as statusActions from './healthStatus/actions';
 import {isnull} from '../../utils/validation';
 import {bindActionCreators} from 'redux';
 import Screens from '../../navigators/Screens';
+import ChatView from '../../components/ChatView';
 
 const HomeScreen = ({
   shouldUpdateLocation,
@@ -25,6 +26,9 @@ const HomeScreen = ({
   answerQuestion,
   navigation,
   fetchStatusCategories,
+  patientVitalStatusColor,
+  chatRoomUrl
+
 }) => {
   const {t} = useTranslation();
   useEffect(() => {
@@ -66,18 +70,27 @@ const HomeScreen = ({
       />
     );
   };
-
+  const startChat = () => {
+    navigation.navigate(Screens.LiveChat, chatRoomUrl)
+  }
+  const shouldStartChat = () => {
+    return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl)
+  }
   return (
     <View style={styles.container}>
       <HomeScreenHeader />
+      <Spacer space={80} />
       {showQuarantineMessage() && (
         <View>
-          <Spacer space={80} />
           <RemainingDaysFragment />
         </View>
       )}
       <HomeScreenBody />
       <PossibleInfectionsModal />
+      <View style={{flex: 1,justifyContent:'flex-end'}}>
+        {shouldStartChat() && <ChatView onPress={startChat}/>}
+      </View>
+      
     </View>
   );
 };
@@ -101,6 +114,8 @@ const mapStateToProps = state => {
     currentQuestionIndex: state.status.currentQuestionIndex,
     questionsReady: state.status.questionsReady,
     shouldUpdateLocation: state.home.shouldUpdateLocation ?? null,
+    patientVitalStatusColor: state.home.patientVitalStatus,
+    chatRoomUrl: state.home.chatRoomUrl
   };
 };
 

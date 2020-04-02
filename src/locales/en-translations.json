@@ -2,7 +2,7 @@
   "common": {
     "ok": "Ok",
     "cancel": "Cancel",
-    "error": "Ops!!!"
+    "error": "Error"
   },
   "validation": {
     "civilid": "Civil id is not valid",
@@ -24,7 +24,7 @@
     "login_next": "Next",
     "enter_otp": "Enter Verification Code",
     "otp_instruction": "Verification Code has been sent to the phone number ending with",
-    "otp_placeholder": "Veridication Code"
+    "otp_placeholder": "Verification Code"
   },
   "onboarding": {
     "personalInfo": "Personal information",
@@ -111,5 +111,8 @@
     "title":"Staying at home is your national duty",
     "subtitle":"Remaining Days",
     "ratioTitle": "{{current}}/{{total}} Day"
+  },
+  "chat": {
+    "title" : "Start live chat ..."
   }
 }

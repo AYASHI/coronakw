@@ -8,6 +8,7 @@ const Screens = {
   TakeTemperature: 'TakeTemperature',
   TakeLocation: 'TakeLocationScreen',
   Questions: 'QuestionsScreen',
+  LiveChat: 'LiveChat'
 };
 
 export default Screens;

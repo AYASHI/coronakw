@@ -9,6 +9,7 @@ const images = {
   shakeHand: require('../assets/images/peopleNames.png'),
   id: require('../assets/images/id.png'),
   arrowDown: require('../assets/images/arrowDown.png'),
+  chat: require('../assets/images/chat.png'),
 };
 
 export default images;
