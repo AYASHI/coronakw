@@ -147,8 +147,8 @@ export default function homeReducer(state = initialState, action) {
       };
     }
 
-    case actionTypes.SUBMIT_ANSWERS_SUCCESS:{
-      return{
+    case actionTypes.SUBMIT_ANSWERS_SUCCESS: {
+      return {
         ...state,
         answers: {} // clear previous answers
       }

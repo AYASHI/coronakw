@@ -2,8 +2,6 @@ import React, {useEffect, Fragment, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import HomeScreenHeader from '../../components/HomeScreenHeader';
 import HomeScreenBody from '../../components/HomeScreenBody';
-import HealthSurveyModal from '../../components/HealthSurveyModal';
-import TemperatureModal from '../../components/Temperature/TemperatureModal';
 import PossibleInfectionsModal from '../../components/PossibleInfectionsModal';
 import {connect} from 'react-redux';
 import {RemainingDaysSection} from './remainingDays';
@@ -23,27 +21,34 @@ const HomeScreen = ({
   quarantine,
   questions,
   questionsReady,
-  answerQuestion,
   navigation,
   fetchStatusCategories,
   patientVitalStatusColor,
-  chatRoomUrl
-
+  chatRoomUrl,
+  locationUpdated
 }) => {
   const {t} = useTranslation();
   useEffect(() => {
     if (shouldUpdateLocation) {
       navigation.navigate(Screens.TakeLocation);
+    } else if (!isnull(shouldUpdateLocation)){
+      fetchStatusCategories();
+      fetchRemainingDays()
     }
-    fetchStatusCategories();
-    fetchRemainingDays();
-  }, []);
+  }, [shouldUpdateLocation]);
 
-  const [load, _] = useState(true);
+
   useEffect(() => {
     checkLocation();
-  }, [load]);
+  }, []);
 
+  useEffect(() => {
+    // called after user update their location
+    if (locationUpdated) {
+      fetchStatusCategories();
+      fetchRemainingDays()
+    }
+  }, [locationUpdated])
   useEffect(() => {
     if (questionsReady) {
       navigation.navigate(Screens.Questions, questions);
@@ -103,8 +108,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   RemainingDaysSection: {
-    margin: 20
-  }
+    margin: 20,
+  },
 });
 
 const mapStateToProps = state => {
@@ -115,7 +120,8 @@ const mapStateToProps = state => {
     questionsReady: state.status.questionsReady,
     shouldUpdateLocation: state.home.shouldUpdateLocation ?? null,
     patientVitalStatusColor: state.home.patientVitalStatus,
-    chatRoomUrl: state.home.chatRoomUrl
+    chatRoomUrl: state.home.chatRoomUrl,
+    locationUpdated: state.boarding.locationSent ?? null,
   };
 };
 

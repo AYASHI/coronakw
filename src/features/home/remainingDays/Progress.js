@@ -31,7 +31,7 @@ export default (Progress = props => {
   };
 
   getRatio = () => {
-    const { maxVal, currVal} = props;
+    const {maxVal, currVal} = props;
 
     return t('remainingDays.ratioTitle', {
       current: currVal.toLocaleString(i18next.language),

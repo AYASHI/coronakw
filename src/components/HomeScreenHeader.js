@@ -12,10 +12,13 @@ import * as statusActions from '../features/home/healthStatus/actions';
 const HomeScreenHeader = props => {
   const {t} = useTranslation();
 
-  useEffect(() => {
-  }, [props.patientVitalStatusColor]);
-  
-  let containerColor = {backgroundColor: props.patientVitalStatusColor ? props.patientVitalStatusColor.toLowerCase() : 'green'}
+  useEffect(() => {}, [props.patientVitalStatusColor]);
+
+  let containerColor = {
+    backgroundColor: props.patientVitalStatusColor
+      ? props.patientVitalStatusColor.toLowerCase()
+      : 'green',
+  };
 
   return (
     <Fragment>
@@ -60,7 +63,7 @@ const mapStateToProps = state => {
     healthState: state.home.healthState,
     isSick: state.home.isSick,
     statusCategories: state.status.statusCategories,
-    patientVitalStatusColor: state.home.patientVitalStatusColor
+    patientVitalStatusColor: state.home.patientVitalStatusColor,
   };
 };
 

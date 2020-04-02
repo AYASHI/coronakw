@@ -17,8 +17,10 @@ import FlashMessage from 'react-native-flash-message';
 console.disableYellowBox = true;
 const App = () => {
   useEffect(() => {
-    Instabug.startWithToken('d9efbfc581d51faaf24bc8c84f205787', [Instabug.invocationEvent.shake]);
-  }, [])
+    Instabug.startWithToken('d9efbfc581d51faaf24bc8c84f205787', [
+      Instabug.invocationEvent.shake,
+    ]);
+  }, []);
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
