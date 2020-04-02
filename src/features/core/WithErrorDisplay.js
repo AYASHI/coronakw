@@ -9,7 +9,7 @@ const withErrorDisplay = Comp => props => {
   useEffect(() => {
     if (props.isError && !props.isBackgroundCheck) {
       Alert.alert(
-        'Ops!!',
+        'Error',
         props.errorMessage,
         [
           {
