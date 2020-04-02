@@ -149,7 +149,7 @@ export default function homeReducer(state = initialState, action) {
     case actionTypes.SUBMIT_ANSWERS_SUCCESS:{
       return{
         ...state,
-        answer: {}
+        answers: {}
       }
     }
 
