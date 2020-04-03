@@ -7,6 +7,7 @@ import * as actions from './actions';
 import reactotron from 'reactotron-react-native';
 import * as NavigationService from '../../../navigators/NavigationService';
 import {showMessage} from 'react-native-flash-message';
+import Screens from '../../../navigators/Screens';
 function* fetchStatusCategoriesSaga() {
   // Get token from redux
   const token = yield select(state => state.user.token);
@@ -35,6 +36,7 @@ function* fetchQuestionsSaga({payload}) {
   if (data) {
     yield put({type: actionTypes.REQUEST_SUCCESS, value: data.message});
     yield put(actions.fetchQuestionsSuccess(data));
+    NavigationService.navigate(Screens.Questions, data.questions);
   } else {
     yield put(actions.fetchQuestionsFailed());
   }
