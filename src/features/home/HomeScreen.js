@@ -13,7 +13,7 @@ import {isnull} from '../../utils/validation';
 import {bindActionCreators} from 'redux';
 import Screens from '../../navigators/Screens';
 import ChatView from '../../components/ChatView';
-
+import * as NavigationService from '../../navigators/NavigationService';
 const HomeScreen = ({
   shouldUpdateLocation,
   checkLocation,
@@ -27,15 +27,14 @@ const HomeScreen = ({
   chatRoomUrl,
   locationUpdated,
   getLocationSent,
-  isQuarantine
+  isQuarantine,
 }) => {
   const {t} = useTranslation();
 
   // 1 get user current status
   useEffect(() => {
-    checkLocation()
+    checkLocation();
   }, []);
-
 
   useEffect(() => {
     // 2 if he is home quarantine and need to set location
@@ -45,10 +44,10 @@ const HomeScreen = ({
   }, [shouldUpdateLocation]);
 
   useEffect(() => {
-    if(getLocationSent){
+    if (getLocationSent) {
       fetchStatusCategories();
-      // Getting remaining days only if the user isQuarantine 
-      if(isQuarantine)  fetchRemainingDays();
+      // Getting remaining days only if the user isQuarantine
+      if (isQuarantine) fetchRemainingDays();
     }
   }, [getLocationSent]);
 
@@ -87,11 +86,11 @@ const HomeScreen = ({
     );
   };
   const startChat = () => {
-    navigation.navigate(Screens.LiveChat, chatRoomUrl)
-  }
+    NavigationService.navigate(Screens.LiveChat, chatRoomUrl);
+  };
   const shouldStartChat = () => {
-    return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl)
-  }
+    return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl);
+  };
   return (
     <View style={styles.container}>
       <HomeScreenHeader />
@@ -103,10 +102,9 @@ const HomeScreen = ({
       )}
       <HomeScreenBody />
       <PossibleInfectionsModal />
-      <View style={{flex: 1,justifyContent:'flex-end'}}>
-        {shouldStartChat() && <ChatView onPress={startChat}/>}
+      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+        {shouldStartChat() && <ChatView onPress={startChat} />}
       </View>
-      
     </View>
   );
 };
@@ -133,8 +131,8 @@ const mapStateToProps = state => {
     patientVitalStatusColor: state.home.patientVitalStatus,
     chatRoomUrl: state.home.chatRoomUrl,
     locationUpdated: state.boarding.locationSent ?? null,
-    getLocationSent: state.home.getLocationSent, // this value become true after getLocation api called 
-    isQuarantine: state.home.isQuarantine
+    getLocationSent: state.home.getLocationSent, // this value become true after getLocation api called
+    isQuarantine: state.home.isQuarantine,
   };
 };
 
