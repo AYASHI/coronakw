@@ -1,5 +1,5 @@
 import React, {useEffect, Fragment, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import HomeScreenHeader from '../../components/HomeScreenHeader';
 import HomeScreenBody from '../../components/HomeScreenBody';
 import PossibleInfectionsModal from '../../components/PossibleInfectionsModal';
@@ -13,13 +13,13 @@ import {isnull} from '../../utils/validation';
 import {bindActionCreators} from 'redux';
 import Screens from '../../navigators/Screens';
 import ChatView from '../../components/ChatView';
+import ActionCreators from '../../store/action';
 
 const HomeScreen = ({
   shouldUpdateLocation,
   checkLocation,
   fetchRemainingDays,
   quarantine,
-  questions,
   questionsReady,
   navigation,
   fetchStatusCategories,
@@ -27,15 +27,37 @@ const HomeScreen = ({
   chatRoomUrl,
   locationUpdated,
   getLocationSent,
-  isQuarantine
+  isQuarantine,
+  isLocationGranted,
+  getDeviceLocation
 }) => {
   const {t} = useTranslation();
 
   // 1 get user current status
   useEffect(() => {
     checkLocation()
+    getDeviceLocation();
   }, []);
 
+  useEffect(() => {
+    if (!isnull(isLocationGranted) && !isLocationGranted) {
+      console.log('lets show an error about location');
+      Alert.alert(
+        t('common.error'),
+        t('common.cantFetchLocation'),
+        [
+          {
+            text: t('common.ok'),
+            onPress: () => {
+              
+            },
+            style: t('common.cancel'),
+          },
+        ],
+        {cancelable: false},
+      );    
+    }
+  }, [isLocationGranted])
 
   useEffect(() => {
     // 2 if he is home quarantine and need to set location
@@ -144,6 +166,7 @@ const mapDispatchToProps = dispatch => {
       fetchStatusCategories: statusActions.fetchStatusCategories,
       fetchRemainingDays: ActionsCreators.fetchRemainingDays,
       checkLocation: ActionsCreators.checkLocation,
+      getDeviceLocation: ActionCreators.getDeviceLocation
     },
     dispatch,
   );

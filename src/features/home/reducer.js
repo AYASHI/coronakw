@@ -135,8 +135,30 @@ export default function homeReducer(state = initialState, action) {
       };
     }
 
+    case actionTypes.LATEST_LOCATION_SENT: {
+      return {
+        ...state,
+        latestLocation: action.value,
+      };
+    }
+
+    case actionTypes.LOCATION_PERMISSION_REQUESTED: {
+      return {
+        ...state,
+        isLocationGranted: action.value,
+      };
+    }
+
     case actionTypes.GET_LOCATION_SENT: {
-      const { data: {isQuarantine, isLocationFilled, lastVitalStatusCategoryId, patientVitalStatus, chatRoomUrl}} = action.payload;
+      const {
+        data: {
+          isQuarantine,
+          isLocationFilled,
+          lastVitalStatusCategoryId,
+          patientVitalStatus,
+          chatRoomUrl,
+        },
+      } = action.payload;
       return {
         ...state,
         isQuarantine: isQuarantine,
@@ -151,14 +173,14 @@ export default function homeReducer(state = initialState, action) {
     case actionTypes.SUBMIT_ANSWERS_SUCCESS: {
       return {
         ...state,
-        answers: {} // clear previous answers
-      }
+        answers: {}, // clear previous answers
+      };
     }
     case actionTypes.ANSWER_QUESTION: {
       return {
         ...state,
-        answers: {} // clear previous answers
-      }
+        answers: {}, // clear previous answers
+      };
     }
 
     /////
