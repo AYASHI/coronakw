@@ -66,9 +66,10 @@ export function submitAnswers(payload) {
   };
 }
 
-export function submitAnswersSuccess() {
+export function submitAnswersSuccess(data) {
   return {
     type: actionTypes.SUBMIT_ANSWERS_SUCCESS,
+    payload: data,
   };
 }
 

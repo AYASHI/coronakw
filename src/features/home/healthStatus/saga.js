@@ -52,7 +52,7 @@ function* submitAnswersSaga({payload}) {
     .then(response => response);
   if (data) {
     yield put({type: actionTypes.REQUEST_SUCCESS, value: data.message});
-    yield put(actions.submitAnswersSuccess());
+    yield put(actions.submitAnswersSuccess(data.data));
     NavigationService.goBack();
     showMessage({message: data.message, type: 'success'});
   } else {
