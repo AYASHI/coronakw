@@ -46,6 +46,7 @@ const AppNavigator = () => {
         <Stack.Screen name={Screens.Language} component={LanguageScreen} />
         <Stack.Screen name={Screens.Login} component={LoginScreen}/>
         <Stack.Screen name={Screens.Home} component={HomeScreen}/>
+        <Stack.Screen name={Screens.TakeLocation} component={TakeLocationScreen} options={{gestureEnabled: false}}/>
         <Stack.Screen name={Screens.Phone} component={PhoneNumberScreen} options={{headerShown: true}}/>
         <Stack.Screen name={Screens.OTP} component={OTPScreen} options={{headerShown: true}}/>
         <Stack.Screen name={Screens.Questions} component={QuestionsScreen} options={{headerShown: true}}/>
