@@ -1,5 +1,5 @@
-import React, {useEffect, Fragment, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, {useEffect, Fragment} from 'react';
+import {View, StyleSheet, Platform, Linking} from 'react-native';
 import HomeScreenHeader from '../../components/HomeScreenHeader';
 import HomeScreenBody from '../../components/HomeScreenBody';
 import PossibleInfectionsModal from '../../components/PossibleInfectionsModal';
@@ -86,7 +86,14 @@ const HomeScreen = ({
     );
   };
   const startChat = () => {
-    NavigationService.navigate(Screens.LiveChat, chatRoomUrl);
+    if (Platform.OS === 'ios') {
+      const canOpen = Linking.canOpenURL(chatRoomUrl);
+      if (canOpen) {
+        Linking.openURL(chatRoomUrl);
+      }
+    } else {
+      NavigationService.navigate(Screens.LiveChat, chatRoomUrl);
+    }
   };
   const shouldStartChat = () => {
     return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl);
