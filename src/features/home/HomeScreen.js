@@ -20,7 +20,6 @@ const HomeScreen = ({
   checkLocation,
   fetchRemainingDays,
   quarantine,
-  questions,
   questionsReady,
   navigation,
   fetchStatusCategories,
@@ -28,34 +27,17 @@ const HomeScreen = ({
   chatRoomUrl,
   locationUpdated,
   getLocationSent,
-  isQuarantine
-  locationUpdated,
-  getDeviceLocation,
+  isQuarantine,
   isLocationGranted,
-  showError
+  getDeviceLocation
 }) => {
   const {t} = useTranslation();
 
   // 1 get user current status
   useEffect(() => {
     checkLocation()
+    getDeviceLocation();
   }, []);
-
-
-  useEffect(() => {
-    // 2 if he is home quarantine and need to set location
-    if (shouldUpdateLocation) {
-      navigation.navigate(Screens.TakeLocation);
-    }
-  }, [shouldUpdateLocation]);
-
-  useEffect(() => {
-    if(getLocationSent){
-      fetchStatusCategories();
-      // Getting remaining days only if the user isQuarantine 
-      if(isQuarantine)  fetchRemainingDays();
-    }
-  }, [getLocationSent]);
 
   useEffect(() => {
     if (!isnull(isLocationGranted) && !isLocationGranted) {
@@ -76,6 +58,21 @@ const HomeScreen = ({
       );    
     }
   }, [isLocationGranted])
+
+  useEffect(() => {
+    // 2 if he is home quarantine and need to set location
+    if (shouldUpdateLocation) {
+      navigation.navigate(Screens.TakeLocation);
+    }
+  }, [shouldUpdateLocation]);
+
+  useEffect(() => {
+    if(getLocationSent){
+      fetchStatusCategories();
+      // Getting remaining days only if the user isQuarantine 
+      if(isQuarantine)  fetchRemainingDays();
+    }
+  }, [getLocationSent]);
 
   useEffect(() => {
     // called after user update their location
@@ -112,11 +109,11 @@ const HomeScreen = ({
     );
   };
   const startChat = () => {
-    navigation.navigate(Screens.LiveChat, chatRoomUrl);
-  };
+    navigation.navigate(Screens.LiveChat, chatRoomUrl)
+  }
   const shouldStartChat = () => {
-    return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl);
-  };
+    return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl)
+  }
   return (
     <View style={styles.container}>
       <HomeScreenHeader />
@@ -128,9 +125,10 @@ const HomeScreen = ({
       )}
       <HomeScreenBody />
       <PossibleInfectionsModal />
-      <View style={{flex: 1, justifyContent: 'flex-end'}}>
-        {shouldStartChat() && <ChatView onPress={startChat} />}
+      <View style={{flex: 1,justifyContent:'flex-end'}}>
+        {shouldStartChat() && <ChatView onPress={startChat}/>}
       </View>
+      
     </View>
   );
 };
@@ -157,7 +155,8 @@ const mapStateToProps = state => {
     patientVitalStatusColor: state.home.patientVitalStatus,
     chatRoomUrl: state.home.chatRoomUrl,
     locationUpdated: state.boarding.locationSent ?? null,
-    isLocationGranted: state.home.isLocationGranted ?? null
+    getLocationSent: state.home.getLocationSent, // this value become true after getLocation api called 
+    isQuarantine: state.home.isQuarantine
   };
 };
 
@@ -167,8 +166,7 @@ const mapDispatchToProps = dispatch => {
       fetchStatusCategories: statusActions.fetchStatusCategories,
       fetchRemainingDays: ActionsCreators.fetchRemainingDays,
       checkLocation: ActionsCreators.checkLocation,
-      getDeviceLocation: ActionCreators.getDeviceLocation,
-      showError: ActionCreators.showError
+      getDeviceLocation: ActionCreators.getDeviceLocation
     },
     dispatch,
   );

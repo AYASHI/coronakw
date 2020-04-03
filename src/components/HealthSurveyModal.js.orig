@@ -116,10 +116,19 @@ const HealthSurveyModal = props => {
         )
       : 0;
 
+<<<<<<< HEAD
   var buttonMsg = t('healthSurveyModal.confirm') + ` ${numberOfSymptoms} ` + t('healthSurveyModal.symptoms') ;
   if (props.single) {
      buttonMsg = t('healthSurveyModal.confirm')
   } else if (numberOfSymptoms === 0) {
+=======
+  var buttonMsg =
+    t('healthSurveyModal.confirm') +
+    ` ${numberOfSymptoms} ` +
+    t('healthSurveyModal.symptoms');
+
+  if (numberOfSymptoms === 0) {
+>>>>>>> fetch location at home and integrate it with questions service
     buttonMsg = t('healthSurveyModal.noSymptoms');
   } else if (numberOfSymptoms === 1) {
     buttonMsg = t('healthSurveyModal.oneSymptom');
