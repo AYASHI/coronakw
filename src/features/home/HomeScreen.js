@@ -25,35 +25,44 @@ const HomeScreen = ({
   fetchStatusCategories,
   patientVitalStatusColor,
   chatRoomUrl,
-  locationUpdated
+  locationUpdated,
+  getLocationSent,
+  isQuarantine
 }) => {
   const {t} = useTranslation();
+
+  // 1 get user current status
   useEffect(() => {
+    checkLocation()
+  }, []);
+
+
+  useEffect(() => {
+    // 2 if he is home quarantine and need to set location
     if (shouldUpdateLocation) {
       navigation.navigate(Screens.TakeLocation);
-    } else if (!isnull(shouldUpdateLocation)) {
-      fetchStatusCategories();
-      // Getting remaining days only if the user isQuarantine 
-      if(quarantine && quarantine.isQuarantine)  fetchRemainingDays();
     }
   }, [shouldUpdateLocation]);
 
   useEffect(() => {
-    checkLocation();
-  }, []);
+    if(getLocationSent){
+      fetchStatusCategories();
+      // Getting remaining days only if the user isQuarantine 
+      if(isQuarantine)  fetchRemainingDays();
+    }
+  }, [getLocationSent]);
 
   useEffect(() => {
     // called after user update their location
     if (locationUpdated) {
       fetchStatusCategories();
-      // Getting remaining days only if the user isQuarantine 
-      if(quarantine && quarantine.isQuarantine) fetchRemainingDays();
+      checkLocation();
     }
   }, [locationUpdated]);
 
   useEffect(() => {
     if (questionsReady) {
-      navigation.navigate(Screens.Questions, questions);
+      //navigation.navigate(Screens.Questions, questions);
     }
   }, [questionsReady]);
 
@@ -124,6 +133,8 @@ const mapStateToProps = state => {
     patientVitalStatusColor: state.home.patientVitalStatus,
     chatRoomUrl: state.home.chatRoomUrl,
     locationUpdated: state.boarding.locationSent ?? null,
+    getLocationSent: state.home.getLocationSent, // this value become true after getLocation api called 
+    isQuarantine: state.home.isQuarantine
   };
 };
 

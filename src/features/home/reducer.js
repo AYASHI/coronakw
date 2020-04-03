@@ -143,7 +143,8 @@ export default function homeReducer(state = initialState, action) {
         shouldUpdateLocation: isQuarantine && !isLocationFilled,
         lastVitalStatusCategoryId,
         patientVitalStatusColor: patientVitalStatus.toLowerCase(),
-        chatRoomUrl: chatRoomUrl
+        chatRoomUrl: chatRoomUrl,
+        getLocationSent: true
       };
     }
 
