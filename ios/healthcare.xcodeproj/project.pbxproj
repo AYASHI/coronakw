@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* healthcareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* healthcareTests.m */; };
 		0B262F1058B544DCBBB02014 /* SFUIDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D6018D0BDAFF429D861F7775 /* SFUIDisplay-Regular.otf */; };
 		0DD9ABA9B86343BFA6454FDA /* ArabicUITextSemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A343ED61CD7B4214A07C8701 /* ArabicUITextSemiBold.otf */; };
 		0E12AE1A3FD01600223F72A9 /* libPods-healthcare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2C2BD2573FACAF1099DE6A /* libPods-healthcare.a */; };
@@ -17,7 +16,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		521302FBF5014D40AC600DE3 /* ArabicUITextLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 88DFB47BE42D490382CC024F /* ArabicUITextLight.otf */; };
 		5B5A735543E840459D618A6F /* SFUIDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5EC1BA605D9A4C3FAEBC8433 /* SFUIDisplay-Semibold.otf */; };
-		68521E99D064B442F316F4CD /* libPods-healthcareTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A15BF9D7AE350E4F44E881 /* libPods-healthcareTests.a */; };
 		837E5A6FF70144A889F9106E /* ArabicUITextMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FD853B93DFA149CB8ACD7C30 /* ArabicUITextMedium.otf */; };
 		AF5568D06F4A41EC9BB0AD64 /* ArabicUITextRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03CA3D16BBE148519DAD47BA /* ArabicUITextRegular.ttf */; };
 		B9D80D91D2464F78B33DA9D5 /* SFUIDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DEA31CCF07FA463C9B14F4DE /* SFUIDisplay-Medium.otf */; };
@@ -26,21 +24,8 @@
 		FADB87F863104F9EAE441C88 /* SFUIDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = B593E08BDECE4E33BF84A1F3 /* SFUIDisplay-Light.otf */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = healthcare;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* healthcareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = healthcareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* healthcareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = healthcareTests.m; sourceTree = "<group>"; };
 		03CA3D16BBE148519DAD47BA /* ArabicUITextRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ArabicUITextRegular.ttf; path = ../src/assets/fonts/ArabicUITextRegular.ttf; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* healthcare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = healthcare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = healthcare/AppDelegate.h; sourceTree = "<group>"; };
@@ -70,14 +55,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				68521E99D064B442F316F4CD /* libPods-healthcareTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -89,23 +66,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* healthcareTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F21AD99517003FC87E /* healthcareTests.m */,
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = healthcareTests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* healthcare */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,7 +121,6 @@
 			children = (
 				13B07FAE1A68108700A75B9A /* healthcare */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* healthcareTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				C3F2D9AFBCE76F5D89803C96 /* Pods */,
@@ -176,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* healthcare.app */,
-				00E356EE1AD99517003FC87E /* healthcareTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,25 +153,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* healthcareTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "healthcareTests" */;
-			buildPhases = (
-				A288BC44FB37404BA75BDE87 /* [CP] Check Pods Manifest.lock */,
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = healthcareTests;
-			productName = healthcareTests;
-			productReference = 00E356EE1AD99517003FC87E /* healthcareTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		13B07F861A680F5B00A75B9A /* healthcare */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "healthcare" */;
@@ -245,13 +184,8 @@
 				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 25XAYPPP8T;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 25XAYPPP8T;
+						DevelopmentTeam = 5YP97VN386;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -271,19 +205,11 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* healthcare */,
-				00E356ED1AD99517003FC87E /* healthcareTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -336,28 +262,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-healthcare/Pods-healthcare-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A288BC44FB37404BA75BDE87 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-healthcareTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E74BA6F8024367773F24EDDE /* Upload Sourcemap */ = {
@@ -422,14 +326,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00E356F31AD99517003FC87E /* healthcareTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -440,14 +336,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* healthcare */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
@@ -462,51 +350,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 994D5CBA002D3547B047816F /* Pods-healthcareTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 25XAYPPP8T;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = healthcareTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/healthcare.app/healthcare";
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD19894BE253CE51076BB2DC /* Pods-healthcareTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 5YP97VN386;
-				INFOPLIST_FILE = healthcareTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/healthcare.app/healthcare";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A8DBC5304C7A6F2D645421DC /* Pods-healthcare.debug.xcconfig */;
@@ -516,7 +359,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 25XAYPPP8T;
+				DEVELOPMENT_TEAM = 5YP97VN386;
 				INFOPLIST_FILE = healthcare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
@@ -538,7 +381,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 25XAYPPP8T;
+				DEVELOPMENT_TEAM = 5YP97VN386;
 				INFOPLIST_FILE = healthcare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
@@ -655,15 +498,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "healthcareTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "healthcare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

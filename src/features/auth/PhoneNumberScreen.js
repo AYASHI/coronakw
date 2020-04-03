@@ -39,6 +39,7 @@ const PhoneNumberScreen = ({
   const [phoneNumber, setPhoneNumber] = useState('');
 
   return (
+    <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
         <View style={styles.container}>
           <LogoFragment />
@@ -53,6 +54,7 @@ const PhoneNumberScreen = ({
           <Button text={t('auth.login_next')} onPress={submit} />
         </View>
       </AuthContainer>
+      </SafeAreaView>
   );
 };
 

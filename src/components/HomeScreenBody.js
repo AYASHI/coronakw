@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {Text, StyleSheet} from 'react-native';
 import colors from '../utils/colors';
 import fonts from '../utils/fonts';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaView, View} from 'react-native-safe-area-context';
 import layout from '../utils/layout';
 import {connect} from 'react-redux';
 import PossibleInfectionsFragment from './PossibleInfectionsFragment';
@@ -10,14 +10,13 @@ import {useTranslation} from 'react-i18next';
 import WhatToDoNext from '../features/home/WhatToDoNext';
 const HomeScreenBody = props => {
   const {t} = useTranslation();
+  const patientVitalStatusColor = props.patientVitalStatusColor ?? "green"
   return (
     <Fragment>
-      <SafeAreaView style={styles.container}>
-        <WhatToDoNext status={props.patientVitalStatusColor !== 'green' ? 3 : 1}/>
+        <WhatToDoNext status={patientVitalStatusColor.toLowerCase() !== 'green' ? 3 : 1}/>
         <Text style={styles.title}>{t('home.howCanWeHelp')}</Text>
         <PossibleInfectionsFragment />
-      </SafeAreaView>
-    </Fragment>
+     </Fragment>
   );
 };
 

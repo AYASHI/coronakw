@@ -49,8 +49,6 @@ const LoginScreen = ({
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer verticalOffset={50}>
         <View style={styles.container}>
-          <Spacer />
-          <Spacer />
           <LogoFragment />
           <TitleFragment title={t('auth.enter_civil_id')} />
           <InputFragment

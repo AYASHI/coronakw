@@ -17,6 +17,8 @@ import * as NavigationService from '../../navigators/NavigationService';
 import ActionCreators from '../../store/action';
 import {ScrollView} from 'react-native-gesture-handler';
 import layout from '../../utils/layout';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 
 const HomeScreen = ({
   shouldUpdateLocation,
@@ -122,11 +124,23 @@ const HomeScreen = ({
   const shouldStartChat = () => {
     return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl);
   };
+
+  const bottomInset = StaticSafeAreaInsets.safeAreaInsetsBottom
+  const scrollViewInset = {
+    top:0, 
+    bottom: shouldStartChat() ? 80 + bottomInset : bottomInset, 
+    left: 0, 
+    right: 0
+  }
   return (
     <View style={styles.container}>
       <HomeScreenHeader />
       <Spacer space={80} />
-      <ScrollView contentInset={{top:0, bottom: shouldStartChat() ? 60: 0, left: 0, right: 0}}>
+      <ScrollView 
+      automaticallyAdjustContentInsets= {false}
+      contentInset={scrollViewInset}
+      contentOffset= {{x: 0, y: 0}}
+      >
         {showQuarantineMessage() && <RemainingDaysFragment />}
         <HomeScreenBody />
         <PossibleInfectionsModal />
@@ -148,7 +162,6 @@ const styles = StyleSheet.create({
   RemainingDaysSection: {
     marginRight: layout.margin,
     marginLeft: layout.margin,
-    marginBottom: 0,
   },
 });
 

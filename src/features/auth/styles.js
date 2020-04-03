@@ -13,7 +13,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     margin: 16,
-    marginTop: 32,
+    marginTop: 100,
   },
   instructionText: {
     textAlign: 'left',

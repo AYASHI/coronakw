@@ -45,7 +45,7 @@ export const AuthContainer = props => {
         style={styles.keyboardAvoiding}
         behavior="position"
         enabled
-        keyboardVerticalOffset={props.verticalOffset ?? 80}>
+        keyboardVerticalOffset={props.verticalOffset ?? 50}>
         {props.children}
       </KeyboardAvoidingView>
     </ScrollView>

@@ -35,6 +35,7 @@ const OTPScreen = ({registerUser, showError}) => {
   const [otp, setOTP] = useState('');
 
   return (
+    <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
         <View style={styles.container}>
           <LogoFragment />
@@ -49,6 +50,7 @@ const OTPScreen = ({registerUser, showError}) => {
           <Button text={t('auth.login_button')} onPress={submit} />
         </View>
       </AuthContainer>
+      </SafeAreaView>
   );
 };
 
