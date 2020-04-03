@@ -1,10 +1,41 @@
 import axios from 'axios';
 import * as actionTypes from '../../store/actionTypes';
 import * as constants from '../../utils/constants';
-import {takeLatest, put, select} from 'redux-saga/effects';
+import {takeLatest, put, select, call} from 'redux-saga/effects';
 import handleApiCall from '../core/handleApiCall';
-import reactotron from 'reactotron-react-native';
 import actions from '../../store/action';
+import {getLatestLocation, requestPermission, configureLocation as configureLocationService, checkPermission} from '../../utils/Location'
+
+function* getDeviceLocation(action) {
+  
+  configureLocationService()
+
+  const isPermitted = yield checkPermission();
+  try {
+    if (isPermitted) {
+      const location = yield getLatestLocation();
+      const {latitude, longitude} = location;
+      yield put({type: actionTypes.LATEST_LOCATION_SENT, value: {latitude, longitude}});
+    } else {
+      const granted = yield requestPermission()
+      if (granted) {
+        const location = yield getLatestLocation();
+        const {latitude, longitude} = location;
+        yield put({
+          type: actionTypes.LATEST_LOCATION_SENT,
+          value: {latitude, longitude},
+        });
+      }
+      yield put({
+        type: actionTypes.LOCATION_PERMISSION_REQUESTED,
+        value: granted,
+      });
+    }
+  } catch (error) {
+    console.log('location error', error);
+  }
+}
+
 function* sendHealthStateSaga(action) {
   const data = {healthState: action.value};
 
@@ -91,6 +122,7 @@ function* watchHomeSaga() {
     sendPossibleInfectionsSaga,
   );
   yield takeLatest(actionTypes.FETCH_REMAINING_DAYS, remainingDaysSaga);
+  yield takeLatest(actionTypes.GET_DEVICE_LOCATION, getDeviceLocation);
 }
 
 export default watchHomeSaga;

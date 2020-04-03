@@ -25,7 +25,7 @@ const App = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <AppNavigator />
-        <FlashMessage position= "bottom" />
+        <FlashMessage position="bottom" />
       </PersistGate>
     </Provider>
   );

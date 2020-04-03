@@ -1,5 +1,5 @@
 import React, {useEffect, Fragment, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import HomeScreenHeader from '../../components/HomeScreenHeader';
 import HomeScreenBody from '../../components/HomeScreenBody';
 import PossibleInfectionsModal from '../../components/PossibleInfectionsModal';
@@ -13,6 +13,7 @@ import {isnull} from '../../utils/validation';
 import {bindActionCreators} from 'redux';
 import Screens from '../../navigators/Screens';
 import ChatView from '../../components/ChatView';
+import ActionCreators from '../../store/action';
 
 const HomeScreen = ({
   shouldUpdateLocation,
@@ -28,6 +29,10 @@ const HomeScreen = ({
   locationUpdated,
   getLocationSent,
   isQuarantine
+  locationUpdated,
+  getDeviceLocation,
+  isLocationGranted,
+  showError
 }) => {
   const {t} = useTranslation();
 
@@ -51,6 +56,26 @@ const HomeScreen = ({
       if(isQuarantine)  fetchRemainingDays();
     }
   }, [getLocationSent]);
+
+  useEffect(() => {
+    if (!isnull(isLocationGranted) && !isLocationGranted) {
+      console.log('lets show an error about location');
+      Alert.alert(
+        t('common.error'),
+        t('common.cantFetchLocation'),
+        [
+          {
+            text: t('common.ok'),
+            onPress: () => {
+              
+            },
+            style: t('common.cancel'),
+          },
+        ],
+        {cancelable: false},
+      );    
+    }
+  }, [isLocationGranted])
 
   useEffect(() => {
     // called after user update their location
@@ -87,11 +112,11 @@ const HomeScreen = ({
     );
   };
   const startChat = () => {
-    navigation.navigate(Screens.LiveChat, chatRoomUrl)
-  }
+    navigation.navigate(Screens.LiveChat, chatRoomUrl);
+  };
   const shouldStartChat = () => {
-    return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl)
-  }
+    return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl);
+  };
   return (
     <View style={styles.container}>
       <HomeScreenHeader />
@@ -103,10 +128,9 @@ const HomeScreen = ({
       )}
       <HomeScreenBody />
       <PossibleInfectionsModal />
-      <View style={{flex: 1,justifyContent:'flex-end'}}>
-        {shouldStartChat() && <ChatView onPress={startChat}/>}
+      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+        {shouldStartChat() && <ChatView onPress={startChat} />}
       </View>
-      
     </View>
   );
 };
@@ -133,8 +157,7 @@ const mapStateToProps = state => {
     patientVitalStatusColor: state.home.patientVitalStatus,
     chatRoomUrl: state.home.chatRoomUrl,
     locationUpdated: state.boarding.locationSent ?? null,
-    getLocationSent: state.home.getLocationSent, // this value become true after getLocation api called 
-    isQuarantine: state.home.isQuarantine
+    isLocationGranted: state.home.isLocationGranted ?? null
   };
 };
 
@@ -144,6 +167,8 @@ const mapDispatchToProps = dispatch => {
       fetchStatusCategories: statusActions.fetchStatusCategories,
       fetchRemainingDays: ActionsCreators.fetchRemainingDays,
       checkLocation: ActionsCreators.checkLocation,
+      getDeviceLocation: ActionCreators.getDeviceLocation,
+      showError: ActionCreators.showError
     },
     dispatch,
   );

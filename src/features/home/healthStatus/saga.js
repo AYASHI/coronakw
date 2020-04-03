@@ -26,8 +26,16 @@ function* fetchQuestionsSaga({payload}) {
   yield put({type: actionTypes.REQUEST_STARTED});
   // Get token from redux
   const token = yield select(state => state.user.token);
+  const location = yield select(state => state.home.latestLocation);
+
   const api = axios.create({headers: {Authorization: 'Bearer ' + token}});
-  let params = {...payload, longitude: 47.988214, latitude: 29.373214};
+  let params = {...payload};
+
+  if (location) {
+    const {latitude, longitude} = location;
+    params = {...params, latitude, longitude}
+  }
+
   const {data} = yield api
     .post(constants.BASE_URL + '/Questions/List', params)
     .then(response => response);

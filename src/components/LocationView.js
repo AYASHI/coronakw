@@ -43,16 +43,22 @@ const LocationView = props => {
     //TODO: What do we want to do here?
     if (status === PermissionsAndroid.RESULTS.DENIED) {
       console.log('Location permission denied by user.');
-      props.showError("Permission is denied to fetch location, please enable it.")
+      props.showError(
+        'Permission is denied to fetch location, please enable it.',
+      );
     } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
       console.log('Location permission revoked by user.');
-      props.showError("Permission is denied to fetch location, please enable it.")
+      props.showError(
+        'Permission is denied to fetch location, please enable it.',
+      );
     }
 
     return false;
   };
 
   const gpsButtonPressed = async () => {
+    props.getDeviceLocation();
+    return;
     const canLocate = await hasLocationPermission();
 
     if (!canLocate) {
@@ -121,6 +127,7 @@ const mapDispatchToProps = dispatch => {
       startRequest: ActionCreators.startRequest,
       setRequestAsFailed: ActionCreators.setRequestAsFailed,
       setRequestAsSuccess: ActionCreators.setRequestAsSuccess,
+      getDeviceLocation: ActionCreators.getDeviceLocation,
     },
     dispatch,
   );
