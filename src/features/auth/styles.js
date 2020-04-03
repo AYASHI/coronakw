@@ -40,6 +40,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     alignContent: 'stretch',
+    backgroundColor: 'white'
   },
   languageButton: {
     backgroundColor: '#f5f5f9',

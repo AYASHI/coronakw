@@ -13,6 +13,7 @@ const images = {
   crowd: require('../assets/images/crowd.png'),
   touchMouth: require('../assets/images/touchMouth.png'),
   washhands: require('../assets/images/washhands.png'),
+  callhospital: require('../assets/images/callhospital.png'),
 };
 
 export default images;

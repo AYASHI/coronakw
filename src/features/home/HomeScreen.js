@@ -15,6 +15,8 @@ import Screens from '../../navigators/Screens';
 import ChatView from '../../components/ChatView';
 import * as NavigationService from '../../navigators/NavigationService';
 import ActionCreators from '../../store/action';
+import {ScrollView} from 'react-native-gesture-handler';
+import layout from '../../utils/layout';
 
 const HomeScreen = ({
   shouldUpdateLocation,
@@ -124,13 +126,11 @@ const HomeScreen = ({
     <View style={styles.container}>
       <HomeScreenHeader />
       <Spacer space={80} />
-      {showQuarantineMessage() && (
-        <View>
-          <RemainingDaysFragment />
-        </View>
-      )}
-      <HomeScreenBody />
-      <PossibleInfectionsModal />
+      <ScrollView contentInset={{top:0, bottom: shouldStartChat() ? 60: 0, left: 0, right: 0}}>
+        {showQuarantineMessage() && <RemainingDaysFragment />}
+        <HomeScreenBody />
+        <PossibleInfectionsModal />
+      </ScrollView>
       <View style={{flex: 1, justifyContent: 'flex-end'}}>
         {shouldStartChat() && <ChatView onPress={startChat} />}
       </View>
@@ -146,7 +146,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   RemainingDaysSection: {
-    margin: 20,
+    marginRight: layout.margin,
+    marginLeft: layout.margin,
+    marginBottom: 0,
   },
 });
 

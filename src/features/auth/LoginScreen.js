@@ -10,7 +10,6 @@ import {
   AuthContainer,
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
-import Screens from '../../navigators/Screens';
 import Button from '../../components/Button';
 import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
@@ -19,14 +18,11 @@ import {
   serialNumberValidation,
   civilidValidation,
   validateAll,
-  isnull,
 } from '../../utils/validation';
 
 const LoginScreen = ({
   validateCivilId,
-  navigation,
   setCivilInfo,
-  isCivilValid,
   showError,
 }) => {
   const {t} = useTranslation();
@@ -51,10 +47,11 @@ const LoginScreen = ({
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <AuthContainer>
+      <AuthContainer verticalOffset={50}>
         <View style={styles.container}>
-          <LogoFragment />
           <Spacer />
+          <Spacer />
+          <LogoFragment />
           <TitleFragment title={t('auth.enter_civil_id')} />
           <InputFragment
             maxDigits={12}

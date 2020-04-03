@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     padding: layout.margin,
+    paddingTop: 0,
   },
 
   title: {
