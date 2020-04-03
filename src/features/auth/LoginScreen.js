@@ -19,6 +19,7 @@ import {
   serialNumberValidation,
   civilidValidation,
   validateAll,
+  isnull,
 } from '../../utils/validation';
 
 const LoginScreen = ({
@@ -47,14 +48,6 @@ const LoginScreen = ({
 
   const [civilID, setCivilID] = useState('');
   const [serialNumber, setSerialNumber] = useState('');
-
-  useEffect(() => {
-    if (isCivilValid != null || isCivilValid != undefined) {
-      if (isCivilValid) {
-        navigation.navigate(Screens.Phone);
-      }
-    }
-  });
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -85,9 +78,7 @@ const LoginScreen = ({
 };
 
 const mapStateToProps = state => {
-  return {
-    isCivilValid: state.auth.isCivilValid ?? null,
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {

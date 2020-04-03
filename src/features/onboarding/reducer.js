@@ -7,15 +7,7 @@ const initialState = {
 
 export default function onBoardingReducer(state = initialState, action) {
   switch (action.type) {
-    case actionTypes.REGISTER_SENT: {
-      return {
-        ...state,
-        isRegisterationSuccess: action.payload ? true : false,
-        token: action.payload.token,
-        userId: action.payload.userId,
-        isHomeQuarantine: action.payload.isHomeQuarantine,
-      };
-    }
+    
     case actionTypes.TEMPERATURE_SENT: {
       return {
         ...state,
