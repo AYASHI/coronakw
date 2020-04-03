@@ -9,7 +9,8 @@
     "test": "jest",
     "lint": "npx eslint . --fix",
     "format": "npx prettier -c '**/*.js'  --write",
-    "pods": "cd ios; pod install; cd .."
+    "pods": "cd ios; pod install; cd ..",
+    "android-release": "cd android; ./gradlew bundleRelease; cd .."
   },
   "dependencies": {
     "@react-native-community/geolocation": "^2.0.2",
