@@ -63,8 +63,7 @@ const PhoneNumberScreen = ({
 };
 
 const mapStateToProps = state => {
-  return {
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {

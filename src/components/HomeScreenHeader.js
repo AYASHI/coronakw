@@ -24,7 +24,9 @@ const HomeScreenHeader = props => {
     <Fragment>
       <SafeAreaView style={[styles.saveArea, containerColor]} />
       <View style={[styles.container, containerColor]}>
-        <Text style={styles.lastUpdateText}>{t('home.lastUpdateText') + ' ' + props.patientVitalStatusDate}</Text>
+        <Text style={styles.lastUpdateText}>
+          {t('home.lastUpdateText') + ' ' + props.patientVitalStatusDate}
+        </Text>
         <Text style={styles.howDoYouFeel}>{t('home.howDoYouFeel')}</Text>
         <StatusSelectionView categories={props.statusCategories} />
       </View>
@@ -64,7 +66,7 @@ const mapStateToProps = state => {
     isSick: state.home.isSick,
     statusCategories: state.status.statusCategories,
     patientVitalStatusColor: state.home.patientVitalStatusColor,
-    patientVitalStatusDate: state.home.patientVitalStatusDate
+    patientVitalStatusDate: state.home.patientVitalStatusDate,
   };
 };
 

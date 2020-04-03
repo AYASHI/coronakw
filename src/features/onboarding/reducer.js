@@ -7,7 +7,6 @@ const initialState = {
 
 export default function onBoardingReducer(state = initialState, action) {
   switch (action.type) {
-    
     case actionTypes.TEMPERATURE_SENT: {
       return {
         ...state,

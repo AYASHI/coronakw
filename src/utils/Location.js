@@ -22,25 +22,29 @@ export const configureLocation = () => {
   });
 };
 
-export const getLatestLocation = () => RNLocation.getLatestLocation({timeout: 10000})
-export const requestPermission = () => RNLocation.requestPermission({
-  ios: 'whenInUse',
-  android: {
-    detail: 'coarse',
-  },
-});
-export const checkPermission = () => RNLocation.checkPermission({
-  ios: 'whenInUse', // or 'always'
-  android: {
-    detail: 'coarse' // or 'fine'
-  }
-});
+export const getLatestLocation = () =>
+  RNLocation.getLatestLocation({timeout: 10000});
+export const requestPermission = () =>
+  RNLocation.requestPermission({
+    ios: 'whenInUse',
+    android: {
+      detail: 'coarse',
+    },
+  });
+export const checkPermission = () =>
+  RNLocation.checkPermission({
+    ios: 'whenInUse', // or 'always'
+    android: {
+      detail: 'coarse', // or 'fine'
+    },
+  });
 
 let locationSubscription = null;
 const subscribeToLocationUpdates = () => dispatch => {
-  configureLocation()
+  configureLocation();
 
-  requestPermission().then(granted => {
+  requestPermission()
+    .then(granted => {
       if (granted) {
         locationSubscription = RNLocation.subscribeToLocationUpdates(
           locations => {
@@ -51,18 +55,18 @@ const subscribeToLocationUpdates = () => dispatch => {
               dispatch({
                 type: actionTypes.LATEST_LOCATION_SENT,
                 value: {latitude, longitude},
-              })
+              });
             }
           },
         );
       } else {
-
       }
       dispatch({
         type: actionTypes.LOCATION_PERMISSION_REQUESTED,
         value: granted,
-      })
-    }).then((error) => {
-      console.log('location error', error);
+      });
     })
-}
+    .then(error => {
+      console.log('location error', error);
+    });
+};

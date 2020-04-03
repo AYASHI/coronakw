@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import {
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import React, {useEffect} from 'react';
+import {TouchableOpacity, Image, StyleSheet, Text} from 'react-native';
 import images from '../utils/images';
 import {useTranslation} from 'react-i18next';
 import ActionCreators from '../store/action';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { isnull } from '../utils/validation';
+import {isnull} from '../utils/validation';
 
-const LocationView = ({isLocationGranted, getDeviceLocation, color, showError}) => {
+const LocationView = ({
+  isLocationGranted,
+  getDeviceLocation,
+  color,
+  showError,
+}) => {
   const {t} = useTranslation();
-  
+
   const gpsButtonPressed = async () => {
     getDeviceLocation();
   };
@@ -22,10 +22,9 @@ const LocationView = ({isLocationGranted, getDeviceLocation, color, showError}) 
   useEffect(() => {
     if (!isnull(isLocationGranted) && !isLocationGranted) {
       console.log('lets show an error about location');
-      showError(t('common.cantFetchLocation'))  
+      showError(t('common.cantFetchLocation'));
     }
-  }, [isLocationGranted])
-
+  }, [isLocationGranted]);
 
   const backgroundColor = color || 'white';
   return (
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    isLocationGranted: state.home.isLocationGranted ?? null
+    isLocationGranted: state.home.isLocationGranted ?? null,
   };
 };
 

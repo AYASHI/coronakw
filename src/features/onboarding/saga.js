@@ -3,7 +3,7 @@ import * as actionTypes from '../../store/actionTypes';
 import * as constants from '../../utils/constants';
 import {takeLatest, takeEvery, put} from 'redux-saga/effects';
 import handleApiCall from '../core/handleApiCall';
- 
+
 function* fetchAreas() {
   const json = axios
     .get(constants.BASE_URL + '/areas')

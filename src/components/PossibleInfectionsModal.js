@@ -41,7 +41,6 @@ const PossibleInfectionsModal = props => {
   }
 
   const pressedButton = () => {
-
     if (isnull(name) && isnull(phone)) {
       closeModal();
       return;
@@ -112,7 +111,6 @@ const mapStateToProps = state => {
     showPossibleInfections: state.home.showPossibleInfections,
   };
 };
-
 
 const styles = StyleSheet.create({
   header: {
