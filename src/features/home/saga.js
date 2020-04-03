@@ -5,6 +5,7 @@ import {takeLatest, put, select, call} from 'redux-saga/effects';
 import handleApiCall from '../core/handleApiCall';
 import actions from '../../store/action';
 import {getLatestLocation, requestPermission, configureLocation as configureLocationService, checkPermission} from '../../utils/Location'
+import { showMessage } from 'react-native-flash-message';
 
 function* getDeviceLocation(action) {
   
@@ -76,6 +77,9 @@ function* sendPossibleInfectionsSaga(action) {
     .then(response => response);
 
   yield handleApiCall(json, json => {
+    if (json.data.isSuccess) {
+      showMessage({message: json.data.message, type: 'success'});
+    }
     return {type: actionTypes.POSSIBLE_INFECTIONS_SENT};
   });
 }
