@@ -117,8 +117,9 @@ const HealthSurveyModal = props => {
       : 0;
 
   var buttonMsg = t('healthSurveyModal.confirm') + ` ${numberOfSymptoms} ` + t('healthSurveyModal.symptoms') ;
-
-  if (numberOfSymptoms === 0) {
+  if (props.single) {
+     buttonMsg = t('healthSurveyModal.confirm')
+  } else if (numberOfSymptoms === 0) {
     buttonMsg = t('healthSurveyModal.noSymptoms');
   } else if (numberOfSymptoms === 1) {
     buttonMsg = t('healthSurveyModal.oneSymptom');
