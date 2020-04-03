@@ -157,6 +157,7 @@ export default function homeReducer(state = initialState, action) {
           lastVitalStatusCategoryId,
           patientVitalStatus,
           chatRoomUrl,
+          patientVitalStatusDate,
         },
       } = action.payload;
       return {
@@ -166,7 +167,21 @@ export default function homeReducer(state = initialState, action) {
         lastVitalStatusCategoryId,
         patientVitalStatusColor: patientVitalStatus.toLowerCase(),
         chatRoomUrl: chatRoomUrl,
-        getLocationSent: true
+        getLocationSent: true,
+        patientVitalStatusDate: patientVitalStatusDate,
+      };
+    }
+    case actionTypes.SUBMIT_ANSWERS_SUCCESS: {
+      const {
+        patientVitalStatus,
+        chatRoomUrl,
+        patientVitalStatusDate,
+      } = action.payload;
+      return {
+        ...state,
+        patientVitalStatusColor: patientVitalStatus,
+        chatRoomUrl: chatRoomUrl,
+        patientVitalStatusDate: patientVitalStatusDate,
       };
     }
 

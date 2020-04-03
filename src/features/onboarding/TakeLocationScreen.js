@@ -23,7 +23,12 @@ import ActionCreators from '../../store/action';
 import {connect} from 'react-redux';
 import {isnull} from '../../utils/validation';
 
-const TakeLocationScreen = ({navigation, sendLocation, isSuccess, latestLocation}) => {
+const TakeLocationScreen = ({
+  navigation,
+  sendLocation,
+  isSuccess,
+  latestLocation,
+}) => {
   const {t} = useTranslation();
 
   const [location, setLocation] = useState('');
@@ -84,12 +89,12 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess, latestLocation
       </View>
     );
   };
-  
+
   useEffect(() => {
-      if (!isnull(latestLocation)) {
-        setLocation({...latestLocation})
-      }
-  }, [latestLocation])
+    if (!isnull(latestLocation)) {
+      setLocation({...latestLocation});
+    }
+  }, [latestLocation]);
 
   return (
     <SafeAreaView style={styles.saveArea}>
@@ -100,9 +105,7 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess, latestLocation
           enabled
           keyboardVerticalOffset={100}>
           <Header />
-          <LocationView
-            color={'#f5f5f9'}
-          />
+          <LocationView color={'#f5f5f9'} />
 
           <DropDown
             placeholder={cityTitle ?? t('placeholder.city')}
@@ -219,7 +222,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     isSuccess: state.boarding.locationSent ?? null,
-    latestLocation: state.home.latestLocation ?? null
+    latestLocation: state.home.latestLocation ?? null,
   };
 };
 

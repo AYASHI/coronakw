@@ -1,5 +1,5 @@
-import React, {useEffect, Fragment, useState} from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
+import React, {useEffect, Fragment} from 'react';
+import {View, StyleSheet, Platform, Linking} from 'react-native';
 import HomeScreenHeader from '../../components/HomeScreenHeader';
 import HomeScreenBody from '../../components/HomeScreenBody';
 import PossibleInfectionsModal from '../../components/PossibleInfectionsModal';
@@ -13,6 +13,7 @@ import {isnull} from '../../utils/validation';
 import {bindActionCreators} from 'redux';
 import Screens from '../../navigators/Screens';
 import ChatView from '../../components/ChatView';
+import * as NavigationService from '../../navigators/NavigationService';
 import ActionCreators from '../../store/action';
 
 const HomeScreen = ({
@@ -29,13 +30,13 @@ const HomeScreen = ({
   getLocationSent,
   isQuarantine,
   isLocationGranted,
-  getDeviceLocation
+  getDeviceLocation,
 }) => {
   const {t} = useTranslation();
 
   // 1 get user current status
   useEffect(() => {
-    checkLocation()
+    checkLocation();
     getDeviceLocation();
   }, []);
 
@@ -48,16 +49,14 @@ const HomeScreen = ({
         [
           {
             text: t('common.ok'),
-            onPress: () => {
-              
-            },
+            onPress: () => {},
             style: t('common.cancel'),
           },
         ],
         {cancelable: false},
-      );    
+      );
     }
-  }, [isLocationGranted])
+  }, [isLocationGranted]);
 
   useEffect(() => {
     // 2 if he is home quarantine and need to set location
@@ -67,10 +66,10 @@ const HomeScreen = ({
   }, [shouldUpdateLocation]);
 
   useEffect(() => {
-    if(getLocationSent){
+    if (getLocationSent) {
       fetchStatusCategories();
-      // Getting remaining days only if the user isQuarantine 
-      if(isQuarantine)  fetchRemainingDays();
+      // Getting remaining days only if the user isQuarantine
+      if (isQuarantine) fetchRemainingDays();
     }
   }, [getLocationSent]);
 
@@ -109,11 +108,18 @@ const HomeScreen = ({
     );
   };
   const startChat = () => {
-    navigation.navigate(Screens.LiveChat, chatRoomUrl)
-  }
+    if (Platform.OS === 'ios') {
+      const canOpen = Linking.canOpenURL(chatRoomUrl);
+      if (canOpen) {
+        Linking.openURL(chatRoomUrl);
+      }
+    } else {
+      NavigationService.navigate(Screens.LiveChat, chatRoomUrl);
+    }
+  };
   const shouldStartChat = () => {
-    return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl)
-  }
+    return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl);
+  };
   return (
     <View style={styles.container}>
       <HomeScreenHeader />
@@ -125,10 +131,9 @@ const HomeScreen = ({
       )}
       <HomeScreenBody />
       <PossibleInfectionsModal />
-      <View style={{flex: 1,justifyContent:'flex-end'}}>
-        {shouldStartChat() && <ChatView onPress={startChat}/>}
+      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+        {shouldStartChat() && <ChatView onPress={startChat} />}
       </View>
-      
     </View>
   );
 };
@@ -155,8 +160,8 @@ const mapStateToProps = state => {
     patientVitalStatusColor: state.home.patientVitalStatus,
     chatRoomUrl: state.home.chatRoomUrl,
     locationUpdated: state.boarding.locationSent ?? null,
-    getLocationSent: state.home.getLocationSent, // this value become true after getLocation api called 
-    isQuarantine: state.home.isQuarantine
+    getLocationSent: state.home.getLocationSent, // this value become true after getLocation api called
+    isQuarantine: state.home.isQuarantine,
   };
 };
 
@@ -166,7 +171,7 @@ const mapDispatchToProps = dispatch => {
       fetchStatusCategories: statusActions.fetchStatusCategories,
       fetchRemainingDays: ActionsCreators.fetchRemainingDays,
       checkLocation: ActionsCreators.checkLocation,
-      getDeviceLocation: ActionCreators.getDeviceLocation
+      getDeviceLocation: ActionCreators.getDeviceLocation,
     },
     dispatch,
   );

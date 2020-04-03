@@ -42,21 +42,42 @@ const AppNavigator = () => {
       ref={nav => {
         NavigationService.setNavigator(nav);
       }}>
-      <Stack.Navigator  initialRouteName={screen} screenOptions ={{headerTitle: ' ', headerTintColor: colors.gray, headerShown: false}}>
+      <Stack.Navigator
+        initialRouteName={screen}
+        screenOptions={{
+          headerTitle: ' ',
+          headerTintColor: colors.gray,
+          headerShown: false,
+        }}>
         <Stack.Screen name={Screens.Language} component={LanguageScreen} />
         <Stack.Screen name={Screens.Login} component={LoginScreen} />
-    
+
         <Stack.Screen
           name={Screens.TakeLocation}
           component={TakeLocationScreen}
           options={{gestureEnabled: false}}
         />
-
         <Stack.Screen name={Screens.Home} component={HomeScreen} />
-        <Stack.Screen name={Screens.Phone} component={PhoneNumberScreen} options={{headerShown: true}}/>
-        <Stack.Screen name={Screens.OTP} component={OTPScreen} options={{headerShown: true}}/>
-        <Stack.Screen name={Screens.Questions} component={QuestionsScreen} options={{headerShown: true}}/>
-        <Stack.Screen name={Screens.LiveChat} component={WebViewScreen} options={{headerShown: true}}/>
+        <Stack.Screen
+          name={Screens.Phone}
+          component={PhoneNumberScreen}
+          options={{headerShown: true}}
+        />
+        <Stack.Screen
+          name={Screens.OTP}
+          component={OTPScreen}
+          options={{headerShown: true}}
+        />
+        <Stack.Screen
+          name={Screens.Questions}
+          component={QuestionsScreen}
+          options={{headerShown: true}}
+        />
+        <Stack.Screen
+          name={Screens.LiveChat}
+          component={WebViewScreen}
+          options={{headerShown: true}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

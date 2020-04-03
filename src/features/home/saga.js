@@ -4,21 +4,28 @@ import * as constants from '../../utils/constants';
 import {takeLatest, put, select, call} from 'redux-saga/effects';
 import handleApiCall from '../core/handleApiCall';
 import actions from '../../store/action';
-import {getLatestLocation, requestPermission, configureLocation as configureLocationService, checkPermission} from '../../utils/Location'
-import { showMessage } from 'react-native-flash-message';
+import {
+  getLatestLocation,
+  requestPermission,
+  configureLocation as configureLocationService,
+  checkPermission,
+} from '../../utils/Location';
+import {showMessage} from 'react-native-flash-message';
 
 function* getDeviceLocation(action) {
-  
-  configureLocationService()
+  configureLocationService();
 
   const isPermitted = yield checkPermission();
   try {
     if (isPermitted) {
       const location = yield getLatestLocation();
       const {latitude, longitude} = location;
-      yield put({type: actionTypes.LATEST_LOCATION_SENT, value: {latitude, longitude}});
+      yield put({
+        type: actionTypes.LATEST_LOCATION_SENT,
+        value: {latitude, longitude},
+      });
     } else {
-      const granted = yield requestPermission()
+      const granted = yield requestPermission();
       if (granted) {
         const location = yield getLatestLocation();
         const {latitude, longitude} = location;

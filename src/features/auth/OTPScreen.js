@@ -34,7 +34,7 @@ const OTPScreen = ({navigation, isValid, registerUser, showError}) => {
   };
 
   const [otp, setOTP] = useState('');
-  
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -56,8 +56,7 @@ const OTPScreen = ({navigation, isValid, registerUser, showError}) => {
 };
 
 const mapStateToProps = state => {
-  return {
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {

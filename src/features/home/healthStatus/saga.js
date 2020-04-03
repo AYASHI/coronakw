@@ -27,13 +27,12 @@ function* fetchQuestionsSaga({payload}) {
   // Get token from redux
   const token = yield select(state => state.user.token);
   const location = yield select(state => state.home.latestLocation);
-
   const api = axios.create({headers: {Authorization: 'Bearer ' + token}});
   let params = {...payload};
 
   if (location) {
     const {latitude, longitude} = location;
-    params = {...params, latitude, longitude}
+    params = {...params, latitude, longitude};
   }
 
   const {data} = yield api
@@ -59,7 +58,7 @@ function* submitAnswersSaga({payload}) {
     .then(response => response);
   if (data) {
     yield put({type: actionTypes.REQUEST_SUCCESS, value: data.message});
-    yield put(actions.submitAnswersSuccess());
+    yield put(actions.submitAnswersSuccess(data.data));
     NavigationService.goBack();
     showMessage({message: data.message, type: 'success'});
   } else {

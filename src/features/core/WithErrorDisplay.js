@@ -4,16 +4,13 @@ import React, {useEffect} from 'react';
 import * as actionTypes from '../../store/actionTypes';
 import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 const withErrorDisplay = Comp => props => {
-
-  const {t} = useTranslation()
+  const {t} = useTranslation();
 
   useEffect(() => {
-
     if (props.isError && !props.isBackgroundCheck) {
-
       Alert.alert(
         t('common.error'),
         props.errorMessage,

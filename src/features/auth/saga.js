@@ -13,9 +13,8 @@ function* validateCivilIdSaga(action) {
     .post(constants.BASE_URL + '/Users/CheckSerialCIDNumber', data)
     .then(response => response);
   yield handleApiCall(json, json => {
-
     if (json.data.isSuccess) {
-      NavigationService.navigate(Screens.Phone, {})
+      NavigationService.navigate(Screens.Phone, {});
     }
 
     return {
@@ -36,9 +35,8 @@ function* validatePhoneNumberSaga(action) {
     .post(constants.BASE_URL + '/Users/SendOTP', data)
     .then(response => response);
   yield handleApiCall(json, json => {
-
     if (json.data.isSuccess) {
-      NavigationService.navigate(Screens.OTP, {})
+      NavigationService.navigate(Screens.OTP, {});
     }
 
     return {
@@ -47,7 +45,6 @@ function* validatePhoneNumberSaga(action) {
     };
   });
 }
-
 
 function* register(action) {
   const data = {...action.value};
@@ -58,7 +55,7 @@ function* register(action) {
 
   yield handleApiCall(json, json => {
     if (json.data.data) {
-      NavigationService.navigate(Screens.Home, {})
+      NavigationService.navigate(Screens.Home, {});
     }
     return {type: actionTypes.REGISTER_SENT, payload: json.data.data};
   });
