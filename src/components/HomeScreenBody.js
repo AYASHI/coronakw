@@ -11,7 +11,7 @@ import CurrentPositionFragment from './CurrentPositionFragment';
 import EnterTemperatureFragment from './Temperature/EnterTemperatureFragment';
 import PossibleInfectionsFragment from './PossibleInfectionsFragment';
 import {useTranslation} from 'react-i18next';
-import ChatView from './ChatView'
+import ChatView from './ChatView';
 const HomeScreenBody = props => {
   const {t, i18n} = useTranslation();
   return (

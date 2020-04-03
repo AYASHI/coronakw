@@ -136,7 +136,16 @@ export default function homeReducer(state = initialState, action) {
     }
 
     case actionTypes.GET_LOCATION_SENT: {
-      const { data: {isQuarantine, isLocationFilled, lastVitalStatusCategoryId, patientVitalStatus, chatRoomUrl}} = action.payload;
+      const {
+        data: {
+          isQuarantine,
+          isLocationFilled,
+          lastVitalStatusCategoryId,
+          patientVitalStatus,
+          chatRoomUrl,
+          patientVitalStatusDate,
+        },
+      } = action.payload;
       return {
         ...state,
         isQuarantine: isQuarantine,
@@ -144,21 +153,35 @@ export default function homeReducer(state = initialState, action) {
         lastVitalStatusCategoryId,
         patientVitalStatusColor: patientVitalStatus.toLowerCase(),
         chatRoomUrl: chatRoomUrl,
-        getLocationSent: true
+        getLocationSent: true,
+        patientVitalStatusDate: patientVitalStatusDate,
+      };
+    }
+    case actionTypes.SUBMIT_ANSWERS_SUCCESS: {
+      const {
+        patientVitalStatus,
+        chatRoomUrl,
+        patientVitalStatusDate,
+      } = action.payload;
+      return {
+        ...state,
+        patientVitalStatusColor: patientVitalStatus,
+        chatRoomUrl: chatRoomUrl,
+        patientVitalStatusDate: patientVitalStatusDate,
       };
     }
 
     case actionTypes.SUBMIT_ANSWERS_SUCCESS: {
       return {
         ...state,
-        answers: {} // clear previous answers
-      }
+        answers: {}, // clear previous answers
+      };
     }
     case actionTypes.ANSWER_QUESTION: {
       return {
         ...state,
-        answers: {} // clear previous answers
-      }
+        answers: {}, // clear previous answers
+      };
     }
 
     /////
