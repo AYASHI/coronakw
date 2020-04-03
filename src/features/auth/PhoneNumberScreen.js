@@ -41,14 +41,6 @@ const PhoneNumberScreen = ({
 
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  useEffect(() => {
-    if (isValid != null || isValid != undefined) {
-      if (isValid) {
-        navigation.navigate(Screens.OTP);
-      }
-    }
-  });
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -72,7 +64,6 @@ const PhoneNumberScreen = ({
 
 const mapStateToProps = state => {
   return {
-    isValid: state.auth.isPhoneNumberValid ?? null,
   };
 };
 
