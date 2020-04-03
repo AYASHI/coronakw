@@ -10,6 +10,9 @@ const images = {
   id: require('../assets/images/id.png'),
   arrowDown: require('../assets/images/arrowDown.png'),
   chat: require('../assets/images/chat.png'),
+  crowd: require('../assets/images/crowd.png'),
+  touchMouth: require('../assets/images/touchMouth.png'),
+  washhands: require('../assets/images/washhands.png'),
 };
 
 export default images;

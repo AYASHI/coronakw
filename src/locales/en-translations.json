@@ -117,5 +117,10 @@
   },
   "chat": {
     "title" : "Start live chat ..."
+  },
+  "whatToDoNext": {
+    "stayDistanced": "Avoid direct contact with infected patients.",
+    "dontTouch": "Avoid touching your face or mouth after touching any surface in public.",
+    "whashHand": "Wash your hands regulary with soap and water."
   }
 }

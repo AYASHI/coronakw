@@ -12,13 +12,14 @@ import EnterTemperatureFragment from './Temperature/EnterTemperatureFragment';
 import PossibleInfectionsFragment from './PossibleInfectionsFragment';
 import {useTranslation} from 'react-i18next';
 import ChatView from './ChatView';
+import WhatToDoNext from '../features/home/WhatToDoNext';
 const HomeScreenBody = props => {
   const {t, i18n} = useTranslation();
   return (
     <Fragment>
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
-          {/* <CurrentPositionFragment /> */}
+          <WhatToDoNext></WhatToDoNext>
           <Text style={styles.title}>{t('home.howCanWeHelp')}</Text>
           {/* <EnterTemperatureFragment /> */}
           <PossibleInfectionsFragment />
