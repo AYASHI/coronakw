@@ -23,7 +23,7 @@ import ActionCreators from '../../store/action';
 import {connect} from 'react-redux';
 import {isnull} from '../../utils/validation';
 
-const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
+const TakeLocationScreen = ({navigation, sendLocation, isSuccess, latestLocation}) => {
   const {t} = useTranslation();
 
   const [location, setLocation] = useState('');
@@ -84,9 +84,12 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
       </View>
     );
   };
-  const onLocationSelected = location => {
-    setLocation(location);
-  };
+  
+  useEffect(() => {
+      if (!isnull(latestLocation)) {
+        setLocation({...latestLocation})
+      }
+  }, [latestLocation])
 
   return (
     <SafeAreaView style={styles.saveArea}>
@@ -98,7 +101,6 @@ const TakeLocationScreen = ({navigation, sendLocation, isSuccess}) => {
           keyboardVerticalOffset={100}>
           <Header />
           <LocationView
-            onLocationSelected={onLocationSelected}
             color={'#f5f5f9'}
           />
 
@@ -217,6 +219,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     isSuccess: state.boarding.locationSent ?? null,
+    latestLocation: state.home.latestLocation ?? null
   };
 };
 

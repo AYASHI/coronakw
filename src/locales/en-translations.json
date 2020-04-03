@@ -2,7 +2,8 @@
   "common": {
     "ok": "Ok",
     "cancel": "Cancel",
-    "error": "Error"
+    "error": "Error",
+    "cantFetchLocation": "Your location could not be fetched, Please enable location from settings."
   },
   "validation": {
     "civilid": "Civil id is not valid",

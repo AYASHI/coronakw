@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import RNLocation from 'react-native-location';
 
 const validateCivilId = (CivilId, SerialNumber) => dispatch => {
   return dispatch({
@@ -197,8 +198,15 @@ const setRequestAsSuccess = () => dispatch => {
   });
 };
 
+const getDeviceLocation = () => dispatch => {
+  dispatch({
+    type: actionTypes.GET_DEVICE_LOCATION,
+  });
+};
+
 // action creators
 const ActionCreators = {
+  getDeviceLocation,
   startRequest,
   setRequestAsFailed,
   setRequestAsSuccess,

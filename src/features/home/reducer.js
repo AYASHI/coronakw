@@ -135,6 +135,20 @@ export default function homeReducer(state = initialState, action) {
       };
     }
 
+    case actionTypes.LATEST_LOCATION_SENT: {
+      return {
+        ...state,
+        latestLocation: action.value,
+      };
+    }
+
+    case actionTypes.LOCATION_PERMISSION_REQUESTED: {
+      return {
+        ...state,
+        isLocationGranted: action.value,
+      };
+    }
+
     case actionTypes.GET_LOCATION_SENT: {
       const {
         data: {

@@ -14,12 +14,13 @@ import {bindActionCreators} from 'redux';
 import Screens from '../../navigators/Screens';
 import ChatView from '../../components/ChatView';
 import * as NavigationService from '../../navigators/NavigationService';
+import ActionCreators from '../../store/action';
+
 const HomeScreen = ({
   shouldUpdateLocation,
   checkLocation,
   fetchRemainingDays,
   quarantine,
-  questions,
   questionsReady,
   navigation,
   fetchStatusCategories,
@@ -28,13 +29,34 @@ const HomeScreen = ({
   locationUpdated,
   getLocationSent,
   isQuarantine,
+  isLocationGranted,
+  getDeviceLocation,
 }) => {
   const {t} = useTranslation();
 
   // 1 get user current status
   useEffect(() => {
     checkLocation();
+    getDeviceLocation();
   }, []);
+
+  useEffect(() => {
+    if (!isnull(isLocationGranted) && !isLocationGranted) {
+      console.log('lets show an error about location');
+      Alert.alert(
+        t('common.error'),
+        t('common.cantFetchLocation'),
+        [
+          {
+            text: t('common.ok'),
+            onPress: () => {},
+            style: t('common.cancel'),
+          },
+        ],
+        {cancelable: false},
+      );
+    }
+  }, [isLocationGranted]);
 
   useEffect(() => {
     // 2 if he is home quarantine and need to set location
@@ -149,6 +171,7 @@ const mapDispatchToProps = dispatch => {
       fetchStatusCategories: statusActions.fetchStatusCategories,
       fetchRemainingDays: ActionsCreators.fetchRemainingDays,
       checkLocation: ActionsCreators.checkLocation,
+      getDeviceLocation: ActionCreators.getDeviceLocation,
     },
     dispatch,
   );

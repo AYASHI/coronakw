@@ -4,20 +4,26 @@ import React, {useEffect} from 'react';
 import * as actionTypes from '../../store/actionTypes';
 import {bindActionCreators} from 'redux';
 import ActionCreators from '../../store/action';
+import { useTranslation } from 'react-i18next';
 
 const withErrorDisplay = Comp => props => {
+
+  const {t} = useTranslation()
+
   useEffect(() => {
+
     if (props.isError && !props.isBackgroundCheck) {
+
       Alert.alert(
-        'Error',
+        t('common.error'),
         props.errorMessage,
         [
           {
-            text: 'Ok',
+            text: t('common.ok'),
             onPress: () => {
               props.hideError();
             },
-            style: 'cancel',
+            style: t('common.cancel'),
           },
         ],
         {cancelable: false},

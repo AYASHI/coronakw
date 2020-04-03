@@ -7,6 +7,12 @@ const initialState = {
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
+    case actionTypes.REGISTER_SENT: {
+      return {
+        ...state,
+        isRegisterationSuccess: action.payload ? true : false,
+      };
+    }
     case actionTypes.PHONE_NUMBER_SEND: {
       return {
         ...state,

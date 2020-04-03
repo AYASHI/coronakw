@@ -34,15 +34,7 @@ const OTPScreen = ({navigation, isValid, registerUser, showError}) => {
   };
 
   const [otp, setOTP] = useState('');
-  useEffect(() => {
-    if (isValid != null || isValid != undefined) {
-      if (isValid) {
-        navigation.navigate(Screens.Home);
-      } else {
-        alert('code is not valid');
-      }
-    }
-  });
+  
   return (
     <SafeAreaView style={styles.safeArea}>
       <AuthContainer>
@@ -65,7 +57,6 @@ const OTPScreen = ({navigation, isValid, registerUser, showError}) => {
 
 const mapStateToProps = state => {
   return {
-    isValid: state.boarding.isRegisterationSuccess ?? null,
   };
 };
 
