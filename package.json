@@ -34,6 +34,7 @@
     "react-native-restart": "0.0.14",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.3.0",
+    "react-native-static-safe-area-insets": "^2.0.0",
     "react-native-webview": "^9.0.2",
     "react-redux": "^7.2.0",
     "reactotron-redux": "^3.1.2",

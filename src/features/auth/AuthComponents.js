@@ -40,12 +40,12 @@ export const InputFragment = ({
 
 export const AuthContainer = props => {
   return (
-    <ScrollView style={{flex: 1}}>
+    <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
       <KeyboardAvoidingView
         style={styles.keyboardAvoiding}
         behavior="position"
         enabled
-        keyboardVerticalOffset={60}>
+        keyboardVerticalOffset={props.verticalOffset ?? 50}>
         {props.children}
       </KeyboardAvoidingView>
     </ScrollView>

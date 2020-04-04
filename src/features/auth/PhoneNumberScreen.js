@@ -11,7 +11,6 @@ import {
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
 import PhoneNumberInput from '../../components/PhoneNumberInput';
-import Screens from '../../navigators/Screens';
 import Button from '../../components/Button';
 import ActionCreators from '../../store/action';
 import {bindActionCreators} from 'redux';
@@ -19,9 +18,7 @@ import {connect} from 'react-redux';
 import {phoneNumberValidation, validateAll} from '../../utils/validation';
 
 const PhoneNumberScreen = ({
-  navigation,
   validatePhoneNumber,
-  isValid,
   showError,
 }) => {
   const {t} = useTranslation();
@@ -46,7 +43,6 @@ const PhoneNumberScreen = ({
       <AuthContainer>
         <View style={styles.container}>
           <LogoFragment />
-          <Spacer />
           <TitleFragment title={t('auth.enter_phone_number')} />
           <InstructionFragment title={t('auth.phone_number_instruction')} />
           <PhoneNumberInput
@@ -58,7 +54,7 @@ const PhoneNumberScreen = ({
           <Button text={t('auth.login_next')} onPress={submit} />
         </View>
       </AuthContainer>
-    </SafeAreaView>
+      </SafeAreaView>
   );
 };
 

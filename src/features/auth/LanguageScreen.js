@@ -15,7 +15,6 @@ import {bindActionCreators} from 'redux';
 
 const LanguageScreen = () => {
   const {t, i18n} = useTranslation();
-  const language = useSelector(state => state.language.current);
   const dispatch = useDispatch();
 
   const changeLanguage = newLang => {

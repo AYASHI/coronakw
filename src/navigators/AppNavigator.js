@@ -50,7 +50,12 @@ const AppNavigator = () => {
           headerShown: false,
         }}>
         <Stack.Screen name={Screens.Language} component={LanguageScreen} />
-        <Stack.Screen name={Screens.Login} component={LoginScreen} />
+        <Stack.Screen name={Screens.Login} component={LoginScreen} options={{
+            headerShown: true, headerStyle: {
+            backgroundColor: 'transparent',
+            
+          }, headerBackTitle: null, headerTransparent: true, headerTitle: null}
+        }/>
 
         <Stack.Screen
           name={Screens.TakeLocation}
@@ -61,12 +66,21 @@ const AppNavigator = () => {
         <Stack.Screen
           name={Screens.Phone}
           component={PhoneNumberScreen}
-          options={{headerShown: true}}
+          options={{
+            headerShown: true, headerStyle: {
+            backgroundColor: 'transparent',
+            
+          }, headerBackTitle: null, headerTransparent: true, headerTitle: null}
+        }
         />
         <Stack.Screen
           name={Screens.OTP}
           component={OTPScreen}
-          options={{headerShown: true}}
+          options={{
+            headerShown: true, headerStyle: {
+            backgroundColor: 'transparent',            
+          }, headerBackTitle: null, headerTransparent: true, headerTitle: null}
+        }
         />
         <Stack.Screen
           name={Screens.Questions}

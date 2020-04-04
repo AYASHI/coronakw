@@ -12,13 +12,12 @@ import {
   AuthContainer,
 } from './AuthComponents';
 import {useTranslation} from 'react-i18next';
-import Screens from '../../navigators/Screens';
 import Button from '../../components/Button';
 import ActionCreators from '../../store/action';
 import {bindActionCreators} from 'redux';
 import {otpValidation, validateAll} from '../../utils/validation';
 
-const OTPScreen = ({navigation, isValid, registerUser, showError}) => {
+const OTPScreen = ({registerUser, showError}) => {
   const {t} = useTranslation();
 
   const submit = () => {
@@ -51,7 +50,7 @@ const OTPScreen = ({navigation, isValid, registerUser, showError}) => {
           <Button text={t('auth.login_button')} onPress={submit} />
         </View>
       </AuthContainer>
-    </SafeAreaView>
+      </SafeAreaView>
   );
 };
 
