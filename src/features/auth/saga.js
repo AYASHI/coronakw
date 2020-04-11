@@ -9,7 +9,6 @@ function* validateNationalIdSaga(action) {
   const response = yield call( APIs.validateUserNationalID, action.payload)
   if (response.isSuccess) {
     NavigationService.navigate(Screens.Phone);
-   //yield put(actions.validateNationalIDSuccess(response.isSuccess))
   }
 }
 
@@ -23,7 +22,6 @@ function* validatePhoneNumberSaga(action) {
   const response = yield call( APIs.validatePhoneNumber, payload)
   if (response.isSuccess) {
     NavigationService.navigate(Screens.OTP);
-   //yield put(actions.validatePhoneNumberSuccess(response.isSuccess))
   }
 }
 
