@@ -1,70 +1,44 @@
-import axios from 'axios';
 import * as actionTypes from '../../store/actionTypes';
-import * as constants from '../../utils/constants';
-import {takeLatest, put} from 'redux-saga/effects';
-import handleApiCall from '../core/handleApiCall';
+import {takeLatest, put, call} from 'redux-saga/effects';
 import Screens from '../../navigators/Screens';
 import * as NavigationService from '../../navigators/NavigationService';
+import APIs from '../../api/APIs';
+import actions from './actions';
 
-function* validateCivilIdSaga(action) {
-  const data = {...action.payload};
-
-  const json = axios
-    .post(constants.BASE_URL + '/Users/CheckSerialCIDNumber', data)
-    .then(response => response);
-  yield handleApiCall(json, json => {
-    if (json.data.isSuccess) {
-      NavigationService.navigate(Screens.Phone, {});
-    }
-
-    return {
-      type: actionTypes.CIVIL_ID_SENT,
-      payload: {value: json.data.isSuccess},
-    };
-  });
+function* validateNationalIdSaga(action) {
+  const response = yield call( APIs.validateUserNationalID, action.payload)
+  if (response.isSuccess) {
+    NavigationService.navigate(Screens.Phone);
+   yield put(actions.validateNationalIDSuccess(response.isSuccess))
+  }
 }
 
 function* validatePhoneNumberSaga(action) {
-  const data = {
+  const payload = {
     MobileNumber: action.payload.phone,
     CivilId: action.payload.civilID,
     SerialNumber: action.payload.serialNumber,
   };
 
-  const json = axios
-    .post(constants.BASE_URL + '/Users/SendOTP', data)
-    .then(response => response);
-  yield handleApiCall(json, json => {
-    if (json.data.isSuccess) {
-      NavigationService.navigate(Screens.OTP, {});
-    }
-
-    return {
-      type: actionTypes.PHONE_NUMBER_SENT,
-      payload: {value: json.data.isSuccess},
-    };
-  });
+  const response = yield call( APIs.validatePhoneNumber, payload)
+  if (response.isSuccess) {
+    NavigationService.navigate(Screens.OTP);
+   yield put(actions.validatePhoneNumberSuccess(response.isSuccess))
+  }
 }
 
-function* register(action) {
-  const data = {...action.value};
-
-  const json = axios
-    .post(constants.BASE_URL + '/Users/Register', data)
-    .then(response => response);
-
-  yield handleApiCall(json, json => {
-    if (json.data.data) {
-      NavigationService.navigate(Screens.Home, {});
-    }
-    return {type: actionTypes.REGISTER_SENT, payload: json.data.data};
-  });
+function* registerSaga(action) {
+  const response = yield call( APIs.registerUser, action.payload)
+  if (response.isSuccess) {
+    NavigationService.navigate(Screens.Home);
+   yield put(actions.registrationSuccess(response.data))
+  }
 }
 
 function* watchAuthSaga() {
   yield takeLatest(actionTypes.PHONE_NUMBER_SEND, validatePhoneNumberSaga);
-  yield takeLatest(actionTypes.CIVIL_ID_SEND, validateCivilIdSaga);
-  yield takeLatest(actionTypes.SEND_REGISTER, register);
+  yield takeLatest(actionTypes.CIVIL_ID_SEND, validateNationalIdSaga);
+  yield takeLatest(actionTypes.SEND_REGISTER, registerSaga);
 }
 
 export default watchAuthSaga;

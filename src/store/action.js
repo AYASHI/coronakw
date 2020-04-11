@@ -38,7 +38,7 @@ const validatePhoneNumber = phone => (dispatch, getState) => {
 const registerUser = otp => (dispatch, getState) =>
   dispatch({
     type: actionTypes.SEND_REGISTER,
-    value: {
+    payload: {
       CivilId: getState().auth.civilID,
       MobileNumber: getState().auth.phoneNumber,
       otp: otp,
