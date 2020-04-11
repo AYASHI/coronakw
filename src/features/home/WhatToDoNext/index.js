@@ -28,7 +28,6 @@ const badCaseItems = translator => [
       title: translator('whatToDoNext.callhospital'),
       image: images.callhospital,
       action: () => {
-          console.log("lets make a call")
         Linking.openURL(`tel:${151}`)
       }
     }

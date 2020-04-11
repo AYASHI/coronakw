@@ -112,14 +112,11 @@ const HomeScreen = ({
     );
   };
   const startChat = () => {
-    if (Platform.OS === 'ios') {
+   
       const canOpen = Linking.canOpenURL(chatRoomUrl);
       if (canOpen) {
         Linking.openURL(chatRoomUrl);
       }
-    } else {
-      NavigationService.navigate(Screens.LiveChat, chatRoomUrl);
-    }
   };
   const shouldStartChat = () => {
     return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl);
@@ -128,7 +125,7 @@ const HomeScreen = ({
   const bottomInset = StaticSafeAreaInsets.safeAreaInsetsBottom
   const scrollViewInset = {
     top:0, 
-    bottom: shouldStartChat() ? 80 + bottomInset : bottomInset, 
+    bottom: shouldStartChat() ? 150 + bottomInset : bottomInset, 
     left: 0, 
     right: 0
   }
@@ -145,7 +142,7 @@ const HomeScreen = ({
         <HomeScreenBody />
         <PossibleInfectionsModal />
       </ScrollView>
-      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+      <View style={{flex: 1, justifyContent: 'flex-end', marginTop: 100}}>
         {shouldStartChat() && <ChatView onPress={startChat} />}
       </View>
     </View>

@@ -20,11 +20,21 @@
                         <constraint firstAttribute="height" constant="240" id="WlC-KG-ezh"/>
                     </constraints>
                 </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shlonikApp" translatesAutoresizingMaskIntoConstraints="NO" id="EQt-4C-48l">
+                    <rect key="frame" x="74" y="727" width="266" height="50"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shlonikAppAr" translatesAutoresizingMaskIntoConstraints="NO" id="Pew-5I-3Ve">
+                    <rect key="frame" x="50" y="787" width="314" height="54"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="EQt-4C-48l" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5Mk-OG-YGK"/>
+                <constraint firstAttribute="bottom" secondItem="Pew-5I-3Ve" secondAttribute="bottom" constant="55" id="7QM-aO-fFT"/>
                 <constraint firstItem="dgQ-6Y-tsF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Fkr-d5-vXC"/>
                 <constraint firstItem="dgQ-6Y-tsF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HGi-AL-ewg"/>
+                <constraint firstItem="Pew-5I-3Ve" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="biQ-l2-gt3"/>
+                <constraint firstItem="Pew-5I-3Ve" firstAttribute="top" secondItem="EQt-4C-48l" secondAttribute="bottom" constant="10" id="zZx-Yl-p9c"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="547.82608695652175" y="454.6875"/>
@@ -32,5 +42,7 @@
     </objects>
     <resources>
         <image name="logo" width="196" height="290"/>
+        <image name="shlonikApp" width="133" height="25"/>
+        <image name="shlonikAppAr" width="157" height="27"/>
     </resources>
 </document>
