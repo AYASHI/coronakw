@@ -17,10 +17,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {phoneNumberValidation, validateAll} from '../../utils/validation';
 
-const PhoneNumberScreen = ({
-  validatePhoneNumber,
-  showError,
-}) => {
+const PhoneNumberScreen = ({validatePhoneNumber, showError}) => {
   const {t} = useTranslation();
   const submit = () => {
     const validations = [
@@ -54,7 +51,7 @@ const PhoneNumberScreen = ({
           <Button text={t('auth.login_next')} onPress={submit} />
         </View>
       </AuthContainer>
-      </SafeAreaView>
+    </SafeAreaView>
   );
 };
 

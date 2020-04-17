@@ -17,7 +17,7 @@ import * as NavigationService from '../../navigators/NavigationService';
 import ActionCreators from '../../store/action';
 import {ScrollView} from 'react-native-gesture-handler';
 import layout from '../../utils/layout';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 
 const HomeScreen = ({
@@ -73,7 +73,9 @@ const HomeScreen = ({
     if (getLocationSent) {
       fetchStatusCategories();
       // Getting remaining days only if the user isQuarantine
-      if (isQuarantine) fetchRemainingDays();
+      if (isQuarantine) {
+        fetchRemainingDays();
+      }
     }
   }, [getLocationSent]);
 
@@ -112,32 +114,30 @@ const HomeScreen = ({
     );
   };
   const startChat = () => {
-   
-      const canOpen = Linking.canOpenURL(chatRoomUrl);
-      if (canOpen) {
-        Linking.openURL(chatRoomUrl);
-      }
+    const canOpen = Linking.canOpenURL(chatRoomUrl);
+    if (canOpen) {
+      Linking.openURL(chatRoomUrl);
+    }
   };
   const shouldStartChat = () => {
     return patientVitalStatusColor !== 'green' && !isnull(chatRoomUrl);
   };
 
-  const bottomInset = StaticSafeAreaInsets.safeAreaInsetsBottom
+  const bottomInset = StaticSafeAreaInsets.safeAreaInsetsBottom;
   const scrollViewInset = {
-    top:0, 
-    bottom: shouldStartChat() ? 150 + bottomInset : bottomInset, 
-    left: 0, 
-    right: 0
-  }
+    top: 0,
+    bottom: shouldStartChat() ? 150 + bottomInset : bottomInset,
+    left: 0,
+    right: 0,
+  };
   return (
     <View style={styles.container}>
       <HomeScreenHeader />
       <Spacer space={80} />
-      <ScrollView 
-      automaticallyAdjustContentInsets= {false}
-      contentInset={scrollViewInset}
-      contentOffset= {{x: 0, y: 0}}
-      >
+      <ScrollView
+        automaticallyAdjustContentInsets={false}
+        contentInset={scrollViewInset}
+        contentOffset={{x: 0, y: 0}}>
         {showQuarantineMessage() && <RemainingDaysFragment />}
         <HomeScreenBody />
         <PossibleInfectionsModal />

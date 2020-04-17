@@ -20,11 +20,7 @@ import {
   validateAll,
 } from '../../utils/validation';
 
-const LoginScreen = ({
-  validateCivilId,
-  setCivilInfo,
-  showError,
-}) => {
+const LoginScreen = ({validateCivilId, setCivilInfo, showError}) => {
   const {t} = useTranslation();
 
   const submit = () => {

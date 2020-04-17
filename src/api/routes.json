@@ -1,0 +1,17 @@
+{
+    "/users/CheckSerialCIDNumber": "/CheckSerialCIDNumber",
+    "/Users/SendOTP": "/otp",
+    "/Users/Register": "/register",
+    "/healthState": "/healthState",
+    "/survey": "/survey",
+    "/PatientAssociates/Create": "/PatientAssociates",
+    "/Patients/QuarantineDays": "/QuarantineDays",
+    "/Patients/Location": "/Location",
+    "/Patients/Location/send": "/SendLocation",
+    "/QuestionCategories/List": "/QuestionCategoriesList",
+    "/Questions/List": "/QuestionsList",
+    "/areas": "/areas",
+    "/:resource/:id/show": "/:resource/:id",
+    "/posts/:category": "/posts?category=:category",
+    "/articles\\?id=:id": "/posts/:id"
+}

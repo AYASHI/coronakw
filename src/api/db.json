@@ -1,0 +1,74 @@
+{
+
+  "CheckSerialCIDNumber":{
+      "isSuccess": true,
+      "message": "",
+      "data": null
+  },
+  "otp": {
+    "isSuccess": true
+  },
+  "register": {
+    "isSuccess": true
+  },
+  "healthState": {
+    "isSuccess": true
+  },
+  "survey": {
+    "isSuccess": true
+  },
+  "PatientAssociates": {
+    "isSuccess": true,
+    "message": "Associate was created successfully"
+  },
+  "QuarantineDays": {
+    "isSuccess": true,
+    "data": {}
+  },
+  "Location": {
+    "isSuccess": true,
+    "data": {
+      "latitude": "12.2324",
+      "longitude": "12.3424"
+    }
+  },
+  "QuestionCategoriesList": {
+    "isSuccess": true,
+    "data": {
+      "latitude": "12.2324",
+      "longitude": "12.3424"
+    }
+  },
+  "QuestionsList": {
+    "isSuccess": true,
+    "message": "success message",
+    "questions": [
+
+    ]
+  },
+  "SendLocation": {
+    "isSuccess": true
+  },
+  "areas": {
+    "isSuccess": true,
+    "areas": [
+      {
+        "name": "no where"
+      }
+    ]
+  },
+  "companies": [{
+    "id": 1,
+    "name": "Microsoft"
+  },
+    {
+      "id": 2,
+      "name": "Facebook"
+    },
+    {
+      "id": 3,
+      "name": "Amazon"
+    }
+  ]
+
+}

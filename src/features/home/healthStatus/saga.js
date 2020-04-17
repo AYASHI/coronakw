@@ -7,6 +7,8 @@ import * as actions from './actions';
 import * as NavigationService from '../../../navigators/NavigationService';
 import {showMessage} from 'react-native-flash-message';
 import Screens from '../../../navigators/Screens';
+
+
 function* fetchStatusCategoriesSaga() {
   // Get token from redux
   const token = yield select(state => state.user.token);
