@@ -5,8 +5,8 @@ import * as actionTypes from '../store/actionTypes';
 import {showMessage} from 'react-native-flash-message';
 import reactotron from 'reactotron-react-native';
 
-const host = 'https://test-shlonikapi.azurefd.net/';
-// const host = "http://localhost:4000";
+// const host = 'https://test-shlonikapi.azurefd.net/';
+const host = "http://localhost:4000/";
 export const BASE_URL = host + 'en/api/v1/';
 
 const apiClient = axios.create({

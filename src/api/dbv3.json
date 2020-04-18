@@ -1,9 +1,6 @@
 {
-
-  "CheckSerialCIDNumber":{
-      "isSuccess": true,
-      "message": "",
-      "data": null
+  "CheckSerialCIDNumber": {
+    "isSuccess": true
   },
   "otp": {
     "isSuccess": true
@@ -42,9 +39,7 @@
   "QuestionsList": {
     "isSuccess": true,
     "message": "success message",
-    "questions": [
-
-    ]
+    "questions": []
   },
   "SendLocation": {
     "isSuccess": true
@@ -57,10 +52,11 @@
       }
     ]
   },
-  "companies": [{
-    "id": 1,
-    "name": "Microsoft"
-  },
+  "companies": [
+    {
+      "id": 1,
+      "name": "Microsoft"
+    },
     {
       "id": 2,
       "name": "Facebook"
@@ -70,5 +66,4 @@
       "name": "Amazon"
     }
   ]
-
 }
