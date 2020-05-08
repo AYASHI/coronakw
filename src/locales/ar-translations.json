@@ -1,0 +1,133 @@
+{
+  "common": {
+    "ok": "حسنا",
+    "cancel": "الغاء",
+    "error": "خطأ!!!",
+    "cantFetchLocation": "الرجاء تفعيل خدمة تحديد الموقع من الاعدادات"
+  },
+  "validation": {
+    "civilid": "رقم البطاقة المدنية غير صالح",
+    "otp": "رمز التفعيل غير صالح",
+    "phonenumber": "رقم الهاتف غير صالح",
+    "name": "حقل الاسم غير صحيح",
+    "serialnumber" : "الرقم المتسلسل غير صحيح"
+  },
+  "auth": {
+    "login_button": "تسجيل الدخول",
+    "enter_civil_id": "أدخل رقم البطاقة المدنية",
+    "enter_serial_number" :"إدخل الرقم التسلسلي",
+    "civil_id_instruction": "رقم البطاقة المدنية مكون من 12 رقم",
+    "serial_number_instruction": "الرقم موجود فى ظهر البطاقة المدنية ومكون من ١٠ ارقام ",
+    "civil_id_placeholder": "112233445566",
+    "serial_number_placeholder": "1234567890",
+    "enter_phone_number": "أدخل رقم الهاتف",
+    "phone_number_instruction": "من فضلك ادخل رقم الجوال لكي نستطيع ان نرسل لك كود التحقيق.",
+    "login_next": "التالي",
+    "enter_otp": "ادخل كود التحقيق",
+    "otp_instruction": "تم ارسال كود التحقيق الى الجوال المنتهي ب",
+    "otp_placeholder": "رقم التحقيق"
+  
+  },
+  "onboarding": {
+    "personalInfo": "البيانات الشخصية",
+    "infoAccuracy": "الدقة في المعلومات ستساعدنا في الوصول إليك أسرع والأطمئنان علي حالتك الصحية..",
+    "civilId": "الرقم المدني",
+    "fullName": "الإسم بالكامل",
+    "phoneNumber": "رقم التلفون",
+    "travelOutsideKuwait": "هل قمت بالسفر خارج الكويت خلال ال ٤٥ يوم الماضية؟",
+    "selectCountries": "اذكر الدول التي قمت بزيارتها خلال ال ٤٥ يوم الماضية؟",
+    "quarantineLocationTitle": "معلومات موقع الحجر المنزلي",
+    "quarantineLocationSubTitle": "الحجر المنزلي واجب وطني ويتطلب منك درجة عالية من الإلتزام حرصاً على صحتك وصحة من هم حولك."
+  },
+  "home": {
+    "lastUpdateText": "اخر تحديث",
+    "howDoYouFeel": "كيف تشعر الأن؟",
+    "howCanWeHelp": "كيف يمكننا مساعدتك"
+  },
+  "currentPosition": {
+    "gpsButton": "تأكيد موقعي الحالي بالمنزل",
+    "title": "اين موقعك الحالي؟",
+    "subtitle": "شكراً لألتزامك بالحجر المنزلي حتي الأن"
+  },
+  "statusSelection": {
+    "notSick": {
+      "healthy": "بصحة جيدة",
+      "unhealthy": "بصحة غير جيدة"
+    },
+    "sick": {
+      "healthy": "تحسنت",
+      "unhealthy": "متعب",
+      "seriouslyUnhealthy": "متعب جداً"
+    }
+  },
+  "enterTemperatureFragment": {
+    "subtitle": "إدخل قياس درجة الحرارة"
+  },
+  "possibleInfectionsFragment": {
+    "subtitle": "إدخل أسماء من خالطت"
+  },
+  "possibleInfectionsModal": {
+    "title": "ستقوم ووزارة الصحة بالتواصل معهم لتحميل التطبيق والأطمئنان علي حالتهم الصحية..",
+    "add": "اضافة",
+    "send": "ارسال",
+    "send_0": "الرجاء ادخال الاسماء",
+    "send_1": "ارسال اسم",
+    "send_2": "ارسال اسمين",
+    "send_3": "ارسال {{count}} اسماء",
+    "send_11": "ارسال {{count}} اسم"
+  },
+  "healthSurveyModal": {
+    "noSymptoms": "تأكيد عدم وجود اعراض",
+    "oneSymptom": "تأكيد عرض",
+    "twoSymptoms": "تأكيد عرضين",
+
+    "title": "سلامتك بالدنيا..",
+    "contentSubtitle": "ما هي الاعراض التي تشعر بها الان؟",
+    "confirm": "تآكيد",
+    "symptoms": "آعراض"
+  },
+  "temperatureModal": {
+    "subtitle": "قياس درجة الحرارة الدورية",
+    "title": " قم بإدخال درجة حراراتك الحالية، حرصاً على سلامتك..",
+    "confirmButton": "تأكيد درجة الحرارة الحالية"
+  },
+  "button": {
+    "confirm": "تأكيد",
+    "close": "اغلاق"
+  },
+  "placeholder": {
+    "selectCountries": "اختار من القائمة جميع الدول",
+    "area": "المنطقة",
+    "street": "الشارع",
+    "block": "قطعة",
+    "phoneNumber": "رقم الهاتف النقال",
+    "name": "الإسم بالكامل",
+    "city": "المدينة",
+    "accomodationType": "نوع السكن",
+    "buildingNumber": "رقم البناية",
+    "housebuildingNumber": "رقم المنزل",
+    "avenue": "الجادة",
+    "floor": "الطابق",
+    "apartment": "رقم الشقة"
+  },
+  "yesNoQuestion": {
+    "yes": "نعم",
+    "no": "لا"
+  },
+  "remainingDays" :{
+    "desc": "  شكراً لحرصك على الإلتزام بالمنزل ومساهتمك في تجتب انتشارالعدوي ",
+    "title":"الحجر المنزلي واجب وطني",
+    "subtitle":"الايام المتبقية",
+    "ratioTitle": "{{total}}/{{current}} يوم"
+  },
+  "chat": {
+    "title" : "ابدا محادثة فورية \n لآطمئنان علي سلامتك ..."
+  },
+  "whatToDoNext": {
+    "stayDistanced": "تجنب الأختلاط المباشر بين المصابين.",
+    "dontTouch": "تجنب لمس الأسطح في الأماكن العامة ثم لمس الفم او الوجه.",
+    "whashHand": "غسل اليدين بالماء والصابون جيداً بإنتظام.",
+    "howToAvoid": "كيف يمكنك تجنب العدوي",
+    "callhospital": "للتواصل مع وزارة الصحة  151"
+  }
+}
