@@ -10,13 +10,15 @@ import {useTranslation} from 'react-i18next';
 import WhatToDoNext from '../features/home/WhatToDoNext';
 const HomeScreenBody = props => {
   const {t} = useTranslation();
-  const patientVitalStatusColor = props.patientVitalStatusColor ?? "green"
+  const patientVitalStatusColor = props.patientVitalStatusColor ?? 'green';
   return (
     <Fragment>
-        <WhatToDoNext status={patientVitalStatusColor.toLowerCase() !== 'green' ? 3 : 1}/>
-        <Text style={styles.title}>{t('home.howCanWeHelp')}</Text>
-        <PossibleInfectionsFragment />
-     </Fragment>
+      <WhatToDoNext
+        status={patientVitalStatusColor.toLowerCase() !== 'green' ? 3 : 1}
+      />
+      <Text style={styles.title}>{t('home.howCanWeHelp')}</Text>
+      <PossibleInfectionsFragment />
+    </Fragment>
   );
 };
 
@@ -51,16 +53,14 @@ const mapStateToProps = state => {
   return {
     healthState: state.home.healthState || 1,
     isSick: state.home.isSick,
-    patientVitalStatusColor: state.home.patientVitalStatusColor
+    patientVitalStatusColor: state.home.patientVitalStatusColor,
   };
 };
 
 // Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
 const mapDispatchToProps = dispatch => {
   // Action
-  return {
-    
-  };
+  return {};
 };
 
 export default connect(

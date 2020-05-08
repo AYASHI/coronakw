@@ -6,7 +6,7 @@ import APIs from '../../api/APIs';
 import actions from './actions';
 
 function* validateNationalIdSaga(action) {
-  const response = yield call( APIs.validateUserNationalID, action.payload)
+  const response = yield call(APIs.validateUserNationalID, action.payload);
   if (response.isSuccess) {
     NavigationService.navigate(Screens.Phone);
   }
@@ -19,17 +19,17 @@ function* validatePhoneNumberSaga(action) {
     SerialNumber: action.payload.serialNumber,
   };
 
-  const response = yield call( APIs.validatePhoneNumber, payload)
+  const response = yield call(APIs.validatePhoneNumber, payload);
   if (response.isSuccess) {
     NavigationService.navigate(Screens.OTP);
   }
 }
 
 function* registerSaga(action) {
-  const response = yield call( APIs.registerUser, action.payload)
+  const response = yield call(APIs.registerUser, action.payload);
   if (response.isSuccess) {
     NavigationService.navigate(Screens.Home);
-   yield put(actions.registrationSuccess(response.data))
+    yield put(actions.registrationSuccess(response.data));
   }
 }
 

@@ -50,7 +50,7 @@ const OTPScreen = ({registerUser, showError}) => {
           <Button text={t('auth.login_button')} onPress={submit} />
         </View>
       </AuthContainer>
-      </SafeAreaView>
+    </SafeAreaView>
   );
 };
 

@@ -10,7 +10,8 @@
     "lint": "npx eslint . --fix",
     "format": "npx prettier -c '**/*.js'  --write",
     "pods": "cd ios; pod install; cd ..",
-    "android-release": "cd android; ./gradlew bundleRelease; cd .."
+    "android-release": "cd android; ./gradlew bundleRelease; cd ..",
+    "mock:api": "json-server --watch src/api/dbv3.json --port 4000 --routes src/api/routes.json"
   },
   "dependencies": {
     "@react-native-community/geolocation": "^2.0.2",
